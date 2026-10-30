@@ -1,0 +1,179 @@
+{
+  "id": "munch",
+  "sticker": "turtle",
+  "kind": "action",
+  "description": "the turtle dips its head, nibbles a fern leaf and munches it up, munch, munch, then smiles.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.26042,
+    "width": 0.59896,
+    "height": 0.47917
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the turtle munching a little fern leaf"
+  },
+  "puppet": {
+    "rig": "anims/turtle.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "head": {
+            "r": -16,
+            "y": 4
+          },
+          "neck": {
+            "r": -30
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "head": {
+            "r": -16,
+            "y": 4
+          },
+          "neck": {
+            "r": -30
+          }
+        },
+        "slots": {
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "fern": "fern",
+          "mouth": "munch"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "fern": {
+            "sx": 1,
+            "sy": 1
+          },
+          "head": {
+            "y": -1
+          }
+        },
+        "slots": {
+          "fern": "fern",
+          "mouth": "munch"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "fern": {
+            "sx": 0.9,
+            "sy": 0.9
+          },
+          "head": {
+            "y": 1
+          }
+        },
+        "slots": {
+          "fern": "fern",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "fern": {
+            "sx": 0.8,
+            "sy": 0.8
+          },
+          "head": {
+            "y": -1
+          }
+        },
+        "slots": {
+          "fern": "fern",
+          "mouth": "munch"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "fern": {
+            "sx": 0.66,
+            "sy": 0.66
+          },
+          "head": {
+            "y": 1
+          }
+        },
+        "slots": {
+          "fern": "fern",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "fern": {
+            "sx": 0.5,
+            "sy": 0.5
+          },
+          "head": {
+            "y": -1
+          }
+        },
+        "slots": {
+          "fern": "fern",
+          "mouth": "munch"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "fern": {
+            "sx": 0.35,
+            "sy": 0.35
+          },
+          "head": {
+            "y": 1
+          }
+        },
+        "slots": {
+          "fern": "fern",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

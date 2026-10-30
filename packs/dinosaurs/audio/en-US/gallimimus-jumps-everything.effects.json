@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "gallimimus",
+      "sticker": "puddle",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "gallimimus",
+      "sticker": "log",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "gallimimus",
+      "sticker": "leaf",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "gallimimus",
+      "sticker": "gallimimus",
+      "enter": true
+    },
+    {
+      "at": 9.48,
+      "cue": "ready",
+      "sticker": "gallimimus",
+      "expression": "happy"
+    },
+    {
+      "at": 9.48,
+      "cue": "ready",
+      "sticker": "gallimimus",
+      "animation": "ready-set",
+      "mode": "hold"
+    },
+    {
+      "at": 11.24,
+      "cue": "go",
+      "sticker": "gallimimus",
+      "animation": "ready-set",
+      "mode": "resume"
+    },
+    {
+      "at": 12.36,
+      "cue": "first",
+      "sticker": "gallimimus",
+      "go": "to",
+      "target": "puddle"
+    },
+    {
+      "at": 14.12,
+      "cue": "whee",
+      "sticker": "gallimimus",
+      "animation": "jump"
+    },
+    {
+      "at": 16.68,
+      "cue": "next",
+      "sticker": "gallimimus",
+      "go": "to",
+      "target": "log"
+    },
+    {
+      "at": 18.28,
+      "cue": "whoosh",
+      "sticker": "gallimimus",
+      "effect": "hop"
+    },
+    {
+      "at": 23.64,
+      "cue": "bump",
+      "sticker": "log",
+      "animation": "bump"
+    },
+    {
+      "at": 30.92,
+      "cue": "it",
+      "sticker": "gallimimus",
+      "expression": "surprised"
+    },
+    {
+      "at": 37.32,
+      "cue": "so",
+      "sticker": "gallimimus",
+      "go": "under",
+      "target": "leaf"
+    },
+    {
+      "at": 41.48,
+      "cue": "under",
+      "sticker": "gallimimus",
+      "expression": "happy"
+    },
+    {
+      "at": 44.32,
+      "cue": "all",
+      "sticker": "gallimimus",
+      "go": "to",
+      "target": "puddle"
+    },
+    {
+      "at": 51.64,
+      "cue": "splosh",
+      "sticker": "puddle",
+      "animation": "splash"
+    },
+    {
+      "at": 54.52,
+      "cue": "mud",
+      "sticker": "gallimimus",
+      "expression": "surprised"
+    },
+    {
+      "at": 59.24,
+      "cue": "gallimimus",
+      "sticker": "gallimimus",
+      "expression": "happy"
+    },
+    {
+      "at": 59.24,
+      "cue": "gallimimus",
+      "sticker": "gallimimus",
+      "animation": "laugh"
+    }
+  ]
+}

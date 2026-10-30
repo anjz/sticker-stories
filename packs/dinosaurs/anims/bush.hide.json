@@ -1,0 +1,162 @@
+{
+  "id": "hide",
+  "sticker": "bush",
+  "kind": "action",
+  "description": "the berry bush shyly ducks its face down into its leaves until only leaves show, then peeks back out with a smile.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.15365,
+    "width": 0.72005,
+    "height": 0.69271
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the berry bush with its face hidden in its leaves"
+  },
+  "puppet": {
+    "rig": "anims/bush.rig.json",
+    "keys": [
+      {
+        "hold": 0.25
+      },
+      {
+        "hold": 0.4,
+        "ease": "in",
+        "bones": {
+          "cover": {
+            "y": -10,
+            "sx": 1.15,
+            "sy": 1.25
+          },
+          "head": {
+            "y": 12,
+            "sx": 0.9,
+            "sy": 0.8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "out",
+        "bones": {
+          "cover": {
+            "y": -24,
+            "sx": 1.35,
+            "sy": 1.6
+          },
+          "head": {
+            "y": 30,
+            "sx": 0.7,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 1.2,
+        "bones": {
+          "belly": {
+            "sx": 1.01,
+            "sy": 0.98
+          },
+          "cover": {
+            "y": -24,
+            "sx": 1.35,
+            "sy": 1.6
+          },
+          "head": {
+            "y": 30,
+            "sx": 0.7,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "mouth": "none",
+          "patch": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "cover": {
+            "r": 3,
+            "y": -24,
+            "sx": 1.35,
+            "sy": 1.6
+          },
+          "head": {
+            "y": 30,
+            "sx": 0.7,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "mouth": "none",
+          "patch": "none"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "cover": {
+            "y": -10,
+            "sx": 1.15,
+            "sy": 1.25
+          },
+          "head": {
+            "y": 12,
+            "sx": 0.9,
+            "sy": 0.8
+          }
+        },
+        "slots": {
+          "browL": "up",
+          "browR": "up",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "head": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

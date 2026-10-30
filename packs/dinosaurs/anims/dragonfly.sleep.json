@@ -1,0 +1,183 @@
+{
+  "id": "sleep",
+  "sticker": "dragonfly",
+  "kind": "action",
+  "description": "the dragonfly gives a big yawn, closes its big round eyes and dozes off, its tail drooping, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26563,
+    "width": 0.5,
+    "height": 0.46745
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the dragonfly fast asleep, its big round eyes shut, its tail drooping"
+  },
+  "puppet": {
+    "rig": "anims/dragonfly.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": 5,
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": 5,
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "face": {
+            "y": 1
+          },
+          "head": {
+            "r": -7,
+            "y": 2
+          },
+          "legs": {
+            "r": 3
+          },
+          "root": {
+            "y": 6
+          },
+          "tail": {
+            "r": 5
+          },
+          "tail2": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "face": {
+            "y": 1
+          },
+          "head": {
+            "r": -7,
+            "y": 2
+          },
+          "legs": {
+            "r": 3
+          },
+          "root": {
+            "y": 7
+          },
+          "tail": {
+            "r": 5
+          },
+          "tail2": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "face": {
+            "y": 1
+          },
+          "head": {
+            "r": -7,
+            "y": 2
+          },
+          "legs": {
+            "r": 3
+          },
+          "root": {
+            "y": 6
+          },
+          "tail": {
+            "r": 5
+          },
+          "tail2": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 2,
+            "y": -1
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.18,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

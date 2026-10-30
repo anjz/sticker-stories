@@ -1,0 +1,145 @@
+{
+  "id": "sleep",
+  "sticker": "archaeopteryx",
+  "description": "the archaeopteryx gives a big yawn, fluffs up, tucks its head down and falls asleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.21354,
+    "width": 0.59896,
+    "height": 0.57292
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the archaeopteryx fast asleep, fluffed up, eyes shut, head drooped"
+  },
+  "perched": true,
+  "puppet": {
+    "rig": "anims/archaeopteryx.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": 8,
+            "y": -3
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": 8,
+            "y": -3
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.98
+          },
+          "face": {
+            "y": 1
+          },
+          "head": {
+            "r": -15,
+            "y": 9
+          },
+          "tail": {
+            "r": 5
+          },
+          "wingL": {
+            "r": -2
+          },
+          "wingR": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.99
+          },
+          "face": {
+            "y": 1
+          },
+          "head": {
+            "r": -15,
+            "y": 9
+          },
+          "tail": {
+            "r": 5
+          },
+          "wingL": {
+            "r": -2
+          },
+          "wingR": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

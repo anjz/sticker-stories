@@ -1,0 +1,977 @@
+{
+  "style": "Children's picture-book illustration for ages 4 and up: soft digital gouache with a gentle hand-painted texture, clean rounded shapes, thick-and-thin dark-brown outlines, warm friendly palette (jade and lime greens, warm ochre and terracotta, teal and turquoise, soft lilac, a touch of coral and sunny yellow), simple big eyes with a small highlight, rosy cheeks, calm smiling expressions; chubby, rounded, cuddly baby-like dinosaurs with soft blunt horns, plates and spikes, mouths closed or gently smiling, no visible teeth, no sharp claws, no scary elements, no text, no watermarks.",
+  "styleSheet": "A style sheet on a plain white background, four sticker subjects standing side by side, all facing slightly to the left, whole bodies visible and not overlapping: a young, round, green T. rex with tiny arms and a big closed-mouth smile, a chubby orange Triceratops with three soft blunt horns and a round frill, a teal Stegosaurus with rounded coral back plates, and a lilac Pteranodon standing with its wings folded. Plus a small swatch of prehistoric scenery in the bottom corner: a little tree fern, a cycad with a cone and a mossy terracotta rock. Consistent style, palette and line weight across everything. No text.",
+  "stickerSize": 768,
+  "border": 0.025,
+  "margin": 0.03,
+  "sizeInArt": true,
+  "stickers": [
+    {
+      "id": "brachiosaurus",
+      "name": {
+        "en-US": "Brachiosaurus",
+        "es-ES": "Braquiosaurio"
+      },
+      "prompt": "A gentle, chubby baby-faced Brachiosaurus, a long-neck dinosaur: a round soft sage-green body with pale cream belly and faint darker spots, four sturdy pillar legs, a short tail, and a very long neck rising up high with a small round head at the top, big kind eyes and a sleepy, happy closed-mouth smile. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "huge",
+      "face": {
+        "x": 0.09,
+        "y": 0.03,
+        "width": 0.22,
+        "height": 0.17,
+        "edge": 0.01
+      },
+      "faceNote": "Its small round head sits on top of the long neck; the head's shape, the snout and the green spots stay exactly as they are; only the eyes, brows, mouth and cheeks change. It has TWO eyes — the far one, smaller, nearer the snout, and the near one, bigger — and both always show the same expression; never remove or add an eye. Never show teeth, even with an open mouth.",
+      "faceKeep": 0.005
+    },
+    {
+      "id": "triceratops",
+      "name": {
+        "en-US": "Triceratops",
+        "es-ES": "Triceratops"
+      },
+      "prompt": "A chubby orange Triceratops with darker orange spots and a cream belly, three soft blunt rounded horns, a big round frill with little scalloped bumps along its edge, four stubby legs, a short tail, big bright eyes and a cheerful closed-mouth smile. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "big",
+      "face": {
+        "x": 0.08,
+        "y": 0.31,
+        "width": 0.34,
+        "height": 0.26
+      },
+      "faceNote": "The snout stays exactly as drawn: orange and rounded, with its small nostril and the little cream nose horn on top — never turn it into a big cream beak. The three soft cream horns and the orange frill stay exactly as they are, same size and colour; only the eyes, brows, mouth and cheeks change. It has TWO eyes — the far one, smaller, nearer the snout, and the near one, bigger — and both always show the same expression; never remove or add an eye. Never show teeth, even with an open mouth.",
+      "faceKeep": 0.005
+    },
+    {
+      "id": "stegosaurus",
+      "name": {
+        "en-US": "Stegosaurus",
+        "es-ES": "Estegosaurio"
+      },
+      "prompt": "A round teal Stegosaurus with darker teal spots and a pale belly, two rows of big rounded coral back plates along its arched back, a short tail with four soft blunt tail spikes, four stubby legs, a small head held low, big friendly eyes and a shy smile. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "big",
+      "face": {
+        "x": 0.03,
+        "y": 0.36,
+        "width": 0.27,
+        "height": 0.23
+      },
+      "faceNote": "The small teal head and its spots stay exactly as they are; only the eyes, brows, mouth and cheeks change. It has TWO eyes — the far one, smaller, nearer the snout, and the near one, bigger — and both always show the same expression; never remove or add an eye. Never show teeth, even with an open mouth.",
+      "faceKeep": 0.005
+    },
+    {
+      "id": "trex",
+      "name": {
+        "en-US": "T. rex",
+        "es-ES": "T. rex"
+      },
+      "prompt": "A young, round, chubby green Tyrannosaurus rex standing on its two big feet, its big round head with a soft rounded snout, mouth CLOSED in a big happy grin (no teeth showing), comically tiny little arms held up in front of its tummy, a cream belly, darker green spots, a thick tail behind, big shiny eyes. Cute, cuddly and silly, never fierce. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "big",
+      "face": {
+        "x": 0.14,
+        "y": 0.08,
+        "width": 0.42,
+        "height": 0.3
+      },
+      "faceNote": "The big round head, its rounded snout and the spots stay exactly as they are; the mouth stays a closed or gently opened smile with NO teeth. It has TWO eyes — the far one, smaller, nearer the snout, and the near one, bigger — and both always show the same expression; never remove or add an eye. Never show teeth, even with an open mouth.",
+      "faceKeep": 0.005
+    },
+    {
+      "id": "parasaurolophus",
+      "name": {
+        "en-US": "Parasaurolophus",
+        "es-ES": "Parasaurolophus"
+      },
+      "prompt": "A friendly yellow-and-coral Parasaurolophus, a duck-billed dinosaur standing on its two back legs with its little front hands down, a long curved tube-shaped crest sweeping back from its head, a rounded duck-like bill closed in a smile, soft stripes on its back, big gentle eyes. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "big",
+      "face": {
+        "x": 0.13,
+        "y": 0.13,
+        "width": 0.28,
+        "height": 0.22
+      },
+      "faceNote": "The duck-like bill and the long curved crest stay exactly as they are, same shape and colour; the bill stays smiling and closed except a small round opening for surprise. It has TWO eyes — the far one, smaller, nearer the snout, and the near one, bigger — and both always show the same expression; never remove or add an eye. Never show teeth, even with an open mouth.",
+      "faceKeep": 0.005
+    },
+    {
+      "id": "spinosaurus",
+      "name": {
+        "en-US": "Spinosaurus",
+        "es-ES": "Espinosaurio"
+      },
+      "prompt": "A plump, friendly blue-green Spinosaurus walking on all fours, a tall rounded sail on its back with soft orange-and-yellow stripes, a short rounded snout with its mouth closed in a smile (no teeth), a long paddle-shaped tail, webbed feet, big playful eyes. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "shore",
+          "meadow"
+        ]
+      },
+      "size": "big",
+      "face": {
+        "x": 0.06,
+        "y": 0.21,
+        "width": 0.26,
+        "height": 0.23
+      },
+      "faceNote": "The rounded snout and the teal head stay exactly as they are; the sail behind is not touched. It has TWO eyes — the far one, smaller, nearer the snout, and the near one, bigger — and both always show the same expression; never remove or add an eye. Never show teeth, even with an open mouth.",
+      "faceKeep": 0.005
+    },
+    {
+      "id": "plesiosaur",
+      "name": {
+        "en-US": "Plesiosaur",
+        "es-ES": "Plesiosaurio"
+      },
+      "prompt": "A gentle round blue plesiosaur, a sea reptile with a plump oval body, four big soft paddle flippers, a short tail and a long graceful neck curving up with a small round head, big kind eyes and a sweet closed-mouth smile, pale belly and soft lighter speckles. Drawn swimming, its neck raised up. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "lagoon"
+        ]
+      },
+      "size": "big",
+      "face": {
+        "x": 0.1,
+        "y": 0.07,
+        "width": 0.27,
+        "height": 0.18,
+        "edge": 0.01
+      },
+      "faceNote": "The small round head at the top of the long neck stays exactly as it is; only the eyes, brows, mouth and cheeks change. It has TWO eyes — the far one, smaller, nearer the snout, and the near one, bigger — and both always show the same expression; never remove or add an eye. Never show teeth, even with an open mouth.",
+      "faceKeep": 0.005
+    },
+    {
+      "id": "ankylosaurus",
+      "name": {
+        "en-US": "Ankylosaurus",
+        "es-ES": "Anquilosaurio"
+      },
+      "prompt": "A low, round, sand-coloured Ankylosaurus like a little armoured tank: a wide back covered in rounded bumpy tiles with small soft blunt knobs along its sides, four short legs, a round club at the end of its tail, a small head with big sleepy-happy eyes and a contented smile. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow"
+        ]
+      },
+      "size": "medium",
+      "face": {
+        "x": 0.05,
+        "y": 0.38,
+        "width": 0.27,
+        "height": 0.2
+      },
+      "faceNote": "The small head under the armour stays exactly as it is: the bumpy armour tiles and knobs around it do not change; only the eyes, brows, mouth and cheeks change. It has TWO eyes — the far one, smaller, nearer the snout, and the near one, bigger — and both always show the same expression; never remove or add an eye. Never show teeth, even with an open mouth.",
+      "faceKeep": 0.005
+    },
+    {
+      "id": "pachycephalosaurus",
+      "name": {
+        "en-US": "Pachycephalosaurus",
+        "es-ES": "Paquicefalosaurio"
+      },
+      "prompt": "A cheerful lilac-and-cream Pachycephalosaurus standing on its two back legs, a big smooth round dome on top of its head ringed with tiny soft bumps, small front hands, a long tail, big curious eyes and a cheeky closed-mouth grin. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow"
+        ]
+      },
+      "size": "medium",
+      "face": {
+        "x": 0.14,
+        "y": 0.2,
+        "width": 0.32,
+        "height": 0.22
+      },
+      "faceNote": "The big round dome and its ring of little cream bumps stay exactly as they are; only the eyes, brows, mouth and cheeks change. It has TWO eyes — the far one, smaller, nearer the snout, and the near one, bigger — and both always show the same expression; never remove or add an eye. Never show teeth, even with an open mouth.",
+      "faceKeep": 0.005
+    },
+    {
+      "id": "gallimimus",
+      "name": {
+        "en-US": "Gallimimus",
+        "es-ES": "Gallimimus"
+      },
+      "prompt": "A slender, sprightly sunny-yellow Gallimimus, an ostrich-like dinosaur standing on two long thin legs, a small round head on a long neck with a little toothless beak closed in a smile, short arms, a long tail held out behind, a few soft tufty feathers on its back, big bright eager eyes. Ready to run. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "medium",
+      "face": {
+        "x": 0.11,
+        "y": 0.04,
+        "width": 0.17,
+        "height": 0.15,
+        "edge": 0.01
+      },
+      "faceNote": "Its small head shows TWO eyes: the near one, big, and the far one, only a small dark sliver peeking out on the head's front outline just above the beak — keep both, the far one exactly where it is, and both always show the same expression (both closed for happy and sleeping). The little closed orange beak keeps its shape and colour, and the feather tuft on top of the head stays. No teeth.",
+      "faceKeep": 0.003
+    },
+    {
+      "id": "psittacosaurus",
+      "name": {
+        "en-US": "Psittacosaurus",
+        "es-ES": "Psitacosaurio"
+      },
+      "prompt": "A tiny, round, peach-and-mint Psittacosaurus standing on its two back legs, a short parrot-like hooked beak (closed, smiling), round cheeks with little soft bumps, small front hands, a row of soft fluffy bristles sticking up along the top of its tail, big round sparkly eyes. Very cute. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "small",
+      "face": {
+        "x": 0.11,
+        "y": 0.11,
+        "width": 0.31,
+        "height": 0.26
+      },
+      "faceNote": "It has TWO eyes, and the far one must always be there: a small eye just above the top edge of the hooked beak, near the head's front outline; the near one is big. Both always show the same expression (both closed arcs for happy and sleeping, both sad for sad). The big hooked grey parrot-like beak stays exactly as it is, same shape, size and colour; the bristly green feathers on the head stay. Never show teeth.",
+      "faceKeep": 0.003
+    },
+    {
+      "id": "eggs",
+      "name": {
+        "en-US": "Eggs",
+        "es-ES": "Huevos"
+      },
+      "prompt": "A cosy round dinosaur nest of soft fern fronds and twigs holding three big oval cream eggs with pale-green speckles, the eggs whole and closed, sitting snugly side by side, the nest seen slightly from above so all three eggs show. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "pteranodon",
+      "name": {
+        "en-US": "Pteranodon",
+        "es-ES": "Pteranodon"
+      },
+      "prompt": "A friendly lilac Pteranodon standing on its two little feet with its big wings folded at its sides, a long swept-back crest on its head, a long smooth pointed beak closed in a smile (no teeth), a cream chest, big bright eyes. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "rocks",
+          "branches",
+          "meadow"
+        ]
+      },
+      "size": "small",
+      "face": {
+        "x": 0.17,
+        "y": 0.16,
+        "width": 0.39,
+        "height": 0.29
+      },
+      "faceNote": "The long pointed beak stays exactly as it is, long, smooth and closed (a small opening only for surprise); the crest stays. It has TWO eyes — the far one, smaller, nearer the snout, and the near one, bigger — and both always show the same expression; never remove or add an eye. Never show teeth, even with an open mouth.",
+      "faceKeep": 0.005
+    },
+    {
+      "id": "archaeopteryx",
+      "name": {
+        "en-US": "Archaeopteryx",
+        "es-ES": "Arqueoptérix"
+      },
+      "prompt": "A small Archaeopteryx, an early feathered bird-dinosaur: soft teal and blue feathers, wings folded with three little clawless fingers peeking at the bend, a long feathery tail, a short rounded snout-beak closed in a smile, big bright eyes, standing on two small feet, perky. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "branches",
+          "rocks",
+          "meadow"
+        ]
+      },
+      "size": "small",
+      "face": {
+        "x": 0.15,
+        "y": 0.14,
+        "width": 0.22,
+        "height": 0.22
+      },
+      "faceNote": "It has TWO eyes, and the far one must always be there: a small eye just above the top of the orange beak, on the head's front outline; the near one is big. Both always show the same expression (both closed arcs for happy and sleeping, both sad for sad). The short orange beak and the teal head feathers stay exactly as they are, same shape and colour. Never show teeth.",
+      "faceKeep": 0.003
+    },
+    {
+      "id": "dragonfly",
+      "name": {
+        "en-US": "Dragonfly",
+        "es-ES": "Libélula"
+      },
+      "prompt": "A big-eyed turquoise dragonfly seen from above at a slight angle, four long clear veined wings spread wide, a slim segmented turquoise body, two huge round shiny eyes and a tiny smile. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky",
+          "meadow"
+        ]
+      },
+      "size": "tiny",
+      "face": {
+        "x": 0.26,
+        "y": 0.24,
+        "width": 0.22,
+        "height": 0.2,
+        "edge": 0.005
+      },
+      "faceNote": "Its two huge round eyes on top of its head are part of its body: keep them the same size, place and dark outline; only what is inside them (pupils, lids), the tiny mouth and the cheek change. The wings are not touched."
+    },
+    {
+      "id": "turtle",
+      "name": {
+        "en-US": "Turtle",
+        "es-ES": "Tortuga"
+      },
+      "prompt": "A little round prehistoric turtle with a domed olive-green shell patterned with honey-yellow plates, four stubby legs, its head out with big gentle eyes and a sweet smile, standing on the ground. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "small",
+      "face": {
+        "x": 0.06,
+        "y": 0.16,
+        "width": 0.33,
+        "height": 0.25
+      },
+      "faceNote": "The round green head and the little nostril stay exactly as they are; the shell behind is not touched. It has TWO eyes — the far one, smaller, nearer the snout, and the near one, bigger — and both always show the same expression; never remove or add an eye. Never show teeth, even with an open mouth.",
+      "faceKeep": 0.005
+    },
+    {
+      "id": "ammonite",
+      "name": {
+        "en-US": "Ammonite",
+        "es-ES": "Amonites"
+      },
+      "prompt": "A little ammonite: a round coiled spiral shell with soft ridges in cream, coral and rust stripes, its body peeking out of the shell opening with big round eyes, a small smile and a fringe of short curly tentacles underneath. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "lagoon"
+        ]
+      },
+      "size": "tiny",
+      "face": {
+        "x": 0.17,
+        "y": 0.46,
+        "width": 0.28,
+        "height": 0.2
+      },
+      "faceNote": "Its orange face peeks out under the rim of the striped spiral shell: the shell and the curly tentacles stay exactly as they are; only the eyes, brows, mouth and cheeks change. Two eyes, both with the same expression.",
+      "faceKeep": 0.005
+    },
+    {
+      "id": "glider",
+      "name": {
+        "en-US": "Glider",
+        "es-ES": "Planeador"
+      },
+      "prompt": "A tiny fluffy gliding mammal like a little flying squirrel (Volaticotherium): soft grey-blue fur with a cream tummy, a round face with big dark shiny eyes, small round ears and a short pink nose with whiskers, sitting up on its back legs with its little arms held slightly out so the soft furry gliding skin stretched between its front and back legs shows like a small cape on each side, a long, thin, slender tail with short fur (not bushy, not like a squirrel's) trailing behind in a gentle curve. Curious and sweet. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "branches",
+          "rocks",
+          "meadow"
+        ]
+      },
+      "size": "tiny",
+      "face": {
+        "x": 0.17,
+        "y": 0.17,
+        "width": 0.32,
+        "height": 0.23
+      },
+      "faceNote": "The pink nose, the whiskers, the round ears and the grey-blue fur stay exactly as they are; only the eyes, brows, mouth and cheeks change. Two eyes, both with the same expression.",
+      "faceKeep": 0.005
+    },
+    {
+      "id": "beetle",
+      "name": {
+        "en-US": "Beetle",
+        "es-ES": "Escarabajo"
+      },
+      "prompt": "A tiny round shiny beetle with a glossy green-and-bronze shell, six little legs, short antennae and a small friendly face with big eyes. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow"
+        ]
+      },
+      "size": "tiny",
+      "face": {
+        "x": 0.08,
+        "y": 0.27,
+        "width": 0.34,
+        "height": 0.28
+      },
+      "faceNote": "The green head, the two antennae and the shiny shell stay exactly as they are; only the eyes, brows, mouth and cheeks change. Two eyes, both with the same expression.",
+      "faceKeep": 0.005
+    },
+    {
+      "id": "fern",
+      "name": {
+        "en-US": "Fern",
+        "es-ES": "Helecho"
+      },
+      "prompt": "A small young fern plant: a clump of bright green fronds, two of them still curled up into spiral fiddleheads at the top, growing from a little root ball; a sweet sleepy-happy face with small eyes and rosy cheeks on the clump's centre. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "small",
+      "face": {
+        "x": 0.2,
+        "y": 0.55,
+        "width": 0.33,
+        "height": 0.22
+      },
+      "faceNote": "The face is drawn on the fuzzy green clump at the base of the fronds: the fronds, the fiddleheads and the root ball stay exactly as they are; only the eyes, mouth and cheeks change, small and simple."
+    },
+    {
+      "id": "flower",
+      "name": {
+        "en-US": "Flower",
+        "es-ES": "Flor"
+      },
+      "prompt": "A single early magnolia flower on a short green stem with two glossy leaves, big cup-shaped petals in cream and soft pink, a small happy face in the flower's centre. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow"
+        ]
+      },
+      "size": "tiny",
+      "face": {
+        "x": 0.33,
+        "y": 0.32,
+        "width": 0.23,
+        "height": 0.17
+      },
+      "faceNote": "The face is on the flower's yellow bumpy centre: the centre's colour and texture and the pink petals in front stay exactly as they are; only the small eyes, mouth and cheeks change."
+    },
+    {
+      "id": "log",
+      "name": {
+        "en-US": "Log",
+        "es-ES": "Tronco"
+      },
+      "prompt": "A hollow fallen tree log lying on its side, warm brown bark with a few patches of green moss and a little fern sprouting from the top, its round open end facing slightly toward us showing the dark hollow inside and the growth rings at the rim. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "puddle",
+      "name": {
+        "en-US": "Mud puddle",
+        "es-ES": "Charco de barro"
+      },
+      "prompt": "A flat, wide, shallow mud puddle seen from a low angle: a smooth oval of soft brown mud with a little clear water shining on top, a rounded bumpy rim of darker mud, a few small pebbles at its edge. Flat, lying on the ground. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "leaf",
+      "name": {
+        "en-US": "Big leaf",
+        "es-ES": "Hoja grande"
+      },
+      "prompt": "One giant round leaf on a thick green stalk growing straight up out of the ground like an umbrella, the broad leaf held open above, glossy green with lighter veins and a gently wavy edge, a short curl of new leaf at the stalk's foot. Facing slightly to the left, whole body visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "big"
+    },
+    {
+      "id": "bush",
+      "name": {
+        "en-US": "Berry bush",
+        "es-ES": "Arbusto de bayas"
+      },
+      "prompt": "A round, leafy green bush dotted with bunches of shiny red and purple berries, growing from a short woody base whose rounded bottom sits flat (no legs, no feet, no roots showing); a friendly face with small happy eyes and rosy cheeks peeking out of the leaves in its middle. Facing slightly to the left, whole plant visible, standing on nothing (no ground, no grass, no props).",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow"
+        ]
+      },
+      "size": "medium",
+      "face": {
+        "x": 0.27,
+        "y": 0.37,
+        "width": 0.28,
+        "height": 0.2
+      },
+      "faceNote": "The face peeks out of the leaves in the bush's middle: the leaves and berries around it stay exactly as they are; only the eyes, brows, mouth and cheeks change, small and simple. Two eyes, both with the same expression."
+    }
+  ],
+  "expressions": [
+    {
+      "id": "happy",
+      "prompt": "happy — a big, warm, open smile, the eyes smiling (curved upward, crinkled with joy), cheeks lifted and rosy."
+    },
+    {
+      "id": "sad",
+      "prompt": "a little sad — eyebrows tilted up in the middle, eyes soft and a bit droopy, a small downturned mouth. Gentle, not crying, no tears."
+    },
+    {
+      "id": "sleeping",
+      "prompt": "fast asleep — both eyes peacefully closed as soft curved lines, a small relaxed mouth, calm and cosy."
+    },
+    {
+      "id": "surprised",
+      "prompt": "delighted surprise — eyes wide open and round, eyebrows raised high, a small round open \"o\" mouth. Amazed and happy, never scared."
+    }
+  ],
+  "scene": {
+    "layout": "layout.jpg",
+    "background": "A sunny, peaceful prehistoric valley seen from a small child's eye height, laid out as in the layout image but WITHOUT the tall trees at its left and right edges (those are painted later on their own layers): a calm turquoise lagoon on the left and middle with a gently sloping sandy-mud shore curving across the left half, smooth pebbles along it and four giant round water-lily pads near the left bank; its far side and the distance on the right ringed by low, layered ochre-and-terracotta mesas and flat-topped red rocks with a few small monkey-puzzle trees and cycads on top; far away, just right of the centre behind the mesas, a small, gentle, green-sloped, flat-topped dormant volcano with NO smoke, NO steam, NO lava and NO glow, calm and friendly; soft lilac-blue hills behind; a wide, flat, open meadow of short ferns and grass across the centre and right, the middle wide open; one big, low, flat-topped warm terracotta rock ledge standing on the meadow in the right middle ground, as in the layout, its broad flat sunny top good for basking; a small golden fan-leaved ginkgo and a clump of giant green horsetails at the back right of the meadow; a clear warm pale-blue sky with a few round soft clouds. Exotic prehistoric plants only: it must not look like a European woodland. No animals, no dinosaurs, no birds, no people.",
+    "foreground": "Only a few low prehistoric plants in the two bottom corners, nothing else: in the bottom-left corner a small cycad with stiff palm-like fronds and one golden cone, a curled fern fiddlehead beside it and a round mossy boulder; in the bottom-right corner a low clump of short giant-horsetail shoots and small ferns beside a mossy terracotta stone. Each clump is no wider than a sixth of the picture and no taller than a tenth of it, sitting on the bottom edge. No trees, no trunks. The bottom edge between the two corners, the whole centre and everything above stay fully transparent.",
+    "foregroundWideOwn": "The same two small corner clumps at the wide picture's own bottom corners, each the same size as in the attached 4:3 foreground; everything else fully transparent.",
+    "foregroundDown": 0.04,
+    "edits": [
+      {
+        "prompt": "Make the lagoon smaller, so the valley has more dry land. At the left edge of this area the lagoon's turquoise water and the right ends of its lily pads come in: continue them only a short way, then the water ends in a gently curving sandy-mud shore with a few smooth pebbles, like the lagoon's near shore at the bottom-left — the shore curves from the far bank at the top of the area round to the near bank at the bottom, about a third of the way across the area. Everything to the right of that new shore is dry, flat, open meadow of short grass and a few small ferns, continuing the meadow around it seamlessly, the same colours, texture and light; at the top it runs back to the low bushes at the foot of the distant mesas. No more water, lily pads, puddles, rocks or trees in the meadow part.",
+        "area": {
+          "x": 0.29,
+          "y": 0.45,
+          "width": 0.24,
+          "height": 0.32
+        }
+      },
+      {
+        "prompt": "Here the far right end of the lagoon becomes dry land: repaint it as flat, open meadow of short grass and a few small ferns, continuing the meadow around it seamlessly, the same colours, texture and light, running back at the top to the low bushes at the foot of the distant mesas. No water, no shore, no pebbles, no puddles, no rocks, no trees.",
+        "area": {
+          "x": 0.49,
+          "y": 0.45,
+          "width": 0.15,
+          "height": 0.15
+        }
+      },
+      {
+        "prompt": "Mend this near corner of the lagoon so it has clear, separate shapes: turquoise water with two giant round water-lily pads floating in it well apart, each drawn whole and perfectly round with its upturned rim, not touching or overlapping each other; on the right the water ends in a gently curving sandy-mud shore with a few smooth pebbles and a soft white ripple line at the water's edge, joining the sandy shore at the top and the sandy shore at the bottom-left into one smooth curve; beyond the shore, on the right, the open meadow of short grass continues. No soft or blurry fading anywhere: water, then sand, then grass.",
+        "area": {
+          "x": 0.2,
+          "y": 0.585,
+          "width": 0.16,
+          "height": 0.17
+        }
+      },
+      {
+        "prompt": "In the middle of this area, one giant round water-lily pad floats on the turquoise water, drawn whole: a flat, round, bright green pad with fine radiating veins and a thin dark rim, exactly like the other lily pads of this lagoon, the same size, colours and outline. Around it only calm turquoise water with soft reflections; keep the edges of the other pads just above and below exactly as they are.",
+        "area": {
+          "x": 0.198,
+          "y": 0.572,
+          "width": 0.074,
+          "height": 0.042
+        }
+      },
+      {
+        "prompt": "Clear the big water-lily pads away: here is only the calm turquoise water of the pond with soft reflections and gentle ripples, continuing the water around it seamlessly; keep the sandy shore, its pebbles and its white ripple line at the edges exactly as they are. Only far back, at the top of this area just in front of the far bank, two small round water-lily pads float a little apart, flat and bright green with a thin dark rim, each no wider than a tenth of this area. Nothing else on the water.",
+        "area": {
+          "x": 0.15,
+          "y": 0.49,
+          "width": 0.21,
+          "height": 0.19
+        }
+      }
+    ],
+    "layers": [
+      {
+        "id": "ginkgo",
+        "cut": "cuts/ginkgo.png"
+      },
+      {
+        "id": "ledge",
+        "cut": "cuts/ledge.png"
+      },
+      {
+        "id": "araucaria",
+        "prompt": "a tall monkey-puzzle tree (araucaria) seen whole from its roots to its top, about two and a half times as tall as it is wide: a straight, tall brown trunk with rough, scaly bark and a slight lean, a few roots and small ferns at its foot; at the top an umbrella-shaped crown of long curving branches in tiers, each covered in soft-looking dark-green scale leaves like ropes; a little below the crown one long, nearly level branch reaches out to the left, good to sit on.",
+        "area": {
+          "x": 0.3067,
+          "y": -0.34,
+          "width": 1.0,
+          "height": 1.3
+        },
+        "wideArea": {
+          "x": 0.45,
+          "y": -0.24,
+          "width": 1.0,
+          "height": 1.2
+        },
+        "toBottom": 0.1
+      },
+      {
+        "id": "treefern",
+        "prompt": "a big tree fern seen whole from its roots to the top of its crown, about one and a half times as tall as it is wide: a stout, shaggy brown trunk covered in old frond scales, slightly curved, a few roots and small ferns at its foot; a huge, full, lacy crown of long arching bright-green fronds spreading out to both sides at the top, one young frond still curled into a fiddlehead; below the crown one sturdy old frond stalk reaches out to the right, nearly level, good to sit on.",
+        "area": {
+          "x": -0.36,
+          "y": -0.24,
+          "width": 1.0,
+          "height": 1.2
+        },
+        "wideArea": {
+          "x": -0.44,
+          "y": -0.14,
+          "width": 1.0,
+          "height": 1.1
+        },
+        "toBottom": 0.1
+      }
+    ],
+    "features": {
+      "sky": {
+        "description": "the open sky over the valley, between the tree fern and the monkey-puzzle tree",
+        "air": true,
+        "areas": [
+          {
+            "x": [
+              0.38,
+              0.66
+            ],
+            "y": [
+              0.66,
+              0.84
+            ]
+          }
+        ]
+      },
+      "lagoon": {
+        "description": "the calm turquoise lagoon at the back on the left, with two small water-lily pads far back by its far bank",
+        "words": {
+          "en-US": [
+            "lagoon",
+            "lake"
+          ],
+          "es-ES": [
+            "laguna",
+            "lago"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.02,
+              0.2
+            ],
+            "y": [
+              0.36,
+              0.48
+            ]
+          }
+        ],
+        "wideAreas": [
+          {
+            "x": [
+              -0.1,
+              0.2
+            ],
+            "y": [
+              0.41,
+              0.48
+            ]
+          }
+        ],
+        "edge": [
+          {
+            "x": [
+              0.08,
+              0.24
+            ],
+            "y": [
+              0.265,
+              0.285
+            ]
+          },
+          {
+            "x": [
+              0.29,
+              0.32
+            ],
+            "y": [
+              0.32,
+              0.37
+            ]
+          },
+          {
+            "x": [
+              0.22,
+              0.25
+            ],
+            "y": [
+              0.43,
+              0.48
+            ]
+          }
+        ]
+      },
+      "shore": {
+        "description": "the sandy-mud bank with pebbles along the near and right sides of the lagoon",
+        "words": {
+          "en-US": [
+            "shore",
+            "bank"
+          ],
+          "es-ES": [
+            "orilla"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.08,
+              0.24
+            ],
+            "y": [
+              0.265,
+              0.285
+            ]
+          },
+          {
+            "x": [
+              0.29,
+              0.32
+            ],
+            "y": [
+              0.32,
+              0.37
+            ]
+          },
+          {
+            "x": [
+              0.22,
+              0.25
+            ],
+            "y": [
+              0.43,
+              0.48
+            ]
+          }
+        ]
+      },
+      "meadow": {
+        "description": "the wide open meadow of short ferns and grass in the middle and on the right",
+        "words": {
+          "en-US": [
+            "meadow",
+            "ferns"
+          ],
+          "es-ES": [
+            "prado",
+            "helechos"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.3,
+              0.88
+            ],
+            "y": [
+              0.08,
+              0.25
+            ]
+          },
+          {
+            "x": [
+              0.36,
+              0.62
+            ],
+            "y": [
+              0.3,
+              0.48
+            ]
+          },
+          {
+            "x": [
+              0.66,
+              0.92
+            ],
+            "y": [
+              0.42,
+              0.49
+            ]
+          }
+        ]
+      },
+      "rocks": {
+        "description": "the flat top of the big warm terracotta rock ledge on the right of the meadow: only flyers land up there",
+        "words": {
+          "en-US": [
+            "rock",
+            "ledge"
+          ],
+          "es-ES": [
+            "roca",
+            "repisa"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.68,
+              0.92
+            ],
+            "y": [
+              0.365,
+              0.39
+            ]
+          }
+        ],
+        "wideAreas": [
+          {
+            "x": [
+              0.68,
+              1.08
+            ],
+            "y": [
+              0.365,
+              0.39
+            ]
+          }
+        ]
+      },
+      "rockside": {
+        "description": "the meadow right at the foot of the big flat rock, in front of it, where walkers come up to the rock",
+        "areas": [
+          {
+            "x": [
+              0.68,
+              1.0
+            ],
+            "y": [
+              0.165,
+              0.21
+            ]
+          }
+        ]
+      },
+      "branches": {
+        "description": "the long low frond stalk of the tree fern on the left and the low branch of the monkey-puzzle tree on the right",
+        "words": {
+          "en-US": [
+            "branch",
+            "branches"
+          ],
+          "es-ES": [
+            "rama",
+            "ramas"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.07,
+              0.22
+            ],
+            "y": [
+              0.735,
+              0.75
+            ]
+          },
+          {
+            "x": [
+              0.76,
+              0.9
+            ],
+            "y": [
+              0.755,
+              0.77
+            ]
+          }
+        ],
+        "wideAreas": [
+          {
+            "x": [
+              -0.08,
+              0.05
+            ],
+            "y": [
+              0.7,
+              0.715
+            ]
+          },
+          {
+            "x": [
+              0.95,
+              1.1
+            ],
+            "y": [
+              0.7,
+              0.715
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "notes": {
+    "stickers": "Every character faces slightly left, whole body visible. Living things get faces; nothing inorganic does (eggs, log, puddle, big leaf). Nothing scary: no teeth, no sharp claws, no predation. Edit prompts freely; a changed prompt re-renders only that sticker."
+  }
+}

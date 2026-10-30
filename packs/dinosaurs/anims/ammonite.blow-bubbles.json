@@ -1,0 +1,136 @@
+{
+  "id": "blow-bubbles",
+  "sticker": "ammonite",
+  "kind": "action",
+  "description": "the ammonite puckers its mouth into a little o and blows bubbles, puff, puff, puff, then smiles.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.25781,
+    "width": 0.5,
+    "height": 0.48307
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the ammonite with its mouth a round little o, blowing bubbles"
+  },
+  "on": [
+    "lagoon"
+  ],
+  "particles": [
+    {
+      "frame": 2,
+      "effect": "bubble-puff",
+      "x": 0.37,
+      "y": 0.57,
+      "intensity": 0.5
+    },
+    {
+      "frame": 4,
+      "effect": "bubble-puff",
+      "x": 0.37,
+      "y": 0.57,
+      "intensity": 0.5
+    },
+    {
+      "frame": 6,
+      "effect": "bubble-puff",
+      "x": 0.37,
+      "y": 0.57,
+      "intensity": 0.5
+    }
+  ],
+  "puppet": {
+    "rig": "anims/ammonite.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 1.03
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sx": 0.98
+          },
+          "body": {
+            "r": -1.5
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sx": 1.02
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sx": 0.98
+          },
+          "body": {
+            "r": -1.5
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sx": 1.02
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sx": 0.98
+          },
+          "body": {
+            "r": -1.5
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

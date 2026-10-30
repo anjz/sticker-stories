@@ -1,0 +1,131 @@
+{
+  "id": "jump",
+  "sticker": "pteranodon",
+  "description": "the pteranodon crouches, jumps up high for joy with its wings out and lands with a little squash.",
+  "stickerBox": {
+    "x": 0.27474,
+    "y": 0.20052,
+    "width": 0.45052,
+    "height": 0.59896
+  },
+  "puppet": {
+    "rig": "anims/pteranodon.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.92
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "y": 8
+          }
+        }
+      },
+      {
+        "hold": 0.26,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.05
+          },
+          "legL": {
+            "r": -14,
+            "y": -6
+          },
+          "legR": {
+            "r": -14,
+            "y": -6
+          },
+          "root": {
+            "y": -74
+          },
+          "wingL": {
+            "r": 16
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.18,
+        "ease": "in",
+        "bones": {
+          "legL": {
+            "r": -14,
+            "y": -6
+          },
+          "legR": {
+            "r": -14,
+            "y": -6
+          },
+          "root": {
+            "y": -80
+          },
+          "wingL": {
+            "r": -8
+          },
+          "wingR": {
+            "r": 8
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.9
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "y": 5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

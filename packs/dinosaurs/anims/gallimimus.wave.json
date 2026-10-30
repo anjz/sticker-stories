@@ -1,0 +1,105 @@
+{
+  "id": "wave",
+  "sticker": "gallimimus",
+  "kind": "action",
+  "description": "the Gallimimus lifts one little hand and waves hello.",
+  "stickerBox": {
+    "x": 0.15495,
+    "y": 0.13932,
+    "width": 0.6901,
+    "height": 0.72005
+  },
+  "puppet": {
+    "rig": "anims/gallimimus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armR": {
+            "r": 82
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "armR": {
+            "r": 102
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "armR": {
+            "r": 80
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "armR": {
+            "r": 102
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "armR": {
+            "r": 80
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

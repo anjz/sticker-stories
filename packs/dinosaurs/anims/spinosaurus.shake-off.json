@@ -1,0 +1,266 @@
+{
+  "id": "shake-off",
+  "sticker": "spinosaurus",
+  "kind": "action",
+  "description": "the Spinosaurus shakes the water off its body, wiggle, wiggle, from its head to its paddle tail, then smiles.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.19401,
+    "width": 0.83984,
+    "height": 0.61068
+  },
+  "particles": [
+    {
+      "frame": 3,
+      "effect": "spray",
+      "x": 0.5,
+      "y": 0.5,
+      "intensity": 0.6
+    },
+    {
+      "frame": 7,
+      "effect": "spray",
+      "x": 0.55,
+      "y": 0.5,
+      "intensity": 0.5
+    }
+  ],
+  "puppet": {
+    "rig": "anims/spinosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.11,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -2.5
+          },
+          "head": {
+            "r": 4
+          },
+          "root": {
+            "x": -3
+          },
+          "sail": {
+            "r": -2
+          },
+          "tail": {
+            "r": -7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.11,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 2.5
+          },
+          "head": {
+            "r": -4
+          },
+          "root": {
+            "x": 3
+          },
+          "sail": {
+            "r": 2
+          },
+          "tail": {
+            "r": 7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.11,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -2.5
+          },
+          "head": {
+            "r": 4
+          },
+          "root": {
+            "x": -3
+          },
+          "sail": {
+            "r": -2
+          },
+          "tail": {
+            "r": -7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.11,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 2.5
+          },
+          "head": {
+            "r": -4
+          },
+          "root": {
+            "x": 3
+          },
+          "sail": {
+            "r": 2
+          },
+          "tail": {
+            "r": 7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.11,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -2.5
+          },
+          "head": {
+            "r": 4
+          },
+          "root": {
+            "x": -3
+          },
+          "sail": {
+            "r": -2
+          },
+          "tail": {
+            "r": -7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.11,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 2.5
+          },
+          "head": {
+            "r": -4
+          },
+          "root": {
+            "x": 3
+          },
+          "sail": {
+            "r": 2
+          },
+          "tail": {
+            "r": 7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.11,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -2.5
+          },
+          "head": {
+            "r": 4
+          },
+          "root": {
+            "x": -3
+          },
+          "sail": {
+            "r": -2
+          },
+          "tail": {
+            "r": -7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.11,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 2.5
+          },
+          "head": {
+            "r": -4
+          },
+          "root": {
+            "x": 3
+          },
+          "sail": {
+            "r": 2
+          },
+          "tail": {
+            "r": 7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

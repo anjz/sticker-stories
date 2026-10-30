@@ -1,0 +1,62 @@
+{
+  "id": "tap",
+  "sticker": "eggs",
+  "kind": "action",
+  "description": "something taps from inside the front egg: tap, tap, it gives two little hops in the nest, then sits still.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.22656,
+    "width": 0.59896,
+    "height": 0.54557
+  },
+  "puppet": {
+    "rig": "anims/eggs.rig.json",
+    "keys": [
+      {
+        "hold": 0.25
+      },
+      {
+        "hold": 0.14,
+        "ease": "out",
+        "bones": {
+          "egg3": {
+            "r": -1.5,
+            "y": -7
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "in"
+      },
+      {
+        "hold": 0.4
+      },
+      {
+        "hold": 0.14,
+        "ease": "out",
+        "bones": {
+          "egg3": {
+            "r": 1.5,
+            "y": -8
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "in"
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "egg3": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

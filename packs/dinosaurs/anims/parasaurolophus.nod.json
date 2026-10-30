@@ -1,0 +1,57 @@
+{
+  "id": "nod",
+  "sticker": "parasaurolophus",
+  "kind": "action",
+  "description": "the Parasaurolophus nods yes, twice.",
+  "stickerBox": {
+    "x": 0.13542,
+    "y": 0.07943,
+    "width": 0.72786,
+    "height": 0.83984
+  },
+  "puppet": {
+    "rig": "anims/parasaurolophus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": -7,
+            "y": 2
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": -7,
+            "y": 2
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

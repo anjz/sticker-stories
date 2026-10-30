@@ -1,0 +1,237 @@
+{
+  "id": "flap",
+  "sticker": "archaeopteryx",
+  "description": "the archaeopteryx spreads its wings and flaps them quickly, a little clumsily, its feet staying on the ground.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.21354,
+    "width": 0.59896,
+    "height": 0.57292
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the archaeopteryx with its wings spread wide"
+  },
+  "puppet": {
+    "rig": "anims/archaeopteryx.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "wingL": {
+            "r": 10
+          },
+          "wingR": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "wingL": {
+            "r": 20
+          },
+          "wingR": {
+            "r": -20
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "root": {
+            "y": 1
+          },
+          "wingL": {
+            "r": -18
+          },
+          "wingR": {
+            "r": 18
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "head": {
+            "y": 1
+          },
+          "root": {
+            "y": -4
+          },
+          "wingL": {
+            "r": 22
+          },
+          "wingR": {
+            "r": -22
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "body": {
+            "r": -2
+          },
+          "root": {
+            "y": 1
+          },
+          "wingL": {
+            "r": -18
+          },
+          "wingR": {
+            "r": 18
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "r": 2
+          },
+          "root": {
+            "y": -4
+          },
+          "wingL": {
+            "r": 22
+          },
+          "wingR": {
+            "r": -22
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "root": {
+            "y": 1
+          },
+          "wingL": {
+            "r": -18
+          },
+          "wingR": {
+            "r": 18
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "root": {
+            "y": -4
+          },
+          "wingL": {
+            "r": 22
+          },
+          "wingR": {
+            "r": -22
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "wingL": {
+            "r": 4
+          },
+          "wingR": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

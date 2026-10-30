@@ -1,0 +1,118 @@
+{
+  "id": "talk",
+  "sticker": "brachiosaurus",
+  "kind": "action",
+  "description": "the brachiosaurus talks, its mouth moving, its little head bobbing gently.",
+  "stickerBox": {
+    "x": 0.07682,
+    "y": 0.02995,
+    "width": 0.84635,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/brachiosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.16,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "step",
+        "bones": {
+          "head": {}
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "step",
+        "bones": {
+          "head": {}
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "step",
+        "bones": {
+          "head": {}
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "step",
+        "bones": {
+          "head": {}
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "step",
+        "bones": {
+          "head": {}
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

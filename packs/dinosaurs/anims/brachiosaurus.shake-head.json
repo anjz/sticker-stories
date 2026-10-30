@@ -1,0 +1,79 @@
+{
+  "id": "shake-head",
+  "sticker": "brachiosaurus",
+  "kind": "action",
+  "description": "the brachiosaurus shakes its little head no, slowly, from side to side.",
+  "stickerBox": {
+    "x": 0.07682,
+    "y": 0.02995,
+    "width": 0.84635,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/brachiosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.28,
+        "bones": {
+          "face": {
+            "x": -2
+          },
+          "head": {
+            "r": -6
+          },
+          "neckTop": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.32,
+        "bones": {
+          "face": {
+            "x": 2.5
+          },
+          "head": {
+            "r": 6
+          },
+          "neckTop": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.32,
+        "bones": {
+          "face": {
+            "x": -2
+          },
+          "head": {
+            "r": -6
+          },
+          "neckTop": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.32,
+        "bones": {
+          "face": {
+            "x": 2.5
+          },
+          "head": {
+            "r": 5
+          },
+          "neckTop": {
+            "r": 1.5
+          }
+        }
+      },
+      {
+        "hold": 0.35
+      }
+    ]
+  }
+}

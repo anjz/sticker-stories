@@ -1,0 +1,174 @@
+{
+  "id": "munch",
+  "sticker": "triceratops",
+  "kind": "action",
+  "description": "the Triceratops munches a sprig of fern happily, chewing and chewing until it is all gone, then smiles.",
+  "stickerBox": {
+    "x": 0.08333,
+    "y": 0.07943,
+    "width": 0.83333,
+    "height": 0.83984
+  },
+  "puppet": {
+    "rig": "anims/triceratops.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "fern": {
+            "sx": 1,
+            "sy": 1
+          },
+          "head": {
+            "r": -3,
+            "y": 2
+          }
+        },
+        "slots": {
+          "fern": "fern",
+          "mouth": "munch"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "fern": {
+            "sx": 0.9,
+            "sy": 0.9
+          },
+          "head": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "fern": "fern"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "fern": {
+            "sx": 0.78,
+            "sy": 0.78
+          },
+          "head": {
+            "r": -3,
+            "y": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "fern": "fern",
+          "mouth": "munch"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "fern": {
+            "sx": 0.64,
+            "sy": 0.64
+          },
+          "head": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "fern": "fern"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "fern": {
+            "sx": 0.5,
+            "sy": 0.5
+          },
+          "head": {
+            "r": -3,
+            "y": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "fern": "fern",
+          "mouth": "munch"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "fern": {
+            "sx": 0.36,
+            "sy": 0.36
+          },
+          "head": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "fern": "fern"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "fern": {
+            "sx": 0.2,
+            "sy": 0.2
+          },
+          "head": {
+            "r": -3,
+            "y": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "fern": "fern",
+          "mouth": "munch"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "head": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "munch"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

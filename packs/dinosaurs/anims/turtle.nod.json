@@ -1,0 +1,62 @@
+{
+  "id": "nod",
+  "sticker": "turtle",
+  "kind": "action",
+  "description": "the turtle nods yes, twice.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.26042,
+    "width": 0.59896,
+    "height": 0.47917
+  },
+  "on": [
+    "lagoon"
+  ],
+  "puppet": {
+    "rig": "anims/turtle.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": -5,
+            "y": 7
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": 1,
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": -5,
+            "y": 7
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": 1,
+            "y": -1
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

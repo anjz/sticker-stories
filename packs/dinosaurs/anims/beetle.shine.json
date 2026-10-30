@@ -1,0 +1,101 @@
+{
+  "id": "shine",
+  "sticker": "beetle",
+  "kind": "action",
+  "description": "the beetle puffs up proudly and its shiny shell gleams in the light.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.27865,
+    "width": 0.5,
+    "height": 0.44141
+  },
+  "particles": [
+    {
+      "frame": 2,
+      "effect": "sparks",
+      "x": 0.62,
+      "y": 0.4,
+      "intensity": 0.3,
+      "color": "#FFF3C4"
+    }
+  ],
+  "puppet": {
+    "rig": "anims/beetle.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "body": {
+            "y": -3
+          },
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "body": {
+            "y": -4
+          },
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "shell": "shine"
+        }
+      },
+      {
+        "hold": 0.55,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "body": {
+            "y": -4
+          },
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "shell": "shine"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

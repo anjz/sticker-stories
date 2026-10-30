@@ -1,0 +1,79 @@
+{
+  "id": "bounce",
+  "sticker": "leaf",
+  "kind": "action",
+  "description": "raindrops patter on top of the big leaf and it bobs gently up and down under them, then is still.",
+  "stickerBox": {
+    "x": 0.10547,
+    "y": 0.07943,
+    "width": 0.78906,
+    "height": 0.83984
+  },
+  "puppet": {
+    "rig": "anims/leaf.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "blade": {
+            "y": 6,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.28,
+        "bones": {
+          "blade": {
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "blade": {
+            "r": 1,
+            "y": 5,
+            "sy": 0.975
+          }
+        }
+      },
+      {
+        "hold": 0.28,
+        "bones": {
+          "blade": {
+            "y": -1.5
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "blade": {
+            "r": -1,
+            "y": 4,
+            "sy": 0.98
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "blade": {
+            "y": -1
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

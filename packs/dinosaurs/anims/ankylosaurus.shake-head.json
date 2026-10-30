@@ -1,0 +1,71 @@
+{
+  "id": "shake-head",
+  "sticker": "ankylosaurus",
+  "kind": "action",
+  "description": "the Ankylosaurus shakes its little head no.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.26432,
+    "width": 0.72005,
+    "height": 0.47005
+  },
+  "puppet": {
+    "rig": "anims/ankylosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "x": -5
+          },
+          "head": {
+            "r": -3,
+            "x": -3
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 5
+          },
+          "head": {
+            "r": 3,
+            "x": 2
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": -5
+          },
+          "head": {
+            "r": -3,
+            "x": -3
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 4
+          },
+          "head": {
+            "r": 2,
+            "x": 2
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

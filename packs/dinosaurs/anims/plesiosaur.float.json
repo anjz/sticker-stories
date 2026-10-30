@@ -1,0 +1,145 @@
+{
+  "id": "float",
+  "sticker": "plesiosaur",
+  "kind": "action",
+  "description": "the plesiosaur floats still on the water with its eyes closed, face up to the sun, calm and relaxed, then opens its eyes happily.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.10156,
+    "width": 0.83984,
+    "height": 0.79557
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the plesiosaur floating still on the water, eyes closed, face up, relaxed"
+  },
+  "on": [
+    "lagoon"
+  ],
+  "puppet": {
+    "rig": "anims/plesiosaur.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "armL": {
+            "r": 8
+          },
+          "belly": {
+            "sy": 1.02
+          },
+          "head": {
+            "r": 9
+          },
+          "neck": {
+            "r": 4
+          },
+          "root": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "armL": {
+            "r": 8
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": 9
+          },
+          "neck": {
+            "r": 4
+          },
+          "root": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "armL": {
+            "r": 8
+          },
+          "belly": {
+            "sy": 1.01
+          },
+          "head": {
+            "r": 9
+          },
+          "neck": {
+            "r": 4
+          },
+          "root": {
+            "y": -1
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": 8
+          },
+          "belly": {
+            "sy": 1.03
+          },
+          "head": {
+            "r": 9
+          },
+          "neck": {
+            "r": 4
+          },
+          "root": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "head": {
+            "r": 2
+          },
+          "neck": {
+            "r": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

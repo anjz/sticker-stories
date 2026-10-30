@@ -1,0 +1,205 @@
+{
+  "id": "sleep",
+  "sticker": "ammonite",
+  "kind": "action",
+  "description": "the ammonite gives a big yawn, snuggles back into its shell and dozes, floating on the water, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.25781,
+    "width": 0.5,
+    "height": 0.48307
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the ammonite fast asleep, snuggled into its shell, eyes shut"
+  },
+  "on": [
+    "lagoon"
+  ],
+  "puppet": {
+    "rig": "anims/ammonite.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "y": 5
+          },
+          "root": {
+            "y": 3
+          },
+          "t1": {
+            "r": 14
+          },
+          "t2": {
+            "r": 6
+          },
+          "t3": {
+            "r": 4
+          },
+          "t4": {
+            "r": -3
+          },
+          "t5": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "y": 5
+          },
+          "root": {
+            "y": 6
+          },
+          "t1": {
+            "r": 14
+          },
+          "t2": {
+            "r": 6
+          },
+          "t3": {
+            "r": 4
+          },
+          "t4": {
+            "r": -3
+          },
+          "t5": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "y": 5
+          },
+          "root": {
+            "y": 3
+          },
+          "t1": {
+            "r": 14
+          },
+          "t2": {
+            "r": 6
+          },
+          "t3": {
+            "r": 4
+          },
+          "t4": {
+            "r": -3
+          },
+          "t5": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.2,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

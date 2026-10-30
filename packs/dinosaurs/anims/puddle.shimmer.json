@@ -1,0 +1,62 @@
+{
+  "id": "shimmer",
+  "sticker": "puddle",
+  "kind": "action",
+  "description": "a breeze ruffles the water of the mud puddle and its shine glints and sparkles, then it lies still.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.36198,
+    "width": 0.72005,
+    "height": 0.27474
+  },
+  "puppet": {
+    "rig": "anims/puddle.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "water": {
+            "sx": 1.01
+          }
+        },
+        "slots": {
+          "water": "glint"
+        }
+      },
+      {
+        "hold": 0.25
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "water": {
+            "sx": 1.015
+          }
+        },
+        "slots": {
+          "water": "glint"
+        }
+      },
+      {
+        "hold": 0.25
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "water": {
+            "sx": 1.01
+          }
+        },
+        "slots": {
+          "water": "glint"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

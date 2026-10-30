@@ -1,0 +1,188 @@
+{
+  "id": "droop",
+  "sticker": "fern",
+  "kind": "action",
+  "description": "the fern droops sadly, its fronds hanging down, then slowly lifts them up again.",
+  "stickerBox": {
+    "x": 0.21484,
+    "y": 0.20052,
+    "width": 0.56901,
+    "height": 0.59896
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the fern drooping sadly, its fronds hanging down"
+  },
+  "puppet": {
+    "rig": "anims/fern.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 1,
+            "sy": 0.98
+          },
+          "curlShort": {
+            "r": -8,
+            "sy": 0.97
+          },
+          "curlTall": {
+            "r": -7,
+            "sy": 0.96
+          },
+          "frondsL": {
+            "r": -10
+          },
+          "frondsMid": {
+            "r": 1.5,
+            "sy": 0.95
+          },
+          "frondsR": {
+            "r": 9
+          },
+          "head": {
+            "r": 1.5,
+            "y": 1.5
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "body": {
+            "r": 2,
+            "sy": 0.96
+          },
+          "curlShort": {
+            "r": -16,
+            "sy": 0.94
+          },
+          "curlTall": {
+            "r": -14,
+            "sy": 0.92
+          },
+          "frondsL": {
+            "r": -20
+          },
+          "frondsMid": {
+            "r": 3,
+            "sy": 0.9
+          },
+          "frondsR": {
+            "r": 18
+          },
+          "head": {
+            "r": 3,
+            "y": 3
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "body": {
+            "r": 2.1,
+            "sy": 0.958
+          },
+          "curlShort": {
+            "r": -16.8,
+            "sy": 0.9369999999999999
+          },
+          "curlTall": {
+            "r": -14.700000000000001,
+            "sy": 0.916
+          },
+          "frondsL": {
+            "r": -21
+          },
+          "frondsMid": {
+            "r": 3.1500000000000004,
+            "sy": 0.895
+          },
+          "frondsR": {
+            "r": 18.900000000000002
+          },
+          "head": {
+            "r": 3.1500000000000004,
+            "y": 3.1500000000000004
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "body": {
+            "r": 0.5,
+            "sy": 0.99
+          },
+          "curlShort": {
+            "r": -4,
+            "sy": 0.985
+          },
+          "curlTall": {
+            "r": -3.5,
+            "sy": 0.98
+          },
+          "frondsL": {
+            "r": -5
+          },
+          "frondsMid": {
+            "r": 0.75,
+            "sy": 0.975
+          },
+          "frondsR": {
+            "r": 4.5
+          },
+          "head": {
+            "r": 0.75,
+            "y": 0.75
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "head": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

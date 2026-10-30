@@ -1,0 +1,89 @@
+{
+  "id": "wobble-all",
+  "sticker": "eggs",
+  "kind": "action",
+  "description": "all three eggs rock gently in the nest, one after another, as the babies inside stir, then sit still.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.22656,
+    "width": 0.59896,
+    "height": 0.54557
+  },
+  "puppet": {
+    "rig": "anims/eggs.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "egg1": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "egg1": {
+            "r": 3.5
+          },
+          "egg2": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "egg1": {
+            "r": -2
+          },
+          "egg2": {
+            "r": -3.5
+          },
+          "egg3": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "egg1": {
+            "r": 1
+          },
+          "egg2": {
+            "r": 2
+          },
+          "egg3": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "egg2": {
+            "r": -1
+          },
+          "egg3": {
+            "r": -2.5
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "egg3": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

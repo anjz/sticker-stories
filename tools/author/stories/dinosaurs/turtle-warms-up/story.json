@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "id": "turtle-warms-up",
+  "pack": "dinosaurs",
+  "featured": [
+    "turtle",
+    "log",
+    "beetle"
+  ],
+  "supporting": [],
+  "tags": [
+    "gentle",
+    "weather",
+    "learning"
+  ],
+  "premise": "On a cool cloudy morning Turtle is too chilly to do anything but crawl, so she climbs onto the log and waits; when the sun comes out she stretches out long and warm, and Beetle shines beside her.",
+  "inspiration": "Aesop's 'The North Wind and the Sun' made tiny: no hurry and no shove — the sun does it, gently.",
+  "lesson": "Some things can't be hurried; a friend waits with you.",
+  "learning": "Turtles warm themselves up by lying in the sun.",
+  "languages": {
+    "en-US": {
+      "title": "Turtle Warms Up",
+      "text": "{log:enter} {canvas:clouds 0.7} {sfx:breeze} [softly] It was a cool, cloudy morning in the valley. {turtle:enter} Turtle was so chilly {turtle:tint #9AD0FF 1.5s} that everything felt slow. Even slower than usual. {beetle:enter} {beetle:go to turtle} Beetle came scuttling up. {beetle:face happy} [playfully] \"Come and play!\" {turtle:live shake-head} \"Too cold,\" said Turtle. \"I need the sun first.\" {beetle:face sad} But the sun was hiding behind the clouds. So Turtle {turtle:go on log} crawled, very slowly, up onto the old log. {log:live creak} {sfx:creak} It gave a little creak. [curious] \"Why up there?\" asked Beetle. \"To be ready,\" said Turtle. And she waited. {beetle:wobble} Beetle waited too. Then… {canvas:clouds stop} the clouds drifted away, {canvas:sunshine 0.9} and out came the sun. {turtle:face happy} {turtle:live sunbathe hold} Turtle stretched out her neck and her legs, long and warm, and closed her eyes. [sighs] Ahhh. {beetle:face happy} {beetle:go on log} Beetle climbed up beside her, {beetle:live shine} and his shell shone green and gold. [warmly] \"Warm enough to play now?\" \"Mmm,\" said Turtle. \"In a minute.\" {beetle:hearts} And Beetle stayed right there with her, shining in the sun. {canvas:sunshine stop}"
+    },
+    "es-ES": {
+      "title": "Tortuga entra en calor",
+      "text": "{log:enter} {canvas:clouds 0.7} {sfx:breeze} [softly] Era una mañana fresquita y gris en el valle. {turtle:enter} Tortuga tenía tanto frío {turtle:tint #9AD0FF 1.5s} que todo le salía despacio. Aún más despacio que de costumbre. {beetle:enter} {beetle:go to turtle} Escarabajo llegó correteando. {beetle:face happy} [playfully] —¡Ven a jugar! {turtle:live shake-head} —Tengo frío —dijo Tortuga—. Primero necesito el sol. {beetle:face sad} Pero el sol estaba escondido detrás de las nubes. Así que Tortuga {turtle:go on log} se subió al viejo tronco, despacito, despacito. {log:live creak} {sfx:creak} El tronco crujió un poquito. [curious] —¿Por qué ahí arriba? —preguntó Escarabajo. —Para estar preparada —dijo Tortuga. Y esperó. {beetle:wobble} Escarabajo esperó también. Y entonces… {canvas:clouds stop} las nubes se apartaron, {canvas:sunshine 0.9} y salió el sol. {turtle:face happy} {turtle:live sunbathe hold} Tortuga estiró el cuello y las patas, bien largas, y cerró los ojos. [sighs] Aaah. {beetle:face happy} {beetle:go on log} Escarabajo trepó a su lado, {beetle:live shine} y su caparazón brilló verde y dorado. [warmly] —¿Ya tienes calor para jugar? —Mmm —dijo Tortuga—. Dentro de un ratito. {beetle:hearts} Y Escarabajo se quedó allí con ella, brillando al sol. {canvas:sunshine stop}"
+    }
+  },
+  "sounds": {
+    "breeze": {
+      "prompt": "a cool, quiet morning breeze over a grassy valley, soft and still, realistic field recording",
+      "seconds": 20,
+      "loop": true
+    },
+    "creak": {
+      "prompt": "an old hollow wooden log creaking softly as a small animal climbs onto it, realistic, close",
+      "seconds": 1.2
+    }
+  }
+}

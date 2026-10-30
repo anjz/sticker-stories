@@ -1,0 +1,98 @@
+{
+  "id": "ripple",
+  "sticker": "puddle",
+  "kind": "action",
+  "description": "rings ripple slowly out across the water of the mud puddle, one after another, and fade away.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.36198,
+    "width": 0.72005,
+    "height": 0.27474
+  },
+  "puppet": {
+    "rig": "anims/puddle.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "ring": {
+            "sx": 0.18,
+            "sy": 0.18
+          },
+          "ring2": {
+            "sx": 0.1,
+            "sy": 0.1
+          }
+        },
+        "slots": {
+          "ring": "ring"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "ring": {
+            "sx": 0.5,
+            "sy": 0.5
+          },
+          "ring2": {
+            "sx": 0.18,
+            "sy": 0.18
+          }
+        },
+        "slots": {
+          "ring": "ring",
+          "ring2": "ring"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "ring": {
+            "sx": 0.78,
+            "sy": 0.78
+          },
+          "ring2": {
+            "sx": 0.5,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "ring": "faint",
+          "ring2": "ring"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "ring": {
+            "sx": 0.95,
+            "sy": 0.95
+          },
+          "ring2": {
+            "sx": 0.78,
+            "sy": 0.78
+          }
+        },
+        "slots": {
+          "ring2": "faint"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "ring2": {
+            "sx": 0.95,
+            "sy": 0.95
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

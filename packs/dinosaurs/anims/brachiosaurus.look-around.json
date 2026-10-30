@@ -1,0 +1,92 @@
+{
+  "id": "look-around",
+  "sticker": "brachiosaurus",
+  "kind": "action",
+  "description": "the brachiosaurus looks one way, then the other, high up on its long neck, then back.",
+  "stickerBox": {
+    "x": 0.07682,
+    "y": 0.02995,
+    "width": 0.84635,
+    "height": 0.9401
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/brachiosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.25
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "face": {
+            "x": -2
+          },
+          "head": {
+            "r": -3
+          },
+          "neck": {
+            "r": -4
+          },
+          "neckTop": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "face": {
+            "x": -2
+          },
+          "head": {
+            "r": -3
+          },
+          "neck": {
+            "r": -4
+          },
+          "neckTop": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "face": {
+            "x": 2.5
+          },
+          "head": {
+            "r": 6
+          },
+          "neck": {
+            "r": 4
+          },
+          "neckTop": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "face": {
+            "x": 2.5
+          },
+          "head": {
+            "r": 6
+          },
+          "neck": {
+            "r": 4
+          },
+          "neckTop": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.5
+      }
+    ]
+  }
+}

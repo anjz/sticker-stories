@@ -1,0 +1,167 @@
+{
+  "id": "fluff-up",
+  "sticker": "archaeopteryx",
+  "description": "the archaeopteryx fluffs out all its feathers until it is round and cosy, settles with a happy sigh, then smooths them down again.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.21354,
+    "width": 0.59896,
+    "height": 0.57292
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the archaeopteryx fluffed up round and cosy, eyes closed"
+  },
+  "perched": true,
+  "idle": true,
+  "puppet": {
+    "rig": "anims/archaeopteryx.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 1.04
+          },
+          "head": {
+            "y": 3
+          },
+          "wingL": {
+            "r": 3
+          },
+          "wingR": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "belly": {
+            "sx": 1.13,
+            "sy": 1.07
+          },
+          "head": {
+            "y": 6
+          },
+          "tail": {
+            "r": 3
+          },
+          "wingL": {
+            "r": 5
+          },
+          "wingR": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "belly": {
+            "sx": 1.13,
+            "sy": 1.07
+          },
+          "head": {
+            "y": 6
+          },
+          "tail": {
+            "r": 3
+          },
+          "wingL": {
+            "r": 5
+          },
+          "wingR": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.1,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.13,
+            "sy": 1.07
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "x": -2
+          },
+          "tail": {
+            "r": 3
+          },
+          "wingL": {
+            "r": 5
+          },
+          "wingR": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.1,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.13,
+            "sy": 1.07
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "x": 2
+          },
+          "tail": {
+            "r": 3
+          },
+          "wingL": {
+            "r": 5
+          },
+          "wingR": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 1.01
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

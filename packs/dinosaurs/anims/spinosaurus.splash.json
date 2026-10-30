@@ -1,0 +1,181 @@
+{
+  "id": "splash",
+  "sticker": "spinosaurus",
+  "kind": "action",
+  "description": "the Spinosaurus lifts its paddle tail and slaps it down, splash, then does it again and giggles.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.19401,
+    "width": 0.83984,
+    "height": 0.61068
+  },
+  "particles": [
+    {
+      "frame": 3,
+      "effect": "spray",
+      "x": 0.9,
+      "y": 0.57,
+      "intensity": 0.55
+    },
+    {
+      "frame": 5,
+      "effect": "spray",
+      "x": 0.9,
+      "y": 0.57,
+      "intensity": 0.55
+    }
+  ],
+  "puppet": {
+    "rig": "anims/spinosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "head": {
+            "r": 2
+          },
+          "tail": {
+            "r": -12
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "head": {
+            "r": 2
+          },
+          "tail": {
+            "r": -13
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "body": {
+            "r": -1
+          },
+          "tail": {
+            "r": 14
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "head": {
+            "r": 2
+          },
+          "tail": {
+            "r": -11
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "body": {
+            "r": -1
+          },
+          "tail": {
+            "r": 14
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sx": 0.98,
+            "sy": 1.03
+          },
+          "head": {
+            "r": 4,
+            "y": -2
+          },
+          "tail": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "head": {
+            "r": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

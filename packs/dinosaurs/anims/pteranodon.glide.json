@@ -1,0 +1,195 @@
+{
+  "id": "glide",
+  "sticker": "pteranodon",
+  "description": "the pteranodon spreads its big wings wide and glides, floating gently up and down on the air.",
+  "stickerBox": {
+    "x": 0.27474,
+    "y": 0.20052,
+    "width": 0.45052,
+    "height": 0.59896
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the pteranodon gliding with its big wings spread wide"
+  },
+  "puppet": {
+    "rig": "anims/pteranodon.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": -4
+          },
+          "head": {},
+          "legL": {
+            "r": -16,
+            "y": -8
+          },
+          "legR": {
+            "r": -16,
+            "y": -8
+          },
+          "root": {
+            "y": -6
+          },
+          "wingL": {
+            "r": 4
+          },
+          "wingR": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "body": {
+            "r": -4
+          },
+          "head": {
+            "r": 3
+          },
+          "legL": {
+            "r": -16,
+            "y": -8
+          },
+          "legR": {
+            "r": -16,
+            "y": -8
+          },
+          "root": {
+            "y": -12
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "body": {
+            "r": -4
+          },
+          "head": {},
+          "legL": {
+            "r": -16,
+            "y": -8
+          },
+          "legR": {
+            "r": -16,
+            "y": -8
+          },
+          "root": {
+            "y": -5
+          },
+          "wingL": {
+            "r": 2
+          },
+          "wingR": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "body": {
+            "r": -4
+          },
+          "head": {
+            "r": 3
+          },
+          "legL": {
+            "r": -16,
+            "y": -8
+          },
+          "legR": {
+            "r": -16,
+            "y": -8
+          },
+          "root": {
+            "y": -12
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": -4
+          },
+          "head": {},
+          "legL": {
+            "r": -16,
+            "y": -8
+          },
+          "legR": {
+            "r": -16,
+            "y": -8
+          },
+          "root": {
+            "y": -4
+          },
+          "wingL": {
+            "r": 2
+          },
+          "wingR": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.25
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

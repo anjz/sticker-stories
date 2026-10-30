@@ -1,0 +1,67 @@
+{
+  "id": "shake-head",
+  "sticker": "triceratops",
+  "kind": "action",
+  "description": "the Triceratops shakes its big head no, its frill swinging.",
+  "stickerBox": {
+    "x": 0.08333,
+    "y": 0.07943,
+    "width": 0.83333,
+    "height": 0.83984
+  },
+  "puppet": {
+    "rig": "anims/triceratops.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "x": -5
+          },
+          "head": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 5
+          },
+          "head": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": -5
+          },
+          "head": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 4
+          },
+          "head": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

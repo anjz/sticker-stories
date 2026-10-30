@@ -1,0 +1,67 @@
+{
+  "id": "shake-head",
+  "sticker": "parasaurolophus",
+  "kind": "action",
+  "description": "the Parasaurolophus shakes its head no.",
+  "stickerBox": {
+    "x": 0.13542,
+    "y": 0.07943,
+    "width": 0.72786,
+    "height": 0.83984
+  },
+  "puppet": {
+    "rig": "anims/parasaurolophus.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "x": -1
+          },
+          "head": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 5
+          },
+          "head": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": -1
+          },
+          "head": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 4
+          },
+          "head": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

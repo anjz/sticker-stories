@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "t",
+      "sticker": "puddle",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "t",
+      "sticker": "trex",
+      "enter": true
+    },
+    {
+      "at": 8.76,
+      "cue": "levantó",
+      "sticker": "trex",
+      "go": "to",
+      "target": "puddle"
+    },
+    {
+      "at": 8.76,
+      "cue": "levantó",
+      "sticker": "trex",
+      "expression": "happy"
+    },
+    {
+      "at": 9.96,
+      "cue": "y",
+      "sticker": "trex",
+      "animation": "stomp"
+    },
+    {
+      "at": 12.2,
+      "cue": "el",
+      "sticker": "puddle",
+      "animation": "splash"
+    },
+    {
+      "at": 14.76,
+      "cue": "barro",
+      "sticker": "trex",
+      "expression": "surprised"
+    },
+    {
+      "at": 26.12,
+      "cue": "chap",
+      "sticker": "puddle",
+      "effect": "wobble"
+    },
+    {
+      "at": 30.04,
+      "cue": "no",
+      "sticker": "trex",
+      "expression": "sad"
+    },
+    {
+      "at": 32.04,
+      "cue": "libélula",
+      "sticker": "dragonfly",
+      "enter": true
+    },
+    {
+      "at": 34.09,
+      "cue": "puedo",
+      "sticker": "dragonfly",
+      "go": "to",
+      "target": "puddle"
+    },
+    {
+      "at": 39.4,
+      "cue": "y",
+      "sticker": "dragonfly",
+      "animation": "dip"
+    },
+    {
+      "at": 42.84,
+      "cue": "una",
+      "sticker": "puddle",
+      "animation": "ripple"
+    },
+    {
+      "at": 56.92,
+      "cue": "aplaudió",
+      "sticker": "trex",
+      "expression": "happy"
+    },
+    {
+      "at": 56.92,
+      "cue": "aplaudió",
+      "sticker": "trex",
+      "animation": "clap"
+    },
+    {
+      "at": 60.6,
+      "cue": "luego",
+      "sticker": "dragonfly",
+      "expression": "happy"
+    },
+    {
+      "at": 69.08,
+      "cue": "la",
+      "sticker": "puddle",
+      "effect": "pulse"
+    }
+  ]
+}

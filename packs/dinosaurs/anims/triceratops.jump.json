@@ -1,0 +1,157 @@
+{
+  "id": "jump",
+  "sticker": "triceratops",
+  "kind": "action",
+  "description": "the Triceratops crouches, gives a happy little hop with all four feet off the ground and lands with a soft squash.",
+  "stickerBox": {
+    "x": 0.08333,
+    "y": 0.07943,
+    "width": 0.83333,
+    "height": 0.83984
+  },
+  "puppet": {
+    "rig": "anims/triceratops.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.96
+          },
+          "body": {
+            "y": 6
+          },
+          "head": {
+            "y": 3
+          },
+          "legBF": {
+            "sy": 0.949
+          },
+          "legBN": {
+            "sy": 0.959
+          },
+          "legFF": {
+            "sy": 0.959
+          },
+          "legFN": {
+            "sy": 0.964
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": 3
+          },
+          "legBF": {
+            "r": -7
+          },
+          "legBN": {
+            "r": -9
+          },
+          "legFF": {
+            "r": 8
+          },
+          "legFN": {
+            "r": 10
+          },
+          "root": {
+            "y": -38
+          },
+          "tail": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "in",
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "head": {
+            "r": 2
+          },
+          "legBF": {
+            "r": -4
+          },
+          "legBN": {
+            "r": -5
+          },
+          "legFF": {
+            "r": 5
+          },
+          "legFN": {
+            "r": 6
+          },
+          "root": {
+            "y": -42
+          },
+          "tail": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.95
+          },
+          "body": {
+            "y": 5
+          },
+          "head": {
+            "y": 3
+          },
+          "legBF": {
+            "sy": 0.957
+          },
+          "legBN": {
+            "sy": 0.966
+          },
+          "legFF": {
+            "sy": 0.966
+          },
+          "legFN": {
+            "sy": 0.97
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

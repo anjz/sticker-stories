@@ -1,0 +1,160 @@
+{
+  "id": "jump",
+  "sticker": "ankylosaurus",
+  "kind": "action",
+  "description": "the Ankylosaurus crouches, gives a tiny happy bounce off the ground and lands with a little squash.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.26432,
+    "width": 0.72005,
+    "height": 0.47005
+  },
+  "puppet": {
+    "rig": "anims/ankylosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.95
+          },
+          "body": {
+            "y": 7
+          },
+          "legBF": {
+            "sy": 0.94
+          },
+          "legBN": {
+            "sy": 0.94
+          },
+          "legFF": {
+            "sy": 0.94
+          },
+          "legFN": {
+            "sy": 0.94
+          },
+          "tail": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.98,
+            "sy": 1.03
+          },
+          "head": {
+            "r": 3
+          },
+          "legBF": {
+            "r": -4
+          },
+          "legBN": {
+            "r": -4
+          },
+          "legFF": {
+            "r": 4
+          },
+          "legFN": {
+            "r": 4
+          },
+          "root": {
+            "y": -20
+          },
+          "tail": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.12,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sx": 0.98,
+            "sy": 1.03
+          },
+          "head": {
+            "r": 3
+          },
+          "legBF": {
+            "r": -4
+          },
+          "legBN": {
+            "r": -4
+          },
+          "legFF": {
+            "r": 4
+          },
+          "legFN": {
+            "r": 4
+          },
+          "root": {
+            "y": -22
+          },
+          "tail": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.94
+          },
+          "body": {
+            "y": 5
+          },
+          "legBF": {
+            "sy": 0.955
+          },
+          "legBN": {
+            "sy": 0.955
+          },
+          "legFF": {
+            "sy": 0.955
+          },
+          "legFN": {
+            "sy": 0.955
+          },
+          "tail": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,2379 @@
+{
+  "sticker": "fern",
+  "skeleton": "young fern facing the viewer: root at the bottom of the root ball (on the ground); body (pivot at the top of the root ball, where the fronds spring from) carries every frond and the fuzzy face clump; fronds on their own bones at their bases (frondL the left fan, frondR the right fan, frondMid the upright middle fronds, curlTall and curlShort the two fiddleheads, whose slots swap from curled to half-open to an open frond); head = the fuzzy clump with the face on it (eyes, brows, mouth); the root ball in front at the bottom.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a smiling young fern plant: a clump of bright green fronds, two still curled into spiral fiddleheads at the top, growing from a little brown root ball, with a face on the fuzzy green clump in its centre. Draw this exact fern as a cut-out paper puppet: its separate parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1 (if they do not all fit, draw them all a little smaller, at the same scale as each other).\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the root ball: the round brown ball of earth with its wiggly roots hanging below, as at the bottom of image 1, alone; its top edge a soft rounded edge with no outline drawn across it (the fronds and the clump sit on it).\n2. the face clump: the round fuzzy bright-green tuft in the centre of image 1, where the fronds spring from, alone, with a completely blank face — no eyes, no brows, no mouth — keep the rosy cheeks.\n3. the left fronds: the two big fronds that spread out to the LEFT of image 1 (the upper and the lower one), together as one piece, from their stalks' feet, where they meet in the middle, to their tips.\n4. the right fronds: the fronds that spread out to the RIGHT of image 1, together as one piece, from their stalks' feet, where they meet in the middle, to their tips.\n5. the middle fronds: the tall upright fronds in the middle of image 1 (the tallest straight frond and the ones beside it), together as one piece, from their stalks' feet to their tips, without the two curled fiddleheads.\n6. the tall fiddlehead: the taller of the two curled-up spiral fiddleheads of image 1, on its long thin stalk, from the stalk's foot to the curl.\n7. the short fiddlehead: the shorter curled-up spiral fiddlehead on the left of image 1, on its stalk, from the stalk's foot to the curl.\n8. the tall fiddlehead half unrolled: the same young frond as part 6, the same green, its spiral half uncurled, its little leaflets starting to open, the tip still a small loose curl.\n9. the tall fiddlehead fully unrolled: the same young frond as part 6, now a whole straight young frond with all its little leaflets open, its tip only just bent over, as tall as the curl and its stalk would be straightened out.\n\nEvery part is drawn whole, including what is normally hidden behind another part (the frond stalks reach down to where the clump hides them), and each stalk's foot (where it tucks under the face clump) is a full, smooth, rounded end with no outline drawn across it. No face on anything but the clump, and that face blank. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows, no ground, no grass, no flying leaves or sparkles. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a smiling young fern plant with a sweet sleepy-happy face on its fuzzy green clump; image 2 shows the same fern cut into puppet parts, with a blank face on the clump. Draw the fern's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, a simple, small, sweet cartoon face, every piece at the size it has on the clump in image 1, so it fits the blank face in image 2. The face looks at us, turned just a little to the left.\n\nDraw each piece on its own, upright, in four tidy rows with wide empty gaps between them, nothing touching:\nRow 1, the eye on the LEFT of image 1, five times:\n1. as it is in image 1: closed in a happy smile, a small dark-brown upward-curving arc, like an upside-down U.\n2. open: a small round glossy dark-brown eye with a white sparkle, looking at us, just a little to the left.\n3. wide open and surprised: bigger and rounder, a ring of white round the dark-brown iris, with its white sparkle.\n4. gently closed in sleep: a soft downward-curving line, the same width as the open eye.\n5. sad: open and round, a soft glossy brown eye with a white sparkle, looking a little down; no lid slanting across it.\nRow 2, the eye on the RIGHT of image 1, the same five in the same order, drawn for its own side, never a mirror of row 1; open, it looks the same way as row 1, at us and just a little to the left.\nRow 3: 11. the left eyebrow (over the left eye) as a small calm dark-brown arch. 12. the same left eyebrow worried: tilted up at its inner (right) end. 13. the right eyebrow (over the right eye) as a small calm arch. 14. the same right eyebrow worried: tilted up at its inner (left) end.\nRow 4, mouths, none with any teeth: 15. the mouth as it is in image 1: a small closed happy smile, a thin dark-brown curved line. 16. the mouth wide open in a big happy laugh, the inside pink with a little tongue. 17. the mouth open in a small round 'o', the inside pink. 18. the mouth in a small sad frown. 19. the mouth open in a big sleepy yawn, a tall oval, the inside pink.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "frondsL": {
+      "sheet": "parts",
+      "at": [
+        278,
+        311
+      ]
+    },
+    "frondsMid": {
+      "sheet": "parts",
+      "at": [
+        760,
+        296
+      ]
+    },
+    "frondsR": {
+      "sheet": "parts",
+      "at": [
+        1279,
+        319
+      ]
+    },
+    "ball": {
+      "sheet": "parts",
+      "at": [
+        230,
+        828
+      ]
+    },
+    "clump": {
+      "sheet": "parts",
+      "at": [
+        608,
+        813
+      ]
+    },
+    "curlTall": {
+      "sheet": "parts",
+      "at": [
+        874,
+        785
+      ]
+    },
+    "curlShort": {
+      "sheet": "parts",
+      "at": [
+        1066,
+        844
+      ]
+    },
+    "curlHalf": {
+      "sheet": "parts",
+      "at": [
+        1244,
+        776
+      ]
+    },
+    "frondOpen": {
+      "sheet": "parts",
+      "at": [
+        1421,
+        764
+      ]
+    },
+    "eyeLHappy": {
+      "sheet": "face",
+      "at": [
+        241,
+        151
+      ]
+    },
+    "eyeL": {
+      "sheet": "face",
+      "at": [
+        504,
+        168
+      ]
+    },
+    "eyeLWide": {
+      "sheet": "face",
+      "at": [
+        756,
+        169
+      ]
+    },
+    "eyeLClosed": {
+      "sheet": "face",
+      "at": [
+        1029,
+        179
+      ]
+    },
+    "eyeLSad": {
+      "sheet": "face",
+      "at": [
+        1286,
+        171
+      ]
+    },
+    "eyeRHappy": {
+      "sheet": "face",
+      "at": [
+        236,
+        414
+      ]
+    },
+    "eyeR": {
+      "sheet": "face",
+      "at": [
+        504,
+        429
+      ]
+    },
+    "eyeRWide": {
+      "sheet": "face",
+      "at": [
+        757,
+        426
+      ]
+    },
+    "eyeRClosed": {
+      "sheet": "face",
+      "at": [
+        1036,
+        438
+      ]
+    },
+    "eyeRSad": {
+      "sheet": "face",
+      "at": [
+        1298,
+        432
+      ]
+    },
+    "browL": {
+      "sheet": "face",
+      "at": [
+        270,
+        652
+      ]
+    },
+    "browLSad": {
+      "sheet": "face",
+      "at": [
+        594,
+        643
+      ]
+    },
+    "browR": {
+      "sheet": "face",
+      "at": [
+        975,
+        651
+      ]
+    },
+    "browRSad": {
+      "sheet": "face",
+      "at": [
+        1290,
+        642
+      ]
+    },
+    "mouth": {
+      "sheet": "face",
+      "at": [
+        189,
+        885
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        482,
+        877
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        773,
+        873
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        1062,
+        868
+      ]
+    },
+    "mouthYawn": {
+      "sheet": "face",
+      "at": [
+        1355,
+        867
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 378,
+      "y": 596
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 368,
+      "y": 498
+    },
+    {
+      "id": "frondsMid",
+      "parent": "body",
+      "x": 385,
+      "y": 436
+    },
+    {
+      "id": "frondsL",
+      "parent": "body",
+      "x": 352,
+      "y": 432
+    },
+    {
+      "id": "frondsR",
+      "parent": "body",
+      "x": 405,
+      "y": 436
+    },
+    {
+      "id": "curlShort",
+      "parent": "body",
+      "x": 326,
+      "y": 400
+    },
+    {
+      "id": "curlTall",
+      "parent": "body",
+      "x": 376,
+      "y": 412
+    },
+    {
+      "id": "head",
+      "parent": "body",
+      "x": 362,
+      "y": 498
+    },
+    {
+      "id": "face",
+      "parent": "head",
+      "x": 355,
+      "y": 453
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 333,
+      "y": 444
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 380,
+      "y": 456
+    },
+    {
+      "id": "browL",
+      "parent": "face",
+      "x": 331,
+      "y": 428
+    },
+    {
+      "id": "browR",
+      "parent": "face",
+      "x": 381,
+      "y": 438
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 350,
+      "y": 467
+    }
+  ],
+  "slots": [
+    {
+      "id": "frondsMid",
+      "bone": "frondsMid",
+      "default": "fronds",
+      "attachments": {
+        "fronds": {
+          "part": "frondsMid",
+          "x": 378,
+          "y": 306,
+          "scale": 0.5,
+          "rotate": 2
+        }
+      }
+    },
+    {
+      "id": "frondsL",
+      "bone": "frondsL",
+      "default": "fronds",
+      "attachments": {
+        "fronds": {
+          "part": "frondsL",
+          "x": 258,
+          "y": 361,
+          "scale": 0.37,
+          "rotate": -16
+        }
+      }
+    },
+    {
+      "id": "frondsR",
+      "bone": "frondsR",
+      "default": "fronds",
+      "attachments": {
+        "fronds": {
+          "part": "frondsR",
+          "x": 507,
+          "y": 381,
+          "scale": 0.4,
+          "rotate": 14
+        }
+      }
+    },
+    {
+      "id": "curlShort",
+      "bone": "curlShort",
+      "default": "curl",
+      "attachments": {
+        "curl": {
+          "part": "curlShort",
+          "x": 303,
+          "y": 312,
+          "scale": 0.58,
+          "scaleY": 1.2,
+          "rotate": 0
+        }
+      }
+    },
+    {
+      "id": "curlTall",
+      "bone": "curlTall",
+      "default": "curl",
+      "attachments": {
+        "curl": {
+          "part": "curlTall",
+          "x": 351,
+          "y": 290,
+          "scale": 0.62,
+          "rotate": 0
+        },
+        "half": {
+          "part": "curlHalf",
+          "x": 379,
+          "y": 284,
+          "scale": 0.62,
+          "flip": true,
+          "rotate": 0
+        },
+        "open": {
+          "part": "frondOpen",
+          "x": 374,
+          "y": 282,
+          "scale": 0.6,
+          "flip": true,
+          "rotate": 0
+        }
+      }
+    },
+    {
+      "id": "ball",
+      "bone": "root",
+      "default": "ball",
+      "attachments": {
+        "ball": {
+          "part": "ball",
+          "x": 380,
+          "y": 532,
+          "scale": 0.45
+        }
+      }
+    },
+    {
+      "id": "clump",
+      "bone": "head",
+      "default": "clump",
+      "attachments": {
+        "clump": {
+          "part": "clump",
+          "x": 361,
+          "y": 452,
+          "scale": 0.52,
+          "rotate": 5
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eyeLHappy",
+          "x": 333,
+          "y": 444,
+          "scale": 0.155,
+          "rotate": -5
+        },
+        "happy": {
+          "part": "eyeLHappy",
+          "x": 333,
+          "y": 443,
+          "scale": 0.16740000000000002,
+          "rotate": -5
+        },
+        "open": {
+          "part": "eyeL",
+          "x": 333,
+          "y": 444,
+          "scale": 0.1984
+        },
+        "wide": {
+          "part": "eyeLWide",
+          "x": 333,
+          "y": 444,
+          "scale": 0.1984
+        },
+        "closed": {
+          "part": "eyeLClosed",
+          "x": 333,
+          "y": 446,
+          "scale": 0.155,
+          "rotate": 5
+        },
+        "sad": {
+          "part": "eyeLSad",
+          "x": 333,
+          "y": 444,
+          "scale": 0.1984
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eyeRHappy",
+          "x": 380,
+          "y": 456,
+          "scale": 0.155,
+          "rotate": 5
+        },
+        "happy": {
+          "part": "eyeRHappy",
+          "x": 380,
+          "y": 455,
+          "scale": 0.16740000000000002,
+          "rotate": 5
+        },
+        "open": {
+          "part": "eyeR",
+          "x": 380,
+          "y": 456,
+          "scale": 0.1984
+        },
+        "wide": {
+          "part": "eyeRWide",
+          "x": 380,
+          "y": 456,
+          "scale": 0.1984
+        },
+        "closed": {
+          "part": "eyeRClosed",
+          "x": 380,
+          "y": 458,
+          "scale": 0.155,
+          "rotate": 5
+        },
+        "sad": {
+          "part": "eyeRSad",
+          "x": 380,
+          "y": 456,
+          "scale": 0.1984
+        }
+      }
+    },
+    {
+      "id": "browL",
+      "bone": "browL",
+      "default": "none",
+      "attachments": {
+        "up": {
+          "part": "browL",
+          "x": 331,
+          "y": 425,
+          "scale": 0.13175,
+          "rotate": 5
+        },
+        "sad": {
+          "part": "browLSad",
+          "x": 331,
+          "y": 428,
+          "scale": 0.13175,
+          "rotate": 5
+        }
+      }
+    },
+    {
+      "id": "browR",
+      "bone": "browR",
+      "default": "none",
+      "attachments": {
+        "up": {
+          "part": "browR",
+          "x": 381,
+          "y": 435,
+          "scale": 0.13175,
+          "rotate": 5
+        },
+        "sad": {
+          "part": "browRSad",
+          "x": 381,
+          "y": 438,
+          "scale": 0.13175,
+          "rotate": 5
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouth",
+          "x": 350,
+          "y": 467,
+          "scale": 0.115,
+          "rotate": 5
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 350,
+          "y": 471,
+          "scale": 0.13,
+          "rotate": 5
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 350,
+          "y": 470,
+          "scale": 0.14
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 350,
+          "y": 469,
+          "scale": 0.11,
+          "rotate": 5
+        },
+        "yawn": {
+          "part": "mouthYawn",
+          "x": 350,
+          "y": 473,
+          "scale": 0.12
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad",
+      "browL": "sad",
+      "browR": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o",
+      "browL": "up",
+      "browR": "up"
+    }
+  },
+  "idle": {
+    "breathe": "head"
+  },
+  "animations": [
+    {
+      "id": "sprout",
+      "kind": "move",
+      "description": "the fern sprouts: a fuzzy green tuft pushes up from its root ball, its fronds shoot up and spread, the fiddleheads curl over at the top, and it smiles.",
+      "keys": [
+        {
+          "hold": 0.1,
+          "bones": {
+            "frondsMid": {
+              "sx": 0.25,
+              "sy": 0.08,
+              "y": 48
+            },
+            "frondsL": {
+              "sx": 0.25,
+              "sy": 0.08,
+              "y": 48
+            },
+            "frondsR": {
+              "sx": 0.25,
+              "sy": 0.08,
+              "y": 48
+            },
+            "curlShort": {
+              "sx": 0.25,
+              "sy": 0.08,
+              "y": 48
+            },
+            "curlTall": {
+              "sx": 0.25,
+              "sy": 0.08,
+              "y": 48
+            },
+            "head": {
+              "sx": 0.5,
+              "sy": 0.3
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "frondsMid": {
+              "sx": 0.35,
+              "sy": 0.15,
+              "y": 22
+            },
+            "frondsL": {
+              "sx": 0.35,
+              "sy": 0.15,
+              "y": 22
+            },
+            "frondsR": {
+              "sx": 0.35,
+              "sy": 0.15,
+              "y": 22
+            },
+            "curlShort": {
+              "sx": 0.35,
+              "sy": 0.15,
+              "y": 22
+            },
+            "curlTall": {
+              "sx": 0.35,
+              "sy": 0.15,
+              "y": 22
+            },
+            "head": {
+              "sx": 0.8,
+              "sy": 0.75
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "linear",
+          "bones": {
+            "frondsMid": {
+              "sx": 0.6,
+              "sy": 0.45
+            },
+            "frondsL": {
+              "sx": 0.6,
+              "sy": 0.45,
+              "r": 18
+            },
+            "frondsR": {
+              "sx": 0.6,
+              "sy": 0.45,
+              "r": -18
+            },
+            "curlShort": {
+              "sx": 0.6,
+              "sy": 0.45,
+              "r": 8
+            },
+            "curlTall": {
+              "sx": 0.6,
+              "sy": 0.45,
+              "r": -6
+            },
+            "head": {
+              "sx": 0.95,
+              "sy": 0.95
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "frondsMid": {
+              "sx": 1.0,
+              "sy": 1.05
+            },
+            "frondsL": {
+              "sx": 1.0,
+              "sy": 1.05
+            },
+            "frondsR": {
+              "sx": 1.0,
+              "sy": 1.05
+            },
+            "curlShort": {
+              "sx": 1.0,
+              "sy": 1.05
+            },
+            "curlTall": {
+              "sx": 1.0,
+              "sy": 1.05
+            },
+            "head": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "body": {
+              "r": -2
+            },
+            "frondsL": {
+              "r": -2
+            },
+            "frondsR": {
+              "r": -2
+            },
+            "curlTall": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "body": {
+              "r": 1.5
+            },
+            "frondsL": {
+              "r": 1
+            },
+            "frondsR": {
+              "r": 1
+            },
+            "curlTall": {
+              "r": 1.5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sway",
+      "kind": "action",
+      "description": "the fern sways gently from side to side in the breeze, its fronds swishing, smiling.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "body": {
+              "r": -3.5
+            },
+            "frondsMid": {
+              "r": -2
+            },
+            "frondsL": {
+              "r": -3
+            },
+            "frondsR": {
+              "r": -3
+            },
+            "curlTall": {
+              "r": -3
+            },
+            "curlShort": {
+              "r": -2.5
+            },
+            "head": {
+              "r": 1.5
+            }
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "body": {
+              "r": 3.5
+            },
+            "frondsMid": {
+              "r": 2
+            },
+            "frondsL": {
+              "r": 3
+            },
+            "frondsR": {
+              "r": 3
+            },
+            "curlTall": {
+              "r": 3
+            },
+            "curlShort": {
+              "r": 2.5
+            },
+            "head": {
+              "r": -1.5
+            }
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "body": {
+              "r": -3.5
+            },
+            "frondsMid": {
+              "r": -2
+            },
+            "frondsL": {
+              "r": -3
+            },
+            "frondsR": {
+              "r": -3
+            },
+            "curlTall": {
+              "r": -3
+            },
+            "curlShort": {
+              "r": -2.5
+            },
+            "head": {
+              "r": 1.5
+            }
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "body": {
+              "r": 2.8000000000000003
+            },
+            "frondsMid": {
+              "r": 1.6
+            },
+            "frondsL": {
+              "r": 2.4000000000000004
+            },
+            "frondsR": {
+              "r": 2.4000000000000004
+            },
+            "curlTall": {
+              "r": 2.4000000000000004
+            },
+            "curlShort": {
+              "r": 2.0
+            },
+            "head": {
+              "r": -1.2000000000000002
+            }
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "body": {
+              "r": -0.5
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "unfurl",
+      "kind": "action",
+      "description": "the fern slowly uncurls its tall fiddlehead into a fresh new frond and beams, then lets it roll gently back up.",
+      "pause": {
+        "frame": 5,
+        "shows": "the fern with its tall fiddlehead uncurled into a fresh new frond, beaming"
+      },
+      "keys": [
+        {
+          "hold": 0.25
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "curlTall": {
+              "sy": 0.97,
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "open",
+            "eyeR": "open"
+          }
+        },
+        {
+          "hold": 0.5,
+          "ease": "out",
+          "bones": {
+            "curlTall": {
+              "sy": 1.0,
+              "r": 1
+            }
+          },
+          "slots": {
+            "curlTall": "half",
+            "eyeL": "open",
+            "eyeR": "open",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "curlTall": {
+              "sy": 1.02,
+              "r": 2
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "curlTall": "half",
+            "eyeL": "open",
+            "eyeR": "open",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "ease": "out",
+          "bones": {
+            "curlTall": {
+              "sy": 1.0,
+              "r": 0
+            }
+          },
+          "slots": {
+            "curlTall": "open",
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o",
+            "browL": "up",
+            "browR": "up"
+          }
+        },
+        {
+          "hold": 1.0,
+          "bones": {
+            "curlTall": {
+              "r": -1
+            },
+            "head": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "curlTall": "open",
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "curlTall": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "curlTall": "open",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "curlTall": {
+              "sy": 1.0
+            }
+          },
+          "slots": {
+            "curlTall": "half"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "curlTall": {
+              "sy": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.25
+        }
+      ]
+    },
+    {
+      "id": "curl-up",
+      "kind": "action",
+      "description": "the fern shyly folds its fronds in close and shuts its eyes, then peeks out and slowly spreads them out again.",
+      "pause": {
+        "frame": 3,
+        "shows": "the fern with its fronds folded in close, shy, its eyes shut"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.6,
+          "ease": "out",
+          "bones": {
+            "frondsL": {
+              "r": 13.2,
+              "sx": 0.9520000000000001
+            },
+            "frondsR": {
+              "r": -13.2,
+              "sx": 0.9520000000000001
+            },
+            "frondsMid": {
+              "sx": 0.892,
+              "sy": 0.9520000000000001
+            },
+            "curlTall": {
+              "r": 3.5999999999999996,
+              "sy": 0.964
+            },
+            "curlShort": {
+              "r": 6.0,
+              "sy": 0.964
+            },
+            "body": {
+              "sy": 0.982
+            },
+            "head": {
+              "y": 1.7999999999999998
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "frondsL": {
+              "r": 22,
+              "sx": 0.92
+            },
+            "frondsR": {
+              "r": -22,
+              "sx": 0.92
+            },
+            "frondsMid": {
+              "sx": 0.82,
+              "sy": 0.92
+            },
+            "curlTall": {
+              "r": 6,
+              "sy": 0.94
+            },
+            "curlShort": {
+              "r": 10,
+              "sy": 0.94
+            },
+            "body": {
+              "sy": 0.97
+            },
+            "head": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 1.0,
+          "bones": {
+            "frondsL": {
+              "r": 22,
+              "sx": 0.92
+            },
+            "frondsR": {
+              "r": -22,
+              "sx": 0.92
+            },
+            "frondsMid": {
+              "sx": 0.82,
+              "sy": 0.92
+            },
+            "curlTall": {
+              "r": 6,
+              "sy": 0.94
+            },
+            "curlShort": {
+              "r": 10,
+              "sy": 0.94
+            },
+            "body": {
+              "sy": 0.97
+            },
+            "head": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "frondsL": {
+              "r": 22,
+              "sx": 0.92
+            },
+            "frondsR": {
+              "r": -22,
+              "sx": 0.92
+            },
+            "frondsMid": {
+              "sx": 0.82,
+              "sy": 0.92
+            },
+            "curlTall": {
+              "r": 6,
+              "sy": 0.94
+            },
+            "curlShort": {
+              "r": 10,
+              "sy": 0.94
+            },
+            "body": {
+              "sy": 0.97
+            },
+            "head": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "open",
+            "eyeR": "open"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "frondsL": {
+              "r": 6
+            },
+            "frondsR": {
+              "r": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wiggle",
+      "kind": "action",
+      "description": "the fern wiggles all its fronds, giggling as if tickled.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "frondsL": {
+              "r": 4
+            },
+            "frondsR": {
+              "r": 4
+            },
+            "frondsMid": {
+              "r": -2.5
+            },
+            "curlTall": {
+              "r": -3
+            },
+            "curlShort": {
+              "r": 4
+            },
+            "head": {
+              "r": 2
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "frondsL": {
+              "r": -4
+            },
+            "frondsR": {
+              "r": -4
+            },
+            "frondsMid": {
+              "r": 2.5
+            },
+            "curlTall": {
+              "r": 3
+            },
+            "curlShort": {
+              "r": -4
+            },
+            "head": {
+              "r": -2
+            },
+            "body": {
+              "r": -1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "frondsL": {
+              "r": 4
+            },
+            "frondsR": {
+              "r": 4
+            },
+            "frondsMid": {
+              "r": -2.5
+            },
+            "curlTall": {
+              "r": -3
+            },
+            "curlShort": {
+              "r": 4
+            },
+            "head": {
+              "r": 2
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "frondsL": {
+              "r": -4
+            },
+            "frondsR": {
+              "r": -4
+            },
+            "frondsMid": {
+              "r": 2.5
+            },
+            "curlTall": {
+              "r": 3
+            },
+            "curlShort": {
+              "r": -4
+            },
+            "head": {
+              "r": -2
+            },
+            "body": {
+              "r": -1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "frondsL": {
+              "r": 4
+            },
+            "frondsR": {
+              "r": 4
+            },
+            "frondsMid": {
+              "r": -2.5
+            },
+            "curlTall": {
+              "r": -3
+            },
+            "curlShort": {
+              "r": 4
+            },
+            "head": {
+              "r": 2
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "frondsL": {
+              "r": -4
+            },
+            "frondsR": {
+              "r": -4
+            },
+            "frondsMid": {
+              "r": 2.5
+            },
+            "curlTall": {
+              "r": 3
+            },
+            "curlShort": {
+              "r": -4
+            },
+            "head": {
+              "r": -2
+            },
+            "body": {
+              "r": -1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "frondsL": {
+              "r": 4
+            },
+            "frondsR": {
+              "r": 4
+            },
+            "frondsMid": {
+              "r": -2.5
+            },
+            "curlTall": {
+              "r": -3
+            },
+            "curlShort": {
+              "r": 4
+            },
+            "head": {
+              "r": 2
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "frondsL": {
+              "r": -4
+            },
+            "frondsR": {
+              "r": -4
+            },
+            "frondsMid": {
+              "r": 2.5
+            },
+            "curlTall": {
+              "r": 3
+            },
+            "curlShort": {
+              "r": -4
+            },
+            "head": {
+              "r": -2
+            },
+            "body": {
+              "r": -1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "droop",
+      "kind": "action",
+      "description": "the fern droops sadly, its fronds hanging down, then slowly lifts them up again.",
+      "pause": {
+        "frame": 3,
+        "shows": "the fern drooping sadly, its fronds hanging down"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "frondsL": {
+              "r": -10.0
+            },
+            "frondsR": {
+              "r": 9.0
+            },
+            "frondsMid": {
+              "sy": 0.95,
+              "r": 1.5
+            },
+            "curlTall": {
+              "r": -7.0,
+              "sy": 0.96
+            },
+            "curlShort": {
+              "r": -8.0,
+              "sy": 0.97
+            },
+            "body": {
+              "sy": 0.98,
+              "r": 1.0
+            },
+            "head": {
+              "y": 1.5,
+              "r": 1.5
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "frondsL": {
+              "r": -20
+            },
+            "frondsR": {
+              "r": 18
+            },
+            "frondsMid": {
+              "sy": 0.9,
+              "r": 3
+            },
+            "curlTall": {
+              "r": -14,
+              "sy": 0.92
+            },
+            "curlShort": {
+              "r": -16,
+              "sy": 0.94
+            },
+            "body": {
+              "sy": 0.96,
+              "r": 2
+            },
+            "head": {
+              "y": 3,
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 1.0,
+          "bones": {
+            "frondsL": {
+              "r": -21.0
+            },
+            "frondsR": {
+              "r": 18.900000000000002
+            },
+            "frondsMid": {
+              "sy": 0.895,
+              "r": 3.1500000000000004
+            },
+            "curlTall": {
+              "r": -14.700000000000001,
+              "sy": 0.916
+            },
+            "curlShort": {
+              "r": -16.8,
+              "sy": 0.9369999999999999
+            },
+            "body": {
+              "sy": 0.958,
+              "r": 2.1
+            },
+            "head": {
+              "y": 3.1500000000000004,
+              "r": 3.1500000000000004
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "frondsL": {
+              "r": -5.0
+            },
+            "frondsR": {
+              "r": 4.5
+            },
+            "frondsMid": {
+              "sy": 0.975,
+              "r": 0.75
+            },
+            "curlTall": {
+              "r": -3.5,
+              "sy": 0.98
+            },
+            "curlShort": {
+              "r": -4.0,
+              "sy": 0.985
+            },
+            "body": {
+              "sy": 0.99,
+              "r": 0.5
+            },
+            "head": {
+              "y": 0.75,
+              "r": 0.75
+            }
+          },
+          "slots": {
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "head": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "perk-up",
+      "kind": "action",
+      "description": "the fern perks up, lifting all its fronds up high with its eyes wide and bright, and beams.",
+      "pause": {
+        "frame": 3,
+        "shows": "the fern perked up, its fronds lifted high, beaming"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "body": {
+              "sy": 0.97
+            },
+            "head": {
+              "y": 2
+            }
+          },
+          "slots": {
+            "eyeL": "open",
+            "eyeR": "open"
+          }
+        },
+        {
+          "hold": 0.4,
+          "ease": "out",
+          "bones": {
+            "frondsL": {
+              "r": 10
+            },
+            "frondsR": {
+              "r": -9
+            },
+            "frondsMid": {
+              "sy": 1.06
+            },
+            "curlTall": {
+              "sy": 1.05,
+              "r": 2
+            },
+            "curlShort": {
+              "r": 5,
+              "sy": 1.04
+            },
+            "body": {
+              "sy": 1.04
+            },
+            "head": {
+              "y": -4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o",
+            "browL": "up",
+            "browR": "up"
+          }
+        },
+        {
+          "hold": 1.0,
+          "bones": {
+            "frondsL": {
+              "r": 9.0
+            },
+            "frondsR": {
+              "r": -8.1
+            },
+            "frondsMid": {
+              "sy": 1.054
+            },
+            "curlTall": {
+              "sy": 1.045,
+              "r": 1.8
+            },
+            "curlShort": {
+              "r": 4.5,
+              "sy": 1.036
+            },
+            "body": {
+              "sy": 1.036
+            },
+            "head": {
+              "y": -3.6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "frondsL": {
+              "r": 3.0
+            },
+            "frondsR": {
+              "r": -2.6999999999999997
+            },
+            "frondsMid": {
+              "sy": 1.018
+            },
+            "curlTall": {
+              "sy": 1.0150000000000001,
+              "r": 0.6
+            },
+            "curlShort": {
+              "r": 1.5,
+              "sy": 1.012
+            },
+            "body": {
+              "sy": 1.012
+            },
+            "head": {
+              "y": -1.2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "laugh",
+      "kind": "action",
+      "description": "the fern laughs and laughs, its tuft bobbing and its fronds shaking with giggles.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "head": {
+              "r": -2.5,
+              "y": -2,
+              "sy": 1.03
+            },
+            "frondsL": {
+              "r": 3
+            },
+            "frondsR": {
+              "r": -3
+            },
+            "frondsMid": {
+              "sy": 1.02
+            },
+            "curlTall": {
+              "r": 2
+            },
+            "curlShort": {
+              "r": 2
+            },
+            "body": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "head": {
+              "r": 1,
+              "y": 1,
+              "sy": 0.97
+            },
+            "frondsL": {
+              "r": -3
+            },
+            "frondsR": {
+              "r": 3
+            },
+            "frondsMid": {
+              "sy": 0.99
+            },
+            "curlTall": {
+              "r": -2
+            },
+            "curlShort": {
+              "r": -2
+            },
+            "body": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "head": {
+              "r": -2.5,
+              "y": -2,
+              "sy": 1.03
+            },
+            "frondsL": {
+              "r": 3
+            },
+            "frondsR": {
+              "r": -3
+            },
+            "frondsMid": {
+              "sy": 1.02
+            },
+            "curlTall": {
+              "r": 2
+            },
+            "curlShort": {
+              "r": 2
+            },
+            "body": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "head": {
+              "r": 1,
+              "y": 1,
+              "sy": 0.97
+            },
+            "frondsL": {
+              "r": -3
+            },
+            "frondsR": {
+              "r": 3
+            },
+            "frondsMid": {
+              "sy": 0.99
+            },
+            "curlTall": {
+              "r": -2
+            },
+            "curlShort": {
+              "r": -2
+            },
+            "body": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "head": {
+              "r": -2.5,
+              "y": -2,
+              "sy": 1.03
+            },
+            "frondsL": {
+              "r": 3
+            },
+            "frondsR": {
+              "r": -3
+            },
+            "frondsMid": {
+              "sy": 1.02
+            },
+            "curlTall": {
+              "r": 2
+            },
+            "curlShort": {
+              "r": 2
+            },
+            "body": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "head": {
+              "r": 1,
+              "y": 1,
+              "sy": 0.97
+            },
+            "frondsL": {
+              "r": -3
+            },
+            "frondsR": {
+              "r": 3
+            },
+            "frondsMid": {
+              "sy": 0.99
+            },
+            "curlTall": {
+              "r": -2
+            },
+            "curlShort": {
+              "r": -2
+            },
+            "body": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "head": {
+              "r": -2.5,
+              "y": -2,
+              "sy": 1.03
+            },
+            "frondsL": {
+              "r": 3
+            },
+            "frondsR": {
+              "r": -3
+            },
+            "frondsMid": {
+              "sy": 1.02
+            },
+            "curlTall": {
+              "r": 2
+            },
+            "curlShort": {
+              "r": 2
+            },
+            "body": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "head": {
+              "r": 1,
+              "y": 1,
+              "sy": 0.97
+            },
+            "frondsL": {
+              "r": -3
+            },
+            "frondsR": {
+              "r": 3
+            },
+            "frondsMid": {
+              "sy": 0.99
+            },
+            "curlTall": {
+              "r": -2
+            },
+            "curlShort": {
+              "r": -2
+            },
+            "body": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "kind": "action",
+      "description": "the fern gives a big yawn, lets its fronds settle and nods off to sleep, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "the fern fast asleep, eyes shut, its fronds settled"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "head": {
+              "y": -3,
+              "sy": 1.03
+            },
+            "frondsL": {
+              "r": 5
+            },
+            "frondsR": {
+              "r": -5
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "yawn"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "head": {
+              "y": -3,
+              "sy": 1.03
+            },
+            "frondsL": {
+              "r": 5
+            },
+            "frondsR": {
+              "r": -5
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "yawn"
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "frondsL": {
+              "r": -8
+            },
+            "frondsR": {
+              "r": 7
+            },
+            "frondsMid": {
+              "sy": 0.96
+            },
+            "curlTall": {
+              "r": -6
+            },
+            "curlShort": {
+              "r": -6
+            },
+            "body": {
+              "r": 2,
+              "sy": 0.98
+            },
+            "head": {
+              "r": 4,
+              "y": 2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 1.0,
+          "bones": {
+            "frondsL": {
+              "r": -8.8
+            },
+            "frondsR": {
+              "r": 7.700000000000001
+            },
+            "frondsMid": {
+              "sy": 0.956
+            },
+            "curlTall": {
+              "r": -6.6000000000000005
+            },
+            "curlShort": {
+              "r": -6.6000000000000005
+            },
+            "body": {
+              "r": 2.2,
+              "sy": 0.978
+            },
+            "head": {
+              "r": 4.4,
+              "y": 2.2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "head": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "eyeL": "open",
+            "eyeR": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "nod",
+      "kind": "action",
+      "description": "the fern nods yes, twice, its fronds bobbing.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "head": {
+              "y": 6,
+              "sy": 0.97
+            },
+            "face": {
+              "y": 3
+            },
+            "frondsMid": {
+              "sy": 0.97
+            },
+            "curlTall": {
+              "r": -3
+            },
+            "curlShort": {
+              "r": -2
+            },
+            "body": {
+              "sy": 0.985
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "head": {
+              "y": -2.4000000000000004,
+              "sy": 1.012
+            },
+            "face": {
+              "y": -1.2000000000000002
+            },
+            "frondsMid": {
+              "sy": 1.012
+            },
+            "curlTall": {
+              "r": 1.2000000000000002
+            },
+            "curlShort": {
+              "r": 0.8
+            },
+            "body": {
+              "sy": 1.006
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "head": {
+              "y": 6,
+              "sy": 0.97
+            },
+            "face": {
+              "y": 3
+            },
+            "frondsMid": {
+              "sy": 0.97
+            },
+            "curlTall": {
+              "r": -3
+            },
+            "curlShort": {
+              "r": -2
+            },
+            "body": {
+              "sy": 0.985
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "head": {
+              "y": -1.7999999999999998,
+              "sy": 1.009
+            },
+            "face": {
+              "y": -0.8999999999999999
+            },
+            "frondsMid": {
+              "sy": 1.009
+            },
+            "curlTall": {
+              "r": 0.8999999999999999
+            },
+            "curlShort": {
+              "r": 0.6
+            },
+            "body": {
+              "sy": 1.0045
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    }
+  ]
+}

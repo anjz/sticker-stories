@@ -1,0 +1,90 @@
+{
+  "id": "rustle",
+  "sticker": "leaf",
+  "kind": "action",
+  "description": "the big leaf rustles in the breeze, its wavy edges trembling.",
+  "stickerBox": {
+    "x": 0.10547,
+    "y": 0.07943,
+    "width": 0.78906,
+    "height": 0.83984
+  },
+  "puppet": {
+    "rig": "anims/leaf.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "blade": {
+            "r": 1.5,
+            "sx": 1.01
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "blade": {
+            "r": -1,
+            "sx": 0.995
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "blade": {
+            "r": 1.5,
+            "sx": 1.01
+          },
+          "body": {
+            "r": 0.8
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "blade": {
+            "r": -1.2,
+            "sx": 0.995
+          },
+          "body": {
+            "r": 0.5
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "blade": {
+            "r": 1,
+            "sx": 1.008
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "blade": {
+            "r": -0.6
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "blade": {
+            "r": 0.4
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

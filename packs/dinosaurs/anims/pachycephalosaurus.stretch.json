@@ -1,0 +1,117 @@
+{
+  "id": "stretch",
+  "sticker": "pachycephalosaurus",
+  "kind": "action",
+  "description": "the Pachycephalosaurus stretches up tall with its little arms up and its tail out long, gives a big yawn, then settles with a happy sigh.",
+  "stickerBox": {
+    "x": 0.1849,
+    "y": 0.13932,
+    "width": 0.63021,
+    "height": 0.72005
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the Pachycephalosaurus stretching up tall with a big yawn, little arms up"
+  },
+  "puppet": {
+    "rig": "anims/pachycephalosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "armL": {
+            "r": 55
+          },
+          "armR": {
+            "r": 55
+          },
+          "belly": {
+            "sx": 0.98,
+            "sy": 1.05
+          },
+          "head": {
+            "r": 7,
+            "y": -5
+          },
+          "root": {
+            "y": -3
+          },
+          "tail": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "armL": {
+            "r": 66
+          },
+          "armR": {
+            "r": 66
+          },
+          "belly": {
+            "sx": 0.98,
+            "sy": 1.05
+          },
+          "head": {
+            "r": 8,
+            "y": -7
+          },
+          "root": {
+            "y": -5
+          },
+          "tail": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": -8
+          },
+          "armR": {
+            "r": -8
+          },
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.95
+          },
+          "head": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "spread",
+  "sticker": "puddle",
+  "kind": "move",
+  "description": "the mud puddle spreads out flat on the ground and its water settles with a ripple.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.36198,
+    "width": 0.72005,
+    "height": 0.27474
+  },
+  "puppet": {
+    "rig": "anims/puddle.rig.json",
+    "keys": [
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "sx": 0.55,
+            "sy": 0.6
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "sx": 1.04,
+            "sy": 1.02
+          },
+          "ring": {
+            "sx": 0.25,
+            "sy": 0.25
+          }
+        },
+        "slots": {
+          "ring": "ring"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "sx": 0.99
+          },
+          "ring": {
+            "sx": 0.55,
+            "sy": 0.55
+          }
+        },
+        "slots": {
+          "ring": "ring"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "ring": {
+            "sx": 0.8,
+            "sy": 0.8
+          }
+        },
+        "slots": {
+          "ring": "faint"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "ring": {
+            "sx": 0.95,
+            "sy": 0.95
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

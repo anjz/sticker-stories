@@ -1,0 +1,120 @@
+{
+  "id": "wave",
+  "sticker": "trex",
+  "kind": "action",
+  "description": "the little T. rex waves hello with one tiny arm.",
+  "stickerBox": {
+    "x": 0.13021,
+    "y": 0.07943,
+    "width": 0.73828,
+    "height": 0.83984
+  },
+  "puppet": {
+    "rig": "anims/trex.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armR": {
+            "r": 55
+          },
+          "body": {
+            "r": -1
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "armR": {
+            "r": 72
+          },
+          "body": {
+            "r": -1
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "armR": {
+            "r": 50
+          },
+          "body": {
+            "r": -1
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "armR": {
+            "r": 72
+          },
+          "body": {
+            "r": -1
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "armR": {
+            "r": 50
+          },
+          "body": {
+            "r": -1
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

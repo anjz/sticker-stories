@@ -1,0 +1,57 @@
+{
+  "id": "nod",
+  "sticker": "triceratops",
+  "kind": "action",
+  "description": "the Triceratops nods its big head yes, twice.",
+  "stickerBox": {
+    "x": 0.08333,
+    "y": 0.07943,
+    "width": 0.83333,
+    "height": 0.83984
+  },
+  "puppet": {
+    "rig": "anims/triceratops.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "head": {
+            "r": -6,
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "head": {
+            "r": -6,
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

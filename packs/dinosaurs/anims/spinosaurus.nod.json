@@ -1,0 +1,69 @@
+{
+  "id": "nod",
+  "sticker": "spinosaurus",
+  "kind": "action",
+  "description": "the Spinosaurus nods its head yes, twice.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.19401,
+    "width": 0.83984,
+    "height": 0.61068
+  },
+  "puppet": {
+    "rig": "anims/spinosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": 8
+          },
+          "head": {
+            "y": 9,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": -3
+          },
+          "head": {
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": 8
+          },
+          "head": {
+            "y": 9,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": -2
+          },
+          "head": {
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "id": "sleep",
+  "sticker": "plesiosaur",
+  "kind": "action",
+  "description": "the plesiosaur gives a big yawn, lets its long neck droop and dozes on the water, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.10156,
+    "width": 0.83984,
+    "height": 0.79557
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the plesiosaur fast asleep on the water, eyes shut, its neck drooped"
+  },
+  "on": [
+    "lagoon"
+  ],
+  "puppet": {
+    "rig": "anims/plesiosaur.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": 8
+          },
+          "neck": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": 8
+          },
+          "neck": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.01,
+            "sy": 0.98
+          },
+          "head": {
+            "r": -10
+          },
+          "neck": {
+            "r": -6
+          },
+          "root": {
+            "y": 8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "belly": {
+            "sx": 1.01,
+            "sy": 0.98
+          },
+          "head": {
+            "r": -11
+          },
+          "neck": {
+            "r": -7
+          },
+          "root": {
+            "y": 8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": 1
+          },
+          "neck": {
+            "r": -1
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

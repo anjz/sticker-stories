@@ -1,0 +1,163 @@
+{
+  "id": "rub-head",
+  "sticker": "pachycephalosaurus",
+  "kind": "action",
+  "description": "the Pachycephalosaurus tips its head down to one little hand, gives its head a gentle rub, then smiles.",
+  "stickerBox": {
+    "x": 0.1849,
+    "y": 0.13932,
+    "width": 0.63021,
+    "height": 0.72005
+  },
+  "puppet": {
+    "rig": "anims/pachycephalosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "armR": {
+            "r": 95
+          },
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -10,
+            "y": 8
+          }
+        },
+        "slots": {
+          "armR": "none",
+          "armRFront": "arm",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "armR": {
+            "r": 80
+          },
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -8,
+            "y": 7
+          }
+        },
+        "slots": {
+          "armR": "none",
+          "armRFront": "arm",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "armR": {
+            "r": 95
+          },
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -10,
+            "y": 8
+          }
+        },
+        "slots": {
+          "armR": "none",
+          "armRFront": "arm",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "armR": {
+            "r": 80
+          },
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -8,
+            "y": 7
+          }
+        },
+        "slots": {
+          "armR": "none",
+          "armRFront": "arm",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "armR": {
+            "r": 95
+          },
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -10,
+            "y": 8
+          }
+        },
+        "slots": {
+          "armR": "none",
+          "armRFront": "arm",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "id": "blow",
+  "sticker": "log",
+  "kind": "action",
+  "description": "the wind blows through the hollow log: a puff of dust blows out of its open end and its little fern sways.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.19531,
+    "width": 0.72005,
+    "height": 0.60938
+  },
+  "particles": [
+    {
+      "frame": 1,
+      "effect": "dust-puff",
+      "x": 0.26,
+      "y": 0.6,
+      "intensity": 0.3
+    }
+  ],
+  "puppet": {
+    "rig": "anims/log.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "fern": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "fern": {
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "fern": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "fern": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

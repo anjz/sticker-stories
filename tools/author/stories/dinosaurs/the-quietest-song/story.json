@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "the-quietest-song",
+  "pack": "dinosaurs",
+  "featured": [
+    "flower",
+    "plesiosaur",
+    "parasaurolophus"
+  ],
+  "supporting": [],
+  "tags": [
+    "bedtime",
+    "funny"
+  ],
+  "premise": "As the sun goes down Flower folds up for the night, but Parasaurolophus's goodnight honk is so loud it pops her open again; she tries a soft little tune instead, Plesiosaur hums along from the lagoon, and Flower folds up, fast asleep, and Plesiosaur too.",
+  "inspiration": "The lullaby-gone-wrong of nursery humour (Grimm's noisy helpers), turned: the right song is the quietest one.",
+  "lesson": "Sometimes the softest way is the kindest.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "The Quietest Song",
+      "text": "{flower:enter} {canvas:sunset 0.7} [softly] The sun was going down over the valley. Flower gave a little yawn {flower:live close hold} and folded her petals up tight, ready for sleep. {parasaurolophus:enter} Parasaurolophus came by to say goodnight. {parasaurolophus:go to flower} {parasaurolophus:face happy} She took a great big breath, {parasaurolophus:live honk} lifted her head and, {sfx:honk} HONK! \"Goodnight, Flower!\" {flower:live close resume} POP! Flower's petals sprang wide open. {flower:face surprised} {parasaurolophus:face sad} \"Oops,\" said Parasaurolophus. \"Too loud.\" {canvas:night 0.7} {sfx:crickets} Up came the moon. She tried again, very softly this time. [gently] {parasaurolophus:live sing} Hmm-mm, hmm-mm, a quiet little tune through her long crest. Out on the lagoon, {plesiosaur:enter} {plesiosaur:go to lagoon} Plesiosaur heard it, and hummed along, soft and low. {flower:face sleeping} Flower's eyes grew heavy. Slowly, slowly, {flower:live close hold} her petals folded up again. {plesiosaur:live sleep hold} Plesiosaur's long neck drooped. He was fast asleep too. [whispers] \"Goodnight,\" whispered Parasaurolophus, {parasaurolophus:face happy} without a single honk. And that was the quietest goodnight song the valley had ever heard."
+    },
+    "es-ES": {
+      "title": "La canción más bajita",
+      "text": "{flower:enter} {canvas:sunset 0.7} [softly] El sol se ponía sobre el valle. Flor dio un bostecito {flower:live close hold} y cerró sus pétalos bien apretados, lista para dormir. {parasaurolophus:enter} Parasaurolophus vino a darle las buenas noches. {parasaurolophus:go to flower} {parasaurolophus:face happy} Tomó aire, muchísimo aire, {parasaurolophus:live honk} levantó la cabeza y, {sfx:honk} ¡TUUUUU! —¡Buenas noches, Flor! {flower:live close resume} ¡PLOP! A Flor se le abrieron los pétalos de repente. {flower:face surprised} {parasaurolophus:face sad} —Uy —dijo Parasaurolophus—. Demasiado fuerte. {canvas:night 0.7} {sfx:crickets} Salió la luna. Lo intentó otra vez, muy bajito. [gently] {parasaurolophus:live sing} Mmm-mm, mmm-mm, una cancioncita suave por su larga cresta. En la laguna, {plesiosaur:enter} {plesiosaur:go to lagoon} Plesiosaurio la oyó y se puso a tararearla con ella, bajito, bajito. {flower:face sleeping} A Flor se le cerraban los ojos. Despacito, despacito, {flower:live close hold} sus pétalos se volvieron a cerrar. {plesiosaur:live sleep hold} A Plesiosaurio se le cayó el largo cuello: también se había dormido. [whispers] —Buenas noches —susurró Parasaurolophus, {parasaurolophus:face happy} sin ni un solo tuuu. Y esa fue la canción de buenas noches más bajita que el valle había oído jamás."
+    }
+  },
+  "sounds": {
+    "honk": {
+      "prompt": "one big deep friendly honk like a soft low horn, comic, playful",
+      "seconds": 1.2
+    },
+    "crickets": {
+      "prompt": "gentle night crickets in a warm valley by a calm lake, very calm and soft, realistic field recording",
+      "seconds": 25,
+      "loop": true
+    }
+  }
+}

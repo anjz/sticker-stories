@@ -1,0 +1,164 @@
+{
+  "id": "cuddle",
+  "sticker": "psittacosaurus",
+  "kind": "action",
+  "description": "the little Psittacosaurus hugs itself happily, all cosy and snug, rocking gently from side to side.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.20443,
+    "width": 0.59896,
+    "height": 0.59115
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the little Psittacosaurus hugging itself, cosy and happy, eyes closed in a smile"
+  },
+  "puppet": {
+    "rig": "anims/psittacosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.98
+          },
+          "body": {
+            "r": -2.5
+          },
+          "head": {
+            "r": 4
+          },
+          "tail": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "armR": "hug",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.98
+          },
+          "body": {
+            "r": -2.5
+          },
+          "head": {
+            "r": 4
+          },
+          "tail": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "armR": "hug",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.98
+          },
+          "body": {
+            "r": 2.5
+          },
+          "head": {
+            "r": -2
+          },
+          "tail": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "armR": "hug",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.98
+          },
+          "body": {
+            "r": -2.5
+          },
+          "head": {
+            "r": 4
+          },
+          "tail": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "armR": "hug",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.98
+          },
+          "body": {
+            "r": 2.5
+          },
+          "head": {
+            "r": -2
+          },
+          "tail": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "armR": "hug",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

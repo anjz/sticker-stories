@@ -1,0 +1,88 @@
+{
+  "id": "look-around",
+  "sticker": "plesiosaur",
+  "kind": "action",
+  "description": "the plesiosaur turns its long neck to look one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.10156,
+    "width": 0.83984,
+    "height": 0.79557
+  },
+  "on": [
+    "lagoon"
+  ],
+  "puppet": {
+    "rig": "anims/plesiosaur.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "face": {
+            "x": -6
+          },
+          "head": {
+            "r": -7
+          },
+          "neck": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "face": {
+            "x": -6
+          },
+          "head": {
+            "r": -7
+          },
+          "neck": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "face": {
+            "x": 6
+          },
+          "head": {
+            "r": 10
+          },
+          "neck": {
+            "r": 7
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "face": {
+            "x": 6
+          },
+          "head": {
+            "r": 10
+          },
+          "neck": {
+            "r": 7
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

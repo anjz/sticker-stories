@@ -1,0 +1,140 @@
+{
+  "id": "unfurl",
+  "sticker": "fern",
+  "kind": "action",
+  "description": "the fern slowly uncurls its tall fiddlehead into a fresh new frond and beams, then lets it roll gently back up.",
+  "stickerBox": {
+    "x": 0.21484,
+    "y": 0.20052,
+    "width": 0.56901,
+    "height": 0.59896
+  },
+  "pause": {
+    "frame": 5,
+    "shows": "the fern with its tall fiddlehead uncurled into a fresh new frond, beaming"
+  },
+  "puppet": {
+    "rig": "anims/fern.rig.json",
+    "keys": [
+      {
+        "hold": 0.25
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "curlTall": {
+            "r": -2,
+            "sy": 0.97
+          }
+        },
+        "slots": {
+          "eyeL": "open",
+          "eyeR": "open"
+        }
+      },
+      {
+        "hold": 0.5,
+        "ease": "out",
+        "bones": {
+          "curlTall": {
+            "r": 1,
+            "sy": 1
+          }
+        },
+        "slots": {
+          "curlTall": "half",
+          "eyeL": "open",
+          "eyeR": "open",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "curlTall": {
+            "r": 2,
+            "sy": 1.02
+          }
+        },
+        "slots": {
+          "curlTall": "half",
+          "eyeL": "open",
+          "eyeR": "open",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "ease": "out",
+        "bones": {
+          "curlTall": {
+            "sy": 1
+          }
+        },
+        "slots": {
+          "browL": "up",
+          "browR": "up",
+          "curlTall": "open",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "curlTall": {
+            "r": -1
+          },
+          "head": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "curlTall": "open",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "curlTall": {
+            "sy": 0.98
+          }
+        },
+        "slots": {
+          "curlTall": "open",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "curlTall": {
+            "sy": 1
+          }
+        },
+        "slots": {
+          "curlTall": "half"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "curlTall": {
+            "sy": 0.98
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

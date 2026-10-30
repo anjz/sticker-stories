@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "durante",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "durante",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 11.32,
+      "cue": "paquicefalosaurio",
+      "sticker": "pachycephalosaurus",
+      "enter": true
+    },
+    {
+      "at": 11.32,
+      "cue": "paquicefalosaurio",
+      "sticker": "pachycephalosaurus",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 13.96,
+      "cue": "hola",
+      "sticker": "pachycephalosaurus",
+      "animation": "bounce"
+    },
+    {
+      "at": 19.16,
+      "cue": "triceratops",
+      "sticker": "triceratops",
+      "enter": true
+    },
+    {
+      "at": 19.16,
+      "cue": "triceratops",
+      "sticker": "triceratops",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 21.12,
+      "cue": "empujoncito",
+      "sticker": "triceratops",
+      "animation": "nudge"
+    },
+    {
+      "at": 26.04,
+      "cue": "así",
+      "sticker": "triceratops",
+      "expression": "sad"
+    },
+    {
+      "at": 26.04,
+      "cue": "así",
+      "sticker": "pachycephalosaurus",
+      "expression": "sad"
+    },
+    {
+      "at": 27.48,
+      "cue": "se",
+      "sticker": "pachycephalosaurus",
+      "go": "away"
+    },
+    {
+      "at": 27.84,
+      "cue": "a",
+      "sticker": "triceratops",
+      "go": "away"
+    },
+    {
+      "at": 29.56,
+      "cue": "estegosaurio",
+      "sticker": "stegosaurus",
+      "enter": true
+    },
+    {
+      "at": 34.92,
+      "cue": "se",
+      "sticker": "stegosaurus",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 40.68,
+      "cue": "salió",
+      "effect": "sunshine",
+      "duration": 25.1,
+      "intensity": 0.8
+    },
+    {
+      "at": 46.36,
+      "cue": "y",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 50.99,
+      "cue": "hola",
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 55.4,
+      "cue": "estegosaurio",
+      "sticker": "stegosaurus",
+      "animation": "blush"
+    },
+    {
+      "at": 58.92,
+      "cue": "cuando",
+      "sticker": "stegosaurus",
+      "expression": "happy"
+    },
+    {
+      "at": 60.65,
+      "cue": "encontraron",
+      "sticker": "pachycephalosaurus",
+      "go": "back"
+    },
+    {
+      "at": 60.65,
+      "cue": "encontraron",
+      "sticker": "triceratops",
+      "go": "back"
+    }
+  ]
+}

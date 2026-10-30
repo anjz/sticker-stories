@@ -1,0 +1,63 @@
+{
+  "id": "nod",
+  "sticker": "beetle",
+  "kind": "action",
+  "description": "the beetle nods yes, twice.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.27865,
+    "width": 0.5,
+    "height": 0.44141
+  },
+  "puppet": {
+    "rig": "anims/beetle.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "y": 2
+          },
+          "head": {
+            "r": -6,
+            "y": 2
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "y": 2
+          },
+          "head": {
+            "r": -6,
+            "y": 2
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

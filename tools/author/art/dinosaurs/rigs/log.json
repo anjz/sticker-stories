@@ -1,0 +1,670 @@
+{
+  "sticker": "log",
+  "called": "the log",
+  "skeleton": "a hollow fallen log lying on its side, its open end to the left: root under the middle of its underside; tip at the bottom of the open end's rim and tipR at the bottom of the far (right) end (it rocks on one or the other); body (the log with its moss) on them; the little fern on its own bones at its foot in the log's top (fernL and fernR, the left and right fronds, layered behind the log so their feet tuck under its top edge). The log never moves by itself: only a bump, wind or something landing on it moves it.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a hollow fallen tree log lying on its side, with green moss on its bark and a little fern sprouting from its top. Draw it as a cut-out paper puppet: its separate pieces laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every piece at the size it has in image 1 (if they do not all fit, draw them all a little smaller, at the same scale as each other).\n\nDraw each piece on its own, spread out over the sheet with wide empty gaps between them, no piece touching or overlapping another:\n1. the log alone, WITHOUT the fern: the whole hollow log exactly as in image 1, its round open end on the left showing the dark hollow inside and the growth rings at the rim, the little broken branch stub on its top and the cut stub on its right end, and its green moss; where the fern grows in image 1 the bark and moss simply carry on along the log's top edge (no fern, no hole, no stalks).\n2. the little fern alone, whole: all its fronds as in image 1, from the feet of their stalks, where they go into the log's top (drawn whole, including the part the log hides), to their tips; the stalks' feet meet in a soft rounded end with no outline drawn across it.\n3. the fern's left fronds alone: only the fronds that lean to the LEFT in image 1, together as one piece, from their stalks' feet to their tips; the feet a soft rounded end with no outline drawn across it.\n4. the fern's right fronds alone: only the fronds that stand up straight and lean to the RIGHT in image 1, together as one piece, from their stalks' feet to their tips; the feet a soft rounded end with no outline drawn across it.\n\nEvery piece is drawn whole, including what is normally hidden behind another piece, with its edges clean and smooth. It is an object, not a character: no face, no eyes, no mouth, no animal. No text, no labels, no numbers, no outline around the pieces beyond the drawing's own line, no shadows, no ground, no grass, no falling leaves, dust or bits of bark. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "log": {
+      "sheet": "parts",
+      "at": [
+        757,
+        683
+      ]
+    },
+    "fern": {
+      "sheet": "parts",
+      "at": [
+        377,
+        203
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 400,
+      "y": 580
+    },
+    {
+      "id": "tip",
+      "parent": "root",
+      "x": 255,
+      "y": 597
+    },
+    {
+      "id": "tipR",
+      "parent": "tip",
+      "x": 590,
+      "y": 548
+    },
+    {
+      "id": "body",
+      "parent": "tipR",
+      "x": 400,
+      "y": 580
+    },
+    {
+      "id": "fern",
+      "parent": "body",
+      "x": 483,
+      "y": 310
+    }
+  ],
+  "slots": [
+    {
+      "id": "fern",
+      "bone": "fern",
+      "default": "fern",
+      "attachments": {
+        "fern": {
+          "part": "fern",
+          "x": 494,
+          "y": 252,
+          "scale": 0.41,
+          "rotate": 4
+        }
+      }
+    },
+    {
+      "id": "log",
+      "bone": "body",
+      "default": "log",
+      "attachments": {
+        "log": {
+          "part": "log",
+          "x": 387,
+          "y": 417,
+          "scale": 0.435,
+          "scaleY": 1.25,
+          "rotate": -1.5
+        }
+      }
+    }
+  ],
+  "animations": [
+    {
+      "id": "plonk",
+      "kind": "move",
+      "description": "the log is set down on the ground with a soft thump and a little puff of dust: it rocks once on its round side and settles, its little fern swaying.",
+      "particles": [
+        {
+          "frame": 3,
+          "effect": "dust-puff",
+          "x": 0.5,
+          "y": 0.77,
+          "intensity": 0.4
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.02,
+          "ease": "step"
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "root": {
+              "y": -50,
+              "r": -3
+            },
+            "fern": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -32,
+              "r": -2
+            },
+            "fern": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "tip": {
+              "r": -2.5
+            },
+            "fern": {
+              "r": 7
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "tipR": {
+              "r": 1.5
+            },
+            "fern": {
+              "r": -5
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "tip": {
+              "r": -0.6
+            },
+            "fern": {
+              "r": 3
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "fern": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "rock",
+      "kind": "action",
+      "description": "a bump rocks the log gently from one end to the other on its round side, then it settles.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "tip": {
+              "r": -2.5
+            },
+            "fern": {
+              "r": 3
+            }
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "tipR": {
+              "r": 2
+            },
+            "fern": {
+              "r": -3.5
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "tip": {
+              "r": -1.2
+            },
+            "fern": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "tipR": {
+              "r": 0.6
+            },
+            "fern": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "rustle",
+      "kind": "action",
+      "description": "a breeze rustles the little fern on top of the log: it sways and trembles, then is still.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "fern": {
+              "r": 6
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "fern": {
+              "r": 4,
+              "sx": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "fern": {
+              "r": 7
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "fern": {
+              "r": 4.5,
+              "sx": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "fern": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "fern": {
+              "r": -2,
+              "sx": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "fern": {
+              "r": -4.5
+            }
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "fern": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "fern": {
+              "r": -0.8
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "gust",
+      "kind": "action",
+      "description": "a gust of wind sweeps over the log: its little fern bends right over and flutters, a puff of dust blows off the top, then the fern springs back.",
+      "pause": {
+        "frame": 2,
+        "shows": "the log's little fern bent right over in a gust of wind"
+      },
+      "particles": [
+        {
+          "frame": 1,
+          "effect": "dust-puff",
+          "x": 0.52,
+          "y": 0.4,
+          "intensity": 0.25
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.45,
+          "ease": "out",
+          "bones": {
+            "fern": {
+              "r": 17,
+              "sx": 0.95
+            },
+            "tip": {
+              "r": -0.4
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "fern": {
+              "r": 19,
+              "sx": 0.94
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "fern": {
+              "r": 16,
+              "sx": 0.96
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "fern": {
+              "r": 19,
+              "sx": 0.94
+            }
+          }
+        },
+        {
+          "hold": 0.5,
+          "ease": "in",
+          "bones": {
+            "fern": {
+              "r": -5
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "fern": {
+              "r": 2.5
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "fern": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.25
+        }
+      ]
+    },
+    {
+      "id": "bump",
+      "kind": "action",
+      "description": "something bumps into the log: it jolts with a puff of dust from underneath, rocks, and settles.",
+      "particles": [
+        {
+          "frame": 1,
+          "effect": "dust-puff",
+          "x": 0.5,
+          "y": 0.77,
+          "intensity": 0.35
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.12,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "x": -6
+            },
+            "tip": {
+              "r": -2
+            },
+            "fern": {
+              "r": 6
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "root": {
+              "x": 2
+            },
+            "tipR": {
+              "r": 1.5
+            },
+            "fern": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "root": {
+              "x": -1
+            },
+            "tip": {
+              "r": -0.8
+            },
+            "fern": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "tipR": {
+              "r": 0.3
+            },
+            "fern": {
+              "r": -0.8
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "creak",
+      "kind": "action",
+      "description": "the old log settles with a tiny creaking wobble, then lies still.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "tipR": {
+              "r": 0.8
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "tip": {
+              "r": -0.5
+            },
+            "fern": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "tipR": {
+              "r": 0.5
+            },
+            "fern": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "tip": {
+              "r": -0.25
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    },
+    {
+      "id": "blow",
+      "kind": "action",
+      "description": "the wind blows through the hollow log: a puff of dust blows out of its open end and its little fern sways.",
+      "particles": [
+        {
+          "frame": 1,
+          "effect": "dust-puff",
+          "x": 0.26,
+          "y": 0.6,
+          "intensity": 0.3
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "fern": {
+              "r": 8
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "fern": {
+              "r": 5
+            }
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "fern": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "fern": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "thud",
+      "kind": "action",
+      "description": "something heavy sits down on the log: it presses down into the ground with a thud and a puff of dust at both ends, its fern bobbing, then settles.",
+      "particles": [
+        {
+          "frame": 1,
+          "effect": "dust-puff",
+          "x": 0.32,
+          "y": 0.78,
+          "intensity": 0.3
+        },
+        {
+          "frame": 1,
+          "effect": "dust-puff",
+          "x": 0.74,
+          "y": 0.72,
+          "intensity": 0.25
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.15,
+          "ease": "in",
+          "bones": {
+            "body": {
+              "sy": 0.97,
+              "sx": 1.01
+            },
+            "fern": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "body": {
+              "sy": 1.01
+            },
+            "fern": {
+              "r": 4
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "body": {
+              "sy": 0.995
+            },
+            "fern": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "fern": {
+              "r": 0.8
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    }
+  ]
+}

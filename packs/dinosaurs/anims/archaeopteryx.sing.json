@@ -1,0 +1,199 @@
+{
+  "id": "sing",
+  "sticker": "archaeopteryx",
+  "description": "the archaeopteryx puffs up its chest, tips its head back and sings a happy chirpy song, then flicks its tail and smiles.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.21354,
+    "width": 0.59896,
+    "height": 0.57292
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the archaeopteryx singing, head tipped back, beak open, eyes closed"
+  },
+  "puppet": {
+    "rig": "anims/archaeopteryx.rig.json",
+    "keys": [
+      {
+        "hold": 0.25
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 1.03
+          },
+          "head": {
+            "r": -3,
+            "y": 2
+          },
+          "tail": {}
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 1.04
+          },
+          "head": {
+            "r": 10,
+            "y": -5
+          },
+          "tail": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "beak": "song",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 1.03
+          },
+          "head": {
+            "r": 7,
+            "y": -4
+          },
+          "tail": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "beak": "o",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 1.05
+          },
+          "head": {
+            "r": 13,
+            "y": -6
+          },
+          "tail": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "beak": "song",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 1.03
+          },
+          "head": {
+            "r": 8,
+            "y": -4
+          },
+          "tail": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "beak": "o",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 1.05
+          },
+          "head": {
+            "r": 12,
+            "y": -6
+          },
+          "tail": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "beak": "song",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 1.01
+          },
+          "head": {
+            "r": 2
+          },
+          "tail": {}
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "tail": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "tail": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 4,
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

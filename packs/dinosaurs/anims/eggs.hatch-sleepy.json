@@ -1,0 +1,359 @@
+{
+  "id": "hatch-sleepy",
+  "sticker": "eggs",
+  "kind": "action",
+  "description": "a baby Triceratops hatches from the front egg, gives a big sleepy yawn and dozes off in its shell, its eggshell cap on its head.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.22656,
+    "width": 0.59896,
+    "height": 0.54557
+  },
+  "pause": {
+    "frame": 15,
+    "shows": "a baby Triceratops fast asleep in its broken eggshell, its eggshell cap on its head"
+  },
+  "particles": [
+    {
+      "frame": 6,
+      "effect": "dust-puff",
+      "x": 0.4922,
+      "y": 0.5385,
+      "intensity": 0.25,
+      "color": "#F3EBD2"
+    }
+  ],
+  "puppet": {
+    "rig": "anims/eggs.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "egg3": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "egg3": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "crack3": "crack"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "egg3": {
+            "r": -3,
+            "y": -3
+          }
+        },
+        "slots": {
+          "crack3": "crack"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "egg3": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "crack3": "crack"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "cap3": {
+            "y": -6
+          }
+        },
+        "slots": {
+          "cap3": "cap",
+          "egg3": "broken"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "baby3": {
+            "y": 85,
+            "sx": 0.85,
+            "sy": 0.85
+          },
+          "cap3": {
+            "r": 18,
+            "x": 6,
+            "y": -60
+          }
+        },
+        "slots": {
+          "baby3": "baby",
+          "cap3": "cap",
+          "egg3": "broken",
+          "eye3L": "closed",
+          "eye3R": "closed",
+          "mouth3": "smile"
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "out",
+        "bones": {
+          "baby3": {
+            "y": 50,
+            "sx": 0.9,
+            "sy": 0.9
+          },
+          "cap3": {
+            "r": 14,
+            "x": -6.7,
+            "y": -74
+          }
+        },
+        "slots": {
+          "baby3": "baby",
+          "cap3": "cap",
+          "egg3": "broken",
+          "eye3L": "closed",
+          "eye3R": "closed",
+          "mouth3": "smile"
+        }
+      },
+      {
+        "hold": 0.28,
+        "ease": "in",
+        "bones": {
+          "cap3": {
+            "r": -2,
+            "x": -11.2,
+            "y": -153
+          }
+        },
+        "slots": {
+          "baby3": "baby",
+          "cap3": "cap",
+          "egg3": "broken",
+          "eye3L": "closed",
+          "eye3R": "closed",
+          "mouth3": "smile"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "hat3": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "baby3": "baby",
+          "egg3": "broken",
+          "eye3L": "closed",
+          "eye3R": "closed",
+          "hat3": "cap",
+          "mouth3": "smile"
+        }
+      },
+      {
+        "hold": 0.4,
+        "slots": {
+          "baby3": "baby",
+          "egg3": "broken",
+          "eye3L": "open",
+          "eye3R": "open",
+          "hat3": "cap",
+          "mouth3": "smile",
+          "paws3L": "paw",
+          "paws3R": "paw"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "baby3": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "baby3": "baby",
+          "egg3": "broken",
+          "eye3L": "closed",
+          "eye3R": "closed",
+          "hat3": "cap",
+          "mouth3": "yawn",
+          "paws3L": "paw",
+          "paws3R": "paw"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "baby3": "baby",
+          "egg3": "broken",
+          "eye3L": "open",
+          "eye3R": "open",
+          "hat3": "cap",
+          "mouth3": "smile",
+          "paws3L": "paw",
+          "paws3R": "paw"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "baby3": {
+            "r": 3
+          },
+          "face3": {
+            "y": 2
+          }
+        },
+        "slots": {
+          "baby3": "baby",
+          "egg3": "broken",
+          "eye3L": "closed",
+          "eye3R": "closed",
+          "hat3": "cap",
+          "mouth3": "smile",
+          "paws3L": "paw",
+          "paws3R": "paw"
+        }
+      },
+      {
+        "hold": 1.2,
+        "bones": {
+          "baby3": {
+            "r": 5
+          },
+          "face3": {
+            "y": 3
+          },
+          "hat3": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "baby3": "baby",
+          "egg3": "broken",
+          "eye3L": "closed",
+          "eye3R": "closed",
+          "hat3": "cap",
+          "mouth3": "smile",
+          "paws3L": "paw",
+          "paws3R": "paw"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "baby3": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "baby3": "baby",
+          "egg3": "broken",
+          "eye3L": "closed",
+          "eye3R": "closed",
+          "hat3": "cap",
+          "mouth3": "smile"
+        }
+      },
+      {
+        "hold": 0.35,
+        "ease": "in",
+        "bones": {
+          "baby3": {
+            "y": 36,
+            "sx": 0.95,
+            "sy": 0.95
+          }
+        },
+        "slots": {
+          "baby3": "baby",
+          "egg3": "broken",
+          "eye3L": "closed",
+          "eye3R": "closed",
+          "hat3": "cap",
+          "mouth3": "smile"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "baby3": {
+            "y": 36,
+            "sx": 0.95,
+            "sy": 0.95
+          },
+          "cap3": {
+            "r": -12,
+            "x": -11.2,
+            "y": -83
+          }
+        },
+        "slots": {
+          "baby3": "baby",
+          "cap3": "cap",
+          "egg3": "broken",
+          "eye3L": "closed",
+          "eye3R": "closed",
+          "mouth3": "smile"
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "in",
+        "bones": {
+          "baby3": {
+            "y": 110,
+            "sx": 0.85,
+            "sy": 0.85
+          }
+        },
+        "slots": {
+          "cap3": "cap",
+          "egg3": "broken"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "egg3": {
+            "r": -1.5
+          }
+        },
+        "slots": {
+          "cap3": "cap",
+          "egg3": "broken"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "egg3": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

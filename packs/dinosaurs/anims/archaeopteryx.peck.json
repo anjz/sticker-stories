@@ -1,0 +1,164 @@
+{
+  "id": "peck",
+  "sticker": "archaeopteryx",
+  "description": "the archaeopteryx bends down and pecks at the ground, peck-peck-peck, then looks up happily.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.21354,
+    "width": 0.59896,
+    "height": 0.57292
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the archaeopteryx bent forward, its beak down to the ground"
+  },
+  "perched": true,
+  "idle": true,
+  "puppet": {
+    "rig": "anims/archaeopteryx.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": -13,
+            "y": 8
+          },
+          "head": {
+            "r": -42,
+            "y": 6
+          },
+          "tail": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": -13,
+            "y": 8
+          },
+          "head": {
+            "r": -42,
+            "y": 6
+          },
+          "tail": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -15,
+            "y": 8
+          },
+          "head": {
+            "r": -50,
+            "y": 6
+          },
+          "tail": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -13,
+            "y": 8
+          },
+          "head": {
+            "r": -42,
+            "y": 6
+          },
+          "tail": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -15,
+            "y": 8
+          },
+          "head": {
+            "r": -50,
+            "y": 6
+          },
+          "tail": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -13,
+            "y": 8
+          },
+          "head": {
+            "r": -42,
+            "y": 6
+          },
+          "tail": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -15,
+            "y": 8
+          },
+          "head": {
+            "r": -50,
+            "y": 6
+          },
+          "tail": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": -4
+          },
+          "head": {
+            "r": -8
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 6,
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

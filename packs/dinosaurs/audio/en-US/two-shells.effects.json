@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "little",
+      "sticker": "ammonite",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "little",
+      "sticker": "ammonite",
+      "go": "to",
+      "target": "lagoon"
+    },
+    {
+      "at": 9,
+      "cue": "dragonfly",
+      "sticker": "dragonfly",
+      "enter": true
+    },
+    {
+      "at": 9,
+      "cue": "dragonfly",
+      "sticker": "dragonfly",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 12.99,
+      "cue": "hello",
+      "sticker": "dragonfly",
+      "go": "to",
+      "target": "ammonite"
+    },
+    {
+      "at": 14.2,
+      "cue": "whoop",
+      "sticker": "ammonite",
+      "expression": "surprised"
+    },
+    {
+      "at": 15,
+      "cue": "ammonite",
+      "sticker": "ammonite",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 19.32,
+      "cue": "oh",
+      "sticker": "dragonfly",
+      "expression": "sad"
+    },
+    {
+      "at": 23.48,
+      "cue": "turtle",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 25.4,
+      "cue": "she",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "ammonite",
+      "by": "swim"
+    },
+    {
+      "at": 33.04,
+      "cue": "right",
+      "sticker": "turtle",
+      "animation": "peek",
+      "mode": "hold"
+    },
+    {
+      "at": 43.96,
+      "cue": "one",
+      "sticker": "ammonite",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 45.72,
+      "cue": "and",
+      "sticker": "turtle",
+      "animation": "peek",
+      "mode": "resume"
+    },
+    {
+      "at": 47.32,
+      "cue": "dragonfly",
+      "sticker": "ammonite",
+      "expression": "happy"
+    },
+    {
+      "at": 47.32,
+      "cue": "dragonfly",
+      "sticker": "turtle",
+      "expression": "happy"
+    },
+    {
+      "at": 47.32,
+      "cue": "dragonfly",
+      "sticker": "dragonfly",
+      "expression": "happy"
+    },
+    {
+      "at": 47.32,
+      "cue": "dragonfly",
+      "sticker": "dragonfly",
+      "animation": "wave"
+    },
+    {
+      "at": 53.4,
+      "cue": "and",
+      "sticker": "ammonite",
+      "animation": "wave-tentacles"
+    }
+  ]
+}

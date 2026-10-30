@@ -1,0 +1,70 @@
+{
+  "id": "nod",
+  "sticker": "plesiosaur",
+  "kind": "action",
+  "description": "the plesiosaur nods yes, twice, dipping its little head on its long neck.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.10156,
+    "width": 0.83984,
+    "height": 0.79557
+  },
+  "on": [
+    "lagoon"
+  ],
+  "puppet": {
+    "rig": "anims/plesiosaur.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "head": {
+            "r": -8
+          },
+          "neck": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "head": {
+            "r": 2
+          },
+          "neck": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "head": {
+            "r": -8
+          },
+          "neck": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 1
+          },
+          "neck": {
+            "r": 0.5
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

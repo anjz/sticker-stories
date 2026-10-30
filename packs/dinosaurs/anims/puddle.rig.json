@@ -1,0 +1,227 @@
+{
+  "sticker": "puddle",
+  "atlas": "anims/puddle.rig.webp",
+  "size": 768,
+  "parts": {
+    "bubble": {
+      "rect": [
+        379,
+        371,
+        50,
+        32
+      ],
+      "border": [
+        431,
+        371,
+        90,
+        72
+      ],
+      "pad": 20
+    },
+    "faint": {
+      "rect": [
+        1598,
+        217,
+        337,
+        72
+      ],
+      "border": [
+        0,
+        371,
+        377,
+        112
+      ],
+      "pad": 20
+    },
+    "glint": {
+      "rect": [
+        1070,
+        0,
+        418,
+        112
+      ],
+      "border": [
+        1490,
+        0,
+        458,
+        152
+      ],
+      "pad": 20
+    },
+    "puddle": {
+      "rect": [
+        0,
+        0,
+        513,
+        175
+      ],
+      "border": [
+        515,
+        0,
+        553,
+        215
+      ],
+      "pad": 20
+    },
+    "ring": {
+      "rect": [
+        880,
+        217,
+        337,
+        75
+      ],
+      "border": [
+        1219,
+        217,
+        377,
+        115
+      ],
+      "pad": 20
+    },
+    "water": {
+      "rect": [
+        0,
+        217,
+        418,
+        112
+      ],
+      "border": [
+        420,
+        217,
+        458,
+        152
+      ],
+      "pad": 20
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 383,
+      "y": 440
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 383,
+      "y": 440
+    },
+    {
+      "id": "water",
+      "parent": "body",
+      "x": 390,
+      "y": 389
+    },
+    {
+      "id": "ring",
+      "parent": "water",
+      "x": 390,
+      "y": 389
+    },
+    {
+      "id": "ring2",
+      "parent": "water",
+      "x": 390,
+      "y": 389
+    },
+    {
+      "id": "bubble",
+      "parent": "water",
+      "x": 452,
+      "y": 405
+    }
+  ],
+  "slots": [
+    {
+      "id": "puddle",
+      "bone": "body",
+      "default": "puddle",
+      "attachments": {
+        "puddle": {
+          "part": "puddle",
+          "x": 126.59,
+          "y": 295.85,
+          "w": 512.82,
+          "h": 174.3
+        }
+      }
+    },
+    {
+      "id": "water",
+      "bone": "water",
+      "default": "none",
+      "attachments": {
+        "glint": {
+          "part": "glint",
+          "x": 181.23,
+          "y": 333.38,
+          "w": 417.53,
+          "h": 111.24
+        },
+        "water": {
+          "part": "water",
+          "x": 181.05,
+          "y": 333.17,
+          "w": 417.9,
+          "h": 111.67
+        }
+      }
+    },
+    {
+      "id": "ring",
+      "bone": "ring",
+      "default": "none",
+      "attachments": {
+        "faint": {
+          "part": "faint",
+          "x": 221.63,
+          "y": 353.1,
+          "w": 336.74,
+          "h": 71.8
+        },
+        "ring": {
+          "part": "ring",
+          "x": 221.67,
+          "y": 351.8,
+          "w": 336.66,
+          "h": 74.4
+        }
+      }
+    },
+    {
+      "id": "ring2",
+      "bone": "ring2",
+      "default": "none",
+      "attachments": {
+        "faint": {
+          "part": "faint",
+          "x": 221.63,
+          "y": 353.1,
+          "w": 336.74,
+          "h": 71.8
+        },
+        "ring": {
+          "part": "ring",
+          "x": 221.67,
+          "y": 351.8,
+          "w": 336.66,
+          "h": 74.4
+        }
+      }
+    },
+    {
+      "id": "bubble",
+      "bone": "bubble",
+      "default": "none",
+      "attachments": {
+        "bubble": {
+          "part": "bubble",
+          "x": 427.04,
+          "y": 377,
+          "w": 49.92,
+          "h": 32
+        }
+      }
+    }
+  ]
+}

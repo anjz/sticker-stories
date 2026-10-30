@@ -1,0 +1,67 @@
+{
+  "id": "shake-head",
+  "sticker": "beetle",
+  "kind": "action",
+  "description": "the beetle shakes its head no.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.27865,
+    "width": 0.5,
+    "height": 0.44141
+  },
+  "puppet": {
+    "rig": "anims/beetle.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "x": -5
+          },
+          "head": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 5
+          },
+          "head": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": -5
+          },
+          "head": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 4
+          },
+          "head": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

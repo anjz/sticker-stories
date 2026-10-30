@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "pachycephalosaurus",
+      "sticker": "pachycephalosaurus",
+      "enter": true
+    },
+    {
+      "at": 10.44,
+      "cue": "ankylosaurus",
+      "sticker": "ankylosaurus",
+      "enter": true
+    },
+    {
+      "at": 10.44,
+      "cue": "ankylosaurus",
+      "sticker": "ankylosaurus",
+      "animation": "look-around"
+    },
+    {
+      "at": 21.64,
+      "cue": "trundled",
+      "sticker": "ankylosaurus",
+      "go": "to",
+      "target": "rockside"
+    },
+    {
+      "at": 24.64,
+      "cue": "tucked",
+      "sticker": "ankylosaurus",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 36.28,
+      "cue": "pteranodon",
+      "sticker": "pteranodon",
+      "enter": true
+    },
+    {
+      "at": 36.28,
+      "cue": "pteranodon",
+      "sticker": "pteranodon",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 38.84,
+      "cue": "she",
+      "sticker": "pteranodon",
+      "go": "on",
+      "target": "ankylosaurus"
+    },
+    {
+      "at": 41.28,
+      "cue": "and",
+      "sticker": "pteranodon",
+      "animation": "look-around"
+    },
+    {
+      "at": 45.16,
+      "cue": "pachycephalosaurus",
+      "sticker": "pachycephalosaurus",
+      "go": "to",
+      "target": "ankylosaurus"
+    },
+    {
+      "at": 47.8,
+      "cue": "gentle",
+      "sticker": "pachycephalosaurus",
+      "animation": "bonk"
+    },
+    {
+      "at": 51.08,
+      "cue": "the",
+      "sticker": "ankylosaurus",
+      "effect": "shake"
+    },
+    {
+      "at": 52.76,
+      "cue": "rocks",
+      "sticker": "pteranodon",
+      "expression": "surprised"
+    },
+    {
+      "at": 52.76,
+      "cue": "rocks",
+      "sticker": "pteranodon",
+      "effect": "hop"
+    },
+    {
+      "at": 54.56,
+      "cue": "out",
+      "sticker": "ankylosaurus",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 58.44,
+      "cue": "found",
+      "sticker": "ankylosaurus",
+      "expression": "happy"
+    },
+    {
+      "at": 61.16,
+      "cue": "and",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 61.16,
+      "cue": "and",
+      "sticker": "pteranodon",
+      "effect": "wobble"
+    }
+  ]
+}

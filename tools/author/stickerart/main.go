@@ -157,6 +157,11 @@ type stickerSpec struct {
 	// FaceNote says what the face is drawn on when that is not obvious
 	// ("the round brown speckled seed centre"), so an expression keeps it.
 	FaceNote string `json:"faceNote,omitempty"`
+	// FaceKeep overrides the face's edge band for the composite only
+	// (fraction of the image's larger side): a far eye drawn on the head's
+	// outline, which the default band would keep from the old face. The
+	// kept generations are re-composited at no cost.
+	FaceKeep float64 `json:"faceKeep,omitempty"`
 	// NoExpressions are pack expressions this sticker never shows (the
 	// beach kids stand all day, so no sleeping face): not drawn, not
 	// installed.
@@ -263,7 +268,8 @@ type sceneLayer struct {
 	// Cut (optional, instead of Prompt) makes the layer from the finished
 	// background itself, nothing painted: a mask image in the art
 	// directory, white where the layer is, at the 4:3 picture's size, laid
-	// over the 4:3 background and the wide one's centre. Something the
+	// over the 4:3 background and the wide one's centre — or at the wide
+	// picture's size, its centre on the 4:3 one. Something the
 	// background already shows (the boulders on a rock pool's rim) then
 	// stands in front of the stickers behind it in a story, and looks just
 	// the same while the child plays.
@@ -666,7 +672,7 @@ func (r *renderer) run() error {
 		if err := r.scene(sheet, sheetFP); err != nil {
 			failures = append(failures, "scene: "+err.Error())
 		} else if !r.o.dry && len(r.c.cfg.Scene.Layers) > 0 {
-			if err := checkSceneCover(r.out(), r.c.cfg.Scene.Layers); err != nil {
+			if err := checkSceneCover(r.out(), r.c.cfg.Scene.Layers, r.c.cfg.Scene.ForegroundDown); err != nil {
 				failures = append(failures, "scene: "+err.Error())
 			}
 		}
@@ -1001,6 +1007,11 @@ func (r *renderer) face(s stickerSpec, e expressionSpec) error {
 	// The composite has its own version: a change there re-composites the
 	// kept generation at no cost.
 	finishFP := cfg.fillFP(hashOf(genFP, faceVersion, finishVersion, fmt.Sprint(cfg.StickerSize, cfg.Border, cfg.Margin), fmt.Sprint(cfg.finish())), s)
+	compBox := *s.Face
+	if s.FaceKeep > 0 {
+		compBox.Edge = s.FaceKeep
+		finishFP = hashOf(finishFP, "keep", fmt.Sprint(s.FaceKeep))
+	}
 	if s.Prop != nil {
 		// The face goes over the art without the prop.
 		finishFP = hashOf(finishFP, r.fps[r.workingRaw(s)])
@@ -1071,10 +1082,10 @@ func (r *renderer) face(s stickerSpec, e expressionSpec) error {
 			return err
 		}
 	}
-	if seam := stickerimg.FaceSeam(base, edited, *s.Face); seam > faceSeamWarn {
+	if seam := stickerimg.FaceSeam(base, edited, compBox); seam > faceSeamWarn {
 		r.say("! %s: the new face differs a lot at its rim (%.2f) — check %s for the old face showing through", key, seam, final)
 	}
-	png, err := stickerimg.Encode(stickerimg.Face(base, edited, *s.Face))
+	png, err := stickerimg.Encode(stickerimg.Face(base, edited, compBox))
 	if err != nil {
 		return err
 	}
@@ -1460,16 +1471,21 @@ func (r *renderer) cutLayer(l sceneLayer, bgBase, bgWide string) error {
 }
 
 // cutThrough is the picture where the mask is white, transparent elsewhere:
-// the mask, at the 4:3 picture's size, centred on a wider picture.
+// the mask, at the 4:3 or the wide picture's size, centred on the picture
+// (a wide mask reaches past the 4:3 picture's sides: Dinosaurs' rock
+// ledge).
 func cutThrough(pic, mask image.Image) (*image.RGBA, error) {
 	pb, mb := pic.Bounds(), mask.Bounds()
-	if mb.Dy() != pb.Dy() || mb.Dx() > pb.Dx() {
-		return nil, fmt.Errorf("the mask is %dx%d, the picture %dx%d: make it the 4:3 picture's size", mb.Dx(), mb.Dy(), pb.Dx(), pb.Dy())
+	if mb.Dy() != pb.Dy() {
+		return nil, fmt.Errorf("the mask is %dx%d, the picture %dx%d: make it the 4:3 or the wide picture's size", mb.Dx(), mb.Dy(), pb.Dx(), pb.Dy())
 	}
 	off := image.Pt(pb.Min.X+(pb.Dx()-mb.Dx())/2, pb.Min.Y)
 	out := image.NewRGBA(pb)
 	for y := 0; y < mb.Dy(); y++ {
 		for x := 0; x < mb.Dx(); x++ {
+			if px := off.X + x; px < pb.Min.X || px >= pb.Max.X {
+				continue
+			}
 			mr, _, _, _ := mask.At(mb.Min.X+x, mb.Min.Y+y).RGBA()
 			if mr == 0 {
 				continue
@@ -1596,10 +1612,18 @@ func sceneCover(paths []string) (float64, error) {
 }
 
 // checkSceneCover fails a scene whose foreground and layers together
-// cover more than maxSceneCover of either rendition.
-func checkSceneCover(outDir string, layers []sceneLayer) error {
+// cover more than maxSceneCover of either rendition — the foreground as
+// installed, lowered by `down` (scene.foregroundDown).
+func checkSceneCover(outDir string, layers []sceneLayer, down float64) error {
 	for _, suffix := range []string{"", "-wide"} {
-		paths := []string{filepath.Join(outDir, "art", "foreground"+suffix+".png")}
+		foreground := filepath.Join(outDir, "art", "foreground"+suffix+".png")
+		if lowered := filepath.Join(outDir, "art", "foreground"+suffix+".lowered.png"); down > 0 && exists(foreground) {
+			if err := lowerImage(foreground, lowered, down); err != nil {
+				return err
+			}
+			foreground = lowered
+		}
+		paths := []string{foreground}
 		for _, l := range layers {
 			paths = append(paths, filepath.Join(outDir, "art", "layer-"+l.ID+suffix+".png"))
 		}
@@ -2087,7 +2111,7 @@ func runInstall(args []string) error {
 	// The scene's layers, far to near, each with its wide rendition when
 	// the pack has wide art.
 	if len(c.cfg.Scene.Layers) > 0 {
-		if err := checkSceneCover(outDir, c.cfg.Scene.Layers); err != nil {
+		if err := checkSceneCover(outDir, c.cfg.Scene.Layers, c.cfg.Scene.ForegroundDown); err != nil {
 			return err
 		}
 	}

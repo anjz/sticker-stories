@@ -1,0 +1,180 @@
+{
+  "id": "peek",
+  "sticker": "psittacosaurus",
+  "kind": "action",
+  "description": "the little Psittacosaurus crouches down small, its little hands tucked up under its chin, peeks out shyly, then smiles.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.20443,
+    "width": 0.59896,
+    "height": 0.59115
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the little Psittacosaurus crouched down small, little hands tucked under its chin, peeking out shyly"
+  },
+  "puppet": {
+    "rig": "anims/psittacosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "armL": {
+            "r": 38
+          },
+          "armR": {
+            "r": 40
+          },
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.92
+          },
+          "body": {
+            "y": 9
+          },
+          "face": {
+            "x": 2
+          },
+          "head": {
+            "r": -7,
+            "y": 6
+          },
+          "tail": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "armL": {
+            "r": 38
+          },
+          "armR": {
+            "r": 40
+          },
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.92
+          },
+          "body": {
+            "y": 9
+          },
+          "face": {
+            "x": 2
+          },
+          "head": {
+            "r": -7,
+            "y": 6
+          },
+          "tail": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "r": 34
+          },
+          "armR": {
+            "r": 36
+          },
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.94
+          },
+          "body": {
+            "y": 6
+          },
+          "face": {
+            "x": 2
+          },
+          "head": {
+            "r": -3,
+            "y": 4
+          },
+          "tail": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": 34
+          },
+          "armR": {
+            "r": 36
+          },
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.94
+          },
+          "body": {
+            "y": 6
+          },
+          "face": {
+            "x": 2
+          },
+          "head": {
+            "r": -3,
+            "y": 4
+          },
+          "tail": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "armR": {
+            "r": 10
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

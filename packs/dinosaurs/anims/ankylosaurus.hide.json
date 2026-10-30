@@ -1,0 +1,369 @@
+{
+  "id": "hide",
+  "sticker": "ankylosaurus",
+  "kind": "action",
+  "description": "the Ankylosaurus tucks its head and legs in under its armour and sits there like a cosy round rock, then peeks out and comes out smiling.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.26432,
+    "width": 0.72005,
+    "height": 0.47005
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the Ankylosaurus tucked in under its armour like a round bumpy rock, head and legs hidden"
+  },
+  "puppet": {
+    "rig": "anims/ankylosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "y": 30
+          },
+          "head": {
+            "r": -4,
+            "sx": 0.75,
+            "sy": 0.75
+          },
+          "legBF": {
+            "sy": 0.7
+          },
+          "legBN": {
+            "sy": 0.7
+          },
+          "legFF": {
+            "sy": 0.7
+          },
+          "legFN": {
+            "sy": 0.7
+          },
+          "tail": {
+            "r": 8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "y": 62
+          },
+          "head": {
+            "r": -3,
+            "sx": 0.5,
+            "sy": 0.5
+          },
+          "legBF": {
+            "sy": 0.4
+          },
+          "legBN": {
+            "sy": 0.4
+          },
+          "legFF": {
+            "x": 22,
+            "sy": 0.4
+          },
+          "legFN": {
+            "sy": 0.4
+          },
+          "tail": {
+            "r": 15
+          },
+          "under": {
+            "x": 20,
+            "sx": 0.92,
+            "sy": 0.75
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "body": {
+            "y": 95
+          },
+          "head": {
+            "sx": 0.3,
+            "sy": 0.3
+          },
+          "legBF": {
+            "sy": 0.1
+          },
+          "legBN": {
+            "sy": 0.1
+          },
+          "legFF": {
+            "sy": 0.1
+          },
+          "legFN": {
+            "sy": 0.1
+          },
+          "tail": {
+            "r": 22
+          },
+          "under": {
+            "x": 40,
+            "sx": 0.85,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "none",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "y": 95
+          },
+          "head": {
+            "sx": 0.4,
+            "sy": 0.4
+          },
+          "legBF": {
+            "sy": 0.1
+          },
+          "legBN": {
+            "sy": 0.1
+          },
+          "legFF": {
+            "sy": 0.1
+          },
+          "legFN": {
+            "sy": 0.1
+          },
+          "tail": {
+            "r": 22
+          },
+          "under": {
+            "x": 40,
+            "sx": 0.85,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "y": 95
+          },
+          "head": {
+            "r": 3,
+            "sx": 0.6,
+            "sy": 0.6
+          },
+          "legBF": {
+            "sy": 0.1
+          },
+          "legBN": {
+            "sy": 0.1
+          },
+          "legFF": {
+            "sy": 0.1
+          },
+          "legFN": {
+            "sy": 0.1
+          },
+          "tail": {
+            "r": 22
+          },
+          "under": {
+            "x": 40,
+            "sx": 0.85,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "y": 95
+          },
+          "head": {
+            "r": -2,
+            "sx": 0.6,
+            "sy": 0.6
+          },
+          "legBF": {
+            "sy": 0.1
+          },
+          "legBN": {
+            "sy": 0.1
+          },
+          "legFF": {
+            "sy": 0.1
+          },
+          "legFN": {
+            "sy": 0.1
+          },
+          "tail": {
+            "r": 22
+          },
+          "under": {
+            "x": 40,
+            "sx": 0.85,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "y": 62
+          },
+          "head": {
+            "sx": 0.8,
+            "sy": 0.8
+          },
+          "legBF": {
+            "sy": 0.4
+          },
+          "legBN": {
+            "sy": 0.4
+          },
+          "legFF": {
+            "x": 22,
+            "sy": 0.4
+          },
+          "legFN": {
+            "sy": 0.4
+          },
+          "tail": {
+            "r": 15
+          },
+          "under": {
+            "x": 20,
+            "sx": 0.92,
+            "sy": 0.75
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "y": 30
+          },
+          "head": {
+            "r": 2,
+            "sx": 0.95,
+            "sy": 0.95
+          },
+          "legBF": {
+            "sy": 0.7
+          },
+          "legBN": {
+            "sy": 0.7
+          },
+          "legFF": {
+            "sy": 0.7
+          },
+          "legFN": {
+            "sy": 0.7
+          },
+          "tail": {
+            "r": 8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

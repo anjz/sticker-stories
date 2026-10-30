@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "mama",
+      "sticker": "eggs",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "mama",
+      "sticker": "triceratops",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "mama",
+      "sticker": "triceratops",
+      "go": "to",
+      "target": "eggs"
+    },
+    {
+      "at": 8.12,
+      "cue": "not",
+      "sticker": "triceratops",
+      "expression": "happy"
+    },
+    {
+      "at": 16.32,
+      "cue": "and",
+      "sticker": "eggs",
+      "animation": "peek",
+      "mode": "hold"
+    },
+    {
+      "at": 23.28,
+      "cue": "mama",
+      "sticker": "triceratops",
+      "expression": "surprised"
+    },
+    {
+      "at": 24.52,
+      "cue": "pop",
+      "sticker": "eggs",
+      "animation": "peek",
+      "mode": "resume"
+    },
+    {
+      "at": 28.2,
+      "cue": "mama",
+      "sticker": "triceratops",
+      "expression": "happy"
+    },
+    {
+      "at": 31.88,
+      "cue": "she",
+      "sticker": "triceratops",
+      "animation": "nuzzle",
+      "mode": "hold"
+    },
+    {
+      "at": 40.2,
+      "cue": "up",
+      "sticker": "eggs",
+      "animation": "peek",
+      "mode": "hold"
+    },
+    {
+      "at": 41.4,
+      "cue": "peekaboo",
+      "sticker": "triceratops",
+      "animation": "nuzzle",
+      "mode": "resume"
+    },
+    {
+      "at": 43.24,
+      "cue": "and",
+      "sticker": "eggs",
+      "animation": "peek",
+      "mode": "resume"
+    },
+    {
+      "at": 45.32,
+      "cue": "ankylosaurus",
+      "sticker": "ankylosaurus",
+      "enter": true
+    },
+    {
+      "at": 47.24,
+      "cue": "to",
+      "sticker": "ankylosaurus",
+      "go": "to",
+      "target": "eggs"
+    },
+    {
+      "at": 49.4,
+      "cue": "up",
+      "sticker": "ankylosaurus",
+      "expression": "surprised"
+    },
+    {
+      "at": 50.48,
+      "cue": "and",
+      "sticker": "eggs",
+      "animation": "peek"
+    },
+    {
+      "at": 52.04,
+      "cue": "ankylosaurus",
+      "sticker": "ankylosaurus",
+      "expression": "happy"
+    },
+    {
+      "at": 53.96,
+      "cue": "his",
+      "sticker": "ankylosaurus",
+      "animation": "wag-club"
+    }
+  ]
+}

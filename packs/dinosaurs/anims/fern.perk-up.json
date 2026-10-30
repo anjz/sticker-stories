@@ -1,0 +1,143 @@
+{
+  "id": "perk-up",
+  "sticker": "fern",
+  "kind": "action",
+  "description": "the fern perks up, lifting all its fronds up high with its eyes wide and bright, and beams.",
+  "stickerBox": {
+    "x": 0.21484,
+    "y": 0.20052,
+    "width": 0.56901,
+    "height": 0.59896
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the fern perked up, its fronds lifted high, beaming"
+  },
+  "puppet": {
+    "rig": "anims/fern.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "sy": 0.97
+          },
+          "head": {
+            "y": 2
+          }
+        },
+        "slots": {
+          "eyeL": "open",
+          "eyeR": "open"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "sy": 1.04
+          },
+          "curlShort": {
+            "r": 5,
+            "sy": 1.04
+          },
+          "curlTall": {
+            "r": 2,
+            "sy": 1.05
+          },
+          "frondsL": {
+            "r": 10
+          },
+          "frondsMid": {
+            "sy": 1.06
+          },
+          "frondsR": {
+            "r": -9
+          },
+          "head": {
+            "y": -4
+          }
+        },
+        "slots": {
+          "browL": "up",
+          "browR": "up",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "body": {
+            "sy": 1.036
+          },
+          "curlShort": {
+            "r": 4.5,
+            "sy": 1.036
+          },
+          "curlTall": {
+            "r": 1.8,
+            "sy": 1.045
+          },
+          "frondsL": {
+            "r": 9
+          },
+          "frondsMid": {
+            "sy": 1.054
+          },
+          "frondsR": {
+            "r": -8.1
+          },
+          "head": {
+            "y": -3.6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "body": {
+            "sy": 1.012
+          },
+          "curlShort": {
+            "r": 1.5,
+            "sy": 1.012
+          },
+          "curlTall": {
+            "r": 0.6,
+            "sy": 1.0150000000000001
+          },
+          "frondsL": {
+            "r": 3
+          },
+          "frondsMid": {
+            "sy": 1.018
+          },
+          "frondsR": {
+            "r": -2.6999999999999997
+          },
+          "head": {
+            "y": -1.2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

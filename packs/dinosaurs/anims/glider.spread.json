@@ -1,0 +1,161 @@
+{
+  "id": "spread",
+  "sticker": "glider",
+  "description": "the glider stretches its little arms out wide and stands up tall, showing off its gliding skin like a cape, holds it there, then folds it back in.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26432,
+    "width": 0.5,
+    "height": 0.47005
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the glider standing tall with its arms stretched out wide, its gliding skin spread like a cape"
+  },
+  "puppet": {
+    "rig": "anims/glider.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": -8
+          },
+          "armR": {
+            "r": 8
+          },
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.95
+          },
+          "root": {
+            "y": 3
+          },
+          "skinL": {
+            "r": -3.2,
+            "sx": 0.936
+          },
+          "skinR": {
+            "r": 3.2,
+            "sx": 0.936
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": 28
+          },
+          "armR": {
+            "r": -28
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": -3
+          },
+          "legL": {
+            "r": 7
+          },
+          "legR": {
+            "r": -7
+          },
+          "root": {
+            "y": -4
+          },
+          "skinL": {
+            "r": 12,
+            "sx": 1.12,
+            "sy": 1.06
+          },
+          "skinR": {
+            "r": -10,
+            "sx": 1.12,
+            "sy": 1.06
+          },
+          "tail": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "armL": {
+            "r": 28
+          },
+          "armR": {
+            "r": -28
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": -3
+          },
+          "legL": {
+            "r": 7
+          },
+          "legR": {
+            "r": -7
+          },
+          "root": {
+            "y": -4
+          },
+          "skinL": {
+            "r": 12,
+            "sx": 1.12,
+            "sy": 1.06
+          },
+          "skinR": {
+            "r": -10,
+            "sx": 1.12,
+            "sy": 1.06
+          },
+          "tail": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 4
+          },
+          "armR": {
+            "r": -4
+          },
+          "skinL": {
+            "r": 3.2,
+            "sx": 0.968
+          },
+          "skinR": {
+            "r": -3.2,
+            "sx": 0.968
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

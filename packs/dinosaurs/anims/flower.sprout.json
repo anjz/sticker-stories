@@ -1,0 +1,159 @@
+{
+  "id": "sprout",
+  "sticker": "flower",
+  "kind": "move",
+  "description": "the flower sprouts: a little green shoot pushes up, its two leaves unfold, a bud forms on top and opens into the smiling magnolia flower.",
+  "stickerBox": {
+    "x": 0.28516,
+    "y": 0.25,
+    "width": 0.42969,
+    "height": 0.5
+  },
+  "puppet": {
+    "rig": "anims/flower.rig.json",
+    "keys": [
+      {
+        "hold": 0.1,
+        "bones": {
+          "body": {
+            "sx": 0.5,
+            "sy": 0.08
+          },
+          "head": {
+            "sx": 0.3,
+            "sy": 0.3
+          },
+          "leafL": {
+            "r": 30,
+            "sx": 0.05,
+            "sy": 0.05
+          },
+          "leafR": {
+            "r": -30,
+            "sx": 0.05,
+            "sy": 0.05
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "flower": "bud",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "sx": 0.8,
+            "sy": 0.5
+          },
+          "head": {
+            "sx": 0.45,
+            "sy": 0.45
+          },
+          "leafL": {
+            "r": 25,
+            "sx": 0.4,
+            "sy": 0.4
+          },
+          "leafR": {
+            "r": -25,
+            "sx": 0.4,
+            "sy": 0.4
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "flower": "bud",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "sx": 0.7,
+            "sy": 0.7
+          },
+          "leafL": {
+            "r": 4
+          },
+          "leafR": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "flower": "bud",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "head": {
+            "sx": 0.82,
+            "sy": 0.86
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "flower": "bud",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "out",
+        "bones": {
+          "head": {
+            "sx": 0.75,
+            "sy": 0.75
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "head": {
+            "sx": 1.04,
+            "sy": 1.04
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "sticker": "leaf",
+  "atlas": "anims/leaf.rig.webp",
+  "size": 768,
+  "parts": {
+    "blade": {
+      "rect": [
+        1146,
+        0,
+        566,
+        312
+      ],
+      "border": [
+        0,
+        472,
+        606,
+        352
+      ],
+      "pad": 20
+    },
+    "droop": {
+      "rect": [
+        206,
+        0,
+        448,
+        332
+      ],
+      "border": [
+        656,
+        0,
+        488,
+        372
+      ],
+      "pad": 20
+    },
+    "foot": {
+      "rect": [
+        772,
+        472,
+        166,
+        170
+      ],
+      "border": [
+        940,
+        472,
+        206,
+        210
+      ],
+      "pad": 20
+    },
+    "furled": {
+      "rect": [
+        608,
+        472,
+        60,
+        229
+      ],
+      "border": [
+        670,
+        472,
+        100,
+        269
+      ],
+      "pad": 20
+    },
+    "stalk": {
+      "rect": [
+        0,
+        0,
+        81,
+        430
+      ],
+      "border": [
+        83,
+        0,
+        121,
+        470
+      ],
+      "pad": 20
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 372,
+      "y": 688
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 372,
+      "y": 668
+    },
+    {
+      "id": "stalk",
+      "parent": "body",
+      "x": 372,
+      "y": 668
+    },
+    {
+      "id": "blade",
+      "parent": "body",
+      "x": 396,
+      "y": 292
+    }
+  ],
+  "slots": [
+    {
+      "id": "stalk",
+      "bone": "stalk",
+      "default": "stalk",
+      "attachments": {
+        "stalk": {
+          "part": "stalk",
+          "x": 344.8,
+          "y": 252.11,
+          "w": 80.4,
+          "h": 429.78,
+          "rotate": 3.6
+        }
+      }
+    },
+    {
+      "id": "blade",
+      "bone": "blade",
+      "default": "blade",
+      "attachments": {
+        "blade": {
+          "part": "blade",
+          "x": 100.19,
+          "y": 78.19,
+          "w": 565.62,
+          "h": 311.63
+        },
+        "droop": {
+          "part": "droop",
+          "x": 166.44,
+          "y": 96.4,
+          "w": 447.12,
+          "h": 331.2
+        },
+        "furled": {
+          "part": "furled",
+          "x": 368,
+          "y": 75.5,
+          "w": 60,
+          "h": 229
+        }
+      }
+    },
+    {
+      "id": "foot",
+      "bone": "root",
+      "default": "foot",
+      "attachments": {
+        "foot": {
+          "part": "foot",
+          "x": 272.08,
+          "y": 519.15,
+          "w": 165.85,
+          "h": 169.7
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "id": "cry",
+  "sticker": "turtle",
+  "kind": "action",
+  "description": "the turtle cries, its head hanging low, with little sobs.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.26042,
+    "width": 0.59896,
+    "height": 0.47917
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the turtle crying, its head hanging low, eyes squeezed shut with tears"
+  },
+  "on": [
+    "lagoon"
+  ],
+  "puppet": {
+    "rig": "anims/turtle.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "head": {
+            "r": -6,
+            "y": 5
+          },
+          "neck": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "head": {
+            "r": -6,
+            "y": 4
+          },
+          "neck": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sob"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "head": {
+            "r": -6,
+            "y": 8
+          },
+          "neck": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sob"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "head": {
+            "r": -6,
+            "y": 4
+          },
+          "neck": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sob"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "head": {
+            "r": -6,
+            "y": 8
+          },
+          "neck": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sob"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "head": {
+            "r": -6,
+            "y": 4
+          },
+          "neck": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sob"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "head": {
+            "r": -6,
+            "y": 8
+          },
+          "neck": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sob"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": -4,
+            "y": 4
+          },
+          "neck": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

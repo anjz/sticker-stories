@@ -1,0 +1,174 @@
+{
+  "id": "sleep",
+  "sticker": "beetle",
+  "kind": "action",
+  "description": "the beetle gives a big yawn, closes its eyes and dozes off, its antennae drooping, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.27865,
+    "width": 0.5,
+    "height": 0.44141
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the beetle fast asleep, eyes shut, its head and antennae drooping"
+  },
+  "puppet": {
+    "rig": "anims/beetle.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": 3,
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": 3,
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "antennaL": {
+            "r": -12
+          },
+          "antennaR": {
+            "r": -12
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "y": 5
+          },
+          "face": {
+            "y": 1
+          },
+          "head": {
+            "r": -5,
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "antennaL": {
+            "r": -13
+          },
+          "antennaR": {
+            "r": -13
+          },
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "y": 6
+          },
+          "face": {
+            "y": 1
+          },
+          "head": {
+            "r": -5,
+            "y": 5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "antennaL": {
+            "r": -12
+          },
+          "antennaR": {
+            "r": -12
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "y": 5
+          },
+          "face": {
+            "y": 1
+          },
+          "head": {
+            "r": -5,
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 1,
+            "y": -1
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.18,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "id": "plop",
+  "sticker": "puddle",
+  "kind": "action",
+  "description": "a raindrop plops into the mud puddle and a little ring ripples out and fades.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.36198,
+    "width": 0.72005,
+    "height": 0.27474
+  },
+  "particles": [
+    {
+      "frame": 1,
+      "effect": "spray",
+      "x": 0.44,
+      "y": 0.5,
+      "intensity": 0.12,
+      "color": "#8A6040"
+    }
+  ],
+  "puppet": {
+    "rig": "anims/puddle.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "ring": {
+            "x": -50,
+            "y": -2,
+            "sx": 0.1,
+            "sy": 0.1
+          }
+        },
+        "slots": {
+          "ring": "ring"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "ring": {
+            "x": -50,
+            "y": -2,
+            "sx": 0.3,
+            "sy": 0.3
+          }
+        },
+        "slots": {
+          "ring": "ring"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "ring": {
+            "x": -50,
+            "y": -2,
+            "sx": 0.45,
+            "sy": 0.45
+          }
+        },
+        "slots": {
+          "ring": "faint"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "ring": {
+            "x": -50,
+            "y": -2,
+            "sx": 0.5,
+            "sy": 0.5
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

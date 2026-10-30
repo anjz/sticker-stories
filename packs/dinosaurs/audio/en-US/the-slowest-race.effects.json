@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "gallimimus",
+      "sticker": "gallimimus",
+      "enter": true
+    },
+    {
+      "at": 9.4,
+      "cue": "every",
+      "sticker": "gallimimus",
+      "expression": "happy"
+    },
+    {
+      "at": 14.52,
+      "cue": "and",
+      "sticker": "gallimimus",
+      "expression": "sad"
+    },
+    {
+      "at": 23.08,
+      "cue": "pachycephalosaurus",
+      "sticker": "pachycephalosaurus",
+      "enter": true
+    },
+    {
+      "at": 23.08,
+      "cue": "pachycephalosaurus",
+      "sticker": "pachycephalosaurus",
+      "go": "to",
+      "target": "gallimimus"
+    },
+    {
+      "at": 24.36,
+      "cue": "turtle",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 24.36,
+      "cue": "turtle",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "gallimimus"
+    },
+    {
+      "at": 26.2,
+      "cue": "ready",
+      "sticker": "gallimimus",
+      "animation": "ready-set",
+      "mode": "hold"
+    },
+    {
+      "at": 27.92,
+      "cue": "go-o-o",
+      "sticker": "gallimimus",
+      "animation": "ready-set",
+      "mode": "resume"
+    },
+    {
+      "at": 29.16,
+      "cue": "gallimimus",
+      "sticker": "gallimimus",
+      "go": "to",
+      "target": "lagoon",
+      "by": "walk"
+    },
+    {
+      "at": 31,
+      "cue": "but",
+      "sticker": "pachycephalosaurus",
+      "animation": "bounce"
+    },
+    {
+      "at": 35.76,
+      "cue": "all",
+      "sticker": "pachycephalosaurus",
+      "go": "to",
+      "target": "lagoon",
+      "by": "run"
+    },
+    {
+      "at": 37.4,
+      "cue": "oops",
+      "sticker": "pachycephalosaurus",
+      "expression": "surprised"
+    },
+    {
+      "at": 43.16,
+      "cue": "and",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "lagoon"
+    },
+    {
+      "at": 49.88,
+      "cue": "gallimimus",
+      "sticker": "gallimimus",
+      "animation": "tap-foot"
+    },
+    {
+      "at": 54.92,
+      "cue": "then",
+      "sticker": "gallimimus",
+      "expression": "happy"
+    },
+    {
+      "at": 63.88,
+      "cue": "everyone",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 63.88,
+      "cue": "everyone",
+      "sticker": "all",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 68.52,
+      "cue": "victory",
+      "sticker": "turtle",
+      "animation": "slow-dance"
+    }
+  ]
+}

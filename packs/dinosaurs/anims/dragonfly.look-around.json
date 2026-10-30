@@ -1,0 +1,80 @@
+{
+  "id": "look-around",
+  "sticker": "dragonfly",
+  "kind": "action",
+  "description": "the dragonfly looks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26563,
+    "width": 0.5,
+    "height": 0.46745
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/dragonfly.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "face": {
+            "x": -2
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "face": {
+            "x": -2
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": 1.5
+          },
+          "face": {
+            "x": 2
+          },
+          "head": {
+            "r": 7
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 1.5
+          },
+          "face": {
+            "x": 2
+          },
+          "head": {
+            "r": 7
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

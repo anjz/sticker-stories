@@ -1,0 +1,171 @@
+{
+  "id": "sleep",
+  "sticker": "gallimimus",
+  "kind": "action",
+  "description": "the Gallimimus gives a big yawn, tucks its head down and falls asleep standing up, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.15495,
+    "y": 0.13932,
+    "width": 0.6901,
+    "height": 0.72005
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the Gallimimus fast asleep standing up, eyes shut, head drooped on its long neck"
+  },
+  "puppet": {
+    "rig": "anims/gallimimus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 14
+          },
+          "armR": {
+            "r": 14
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": 7
+          },
+          "neck": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "armL": {
+            "r": 14
+          },
+          "armR": {
+            "r": 14
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": 7
+          },
+          "neck": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "armL": {
+            "r": -6
+          },
+          "armR": {
+            "r": -6
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "face": {
+            "y": 1
+          },
+          "feathers": {
+            "sy": 1.03
+          },
+          "head": {
+            "r": -8
+          },
+          "neck": {
+            "r": -16
+          },
+          "tail": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "armL": {
+            "r": -6
+          },
+          "armR": {
+            "r": -6
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "face": {
+            "y": 1
+          },
+          "feathers": {
+            "sy": 1.03
+          },
+          "head": {
+            "r": -8
+          },
+          "neck": {
+            "r": -16
+          },
+          "tail": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.2,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

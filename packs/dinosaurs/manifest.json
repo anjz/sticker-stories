@@ -1,0 +1,3746 @@
+{
+  "schemaVersion": 2,
+  "id": "dinosaurs",
+  "version": 10,
+  "languages": [
+    "en-US",
+    "es-ES"
+  ],
+  "displayName": {
+    "en-US": "Dinosaur Valley",
+    "es-ES": "El Valle de los Dinosaurios"
+  },
+  "description": {
+    "en-US": "A gentle giant, three eggs and a sunny valley full of friendly dinosaurs.",
+    "es-ES": "Un gigante amable, tres huevos y un valle soleado lleno de dinosaurios amigos."
+  },
+  "theme": "dinosaurs",
+  "setting": "outdoors",
+  "world": {
+    "ground": "#A9C25A"
+  },
+  "background": "art/background.webp",
+  "foreground": "art/foreground.webp",
+  "backgroundWide": "art/background-wide.webp",
+  "foregroundWide": "art/foreground-wide.webp",
+  "layers": [
+    {
+      "id": "ginkgo",
+      "image": "art/layer-ginkgo.webp",
+      "imageWide": "art/layer-ginkgo-wide.webp"
+    },
+    {
+      "id": "ledge",
+      "image": "art/layer-ledge.webp",
+      "imageWide": "art/layer-ledge-wide.webp"
+    },
+    {
+      "id": "araucaria",
+      "image": "art/layer-araucaria.webp",
+      "imageWide": "art/layer-araucaria-wide.webp"
+    },
+    {
+      "id": "treefern",
+      "image": "art/layer-treefern.webp",
+      "imageWide": "art/layer-treefern-wide.webp"
+    }
+  ],
+  "sky": {
+    "image": "art/sky.webp",
+    "imageWide": "art/sky-wide.webp"
+  },
+  "space": {
+    "horizon": 0.66,
+    "ground": 0,
+    "back": 4.7,
+    "stand": {
+      "near": 1.15,
+      "far": 4.3
+    },
+    "floor": 0.04,
+    "layers": [
+      {
+        "id": "ginkgo",
+        "art": "ginkgo",
+        "depth": 2.56,
+        "footprint": [
+          [
+            0.93,
+            0.402
+          ],
+          [
+            0.995,
+            0.402
+          ],
+          [
+            0.995,
+            0.42
+          ],
+          [
+            0.93,
+            0.42
+          ]
+        ]
+      },
+      {
+        "id": "ledge",
+        "art": "ledge",
+        "depth": 1.73,
+        "footprint": [
+          [
+            0.59,
+            0.335
+          ],
+          [
+            0.595,
+            0.25
+          ],
+          [
+            0.72,
+            0.242
+          ],
+          [
+            0.78,
+            0.236
+          ],
+          [
+            0.79,
+            0.205
+          ],
+          [
+            0.85,
+            0.205
+          ],
+          [
+            0.91,
+            0.225
+          ],
+          [
+            1.013,
+            0.236
+          ],
+          [
+            1.096,
+            0.242
+          ],
+          [
+            1.5,
+            0.242
+          ],
+          [
+            1.5,
+            0.4
+          ],
+          [
+            1.096,
+            0.388
+          ],
+          [
+            1.013,
+            0.392
+          ],
+          [
+            0.931,
+            0.397
+          ],
+          [
+            0.848,
+            0.4
+          ],
+          [
+            0.778,
+            0.402
+          ],
+          [
+            0.699,
+            0.4
+          ],
+          [
+            0.64,
+            0.39
+          ],
+          [
+            0.6,
+            0.37
+          ]
+        ]
+      },
+      {
+        "id": "araucaria",
+        "art": "araucaria",
+        "depth": 1.07,
+        "footprint": [
+          [
+            0.95,
+            0.03
+          ],
+          [
+            1.06,
+            0.03
+          ],
+          [
+            1.06,
+            0.08
+          ],
+          [
+            0.95,
+            0.08
+          ]
+        ],
+        "wide": {
+          "depth": 1.07,
+          "footprint": [
+            [
+              1.15,
+              0.03
+            ],
+            [
+              1.26,
+              0.03
+            ],
+            [
+              1.26,
+              0.08
+            ],
+            [
+              1.15,
+              0.08
+            ]
+          ]
+        }
+      },
+      {
+        "id": "treefern",
+        "art": "treefern",
+        "depth": 1.07,
+        "footprint": [
+          [
+            -0.14,
+            0.03
+          ],
+          [
+            0,
+            0.03
+          ],
+          [
+            0,
+            0.08
+          ],
+          [
+            -0.14,
+            0.08
+          ]
+        ],
+        "wide": {
+          "depth": 1.07,
+          "footprint": [
+            [
+              -0.28,
+              0.03
+            ],
+            [
+              -0.13,
+              0.03
+            ],
+            [
+              -0.13,
+              0.08
+            ],
+            [
+              -0.28,
+              0.08
+            ]
+          ]
+        }
+      },
+      {
+        "id": "foreground",
+        "depth": 1
+      }
+    ],
+    "places": {
+      "branches": {
+        "lines": [
+          {
+            "layer": "treefern",
+            "points": [
+              [
+                0.07,
+                0.745
+              ],
+              [
+                0.15,
+                0.75
+              ],
+              [
+                0.22,
+                0.738
+              ]
+            ]
+          },
+          {
+            "layer": "araucaria",
+            "points": [
+              [
+                0.76,
+                0.768
+              ],
+              [
+                0.83,
+                0.76
+              ],
+              [
+                0.9,
+                0.758
+              ]
+            ]
+          }
+        ],
+        "wideLines": [
+          {
+            "layer": "treefern",
+            "points": [
+              [
+                -0.08,
+                0.708
+              ],
+              [
+                -0.01,
+                0.712
+              ],
+              [
+                0.05,
+                0.705
+              ]
+            ]
+          },
+          {
+            "layer": "araucaria",
+            "points": [
+              [
+                0.95,
+                0.712
+              ],
+              [
+                1.02,
+                0.708
+              ],
+              [
+                1.1,
+                0.704
+              ]
+            ]
+          }
+        ]
+      },
+      "lagoon": {
+        "ground": [
+          [
+            -0.125,
+            0.44
+          ],
+          [
+            -0.1,
+            0.458
+          ],
+          [
+            -0.05,
+            0.481
+          ],
+          [
+            0,
+            0.495
+          ],
+          [
+            0.05,
+            0.505
+          ],
+          [
+            0.1,
+            0.508
+          ],
+          [
+            0.15,
+            0.51
+          ],
+          [
+            0.2,
+            0.508
+          ],
+          [
+            0.203,
+            0.489
+          ],
+          [
+            0.232,
+            0.474
+          ],
+          [
+            0.261,
+            0.457
+          ],
+          [
+            0.279,
+            0.434
+          ],
+          [
+            0.293,
+            0.415
+          ],
+          [
+            0.288,
+            0.403
+          ],
+          [
+            0.287,
+            0.381
+          ],
+          [
+            0.293,
+            0.359
+          ],
+          [
+            0.296,
+            0.338
+          ],
+          [
+            0.293,
+            0.325
+          ],
+          [
+            0.272,
+            0.312
+          ],
+          [
+            0.232,
+            0.304
+          ],
+          [
+            0.2,
+            0.299
+          ],
+          [
+            0.15,
+            0.297
+          ],
+          [
+            0.1,
+            0.305
+          ],
+          [
+            0.08,
+            0.315
+          ],
+          [
+            0.05,
+            0.33
+          ],
+          [
+            0.03,
+            0.355
+          ],
+          [
+            0,
+            0.37
+          ],
+          [
+            -0.05,
+            0.385
+          ],
+          [
+            -0.1,
+            0.41
+          ],
+          [
+            -0.12,
+            0.43
+          ]
+        ],
+        "water": true
+      },
+      "meadow": {
+        "ground": [
+          [
+            -0.2,
+            0.04
+          ],
+          [
+            1.22,
+            0.04
+          ],
+          [
+            1.22,
+            0.25
+          ],
+          [
+            1,
+            0.255
+          ],
+          [
+            0.66,
+            0.26
+          ],
+          [
+            0.64,
+            0.33
+          ],
+          [
+            0.65,
+            0.4
+          ],
+          [
+            0.75,
+            0.405
+          ],
+          [
+            1,
+            0.41
+          ],
+          [
+            1.22,
+            0.41
+          ],
+          [
+            1.22,
+            0.51
+          ],
+          [
+            0.9,
+            0.515
+          ],
+          [
+            0.6,
+            0.515
+          ],
+          [
+            0.3,
+            0.515
+          ],
+          [
+            0.215,
+            0.512
+          ],
+          [
+            0.245,
+            0.49
+          ],
+          [
+            0.27,
+            0.47
+          ],
+          [
+            0.29,
+            0.445
+          ],
+          [
+            0.305,
+            0.42
+          ],
+          [
+            0.305,
+            0.38
+          ],
+          [
+            0.31,
+            0.34
+          ],
+          [
+            0.305,
+            0.31
+          ],
+          [
+            0.28,
+            0.285
+          ],
+          [
+            0.2,
+            0.275
+          ],
+          [
+            0.1,
+            0.28
+          ],
+          [
+            0.05,
+            0.295
+          ],
+          [
+            0.02,
+            0.32
+          ],
+          [
+            -0.05,
+            0.35
+          ],
+          [
+            -0.1,
+            0.37
+          ],
+          [
+            -0.2,
+            0.4
+          ]
+        ]
+      },
+      "rocks": {
+        "lines": [
+          {
+            "layer": "ledge",
+            "points": [
+              [
+                0.76,
+                0.377
+              ],
+              [
+                0.85,
+                0.376
+              ],
+              [
+                0.93,
+                0.375
+              ],
+              [
+                1,
+                0.373
+              ]
+            ]
+          }
+        ]
+      },
+      "rockside": {
+        "ground": [
+          [
+            0.64,
+            0.245
+          ],
+          [
+            0.72,
+            0.232
+          ],
+          [
+            0.775,
+            0.226
+          ],
+          [
+            0.785,
+            0.195
+          ],
+          [
+            0.855,
+            0.195
+          ],
+          [
+            0.91,
+            0.215
+          ],
+          [
+            1.013,
+            0.226
+          ],
+          [
+            1.096,
+            0.232
+          ],
+          [
+            1.16,
+            0.232
+          ],
+          [
+            1.16,
+            0.17
+          ],
+          [
+            1,
+            0.155
+          ],
+          [
+            0.85,
+            0.145
+          ],
+          [
+            0.7,
+            0.16
+          ],
+          [
+            0.64,
+            0.175
+          ]
+        ]
+      },
+      "shore": {
+        "ground": [
+          [
+            0.05,
+            0.33
+          ],
+          [
+            0.08,
+            0.315
+          ],
+          [
+            0.1,
+            0.305
+          ],
+          [
+            0.15,
+            0.297
+          ],
+          [
+            0.2,
+            0.299
+          ],
+          [
+            0.232,
+            0.304
+          ],
+          [
+            0.272,
+            0.312
+          ],
+          [
+            0.293,
+            0.325
+          ],
+          [
+            0.296,
+            0.338
+          ],
+          [
+            0.293,
+            0.359
+          ],
+          [
+            0.287,
+            0.381
+          ],
+          [
+            0.288,
+            0.403
+          ],
+          [
+            0.293,
+            0.415
+          ],
+          [
+            0.279,
+            0.434
+          ],
+          [
+            0.261,
+            0.457
+          ],
+          [
+            0.232,
+            0.474
+          ],
+          [
+            0.203,
+            0.489
+          ],
+          [
+            0.2,
+            0.505
+          ],
+          [
+            0.25,
+            0.505
+          ],
+          [
+            0.27,
+            0.485
+          ],
+          [
+            0.3,
+            0.46
+          ],
+          [
+            0.315,
+            0.43
+          ],
+          [
+            0.32,
+            0.4
+          ],
+          [
+            0.32,
+            0.36
+          ],
+          [
+            0.325,
+            0.33
+          ],
+          [
+            0.32,
+            0.3
+          ],
+          [
+            0.3,
+            0.27
+          ],
+          [
+            0.2,
+            0.25
+          ],
+          [
+            0.1,
+            0.25
+          ],
+          [
+            0.05,
+            0.27
+          ],
+          [
+            0.03,
+            0.3
+          ]
+        ]
+      },
+      "sky": {
+        "air": {
+          "area": [
+            [
+              0.38,
+              0.66
+            ],
+            [
+              0.66,
+              0.66
+            ],
+            [
+              0.66,
+              0.84
+            ],
+            [
+              0.38,
+              0.84
+            ]
+          ],
+          "depth": [
+            1.4,
+            3.8
+          ]
+        }
+      }
+    },
+    "sizes": {
+      "ammonite": 0.12,
+      "ankylosaurus": 0.27,
+      "archaeopteryx": 0.13,
+      "beetle": 0.05,
+      "brachiosaurus": 0.62,
+      "bush": 0.2,
+      "dragonfly": 0.07,
+      "eggs": 0.2,
+      "fern": 0.12,
+      "flower": 0.07,
+      "gallimimus": 0.33,
+      "glider": 0.08,
+      "leaf": 0.3,
+      "log": 0.17,
+      "pachycephalosaurus": 0.3,
+      "parasaurolophus": 0.44,
+      "plesiosaur": 0.72,
+      "psittacosaurus": 0.18,
+      "pteranodon": 0.21,
+      "puddle": 0.15,
+      "spinosaurus": 0.42,
+      "stegosaurus": 0.4,
+      "trex": 0.42,
+      "triceratops": 0.38,
+      "turtle": 0.11
+    },
+    "edit": {
+      "spread": 0.6,
+      "minimum": 60
+    }
+  },
+  "cover": "art/cover.webp",
+  "features": {
+    "branches": {
+      "description": "the long low frond stalk of the tree fern on the left and the low branch of the monkey-puzzle tree on the right",
+      "areas": [
+        {
+          "x": [
+            0.07,
+            0.22
+          ],
+          "y": [
+            0.735,
+            0.75
+          ]
+        },
+        {
+          "x": [
+            0.76,
+            0.9
+          ],
+          "y": [
+            0.755,
+            0.77
+          ]
+        }
+      ],
+      "words": {
+        "en-US": [
+          "branch",
+          "branches"
+        ],
+        "es-ES": [
+          "rama",
+          "ramas"
+        ]
+      },
+      "wideAreas": [
+        {
+          "x": [
+            -0.08,
+            0.05
+          ],
+          "y": [
+            0.7,
+            0.715
+          ]
+        },
+        {
+          "x": [
+            0.95,
+            1.1
+          ],
+          "y": [
+            0.7,
+            0.715
+          ]
+        }
+      ]
+    },
+    "lagoon": {
+      "description": "the calm turquoise lagoon at the back on the left, with two small water-lily pads far back by its far bank",
+      "areas": [
+        {
+          "x": [
+            0.02,
+            0.2
+          ],
+          "y": [
+            0.36,
+            0.48
+          ]
+        }
+      ],
+      "words": {
+        "en-US": [
+          "lagoon",
+          "lake"
+        ],
+        "es-ES": [
+          "laguna",
+          "lago"
+        ]
+      },
+      "edge": [
+        {
+          "x": [
+            0.08,
+            0.24
+          ],
+          "y": [
+            0.265,
+            0.285
+          ]
+        },
+        {
+          "x": [
+            0.29,
+            0.32
+          ],
+          "y": [
+            0.32,
+            0.37
+          ]
+        },
+        {
+          "x": [
+            0.22,
+            0.25
+          ],
+          "y": [
+            0.43,
+            0.48
+          ]
+        }
+      ],
+      "wideAreas": [
+        {
+          "x": [
+            -0.1,
+            0.2
+          ],
+          "y": [
+            0.41,
+            0.48
+          ]
+        }
+      ]
+    },
+    "meadow": {
+      "description": "the wide open meadow of short ferns and grass in the middle and on the right",
+      "areas": [
+        {
+          "x": [
+            0.3,
+            0.88
+          ],
+          "y": [
+            0.08,
+            0.25
+          ]
+        },
+        {
+          "x": [
+            0.36,
+            0.62
+          ],
+          "y": [
+            0.3,
+            0.48
+          ]
+        },
+        {
+          "x": [
+            0.66,
+            0.92
+          ],
+          "y": [
+            0.42,
+            0.49
+          ]
+        }
+      ],
+      "words": {
+        "en-US": [
+          "meadow",
+          "ferns"
+        ],
+        "es-ES": [
+          "prado",
+          "helechos"
+        ]
+      }
+    },
+    "rocks": {
+      "description": "the flat top of the big warm terracotta rock ledge on the right of the meadow: only flyers land up there",
+      "areas": [
+        {
+          "x": [
+            0.68,
+            0.92
+          ],
+          "y": [
+            0.365,
+            0.39
+          ]
+        }
+      ],
+      "words": {
+        "en-US": [
+          "rock",
+          "ledge"
+        ],
+        "es-ES": [
+          "roca",
+          "repisa"
+        ]
+      },
+      "wideAreas": [
+        {
+          "x": [
+            0.68,
+            1.08
+          ],
+          "y": [
+            0.365,
+            0.39
+          ]
+        }
+      ]
+    },
+    "rockside": {
+      "description": "the meadow right at the foot of the big flat rock, in front of it, where walkers come up to the rock",
+      "areas": [
+        {
+          "x": [
+            0.68,
+            1
+          ],
+          "y": [
+            0.165,
+            0.21
+          ]
+        }
+      ]
+    },
+    "shore": {
+      "description": "the sandy-mud bank with pebbles along the near and right sides of the lagoon",
+      "areas": [
+        {
+          "x": [
+            0.08,
+            0.24
+          ],
+          "y": [
+            0.265,
+            0.285
+          ]
+        },
+        {
+          "x": [
+            0.29,
+            0.32
+          ],
+          "y": [
+            0.32,
+            0.37
+          ]
+        },
+        {
+          "x": [
+            0.22,
+            0.25
+          ],
+          "y": [
+            0.43,
+            0.48
+          ]
+        }
+      ],
+      "words": {
+        "en-US": [
+          "shore",
+          "bank"
+        ],
+        "es-ES": [
+          "orilla"
+        ]
+      }
+    },
+    "sky": {
+      "description": "the open sky over the valley, between the tree fern and the monkey-puzzle tree",
+      "areas": [
+        {
+          "x": [
+            0.38,
+            0.66
+          ],
+          "y": [
+            0.66,
+            0.84
+          ]
+        }
+      ],
+      "air": true
+    }
+  },
+  "narrationPacks": {
+    "en-US": "dinosaurs-narration-en-a8edcf61",
+    "es-ES": "dinosaurs-narration-es-aa38b4ed"
+  },
+  "stickers": [
+    {
+      "id": "ammonite",
+      "name": {
+        "en-US": "Ammonite",
+        "es-ES": "Amonites"
+      },
+      "image": "stickers/ammonite.webp",
+      "animations": [
+        "anims/ammonite.swim.json",
+        "anims/ammonite.wave-tentacles.json",
+        "anims/ammonite.bob.json",
+        "anims/ammonite.spin.json",
+        "anims/ammonite.jet.json",
+        "anims/ammonite.hide.json",
+        "anims/ammonite.peek.json",
+        "anims/ammonite.laugh.json",
+        "anims/ammonite.sleep.json",
+        "anims/ammonite.blow-bubbles.json"
+      ],
+      "expressions": {
+        "happy": "stickers/ammonite.happy.webp",
+        "sad": "stickers/ammonite.sad.webp",
+        "sleeping": "stickers/ammonite.sleeping.webp",
+        "surprised": "stickers/ammonite.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "lagoon"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.25,
+          0.75
+        ],
+        "y": [
+          0.2591,
+          0.7422
+        ]
+      }
+    },
+    {
+      "id": "ankylosaurus",
+      "name": {
+        "en-US": "Ankylosaurus",
+        "es-ES": "Anquilosaurio"
+      },
+      "image": "stickers/ankylosaurus.webp",
+      "animations": [
+        "anims/ankylosaurus.walk.json",
+        "anims/ankylosaurus.jump.json",
+        "anims/ankylosaurus.nod.json",
+        "anims/ankylosaurus.shake-head.json",
+        "anims/ankylosaurus.look-around.json",
+        "anims/ankylosaurus.laugh.json",
+        "anims/ankylosaurus.dance.json",
+        "anims/ankylosaurus.talk.json",
+        "anims/ankylosaurus.cry.json",
+        "anims/ankylosaurus.sleep.json",
+        "anims/ankylosaurus.shiver.json",
+        "anims/ankylosaurus.wag-club.json",
+        "anims/ankylosaurus.hide.json",
+        "anims/ankylosaurus.munch.json",
+        "anims/ankylosaurus.sniff.json",
+        "anims/ankylosaurus.sunbathe.json"
+      ],
+      "expressions": {
+        "happy": "stickers/ankylosaurus.happy.webp",
+        "sad": "stickers/ankylosaurus.sad.webp",
+        "sleeping": "stickers/ankylosaurus.sleeping.webp",
+        "surprised": "stickers/ankylosaurus.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.1393,
+          0.8594
+        ],
+        "y": [
+          0.2656,
+          0.7357
+        ]
+      }
+    },
+    {
+      "id": "archaeopteryx",
+      "name": {
+        "en-US": "Archaeopteryx",
+        "es-ES": "Arqueoptérix"
+      },
+      "image": "stickers/archaeopteryx.webp",
+      "animations": [
+        "anims/archaeopteryx.fly.json",
+        "anims/archaeopteryx.hop.json",
+        "anims/archaeopteryx.flap.json",
+        "anims/archaeopteryx.jump.json",
+        "anims/archaeopteryx.nod.json",
+        "anims/archaeopteryx.shake-head.json",
+        "anims/archaeopteryx.look-around.json",
+        "anims/archaeopteryx.laugh.json",
+        "anims/archaeopteryx.dance.json",
+        "anims/archaeopteryx.talk.json",
+        "anims/archaeopteryx.cry.json",
+        "anims/archaeopteryx.sleep.json",
+        "anims/archaeopteryx.wave.json",
+        "anims/archaeopteryx.shiver.json",
+        "anims/archaeopteryx.sing.json",
+        "anims/archaeopteryx.preen.json",
+        "anims/archaeopteryx.peck.json",
+        "anims/archaeopteryx.fluff-up.json",
+        "anims/archaeopteryx.stretch-wing.json"
+      ],
+      "expressions": {
+        "happy": "stickers/archaeopteryx.happy.webp",
+        "sad": "stickers/archaeopteryx.sad.webp",
+        "sleeping": "stickers/archaeopteryx.sleeping.webp",
+        "surprised": "stickers/archaeopteryx.surprised.webp"
+      },
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "branches",
+          "rocks",
+          "meadow"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2005,
+          0.7995
+        ],
+        "y": [
+          0.2135,
+          0.7865
+        ]
+      }
+    },
+    {
+      "id": "beetle",
+      "name": {
+        "en-US": "Beetle",
+        "es-ES": "Escarabajo"
+      },
+      "image": "stickers/beetle.webp",
+      "animations": [
+        "anims/beetle.walk.json",
+        "anims/beetle.fly.json",
+        "anims/beetle.nod.json",
+        "anims/beetle.shake-head.json",
+        "anims/beetle.look-around.json",
+        "anims/beetle.wiggle-antennae.json",
+        "anims/beetle.laugh.json",
+        "anims/beetle.dance.json",
+        "anims/beetle.cry.json",
+        "anims/beetle.sleep.json",
+        "anims/beetle.wave.json",
+        "anims/beetle.tuck.json",
+        "anims/beetle.roll-ball.json",
+        "anims/beetle.shine.json",
+        "anims/beetle.open-wings.json"
+      ],
+      "expressions": {
+        "happy": "stickers/beetle.happy.webp",
+        "sad": "stickers/beetle.sad.webp",
+        "sleeping": "stickers/beetle.sleeping.webp",
+        "surprised": "stickers/beetle.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.25,
+          0.75
+        ],
+        "y": [
+          0.2799,
+          0.7214
+        ]
+      }
+    },
+    {
+      "id": "brachiosaurus",
+      "name": {
+        "en-US": "Brachiosaurus",
+        "es-ES": "Braquiosaurio"
+      },
+      "image": "stickers/brachiosaurus.webp",
+      "animations": [
+        "anims/brachiosaurus.walk.json",
+        "anims/brachiosaurus.nod.json",
+        "anims/brachiosaurus.shake-head.json",
+        "anims/brachiosaurus.look-around.json",
+        "anims/brachiosaurus.laugh.json",
+        "anims/brachiosaurus.dance.json",
+        "anims/brachiosaurus.talk.json",
+        "anims/brachiosaurus.cry.json",
+        "anims/brachiosaurus.sleep.json",
+        "anims/brachiosaurus.shiver.json",
+        "anims/brachiosaurus.stretch-neck.json",
+        "anims/brachiosaurus.munch.json",
+        "anims/brachiosaurus.bend-down.json",
+        "anims/brachiosaurus.sniff.json",
+        "anims/brachiosaurus.wag-tail.json",
+        "anims/brachiosaurus.stomp.json",
+        "anims/brachiosaurus.sway.json"
+      ],
+      "expressions": {
+        "happy": "stickers/brachiosaurus.happy.webp",
+        "sad": "stickers/brachiosaurus.sad.webp",
+        "sleeping": "stickers/brachiosaurus.sleeping.webp",
+        "surprised": "stickers/brachiosaurus.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "huge",
+      "content": {
+        "x": [
+          0.0768,
+          0.9232
+        ],
+        "y": [
+          0.0299,
+          0.9701
+        ]
+      }
+    },
+    {
+      "id": "bush",
+      "name": {
+        "en-US": "Berry bush",
+        "es-ES": "Arbusto de bayas"
+      },
+      "image": "stickers/bush.webp",
+      "animations": [
+        "anims/bush.sprout.json",
+        "anims/bush.sway.json",
+        "anims/bush.rustle.json",
+        "anims/bush.shake.json",
+        "anims/bush.droop.json",
+        "anims/bush.perk-up.json",
+        "anims/bush.laugh.json",
+        "anims/bush.sleep.json",
+        "anims/bush.wink.json",
+        "anims/bush.hide.json"
+      ],
+      "expressions": {
+        "happy": "stickers/bush.happy.webp",
+        "sad": "stickers/bush.sad.webp",
+        "sleeping": "stickers/bush.sleeping.webp",
+        "surprised": "stickers/bush.surprised.webp"
+      },
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.1393,
+          0.8594
+        ],
+        "y": [
+          0.1536,
+          0.8464
+        ]
+      }
+    },
+    {
+      "id": "dragonfly",
+      "name": {
+        "en-US": "Dragonfly",
+        "es-ES": "Libélula"
+      },
+      "image": "stickers/dragonfly.webp",
+      "animations": [
+        "anims/dragonfly.fly.json",
+        "anims/dragonfly.hover.json",
+        "anims/dragonfly.dart.json",
+        "anims/dragonfly.zigzag.json",
+        "anims/dragonfly.nod.json",
+        "anims/dragonfly.shake-head.json",
+        "anims/dragonfly.look-around.json",
+        "anims/dragonfly.laugh.json",
+        "anims/dragonfly.cry.json",
+        "anims/dragonfly.sleep.json",
+        "anims/dragonfly.wave.json",
+        "anims/dragonfly.dip.json"
+      ],
+      "expressions": {
+        "happy": "stickers/dragonfly.happy.webp",
+        "sad": "stickers/dragonfly.sad.webp",
+        "sleeping": "stickers/dragonfly.sleeping.webp",
+        "surprised": "stickers/dragonfly.surprised.webp"
+      },
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky",
+          "meadow"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.25,
+          0.75
+        ],
+        "y": [
+          0.2669,
+          0.7344
+        ]
+      }
+    },
+    {
+      "id": "eggs",
+      "name": {
+        "en-US": "Eggs",
+        "es-ES": "Huevos"
+      },
+      "image": "stickers/eggs.webp",
+      "animations": [
+        "anims/eggs.plonk.json",
+        "anims/eggs.wobble.json",
+        "anims/eggs.wobble-all.json",
+        "anims/eggs.crack.json",
+        "anims/eggs.hatch.json",
+        "anims/eggs.hatch-all.json",
+        "anims/eggs.peek.json",
+        "anims/eggs.tap.json",
+        "anims/eggs.bump.json",
+        "anims/eggs.hatch-sleepy.json"
+      ],
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2005,
+          0.7995
+        ],
+        "y": [
+          0.2279,
+          0.7734
+        ]
+      }
+    },
+    {
+      "id": "fern",
+      "name": {
+        "en-US": "Fern",
+        "es-ES": "Helecho"
+      },
+      "image": "stickers/fern.webp",
+      "animations": [
+        "anims/fern.sprout.json",
+        "anims/fern.sway.json",
+        "anims/fern.unfurl.json",
+        "anims/fern.curl-up.json",
+        "anims/fern.wiggle.json",
+        "anims/fern.droop.json",
+        "anims/fern.perk-up.json",
+        "anims/fern.laugh.json",
+        "anims/fern.sleep.json",
+        "anims/fern.nod.json"
+      ],
+      "expressions": {
+        "happy": "stickers/fern.happy.webp",
+        "sad": "stickers/fern.sad.webp",
+        "sleeping": "stickers/fern.sleeping.webp",
+        "surprised": "stickers/fern.surprised.webp"
+      },
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2148,
+          0.7839
+        ],
+        "y": [
+          0.2005,
+          0.7995
+        ]
+      }
+    },
+    {
+      "id": "flower",
+      "name": {
+        "en-US": "Flower",
+        "es-ES": "Flor"
+      },
+      "image": "stickers/flower.webp",
+      "animations": [
+        "anims/flower.sprout.json",
+        "anims/flower.sway.json",
+        "anims/flower.open.json",
+        "anims/flower.close.json",
+        "anims/flower.nod.json",
+        "anims/flower.droop.json",
+        "anims/flower.perk-up.json",
+        "anims/flower.laugh.json",
+        "anims/flower.sleep.json",
+        "anims/flower.wave.json"
+      ],
+      "expressions": {
+        "happy": "stickers/flower.happy.webp",
+        "sad": "stickers/flower.sad.webp",
+        "sleeping": "stickers/flower.sleeping.webp",
+        "surprised": "stickers/flower.surprised.webp"
+      },
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.2852,
+          0.7148
+        ],
+        "y": [
+          0.25,
+          0.75
+        ]
+      }
+    },
+    {
+      "id": "gallimimus",
+      "name": {
+        "en-US": "Gallimimus",
+        "es-ES": "Gallimimus"
+      },
+      "image": "stickers/gallimimus.webp",
+      "animations": [
+        "anims/gallimimus.run.json",
+        "anims/gallimimus.walk.json",
+        "anims/gallimimus.jump.json",
+        "anims/gallimimus.nod.json",
+        "anims/gallimimus.shake-head.json",
+        "anims/gallimimus.look-around.json",
+        "anims/gallimimus.laugh.json",
+        "anims/gallimimus.dance.json",
+        "anims/gallimimus.talk.json",
+        "anims/gallimimus.cry.json",
+        "anims/gallimimus.sleep.json",
+        "anims/gallimimus.wave.json",
+        "anims/gallimimus.ready-set.json",
+        "anims/gallimimus.stretch-legs.json",
+        "anims/gallimimus.peck.json",
+        "anims/gallimimus.ruffle.json",
+        "anims/gallimimus.tap-foot.json",
+        "anims/gallimimus.sniff.json"
+      ],
+      "expressions": {
+        "happy": "stickers/gallimimus.happy.webp",
+        "sad": "stickers/gallimimus.sad.webp",
+        "sleeping": "stickers/gallimimus.sleeping.webp",
+        "surprised": "stickers/gallimimus.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.1549,
+          0.8451
+        ],
+        "y": [
+          0.1406,
+          0.8607
+        ]
+      }
+    },
+    {
+      "id": "glider",
+      "name": {
+        "en-US": "Glider",
+        "es-ES": "Planeador"
+      },
+      "image": "stickers/glider.webp",
+      "animations": [
+        "anims/glider.glide.json",
+        "anims/glider.scurry.json",
+        "anims/glider.jump.json",
+        "anims/glider.nod.json",
+        "anims/glider.shake-head.json",
+        "anims/glider.look-around.json",
+        "anims/glider.laugh.json",
+        "anims/glider.dance.json",
+        "anims/glider.talk.json",
+        "anims/glider.cry.json",
+        "anims/glider.sleep.json",
+        "anims/glider.wave.json",
+        "anims/glider.shiver.json",
+        "anims/glider.spread.json",
+        "anims/glider.groom.json",
+        "anims/glider.sniff.json",
+        "anims/glider.curl-up.json",
+        "anims/glider.peek.json",
+        "anims/glider.nibble.json"
+      ],
+      "expressions": {
+        "happy": "stickers/glider.happy.webp",
+        "sad": "stickers/glider.sad.webp",
+        "sleeping": "stickers/glider.sleeping.webp",
+        "surprised": "stickers/glider.surprised.webp"
+      },
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "branches",
+          "rocks",
+          "meadow"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.25,
+          0.75
+        ],
+        "y": [
+          0.2656,
+          0.7357
+        ]
+      }
+    },
+    {
+      "id": "leaf",
+      "name": {
+        "en-US": "Big leaf",
+        "es-ES": "Hoja grande"
+      },
+      "image": "stickers/leaf.webp",
+      "animations": [
+        "anims/leaf.grow.json",
+        "anims/leaf.sway.json",
+        "anims/leaf.gust.json",
+        "anims/leaf.drip.json",
+        "anims/leaf.bounce.json",
+        "anims/leaf.droop.json",
+        "anims/leaf.rustle.json"
+      ],
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.1055,
+          0.8945
+        ],
+        "y": [
+          0.0807,
+          0.9206
+        ]
+      }
+    },
+    {
+      "id": "log",
+      "name": {
+        "en-US": "Log",
+        "es-ES": "Tronco"
+      },
+      "image": "stickers/log.webp",
+      "animations": [
+        "anims/log.plonk.json",
+        "anims/log.rock.json",
+        "anims/log.rustle.json",
+        "anims/log.gust.json",
+        "anims/log.bump.json",
+        "anims/log.creak.json",
+        "anims/log.blow.json",
+        "anims/log.thud.json"
+      ],
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.1393,
+          0.8594
+        ],
+        "y": [
+          0.1953,
+          0.8047
+        ]
+      }
+    },
+    {
+      "id": "pachycephalosaurus",
+      "name": {
+        "en-US": "Pachycephalosaurus",
+        "es-ES": "Paquicefalosaurio"
+      },
+      "image": "stickers/pachycephalosaurus.webp",
+      "animations": [
+        "anims/pachycephalosaurus.walk.json",
+        "anims/pachycephalosaurus.run.json",
+        "anims/pachycephalosaurus.jump.json",
+        "anims/pachycephalosaurus.nod.json",
+        "anims/pachycephalosaurus.shake-head.json",
+        "anims/pachycephalosaurus.look-around.json",
+        "anims/pachycephalosaurus.laugh.json",
+        "anims/pachycephalosaurus.dance.json",
+        "anims/pachycephalosaurus.talk.json",
+        "anims/pachycephalosaurus.cry.json",
+        "anims/pachycephalosaurus.sleep.json",
+        "anims/pachycephalosaurus.wave.json",
+        "anims/pachycephalosaurus.bonk.json",
+        "anims/pachycephalosaurus.rub-head.json",
+        "anims/pachycephalosaurus.bounce.json",
+        "anims/pachycephalosaurus.sniff.json",
+        "anims/pachycephalosaurus.wag-tail.json",
+        "anims/pachycephalosaurus.stretch.json"
+      ],
+      "expressions": {
+        "happy": "stickers/pachycephalosaurus.happy.webp",
+        "sad": "stickers/pachycephalosaurus.sad.webp",
+        "sleeping": "stickers/pachycephalosaurus.sleeping.webp",
+        "surprised": "stickers/pachycephalosaurus.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.1849,
+          0.8151
+        ],
+        "y": [
+          0.1406,
+          0.8607
+        ]
+      }
+    },
+    {
+      "id": "parasaurolophus",
+      "name": {
+        "en-US": "Parasaurolophus",
+        "es-ES": "Parasaurolophus"
+      },
+      "image": "stickers/parasaurolophus.webp",
+      "animations": [
+        "anims/parasaurolophus.walk.json",
+        "anims/parasaurolophus.jump.json",
+        "anims/parasaurolophus.nod.json",
+        "anims/parasaurolophus.shake-head.json",
+        "anims/parasaurolophus.look-around.json",
+        "anims/parasaurolophus.laugh.json",
+        "anims/parasaurolophus.dance.json",
+        "anims/parasaurolophus.talk.json",
+        "anims/parasaurolophus.cry.json",
+        "anims/parasaurolophus.sleep.json",
+        "anims/parasaurolophus.wave.json",
+        "anims/parasaurolophus.honk.json",
+        "anims/parasaurolophus.sing.json",
+        "anims/parasaurolophus.munch.json",
+        "anims/parasaurolophus.sniff.json",
+        "anims/parasaurolophus.stretch.json",
+        "anims/parasaurolophus.wag-tail.json"
+      ],
+      "expressions": {
+        "happy": "stickers/parasaurolophus.happy.webp",
+        "sad": "stickers/parasaurolophus.sad.webp",
+        "sleeping": "stickers/parasaurolophus.sleeping.webp",
+        "surprised": "stickers/parasaurolophus.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.1354,
+          0.8633
+        ],
+        "y": [
+          0.0807,
+          0.9206
+        ]
+      }
+    },
+    {
+      "id": "plesiosaur",
+      "name": {
+        "en-US": "Plesiosaur",
+        "es-ES": "Plesiosaurio"
+      },
+      "image": "stickers/plesiosaur.webp",
+      "animations": [
+        "anims/plesiosaur.swim.json",
+        "anims/plesiosaur.nod.json",
+        "anims/plesiosaur.shake-head.json",
+        "anims/plesiosaur.look-around.json",
+        "anims/plesiosaur.laugh.json",
+        "anims/plesiosaur.talk.json",
+        "anims/plesiosaur.cry.json",
+        "anims/plesiosaur.sleep.json",
+        "anims/plesiosaur.dance.json",
+        "anims/plesiosaur.wave.json",
+        "anims/plesiosaur.dive.json",
+        "anims/plesiosaur.splash.json",
+        "anims/plesiosaur.stretch-neck.json",
+        "anims/plesiosaur.blow-bubbles.json",
+        "anims/plesiosaur.float.json"
+      ],
+      "expressions": {
+        "happy": "stickers/plesiosaur.happy.webp",
+        "sad": "stickers/plesiosaur.sad.webp",
+        "sleeping": "stickers/plesiosaur.sleeping.webp",
+        "surprised": "stickers/plesiosaur.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "lagoon"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.0794,
+          0.9193
+        ],
+        "y": [
+          0.1029,
+          0.8984
+        ]
+      }
+    },
+    {
+      "id": "psittacosaurus",
+      "name": {
+        "en-US": "Psittacosaurus",
+        "es-ES": "Psitacosaurio"
+      },
+      "image": "stickers/psittacosaurus.webp",
+      "animations": [
+        "anims/psittacosaurus.walk.json",
+        "anims/psittacosaurus.nod.json",
+        "anims/psittacosaurus.shake-head.json",
+        "anims/psittacosaurus.look-around.json",
+        "anims/psittacosaurus.laugh.json",
+        "anims/psittacosaurus.dance.json",
+        "anims/psittacosaurus.talk.json",
+        "anims/psittacosaurus.cry.json",
+        "anims/psittacosaurus.sleep.json",
+        "anims/psittacosaurus.wave.json",
+        "anims/psittacosaurus.shiver.json",
+        "anims/psittacosaurus.nibble.json",
+        "anims/psittacosaurus.peek.json",
+        "anims/psittacosaurus.cuddle.json",
+        "anims/psittacosaurus.wag-tail.json",
+        "anims/psittacosaurus.sniff.json",
+        "anims/psittacosaurus.hop.json"
+      ],
+      "expressions": {
+        "happy": "stickers/psittacosaurus.happy.webp",
+        "sad": "stickers/psittacosaurus.sad.webp",
+        "sleeping": "stickers/psittacosaurus.sleeping.webp",
+        "surprised": "stickers/psittacosaurus.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2005,
+          0.7995
+        ],
+        "y": [
+          0.2044,
+          0.7956
+        ]
+      }
+    },
+    {
+      "id": "pteranodon",
+      "name": {
+        "en-US": "Pteranodon",
+        "es-ES": "Pteranodon"
+      },
+      "image": "stickers/pteranodon.webp",
+      "animations": [
+        "anims/pteranodon.fly.json",
+        "anims/pteranodon.hop.json",
+        "anims/pteranodon.flap.json",
+        "anims/pteranodon.stretch-wings.json",
+        "anims/pteranodon.call.json",
+        "anims/pteranodon.preen.json",
+        "anims/pteranodon.glide.json",
+        "anims/pteranodon.peck.json",
+        "anims/pteranodon.jump.json",
+        "anims/pteranodon.nod.json",
+        "anims/pteranodon.shake-head.json",
+        "anims/pteranodon.look-around.json",
+        "anims/pteranodon.laugh.json",
+        "anims/pteranodon.dance.json",
+        "anims/pteranodon.talk.json",
+        "anims/pteranodon.cry.json",
+        "anims/pteranodon.sleep.json",
+        "anims/pteranodon.wave.json",
+        "anims/pteranodon.tilt-head.json"
+      ],
+      "expressions": {
+        "happy": "stickers/pteranodon.happy.webp",
+        "sad": "stickers/pteranodon.sad.webp",
+        "sleeping": "stickers/pteranodon.sleeping.webp",
+        "surprised": "stickers/pteranodon.surprised.webp"
+      },
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "rocks",
+          "branches",
+          "meadow"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2747,
+          0.7253
+        ],
+        "y": [
+          0.2005,
+          0.7995
+        ]
+      }
+    },
+    {
+      "id": "puddle",
+      "name": {
+        "en-US": "Mud puddle",
+        "es-ES": "Charco de barro"
+      },
+      "image": "stickers/puddle.webp",
+      "animations": [
+        "anims/puddle.spread.json",
+        "anims/puddle.ripple.json",
+        "anims/puddle.splash.json",
+        "anims/puddle.plop.json",
+        "anims/puddle.shimmer.json",
+        "anims/puddle.bubble.json",
+        "anims/puddle.rain.json"
+      ],
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.1393,
+          0.8594
+        ],
+        "y": [
+          0.3633,
+          0.638
+        ]
+      }
+    },
+    {
+      "id": "spinosaurus",
+      "name": {
+        "en-US": "Spinosaurus",
+        "es-ES": "Espinosaurio"
+      },
+      "image": "stickers/spinosaurus.webp",
+      "animations": [
+        "anims/spinosaurus.walk.json",
+        "anims/spinosaurus.swim.json",
+        "anims/spinosaurus.jump.json",
+        "anims/spinosaurus.nod.json",
+        "anims/spinosaurus.shake-head.json",
+        "anims/spinosaurus.look-around.json",
+        "anims/spinosaurus.laugh.json",
+        "anims/spinosaurus.dance.json",
+        "anims/spinosaurus.talk.json",
+        "anims/spinosaurus.cry.json",
+        "anims/spinosaurus.sleep.json",
+        "anims/spinosaurus.shiver.json",
+        "anims/spinosaurus.splash.json",
+        "anims/spinosaurus.paddle-tail.json",
+        "anims/spinosaurus.sunbathe.json",
+        "anims/spinosaurus.sniff.json",
+        "anims/spinosaurus.shake-off.json"
+      ],
+      "expressions": {
+        "happy": "stickers/spinosaurus.happy.webp",
+        "sad": "stickers/spinosaurus.sad.webp",
+        "sleeping": "stickers/spinosaurus.sleeping.webp",
+        "surprised": "stickers/spinosaurus.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "shore",
+          "meadow"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.0794,
+          0.9193
+        ],
+        "y": [
+          0.1953,
+          0.806
+        ]
+      }
+    },
+    {
+      "id": "stegosaurus",
+      "name": {
+        "en-US": "Stegosaurus",
+        "es-ES": "Estegosaurio"
+      },
+      "image": "stickers/stegosaurus.webp",
+      "animations": [
+        "anims/stegosaurus.walk.json",
+        "anims/stegosaurus.jump.json",
+        "anims/stegosaurus.nod.json",
+        "anims/stegosaurus.shake-head.json",
+        "anims/stegosaurus.look-around.json",
+        "anims/stegosaurus.laugh.json",
+        "anims/stegosaurus.dance.json",
+        "anims/stegosaurus.talk.json",
+        "anims/stegosaurus.cry.json",
+        "anims/stegosaurus.sleep.json",
+        "anims/stegosaurus.shiver.json",
+        "anims/stegosaurus.swish-tail.json",
+        "anims/stegosaurus.munch.json",
+        "anims/stegosaurus.sniff.json",
+        "anims/stegosaurus.sunbathe.json",
+        "anims/stegosaurus.blush.json",
+        "anims/stegosaurus.stretch.json"
+      ],
+      "expressions": {
+        "happy": "stickers/stegosaurus.happy.webp",
+        "sad": "stickers/stegosaurus.sad.webp",
+        "sleeping": "stickers/stegosaurus.sleeping.webp",
+        "surprised": "stickers/stegosaurus.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.0794,
+          0.9193
+        ],
+        "y": [
+          0.1615,
+          0.8385
+        ]
+      }
+    },
+    {
+      "id": "trex",
+      "name": {
+        "en-US": "T. rex",
+        "es-ES": "T. rex"
+      },
+      "image": "stickers/trex.webp",
+      "animations": [
+        "anims/trex.walk.json",
+        "anims/trex.jump.json",
+        "anims/trex.nod.json",
+        "anims/trex.shake-head.json",
+        "anims/trex.look-around.json",
+        "anims/trex.laugh.json",
+        "anims/trex.dance.json",
+        "anims/trex.talk.json",
+        "anims/trex.cry.json",
+        "anims/trex.sleep.json",
+        "anims/trex.wave.json",
+        "anims/trex.roar.json",
+        "anims/trex.stomp.json",
+        "anims/trex.reach.json",
+        "anims/trex.clap.json",
+        "anims/trex.wag-tail.json",
+        "anims/trex.sniff.json",
+        "anims/trex.stretch.json"
+      ],
+      "expressions": {
+        "happy": "stickers/trex.happy.webp",
+        "sad": "stickers/trex.sad.webp",
+        "sleeping": "stickers/trex.sleeping.webp",
+        "surprised": "stickers/trex.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.1302,
+          0.8685
+        ],
+        "y": [
+          0.0807,
+          0.9206
+        ]
+      }
+    },
+    {
+      "id": "triceratops",
+      "name": {
+        "en-US": "Triceratops",
+        "es-ES": "Triceratops"
+      },
+      "image": "stickers/triceratops.webp",
+      "animations": [
+        "anims/triceratops.walk.json",
+        "anims/triceratops.trot.json",
+        "anims/triceratops.jump.json",
+        "anims/triceratops.nod.json",
+        "anims/triceratops.shake-head.json",
+        "anims/triceratops.look-around.json",
+        "anims/triceratops.laugh.json",
+        "anims/triceratops.dance.json",
+        "anims/triceratops.talk.json",
+        "anims/triceratops.cry.json",
+        "anims/triceratops.sleep.json",
+        "anims/triceratops.shiver.json",
+        "anims/triceratops.nudge.json",
+        "anims/triceratops.munch.json",
+        "anims/triceratops.sniff.json",
+        "anims/triceratops.wag-tail.json",
+        "anims/triceratops.stomp.json",
+        "anims/triceratops.nuzzle.json",
+        "anims/triceratops.drink.json"
+      ],
+      "expressions": {
+        "happy": "stickers/triceratops.happy.webp",
+        "sad": "stickers/triceratops.sad.webp",
+        "sleeping": "stickers/triceratops.sleeping.webp",
+        "surprised": "stickers/triceratops.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.0833,
+          0.9167
+        ],
+        "y": [
+          0.0807,
+          0.9206
+        ]
+      }
+    },
+    {
+      "id": "turtle",
+      "name": {
+        "en-US": "Turtle",
+        "es-ES": "Tortuga"
+      },
+      "image": "stickers/turtle.webp",
+      "animations": [
+        "anims/turtle.crawl.json",
+        "anims/turtle.swim.json",
+        "anims/turtle.nod.json",
+        "anims/turtle.shake-head.json",
+        "anims/turtle.look-around.json",
+        "anims/turtle.laugh.json",
+        "anims/turtle.talk.json",
+        "anims/turtle.cry.json",
+        "anims/turtle.sleep.json",
+        "anims/turtle.wave.json",
+        "anims/turtle.hide.json",
+        "anims/turtle.peek.json",
+        "anims/turtle.sunbathe.json",
+        "anims/turtle.munch.json",
+        "anims/turtle.slow-dance.json"
+      ],
+      "expressions": {
+        "happy": "stickers/turtle.happy.webp",
+        "sad": "stickers/turtle.sad.webp",
+        "sleeping": "stickers/turtle.sleeping.webp",
+        "surprised": "stickers/turtle.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2005,
+          0.7995
+        ],
+        "y": [
+          0.2604,
+          0.7396
+        ]
+      }
+    }
+  ],
+  "stories": [
+    {
+      "id": "a-hello-for-everyone",
+      "requiredStickers": [
+        "pachycephalosaurus",
+        "stegosaurus",
+        "ankylosaurus",
+        "beetle"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "A Hello for Everyone",
+          "text": "Pachycephalosaurus had a big round dome on top of his head, thick and hard, solid bone. And he said hello with it: a gentle little BONK. \"Hello, Stegosaurus!\" He trotted over to bonk him, and stopped. Plates, plates, plates, all along Stegosaurus's back. Where does a bonk go? Stegosaurus smiled shyly and swished his tail. Swish, swish. \"That's my hello.\" So Pachycephalosaurus swished right back. \"Hello, Ankylosaurus!\" BONK! But Ankylosaurus was all hard bumps. CLONK! Pachycephalosaurus rubbed his bony dome and giggled. \"Try mine,\" said Ankylosaurus, and he wagged his round club. Wag, wag. Then, a tiny voice: \"Hello!\" It was Beetle, much too small for a bonk. Beetle waved one little leg, so Pachycephalosaurus bent down low and waved one little hand. A swish, a wag, a wave. And for anyone who likes it best… a gentle little BONK.",
+          "audio": "audio/en-US/a-hello-for-everyone.m4a",
+          "effects": "audio/en-US/a-hello-for-everyone.effects.json"
+        },
+        "es-ES": {
+          "title": "Un hola para cada uno",
+          "text": "Paquicefalosaurio tenía en la cabeza una cúpula redonda, durísima, de hueso macizo. Y con ella saludaba: con un cabezazo suavecito. ¡TOC! —¡Hola, Estegosaurio! Fue trotando hacia él y se paró en seco. Placas y más placas por toda su espalda. ¿Dónde se da ahí un cabezazo? Estegosaurio sonrió, muy tímido, y meneó la cola. Fiu, fiu. —Así saludo yo. Y Paquicefalosaurio le devolvió el saludo con la cola. —¡Hola, Anquilosaurio! ¡TOC! Pero Anquilosaurio estaba lleno de bultos duros. ¡CLONC! Paquicefalosaurio se frotó la cúpula de hueso y se rio. —Prueba el mío —dijo Anquilosaurio, y meneó la maza de su cola. Bam, bam. Y una vocecita: —¡Hola! Era Escarabajo, demasiado pequeño para un cabezazo. Escarabajo saludó con una patita, así que Paquicefalosaurio se agachó y le saludó con una manita. Un meneo, un bam, una patita. Y para quien más le guste… un cabezazo suavecito. ¡TOC!",
+          "audio": "audio/es-ES/a-hello-for-everyone.m4a",
+          "effects": "audio/es-ES/a-hello-for-everyone.effects.json"
+        }
+      }
+    },
+    {
+      "id": "ammonite-bobs-up",
+      "requiredStickers": [
+        "ammonite",
+        "pteranodon",
+        "spinosaurus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Ammonite Bobs Up",
+          "text": "Little Ammonite lived deep down in the lagoon. Spinosaurus was splashing at the water's edge. Suddenly he looked up. \"Look! Pteranodon is flying over!\" High above, she was gliding by. Ammonite wanted to see too. But she was so small, and the top was so far away. Then she remembered her shell. Inside were little rooms, one after another, all full of air. And air floats! So she let her shell carry her up, up, up, bob, bob, to the top. There went Pteranodon, wings wide, sailing across the sky. \"Ooh,\" whispered Ammonite. Pteranodon saw her, and waved a wing hello! Then, slowly and gently, Ammonite sank back down to her cosy spot. Spinosaurus looked this way and that. \"Ammonite? Where did you go?\" A little bubble came up, bloop. \"I saw her!\" called a tiny voice from down below. \"I saw her!\"",
+          "audio": "audio/en-US/ammonite-bobs-up.m4a",
+          "effects": "audio/en-US/ammonite-bobs-up.effects.json"
+        },
+        "es-ES": {
+          "title": "Amonites sube a mirar",
+          "text": "La pequeña Amonites vivía en lo más hondo de la laguna. Espinosaurio chapoteaba en el borde del agua cuando, de repente, miró hacia arriba. —¡Mirad! ¡Pteranodon pasa volando! Allá arriba iba planeando. Amonites también quería verla. Pero era tan pequeña, y la superficie estaba tan lejos… Entonces se acordó de su concha. Por dentro tenía habitaciones chiquititas, una tras otra, todas llenas de aire. ¡Y el aire flota! Así que dejó que su concha la subiera, arriba, arriba, arriba, blup, blup, hasta la superficie. Allí iba Pteranodon, con las alas abiertas, cruzando el cielo. —Oooh —susurró Amonites. Pteranodon la vio y la saludó con el ala. Después, despacito, muy despacito, Amonites volvió a bajar a su rincón. Espinosaurio miró a un lado y a otro. —¿Amonites? ¿Dónde te has metido? Subió una burbujita: blup. —¡La he visto! —dijo una vocecita desde el fondo—. ¡La he visto!",
+          "audio": "audio/es-ES/ammonite-bobs-up.m4a",
+          "effects": "audio/es-ES/ammonite-bobs-up.effects.json"
+        }
+      }
+    },
+    {
+      "id": "ankylosaurus-the-rock",
+      "requiredStickers": [
+        "ankylosaurus",
+        "pteranodon",
+        "pachycephalosaurus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Rock That Giggled",
+          "text": "Pachycephalosaurus closed his eyes. \"One… two… three… I'm counting to ten!\" Ankylosaurus looked for somewhere to hide. Behind the tree fern? His bumpy back stuck out. Behind a boulder? His club tail stuck out. Oh dear. So he trundled over to the foot of the big flat rock and tucked in his head and his legs. His back was covered in armour, hard bony plates and bumps, so now… he looked just like a rock. Shhh. \"Ten! Coming!\" Pteranodon swooped over to help look. She landed on the round rock for a better view, and looked all around. \"Nobody up here,\" she said. Pachycephalosaurus came up and gave the rock a gentle knock with his round head. Knock, knock! The rock… giggled. \"Rocks don't giggle!\" Out popped a little head, and four short legs. \"Found you!\" laughed Pachycephalosaurus. And Pteranodon laughed hardest of all. She had been sitting on him the whole time!",
+          "audio": "audio/en-US/ankylosaurus-the-rock.m4a",
+          "effects": "audio/en-US/ankylosaurus-the-rock.effects.json"
+        },
+        "es-ES": {
+          "title": "La roca que se reía",
+          "text": "Paquicefalosaurio se tapó los ojos. —Uno… dos… tres… ¡cuento hasta diez! Anquilosaurio buscó dónde esconderse. ¿Detrás del helecho gigante? Asomaba su espalda de bultos. ¿Detrás de una piedra? Asomaba su cola de maza. Ay, ay. Así que se fue al pie de la gran roca plana y escondió la cabeza y las patas. Su espalda era una armadura de placas de hueso, duras y llenas de bultos: ahora… parecía una roca más. Chist. —¡Diez! ¡Voy! Pteranodon llegó volando a ayudar. Se posó en la roca redonda y miró a todas partes. —Aquí arriba no hay nadie —dijo. Paquicefalosaurio se acercó y dio a la roca un toquecito con la cabeza. ¡Toc, toc! Y la roca… se rio bajito. —¡Las rocas no se ríen! Asomó una cabecita, y luego cuatro patas cortas. —¡Te encontré! —se rio Paquicefalosaurio. Y Pteranodon se rio más que nadie. ¡Había estado sentada encima de él todo el rato!",
+          "audio": "audio/es-ES/ankylosaurus-the-rock.m4a",
+          "effects": "audio/es-ES/ankylosaurus-the-rock.effects.json"
+        }
+      }
+    },
+    {
+      "id": "archaeopteryx-tries-again",
+      "requiredStickers": [
+        "archaeopteryx",
+        "fern",
+        "stegosaurus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "courage",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Archaeopteryx Tries Again",
+          "text": "Archaeopteryx hopped through the grass and gazed up at the monkey-puzzle tree. \"Today I'm going to fly all the way up there!\" Stegosaurus looked up from his lunch. She spread her wings. Flap, flap, flap! Up she went, a little, then down she tumbled, PLOP, right into Fern. \"Hee hee! That tickles!\" She tried again. Flap, flap, FLAP! A little higher this time… and PLOP, into Fern again. \"I can't do it,\" she sighed. Stegosaurus came over, slow and gentle. \"Once more,\" he said, and nodded. \"Run first. Then flap.\" So she ran, hop, hop, hop, spread her wings wide and flapped with all her might. Up, up, up, and onto the branch! She sang her happiest song. Stegosaurus cheered. And down below, Fern waved his fronds. \"Well done! But come and land on me sometimes. I liked the tickles.\"",
+          "audio": "audio/en-US/archaeopteryx-tries-again.m4a",
+          "effects": "audio/en-US/archaeopteryx-tries-again.effects.json"
+        },
+        "es-ES": {
+          "title": "Arqueoptérix lo vuelve a intentar",
+          "text": "Arqueoptérix iba dando saltitos por la hierba, mirando la araucaria allá arriba. —¡Hoy voy a volar hasta lo más alto! Estegosaurio dejó de comer y levantó la cabeza. Ella abrió las alas. ¡Flap, flap, flap! Subió un poquito, y luego bajó dando tumbos y, ¡PLAF!, aterrizó encima de Helecho. —¡Ji, ji! ¡Qué cosquillas! Lo intentó otra vez. ¡Flap, flap, FLAP! Esta vez un poco más alto… y, ¡PLAF!, otra vez encima de Helecho. —No puedo —suspiró. Estegosaurio se acercó, despacito. —Una vez más —le dijo, y asintió—. Primero corre. Luego aletea. Así que corrió, salta que te salta, abrió bien las alas y aleteó con todas sus fuerzas. ¡Arriba, arriba, arriba, hasta la rama! Y cantó su canción más alegre. Estegosaurio la vitoreó. Y abajo, Helecho agitó sus frondas. —¡Muy bien! Pero ven a aterrizar encima de mí de vez en cuando. Me encantaban las cosquillas.",
+          "audio": "audio/es-ES/archaeopteryx-tries-again.m4a",
+          "effects": "audio/es-ES/archaeopteryx-tries-again.effects.json"
+        }
+      }
+    },
+    {
+      "id": "beetle-and-the-magnolia",
+      "requiredStickers": [
+        "flower",
+        "beetle",
+        "bush"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "gentle",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Beetle and the Magnolia",
+          "text": "The sun was warm on the valley, and Flower opened her petals wide. Beetle came trundling through the grass. \"What a cosy spot!\" He climbed right into the middle of the flower, snuggled down in the soft yellow dust, and fell fast asleep. Berry Bush smiled. \"Shh, everyone.\" When Beetle woke up, he stretched and blinked and looked at himself. He was yellow all over! Yellow legs, yellow feelers, a yellow shiny shell. \"Is this your dust?\" \"It's my pollen,\" said Flower. \"Will you take some to the magnolia across the valley? It helps her make seeds.\" \"A job for me!\" Beetle puffed up proudly. Then he lifted his shiny shell, out came his wings, whirr, and off he flew, far across the valley, dusty and proud. Berry Bush winked at Flower. \"The sleepiest helper in the valley,\" he said, \"and the best.\"",
+          "audio": "audio/en-US/beetle-and-the-magnolia.m4a",
+          "effects": "audio/en-US/beetle-and-the-magnolia.effects.json"
+        },
+        "es-ES": {
+          "title": "El escarabajo y la magnolia",
+          "text": "El sol calentaba el valle, y Flor abrió sus pétalos de par en par. Escarabajo llegó caminando entre la hierba. —¡Qué sitio tan calentito! Se metió en el centro de la flor, se acurrucó en el polvillo amarillo y se quedó frito. Arbusto de bayas sonrió. —Chist, no hagáis ruido. Cuando Escarabajo se despertó, se estiró, parpadeó y se miró. ¡Estaba amarillo de arriba abajo! Patas amarillas, antenas amarillas y el caparazón brillante, amarillo también. —¿Esto es tu polvillo? —Es mi polen —dijo Flor—. ¿Le llevarías un poco a la magnolia del otro lado del valle? Así podrá hacer semillas. —¡Un trabajo para mí! Escarabajo se hinchó de orgullo. Luego levantó su caparazón, desplegó las alas y, brrrr, allá se fue volando, cubierto de polen y muy orgulloso. Arbusto le guiñó un ojo a Flor. —El ayudante más dormilón del valle —dijo—. Y el mejor.",
+          "audio": "audio/es-ES/beetle-and-the-magnolia.m4a",
+          "effects": "audio/es-ES/beetle-and-the-magnolia.effects.json"
+        }
+      }
+    },
+    {
+      "id": "beetle-has-wings",
+      "requiredStickers": [
+        "beetle",
+        "bush",
+        "psittacosaurus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Beetle's Secret",
+          "text": "Berry Bush was full of berries, red and purple, and the shiniest ones grew at the very top. Little Psittacosaurus looked up. Beetle looked up too. The two smallest in the valley. \"I wish I could see the top,\" said Psittacosaurus. Beetle tried to climb, and slid right down. Bump! Psittacosaurus sat down small, chin in hands. \"Only flyers go up there.\" Beetle wiggled his antennae. \"Then watch this.\" He lifted up his shiny shell… and underneath were two thin wings, folded small! Whirrr! Up flew Beetle to the top. \"Hee hee! That tickles!\" laughed Berry Bush. \"I can see everything!\" called Beetle. \"The water, the red cliffs far away… and one little Psittacosaurus!\" Psittacosaurus peeked up and smiled. Berry Bush jiggled, and a purple berry rolled right into his hands. And Beetle tucked his wings away under his shiny shell, as if they'd never been there at all.",
+          "audio": "audio/en-US/beetle-has-wings.m4a",
+          "effects": "audio/en-US/beetle-has-wings.effects.json"
+        },
+        "es-ES": {
+          "title": "El secreto de Escarabajo",
+          "text": "Arbusto estaba lleno de bayas rojas y moradas, y las más brillantes crecían arriba del todo. El pequeño Psitacosaurio miró arriba. Escarabajo también miró. Eran los más pequeños del valle. —Ojalá pudiera ver lo de arriba —dijo Psitacosaurio. Escarabajo intentó trepar, y resbaló hasta abajo. ¡Pum! Psitacosaurio se hizo una bolita, con la barbilla entre las manos. —Allí arriba solo llega quien vuela. Escarabajo movió las antenas. —Pues mira esto. Levantó su caparazón brillante… ¡y debajo tenía dos alas finitas, bien dobladas! ¡Frrrr! Escarabajo voló derechito arriba. —¡Ji, ji! ¡Me haces cosquillas! —se rio Arbusto. —¡Lo veo todo! —gritó Escarabajo—. El agua, los riscos rojos a lo lejos… ¡y a un Psitacosaurio pequeñito! Psitacosaurio levantó la cabeza y sonrió. Arbusto se sacudió un poquito, y una baya morada rodó hasta sus manos. Y Escarabajo volvió a guardar las alas bajo su caparazón, como si nunca hubieran estado ahí.",
+          "audio": "audio/es-ES/beetle-has-wings.m4a",
+          "effects": "audio/es-ES/beetle-has-wings.effects.json"
+        }
+      }
+    },
+    {
+      "id": "berry-bush-shares",
+      "requiredStickers": [
+        "bush",
+        "ankylosaurus",
+        "glider"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "sharing",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Berry Bush Shares",
+          "text": "Berry Bush had more berries than anyone, shiny red ones and round purple ones. And he loved to share. \"Hungry, Ankylosaurus?\" he called. He gave himself a good shake, and down dropped a handful of berries. Munch, munch. \"Thank you, Bush!\" Then Glider came gliding down and landed right in his leaves. \"Berries for you too!\" Glider nibbled and nibbled, until his whiskers were purple. Then he washed his face, rub, rub, rub. \"Hee hee!\" Berry Bush wriggled. \"Your little paws tickle!\" \"What can we give you, Bush?\" asked Ankylosaurus. \"You give us berries every day.\" Berry Bush thought. Bushes don't eat berries. \"I don't need a thing,\" he said. But Glider knew. He scampered through the leaves, tickle, tickle, tickle, and Berry Bush rustled and giggled from top to bottom. Ankylosaurus laughed too. \"That,\" giggled Berry Bush, \"is the best present of all.\"",
+          "audio": "audio/en-US/berry-bush-shares.m4a",
+          "effects": "audio/en-US/berry-bush-shares.effects.json"
+        },
+        "es-ES": {
+          "title": "Arbusto lo comparte todo",
+          "text": "Arbusto de bayas tenía más bayas que nadie: rojas y brillantes, moradas y redondas. Y le encantaba compartirlas. —¿Tienes hambre, Anquilosaurio? —le llamó. Se sacudió bien fuerte y cayó un montón de bayas. Ñam, ñam. —¡Gracias, Arbusto! Luego llegó Planeador, planeando, y aterrizó entre sus hojas. —¡Para ti también! Planeador mordisqueó y mordisqueó, hasta que se le pusieron los bigotes morados. Luego se lavó la cara, frota que te frota. —¡Ji, ji! —Arbusto se retorció—. ¡Tus patitas me hacen cosquillas! —¿Y qué te podemos dar nosotros, Arbusto? —preguntó Anquilosaurio—. Tú nos das bayas todos los días. Arbusto se quedó pensando. Los arbustos no comen bayas. —No necesito nada —dijo. Pero Planeador lo sabía. Correteó entre las hojas, cosquillas por aquí, cosquillas por allá, y Arbusto se sacudió de risa de arriba abajo. Anquilosaurio también se rio. —Este —dijo Arbusto entre risitas— es el mejor regalo de todos.",
+          "audio": "audio/es-ES/berry-bush-shares.m4a",
+          "effects": "audio/es-ES/berry-bush-shares.effects.json"
+        }
+      }
+    },
+    {
+      "id": "dragonfly-flies-backwards",
+      "requiredStickers": [
+        "dragonfly",
+        "ammonite",
+        "plesiosaur"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "curiosity",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Dragonfly Goes Backwards",
+          "text": "Splish, splash! Plesiosaur and Ammonite were playing copy-me in the water. Whatever one did, the other did too. Dragonfly came zipping over. \"Can I play?\" \"But you can't swim!\" said Plesiosaur, smiling. \"I'll copy from up here,\" said Dragonfly. So Plesiosaur dived, splash, and popped up again. Dragonfly dipped down to the water and up. Ammonite twirled round. Dragonfly twirled too. \"Copy THIS,\" said Ammonite. And whoosh! She shot backwards, shell first. \"Nobody can go backwards!\" But Dragonfly darted forwards, stopped short in the air… and zipped BACKWARDS. \"How did you do that?\" \"Dragonflies can,\" said Dragonfly. And she hung there in the air, perfectly still. Plesiosaur tried to swim backwards… and only went round in a circle. So the game went on all afternoon: forwards, backwards, and round and round.",
+          "audio": "audio/en-US/dragonfly-flies-backwards.m4a",
+          "effects": "audio/en-US/dragonfly-flies-backwards.effects.json"
+        },
+        "es-ES": {
+          "title": "Libélula marcha atrás",
+          "text": "¡Chof, chof! Plesiosaurio y Amonites jugaban a copiarse en el agua. Lo que hacía uno, lo hacía la otra. Libélula llegó zumbando. —¿Puedo jugar? —Pero si tú no sabes nadar —dijo Plesiosaurio, sonriendo. —Os copio desde aquí arriba —dijo Libélula. Así que Plesiosaurio se zambulló, ¡chof!, y volvió a asomar. Libélula bajó hasta rozar el agua y volvió a subir. Amonites dio una vuelta. Libélula, también. —¡A ver si copiáis esto! —dijo Amonites. Y ¡fiuuu!, salió disparada hacia atrás, con la concha por delante. —¡Eso no lo copia nadie! Pero Libélula salió hacia delante, frenó en seco en el aire… y ¡zas!, volvió MARCHA ATRÁS. —¿Cómo lo has hecho? —Las libélulas sabemos —dijo Libélula. Y se quedó quietecita en el aire, sin moverse nada. Plesiosaurio intentó nadar hacia atrás… y solo dio vueltas en redondo. Y el juego siguió toda la tarde: hacia delante, hacia atrás, y en redondo.",
+          "audio": "audio/es-ES/dragonfly-flies-backwards.m4a",
+          "effects": "audio/es-ES/dragonfly-flies-backwards.effects.json"
+        }
+      }
+    },
+    {
+      "id": "eggs-hatch-one-two-three",
+      "requiredStickers": [
+        "eggs",
+        "triceratops",
+        "psittacosaurus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "counting",
+        "home",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "One, Two, Three Eggs",
+          "text": "The sun was warm, and in a nest of soft ferns sat three speckled eggs. Mama Triceratops lay down beside them, just as she did every day. Along came little Psittacosaurus. \"When will they hatch?\" \"Soon,\" said Mama. \"Listen.\" Tap. Tap, tap. The front egg gave a little hop! Psittacosaurus gasped. Then… crick, crack, out popped a baby Triceratops! \"One!\" counted Psittacosaurus. Crack! \"Two!\" And the last egg… took its time… crack! \"THREE!\" Three babies blinked in the sunshine, each with an eggshell cap on its head. Mama nuzzled them, one, two, three. Psittacosaurus hopped for joy. \"I hatched out of an egg too,\" he said. \"A long, long time ago. Last spring.\" And three little babies smiled up at him, as if they knew.",
+          "audio": "audio/en-US/eggs-hatch-one-two-three.m4a",
+          "effects": "audio/en-US/eggs-hatch-one-two-three.effects.json"
+        },
+        "es-ES": {
+          "title": "Uno, dos y tres huevos",
+          "text": "El sol calentaba, y en un nido de helechos blanditos había tres huevos moteados. Mamá Triceratops se tumbó a su lado, como hacía cada día. Y llegó el pequeño Psitacosaurio. —¿Cuándo van a nacer? —Muy pronto —dijo Mamá—. Escucha. Toc. Toc, toc. ¡El huevo de delante dio un saltito! —¡Oh! —dijo Psitacosaurio. Y entonces… cric, crac, ¡asomó un bebé triceratops! —¡Uno! —contó Psitacosaurio. ¡Crac! —¡Dos! Y el último huevo… se hizo esperar… ¡crac! —¡TRES! Los tres bebés parpadeaban al sol, cada uno con un gorrito de cáscara en la cabeza. Mamá les hizo un mimo con el hocico, uno, dos y tres. Psitacosaurio daba saltos de alegría. —Yo también salí de un huevo —dijo—. Hace muchísimo tiempo. La primavera pasada. Y los tres bebés le sonrieron, como si lo supieran.",
+          "audio": "audio/es-ES/eggs-hatch-one-two-three.m4a",
+          "effects": "audio/es-ES/eggs-hatch-one-two-three.effects.json"
+        }
+      }
+    },
+    {
+      "id": "everybodys-birthday",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "party",
+        "music",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Everybody's Birthday",
+          "text": "One sunny morning, a little song went round the valley. \"Hip, hip, hooray, it's somebody's birthday!\" Everyone stopped. Whose birthday was it? \"Not mine,\" said the ones by the lagoon. \"Not mine,\" said the ones up in the trees. \"Not mine,\" said the ones on the big flat rock. Oh dear. A birthday, and nobody to have it! Then a small voice piped up. \"Let's ALL have it!\" Hooray! Everybody's birthday! So the big ones stomped, thump, thump, and the small ones twirled, and the flyers swooped, whoosh, and looped. And down came the confetti, all over the lagoon and the meadow. Then everyone sang, loud as could be, \"Hip, hip, hooray, it's EVERYBODY'S birthday!\" And the sleepy old mountain far away? It slept right through the whole party.",
+          "audio": "audio/en-US/everybodys-birthday.m4a",
+          "effects": "audio/en-US/everybodys-birthday.effects.json"
+        },
+        "es-ES": {
+          "title": "El cumpleaños de todos",
+          "text": "Una mañana de sol, una cancioncilla empezó a correr por el valle. «¡Hoy es el cumple de alguien, de alguien, de alguien!» Todos se pararon. ¿De quién era el cumpleaños? —Mío no —dijeron los de la laguna. —Mío no —dijeron los de los árboles. —Mío no —dijeron los de la gran roca plana. Vaya. ¡Un cumpleaños y nadie que lo cumpla! Entonces se oyó una vocecita. —¡Pues que sea de TODOS! ¡Hurra! ¡El cumpleaños de todos! Así que los grandes dieron pisotones, pum, pum, los pequeños dieron vueltas, y los voladores, ¡fiuuu!, hicieron piruetas en el aire. Y cayó confeti por toda la laguna y todo el prado. Luego todos cantaron a pleno pulmón: «¡Hoy es el cumple de todos, de todos, de todos!» ¿Y la vieja montaña dormida, allá lejos? Durmió durante toda la fiesta.",
+          "audio": "audio/es-ES/everybodys-birthday.m4a",
+          "effects": "audio/es-ES/everybodys-birthday.effects.json"
+        }
+      }
+    },
+    {
+      "id": "fern-unrolls-slowly",
+      "requiredStickers": [
+        "fern",
+        "pachycephalosaurus",
+        "archaeopteryx"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "patience",
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Not Yet, Said Fern",
+          "text": "On top of Fern sat two curled-up fronds, round and tight as snail shells. Pachycephalosaurus came bouncing over. \"When will they open? Now? NOW?\" \"Not yet,\" giggled Fern. On a branch of the tree fern, Archaeopteryx was tidying her feathers. \"A fern takes its time,\" she said. Pachycephalosaurus huffed. The next day, pitter-patter, it rained. \"Now?\" asked Pachycephalosaurus. \"Not yet,\" said Fern, drinking up the rain. The day after that, the sun came out, warm and bright. And slowly… slowly… one of the curls began to unroll, into a brand-new frond, fresh and green. \"It's opening,\" whispered Pachycephalosaurus. He didn't bounce. He didn't huff. He just watched. Even Archaeopteryx stopped to look. Then Pachycephalosaurus looked at the other curl. \"And that one? NOW?\" And Fern laughed so much that all his fronds shook.",
+          "audio": "audio/en-US/fern-unrolls-slowly.m4a",
+          "effects": "audio/en-US/fern-unrolls-slowly.effects.json"
+        },
+        "es-ES": {
+          "title": "Todavía no, dijo Helecho",
+          "text": "En lo alto de Helecho había dos hojitas enrolladas, redondas y apretadas como conchas de caracol. Paquicefalosaurio llegó dando botes. —¿Cuándo se abren? ¿Ya? ¿YA? —Todavía no —se rio Helecho. En una rama del helecho gigante, Arqueoptérix se arreglaba las plumas. —Un helecho nunca tiene prisa —dijo. Paquicefalosaurio resopló. Al día siguiente, plic, ploc, llovió. —¿Ya? —preguntó Paquicefalosaurio. —Todavía no —dijo Helecho, bebiéndose la lluvia. Y al otro día salió el sol, calentito y brillante. Y despacito… despacito… una de las hojitas empezó a desenrollarse, hasta convertirse en una hoja nueva, fresca y verde. —Se está abriendo —susurró Paquicefalosaurio. No botó. No resopló. Solo miró. Hasta Arqueoptérix se paró a mirar. Luego Paquicefalosaurio se fijó en la otra hojita. —¿Y esa? ¿YA? Y Helecho se rio tanto que le temblaron todas las hojas.",
+          "audio": "audio/es-ES/fern-unrolls-slowly.m4a",
+          "effects": "audio/es-ES/fern-unrolls-slowly.effects.json"
+        }
+      }
+    },
+    {
+      "id": "foggy-morning-on-the-lagoon",
+      "requiredStickers": [
+        "plesiosaur",
+        "turtle",
+        "ammonite"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "adventure",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Foggy Lagoon",
+          "text": "One morning, a thick white fog lay on the lagoon. Turtle swam out to meet Ammonite by the giant lily pads, the way she did every morning. But where were they? She looked this way. She looked that way. Only white. \"Ammonite? Where are you?\" Somewhere in the fog, Ammonite peeked out of her shell. \"I'm here! But… where's here?\" Then, out of the fog, something rose up. And up. And UP. It was Plesiosaur, stretching his long neck high above the fog. \"I can see you both!\" he called. \"Turtle, this way! Straight on… a little to the left…\" Paddle, paddle, paddle… and there was Ammonite, right beside her. Then the sun came out, and the fog melted away. Plesiosaur settled back down. \"On foggy mornings,\" said Turtle, \"we'll just look for your neck.\"",
+          "audio": "audio/en-US/foggy-morning-on-the-lagoon.m4a",
+          "effects": "audio/en-US/foggy-morning-on-the-lagoon.effects.json"
+        },
+        "es-ES": {
+          "title": "Niebla en la laguna",
+          "text": "Una mañana, una niebla blanca y espesa cubría la laguna. Tortuga salió nadando a buscar a Amonites junto a los nenúfares gigantes, como cada mañana. Pero ¿dónde estaban? Miró a un lado. Miró al otro. Todo blanco. —¿Amonites? ¿Dónde estás? En algún lugar de la niebla, Amonites asomó la cabeza de su concha. —¡Estoy aquí! Pero… ¿dónde es aquí? Entonces, de entre la niebla, algo empezó a subir. Y a subir. Y a SUBIR. Era Plesiosaurio, estirando su largo cuello por encima de la niebla. —¡Os veo a las dos! —gritó—. Tortuga, por aquí. Todo recto… un poquito a la izquierda… Chap, chap, chap… y allí estaba Amonites, justo a su lado. Entonces salió el sol y la niebla se deshizo. Plesiosaurio volvió a acomodarse. —Las mañanas de niebla —dijo Tortuga— buscaremos tu cuello.",
+          "audio": "audio/es-ES/foggy-morning-on-the-lagoon.m4a",
+          "effects": "audio/es-ES/foggy-morning-on-the-lagoon.effects.json"
+        }
+      }
+    },
+    {
+      "id": "footprints-in-the-mud",
+      "requiredStickers": [
+        "puddle",
+        "triceratops",
+        "brachiosaurus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Footprints in the Mud",
+          "text": "Triceratops came trotting up to the mud puddle. \"Squelchy!\" In she stepped. SQUELCH! When she stepped out, she looked back. There were her footprints, pressed deep in the soft mud. Then Brachiosaurus came by, slow and heavy. SQUELCH! went his foot, and he left a footprint as big as a nest. \"Will they stay there?\" wondered Triceratops. Brachiosaurus lowered his long neck to look. \"Let's wait and see.\" So they waited, while the sun shone warm and bright all afternoon. The mud round the puddle dried, and went hard as stone. Triceratops tapped it with her toe. Tock, tock. Hard! \"How long will they stay?\" she asked. Brachiosaurus lifted his head up high and thought. \"A very, very long time.\" Triceratops smiled. \"Then let's make some more!\" And side by side, squelch, squelch, the two friends went splashing through the mud again.",
+          "audio": "audio/en-US/footprints-in-the-mud.m4a",
+          "effects": "audio/en-US/footprints-in-the-mud.effects.json"
+        },
+        "es-ES": {
+          "title": "Huellas en el barro",
+          "text": "Triceratops llegó trotando hasta el charco de barro. —¡Qué blandito! Y se metió dentro. ¡CHOF! Al salir, miró hacia atrás. Allí estaban sus huellas, bien hundidas en el barro blando. Entonces llegó Braquiosaurio, despacio y pesado. ¡CHOOOF!, hizo su pata, y dejó una huella tan grande como un nido. —¿Se quedarán ahí? —preguntó Triceratops. Braquiosaurio bajó su largo cuello para mirar. —Esperemos a ver. Y esperaron, mientras el sol calentaba toda la tarde. El barro de alrededor del charco se secó y se puso duro como una piedra. Triceratops lo tocó con la pata. Toc, toc. ¡Durísimo! —¿Cuánto tiempo durarán? —preguntó. Braquiosaurio levantó la cabeza bien alto y se quedó pensando. —Muchísimo, muchísimo tiempo. Triceratops sonrió. —¡Pues vamos a hacer más! Y los dos amigos, uno al lado del otro, chof, chof, volvieron a meterse en el barro.",
+          "audio": "audio/es-ES/footprints-in-the-mud.m4a",
+          "effects": "audio/es-ES/footprints-in-the-mud.effects.json"
+        }
+      }
+    },
+    {
+      "id": "gallimimus-jumps-everything",
+      "requiredStickers": [
+        "gallimimus",
+        "puddle",
+        "log",
+        "leaf"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "adventure"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Gallimimus Jumps Everything",
+          "text": "Gallimimus had long, springy legs, and today she wanted to jump over EVERYTHING. \"Ready, steady,\" \"GO!\" First, the mud puddle. WHEE! Right over it. Next, the log. WHOOSH! Over it, or nearly. Her toe tapped the top, bump, and the old log jolted. Still over! Then she saw the big leaf. It was tall. Very tall. Much too tall to jump. \"Hmm.\" So she ducked her head and ran right under it instead. \"Under counts too!\" Back she raced, all the way to the mud puddle, ready for one last, enormous jump. One, two, THREE! SPLOSH! Right in the middle. Mud on her toes. Mud on her tail. Mud on the tip of her beak. Gallimimus laughed and laughed. \"Over, over, under,\" she said, \"and IN! That's the best jump of all.\"",
+          "audio": "audio/en-US/gallimimus-jumps-everything.m4a",
+          "effects": "audio/en-US/gallimimus-jumps-everything.effects.json"
+        },
+        "es-ES": {
+          "title": "Gallimimus lo salta todo",
+          "text": "Gallimimus tenía unas patas largas y saltarinas, y hoy quería saltarlo TODO. —Preparados, listos… ¡YA! Primero, el charco de barro. ¡HOPA! Por encima. Después, el tronco. ¡FIUUU! Por encima, o casi. Lo rozó con la punta del pie, toc, y el viejo tronco dio un respingo. ¡Pero lo saltó! Entonces vio la hoja grande. Era alta. Muy alta. Demasiado alta para saltarla. —Mmm. Así que agachó la cabeza y pasó corriendo por debajo. —¡Por debajo también vale! Y volvió a toda carrera hasta el charco de barro, lista para un último salto enorme. ¡Una, dos y TRES! ¡CHOF! Justo en medio. Barro en las patas. Barro en la cola. Barro en la punta del pico. Gallimimus se partía de risa. —Por encima, por encima, por debajo… ¡y DENTRO! El mejor salto de todos.",
+          "audio": "audio/es-ES/gallimimus-jumps-everything.m4a",
+          "effects": "audio/es-ES/gallimimus-jumps-everything.effects.json"
+        }
+      }
+    },
+    {
+      "id": "glider-flies-from-the-top",
+      "requiredStickers": [
+        "glider",
+        "brachiosaurus",
+        "gallimimus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "adventure",
+        "kindness",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Glider Goes Far",
+          "text": "On a low branch of the tree fern lived little Glider. Between his arms and legs he had a furry skin, like a cape: spread wide, it let him glide through the air. He dreamed of gliding all the way to the monkey-puzzle tree. He spread his cape and jumped. Wheee… plop. Down in the ferns, only halfway. \"The tree fern is too low,\" he sighed. Brachiosaurus, the tallest of all, came over. \"Then climb aboard.\" He lowered his long neck to the ground, like a slide. Glider scampered up, up, to the top of his head. And up went the neck, higher than the tree fern! Down below, Gallimimus came running. \"Go, Glider, go!\" Glider spread his furry cape and… wheee! He glided over the meadow, over Gallimimus, all the way to the monkey-puzzle tree. Gallimimus jumped for joy. \"AGAIN!\" called Glider. And Brachiosaurus was already lowering his neck.",
+          "audio": "audio/en-US/glider-flies-from-the-top.m4a",
+          "effects": "audio/en-US/glider-flies-from-the-top.effects.json"
+        },
+        "es-ES": {
+          "title": "Planeador llega lejos",
+          "text": "En una rama baja del helecho gigante vivía el pequeño Planeador. Entre los brazos y las patas tenía una piel peludita, como una capa: al abrirla, planeaba por el aire. Soñaba con llegar planeando hasta la araucaria. Abrió su capa y saltó. Uiii… plof. Aterrizó en los helechos, a mitad de camino. —El helecho gigante es muy bajo —suspiró. Braquiosaurio, el más alto del valle, se acercó. —Pues sube. Bajó su largo cuello hasta el suelo, como un tobogán. Planeador trepó corriendo, arriba, arriba, hasta lo alto de su cabeza. ¡Y el cuello subió, más alto que el helecho gigante! Abajo, Gallimimus llegó corriendo. —¡Vamos, Planeador! Planeador abrió su capa peludita y… ¡uiii! Planeó por encima del prado, por encima de Gallimimus, hasta la araucaria. Gallimimus dio un salto de alegría. —¡OTRA VEZ! —gritó Planeador. Y Braquiosaurio ya estaba bajando el cuello.",
+          "audio": "audio/es-ES/glider-flies-from-the-top.m4a",
+          "effects": "audio/es-ES/glider-flies-from-the-top.effects.json"
+        }
+      }
+    },
+    {
+      "id": "good-morning-valley",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "morning",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Good Morning, Valley",
+          "text": "Very early one morning, a soft white fog lay over the valley. It covered the lagoon. It hid the far red cliffs. It even hid the sleepy old mountain. Everyone was still fast asleep. Shhh. Then, little by little, the sun began to shine through. Warm… warmer… and the fog began to melt away. First came the giant lily pads, floating on the water. Then the big flat rock, warm and red. Then the red cliffs, far, far away. Everyone yawned a big morning yawn. \"Good morning, lagoon! Good morning, big flat rock! Good morning, red cliffs!\" And last of all, far away, out came the sleepy old mountain. \"Good morning, mountain!\" everyone called. But the sleepy old mountain didn't answer. It just kept on sleeping, the way it always does. And everyone giggled.",
+          "audio": "audio/en-US/good-morning-valley.m4a",
+          "effects": "audio/en-US/good-morning-valley.effects.json"
+        },
+        "es-ES": {
+          "title": "Buenos días, valle",
+          "text": "Muy temprano, una mañana, una niebla blanca y suave cubría el valle. Tapaba la laguna. Escondía los riscos rojos del fondo. Escondía hasta la vieja montaña dormida. Todos dormían todavía. Chist. Y entonces, poquito a poco, el sol empezó a asomar. Calentito… más calentito… y la niebla se fue deshaciendo. Primero aparecieron los nenúfares gigantes, flotando en el agua. Luego la gran roca plana, roja y tibia. Luego los riscos rojos, allá lejos. Todos bostezaron un bostezo enorme de buenos días. —¡Buenos días, laguna! ¡Buenos días, roca grande! ¡Buenos días, riscos! Y la última de todas, allá lejos, apareció la vieja montaña dormida. —¡Buenos días, montaña! —gritaron todos. Pero la vieja montaña no contestó. Siguió durmiendo, como siempre. Y todos se rieron bajito.",
+          "audio": "audio/es-ES/good-morning-valley.m4a",
+          "effects": "audio/es-ES/good-morning-valley.effects.json"
+        }
+      }
+    },
+    {
+      "id": "goodnight-valley",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "wonder"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Goodnight, Valley",
+          "text": "The sun was going down over the valley. The big flat rock glowed gold. The lagoon turned pink. Everyone had played all day long, and now it was time for bed. One big yawn… then another… And up came the moon, over the sleepy old mountain far away. Then, one by one, out came the fireflies, little lights dancing low over the water. \"Ooh,\" said everyone. \"Goodnight, little lights.\" Goodnight, lagoon. Goodnight, giant lily pads. Goodnight, big flat rock, still warm from the sun. Goodnight, tree fern. Goodnight, monkey-puzzle tree. Goodnight, red cliffs, far away. And goodnight, sleepy old mountain… but the mountain was asleep already. It always is.",
+          "audio": "audio/en-US/goodnight-valley.m4a",
+          "effects": "audio/en-US/goodnight-valley.effects.json"
+        },
+        "es-ES": {
+          "title": "Buenas noches, valle",
+          "text": "El sol se escondía sobre el valle. La gran roca plana brillaba, dorada. La laguna se volvió rosa. Todos habían jugado el día entero, y ya era hora de dormir. Un bostezo grande… y luego otro… Y salió la luna, por encima de la vieja montaña dormida, allá lejos. Entonces, una a una, salieron las luciérnagas, lucecitas que bailaban bajito sobre el agua. —Oooh —dijeron todos—. Buenas noches, lucecitas. Buenas noches, laguna. Buenas noches, nenúfares gigantes. Buenas noches, gran roca plana, todavía calentita del sol. Buenas noches, helecho gigante. Buenas noches, araucaria. Buenas noches, riscos rojos, allá lejos. Y buenas noches, vieja montaña dormida… pero la montaña ya estaba dormida. Siempre lo está.",
+          "audio": "audio/es-ES/goodnight-valley.m4a",
+          "effects": "audio/es-ES/goodnight-valley.effects.json"
+        }
+      }
+    },
+    {
+      "id": "hide-and-seek-with-the-bush",
+      "requiredStickers": [
+        "bush",
+        "glider",
+        "parasaurolophus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Hide-and-Seek with Berry Bush",
+          "text": "Glider and Parasaurolophus were playing hide-and-seek. \"Can I play too?\" asked Berry Bush. \"But Bush,\" said Parasaurolophus, \"you can't move!\" Berry Bush only smiled. \"You'll see.\" Parasaurolophus closed her eyes and counted. One, two, three… And Berry Bush tucked his face deep into his own leaves, until there was nothing to see but leaves and berries. \"Ten! Ready or not!\" Parasaurolophus looked by the lagoon. Not there. Glider glided over to the big flat rock and looked this way and that. Not there either. Where could he be? They looked right at him. Just a bush. Just leaves and berries. Then one leaf moved. A little face peeked out, and winked! \"THERE you are!\" Back they ran, laughing all the way. Berry Bush hadn't moved a single leaf the whole game. He was the best hider in the valley, as long as he didn't wink.",
+          "audio": "audio/en-US/hide-and-seek-with-the-bush.m4a",
+          "effects": "audio/en-US/hide-and-seek-with-the-bush.effects.json"
+        },
+        "es-ES": {
+          "title": "El escondite de Arbusto",
+          "text": "Planeador y Parasaurolophus jugaban al escondite. —¿Puedo jugar yo también? —preguntó Arbusto de bayas. —Pero, Arbusto —dijo Parasaurolophus—, ¡si tú no te puedes mover! Arbusto solo sonrió. —Ya veréis. Parasaurolophus cerró los ojos y contó: uno, dos, tres… Y Arbusto escondió la cara entre sus propias hojas, hasta que solo se veían hojas y bayas. —¡Diez! ¡Allá voy! Parasaurolophus buscó junto a la laguna. Allí no estaba. Planeador planeó hasta la gran roca plana y miró a un lado y a otro. Allí tampoco. ¿Dónde se habría metido? Lo miraban y lo remiraban: un arbusto, nada más. Hojas y bayas. Hasta que una hoja se movió. Asomó una carita ¡y les guiñó un ojo! —¡AHÍ ESTÁS! Volvieron corriendo, riéndose a carcajadas. Arbusto no había movido ni una hoja en todo el juego. Era el que mejor se escondía de todo el valle, siempre que no guiñara el ojo.",
+          "audio": "audio/es-ES/hide-and-seek-with-the-bush.m4a",
+          "effects": "audio/es-ES/hide-and-seek-with-the-bush.effects.json"
+        }
+      }
+    },
+    {
+      "id": "parasaurolophus-calls-at-sunset",
+      "requiredStickers": [
+        "parasaurolophus",
+        "gallimimus",
+        "ankylosaurus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "home",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Bedtime Honk",
+          "text": "The sun was going down over the valley, gold and pink. Parasaurolophus looked out across the valley. Bedtime! But her friends were still far away: Gallimimus, running about, and Ankylosaurus, sniffing the ground, slow as ever. \"Hmm, hmm,\" she hummed. \"Time for bed!\" Nobody heard. It was much too soft. Then she had an idea. Her long crest was hollow inside, just like a horn. So she took a big, deep breath… and blew it all through her crest. HOOOONK! Far away, Gallimimus stopped and looked. \"That's our call!\" And off she ran. Ankylosaurus came plodding after, step… by… step. Up came the moon. Ankylosaurus lay down and was asleep before he'd even finished his yawn. And Parasaurolophus gave one last honk, the tiniest one of all. Honk. Goodnight.",
+          "audio": "audio/en-US/parasaurolophus-calls-at-sunset.m4a",
+          "effects": "audio/en-US/parasaurolophus-calls-at-sunset.effects.json"
+        },
+        "es-ES": {
+          "title": "El toque de buenas noches",
+          "text": "El sol se ponía sobre el valle, dorado y rosa. Parasaurolophus miró a lo lejos. ¡Hora de dormir! Pero sus amigos andaban todavía muy lejos: Gallimimus, corriendo de acá para allá, y Anquilosaurio, olisqueando el suelo, despacito como siempre. —Mmm, mmm —canturreó—. ¡A la cama! Nadie la oyó. Era un sonido demasiado flojito. Entonces se le ocurrió una idea. Su larga cresta estaba hueca por dentro, igual que una trompeta. Así que cogió aire, muchísimo aire… y lo sopló todo por la cresta. ¡TUUUUUU! A lo lejos, Gallimimus se paró a mirar. —¡Nos están llamando! Y allá que fue, corriendo. Anquilosaurio fue detrás, paso… a… paso. Salió la luna. Anquilosaurio se tumbó y se durmió antes de terminar el bostezo. Y Parasaurolophus dio un último toque, el más chiquitito de todos. Tu. Buenas noches.",
+          "audio": "audio/es-ES/parasaurolophus-calls-at-sunset.m4a",
+          "effects": "audio/es-ES/parasaurolophus-calls-at-sunset.effects.json"
+        }
+      }
+    },
+    {
+      "id": "peekaboo-eggs",
+      "requiredStickers": [
+        "triceratops",
+        "eggs",
+        "ankylosaurus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Peekaboo Eggs",
+          "text": "Mama Triceratops sat by her nest of three eggs, waiting. Not yet. Not yet. Then, creak. The top of the front egg lifted up like a little lid, and out peeked a baby Triceratops! Two round eyes looked this way, and that way. Mama blinked. POP! Back in went the baby, and down came the lid. Mama laughed. \"Oh, so it's a game!\" She tipped her big head down and closed her eyes. \"Where's my baby? Where can my baby be?\" Creak. Up went the lid. \"PEEKABOO!\" said Mama. And in went the baby again. Ankylosaurus came plodding by to see what all the fun was about. Up went the lid, and down went the lid. Ankylosaurus laughed so much his round club wagged and wagged. Not even hatched, and already the best at peekaboo in the whole valley.",
+          "audio": "audio/en-US/peekaboo-eggs.m4a",
+          "effects": "audio/en-US/peekaboo-eggs.effects.json"
+        },
+        "es-ES": {
+          "title": "Cucú-tras en el nido",
+          "text": "Mamá Triceratops esperaba junto a su nido de tres huevos. Todavía no. Todavía no. Y entonces, crec. La parte de arriba del huevo de delante se levantó como una tapita ¡y por debajo asomó un bebé triceratops! Dos ojitos redondos miraron a un lado y al otro. Mamá parpadeó. ¡PLOP! El bebé se metió dentro y la tapita bajó. Mamá se echó a reír. —¡Ah, que es un juego! Agachó su cabezota y cerró los ojos. —¿Dónde está mi bebé? ¿Dónde se habrá metido? Crec. Subió la tapita. —¡CUCÚ-TRAS! —dijo Mamá. Y el bebé se escondió otra vez. Anquilosaurio pasaba por allí y se acercó a curiosear. Arriba la tapita, abajo la tapita. Anquilosaurio se rio tanto que la maza de su cola no paraba de menearse. Todavía sin salir del cascarón, y ya era el campeón del cucú-tras de todo el valle.",
+          "audio": "audio/es-ES/peekaboo-eggs.m4a",
+          "effects": "audio/es-ES/peekaboo-eggs.effects.json"
+        }
+      }
+    },
+    {
+      "id": "plesiosaur-comes-up-for-air",
+      "requiredStickers": [
+        "plesiosaur",
+        "ammonite",
+        "spinosaurus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Plesiosaur Comes Up for Air",
+          "text": "Little Ammonite lived down in the lagoon, and she could stay under the water all day long. But Plesiosaur couldn't. Down he dived, and up he popped. PUFF! Down again, up again. PUFF! \"What's up there?\" wondered Ammonite. \"Is it a game? I want to play!\" So she followed him. Down, up. Down, up. Down, up, until she was spinning like a top. But however hard she tried, she couldn't make a single puff. Spinosaurus was watching from the shore, and he laughed and laughed. \"It isn't a game, little one. He's breathing! Plesiosaur needs air, same as me.\" Plesiosaur nodded and took a big gulp of it. \"Then you do the puffing,\" said Ammonite, \"and I'll do the bubbles!\" Up they went, blub, blub, blub. PUFF, went Plesiosaur, up top. Blub, blub, went Ammonite, down below. And Spinosaurus cheered for them both.",
+          "audio": "audio/en-US/plesiosaur-comes-up-for-air.m4a",
+          "effects": "audio/en-US/plesiosaur-comes-up-for-air.effects.json"
+        },
+        "es-ES": {
+          "title": "Plesiosaurio sale a respirar",
+          "text": "La pequeña Amonites vivía en el fondo de la laguna, y podía pasarse el día entero bajo el agua. Pero Plesiosaurio, no. Se zambullía y, al momento, asomaba otra vez. ¡FFFUUU! Abajo, arriba. ¡FFFUUU! —¿Qué habrá ahí arriba? —se preguntó Amonites—. ¿Es un juego? ¡Yo también quiero jugar! Y se fue detrás de él. Abajo, arriba. Abajo, arriba. Abajo, arriba, hasta que acabó girando como una peonza. Pero por mucho que lo intentaba, no le salía ni un resoplido. Espinosaurio lo miraba todo desde la orilla, y se reía a carcajadas. —No es un juego, pequeña. ¡Está respirando! Plesiosaurio necesita aire, igual que yo. Plesiosaurio asintió y tomó una buena bocanada. —Pues tú pones los resoplidos —dijo Amonites—, ¡y yo las burbujas! Y allá subieron, blup, blup, blup. ¡FFFUUU!, hacía Plesiosaurio, arriba. Blup, blup, hacía Amonites, abajo. Y Espinosaurio los animaba a los dos.",
+          "audio": "audio/es-ES/plesiosaur-comes-up-for-air.m4a",
+          "effects": "audio/es-ES/plesiosaur-comes-up-for-air.effects.json"
+        }
+      }
+    },
+    {
+      "id": "pteranodon-rides-the-wind",
+      "requiredStickers": [
+        "pteranodon",
+        "archaeopteryx",
+        "glider"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "weather",
+        "adventure",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Riding the Wind",
+          "text": "Whoosh! It was a windy day in the valley. On a branch of the monkey-puzzle tree sat Archaeopteryx and Glider. \"Let's fly!\" said Archaeopteryx. She flapped and flapped, all the way to the big flat rock… and she was puffed out. Glider spread out his furry skin and glided… down, down, down into the ferns. \"Gliding only goes down,\" he said. On the rock, Pteranodon smiled. \"Watch.\" She opened her wings wide and let the wind lift her. Up she floated, round and round, and she didn't flap once. Not once! \"How?\" asked Archaeopteryx. \"Don't push against the wind,\" said Pteranodon. \"Let it carry you.\" So Archaeopteryx held her wings out wide, and up she went. Glider scampered back up to his branch. Then he spread his skin, and the wind carried him too. And there they floated, all three, with only one tiny flap between them. Well… maybe two.",
+          "audio": "audio/en-US/pteranodon-rides-the-wind.m4a",
+          "effects": "audio/en-US/pteranodon-rides-the-wind.effects.json"
+        },
+        "es-ES": {
+          "title": "A lomos del viento",
+          "text": "¡Fiuuu! Hacía viento en el valle. En una rama de la araucaria estaban Arqueoptérix y Planeador. —¡Vamos a volar! —dijo Arqueoptérix. Aleteó y aleteó y aleteó hasta la gran roca plana… y llegó sin aliento. Planeador abrió su piel peludita y planeó… abajo, abajo, abajo, hasta el prado. —Planeando solo se va hacia abajo —dijo. En la roca, Pteranodon sonrió. —Mirad. Abrió bien las alas y dejó que el viento la subiera. Flotó hacia arriba, dando vueltas, y no aleteó ni una vez. ¡Ni una! —¿Cómo lo haces? —preguntó Arqueoptérix. —No empujes contra el viento —dijo Pteranodon—. Deja que te lleve. Así que Arqueoptérix abrió las alas de par en par y subió, subió. Planeador trepó corriendo a su rama. Luego abrió la piel, y el viento lo llevó a él también. Y allí flotaron los tres, con un solo aleteo entre todos. Bueno… quizá dos.",
+          "audio": "audio/es-ES/pteranodon-rides-the-wind.m4a",
+          "effects": "audio/es-ES/pteranodon-rides-the-wind.effects.json"
+        }
+      }
+    },
+    {
+      "id": "rain-in-the-valley",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "weather",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Rain in the Valley",
+          "text": "A big soft cloud came drifting over the valley. Plip. One drop, right on somebody's nose. And down came the summer rain. Pitter-patter on the lagoon. Plip-plop on the big flat rock. Tip-tap on the fronds of the tree fern. Everyone shivered, brrr! And then everyone laughed, because summer rain is warm! So they hopped in it. They twirled in it. They opened their mouths and caught it, plip, on the tongue. Even the sleepy old mountain far away was having a wash. Then, as quick as it came, the rain stopped. Quiet. And over the far red cliffs, a rainbow stretched across the sky. Everyone stood very still and looked. Then somebody shook their tail, and somebody shook their wings, and everyone got wet all over again. What a lovely, soggy day!",
+          "audio": "audio/en-US/rain-in-the-valley.m4a",
+          "effects": "audio/en-US/rain-in-the-valley.effects.json"
+        },
+        "es-ES": {
+          "title": "Llueve en el valle",
+          "text": "Una nube grande y blandita pasó sobre el valle. Plic. Una gota, justo en la nariz de alguien. Y empezó la lluvia de verano. Plic, ploc en la laguna. Tic, tac en la gran roca plana. Tip, tap en las hojas del helecho gigante. Todos tiritaron: ¡brrr! Y luego todos se echaron a reír, ¡porque la lluvia de verano es calentita! Así que saltaron bajo la lluvia. Dieron vueltas bajo la lluvia. Abrieron la boca y la cazaron al vuelo: ¡plic, en la lengua! Hasta la vieja montaña dormida, allá lejos, se estaba dando un baño. Y, tan deprisa como había llegado, la lluvia paró. Silencio. Y sobre los riscos rojos, a lo lejos, apareció un arcoíris. Todos se quedaron muy quietos, mirándolo. Hasta que alguien sacudió la cola, y alguien sacudió las alas, y todos acabaron empapados otra vez. ¡Qué día tan pasado por agua!",
+          "audio": "audio/es-ES/rain-in-the-valley.m4a",
+          "effects": "audio/es-ES/rain-in-the-valley.effects.json"
+        }
+      }
+    },
+    {
+      "id": "room-under-the-big-leaf",
+      "requiredStickers": [
+        "leaf",
+        "fern",
+        "glider",
+        "dragonfly"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "weather",
+        "kindness"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Room Under the Leaf",
+          "text": "Plip. Plop. Pitter-patter… here came the rain! Glider scampered under the big leaf. \"It's dry under here! Come in!\" Dragonfly zipped in beside him. Squeeze, squeeze. Drip… drop… went the edges of the leaf. Glider gave a little shiver: one drop had landed on his whiskers. Then they peeked out… and there was Fern, out in the rain, all on his own! \"Fern! Come under here!\" called Dragonfly. \"You'll get soaked!\" But Fern couldn't walk. And he didn't want to. He lifted every frond up high, as wide as they would go. \"Soaked? I LOVE the rain!\" So Glider and Dragonfly stayed snug under the leaf, and Fern drank up the rain, until… it stopped. A rainbow curved over the valley. And there was Fern, the shiniest, greenest fern of all.",
+          "audio": "audio/en-US/room-under-the-big-leaf.m4a",
+          "effects": "audio/en-US/room-under-the-big-leaf.effects.json"
+        },
+        "es-ES": {
+          "title": "Sitio bajo la hoja",
+          "text": "Plic. Ploc. Plic, ploc, plic… ¡venía la lluvia! Planeador corrió a meterse debajo de la hoja grande. —¡Aquí no se moja nadie! ¡Venid! Libélula entró zumbando a su lado. Apretaditos, apretaditos. Gota… gota… caía del borde de la hoja. Planeador tiritó un poquito: una gota le había caído en los bigotes. Entonces se asomaron… ¡y allí estaba Helecho, solito bajo la lluvia! —¡Helecho! ¡Ven aquí debajo! —gritó Libélula—. ¡Te vas a empapar! Pero Helecho no podía andar. Y tampoco quería. Levantó todas sus hojas, bien altas, bien abiertas. —¿Empaparme? ¡Me ENCANTA la lluvia! Así que Planeador y Libélula se quedaron calentitos bajo la hoja, y Helecho se bebió toda la lluvia, hasta que… paró. Un arcoíris se dibujó sobre el valle. Y allí estaba Helecho, el más verde y el más brillante de todos.",
+          "audio": "audio/es-ES/room-under-the-big-leaf.m4a",
+          "effects": "audio/es-ES/room-under-the-big-leaf.effects.json"
+        }
+      }
+    },
+    {
+      "id": "spinosaurus-waters-the-garden",
+      "requiredStickers": [
+        "spinosaurus",
+        "flower",
+        "bush"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "kindness"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Spinosaurus Waters the Garden",
+          "text": "It was a hot, dry day. Not one raindrop had fallen for days and days. Flower drooped. Berry Bush sagged. \"So… thirsty…\" Out in the lagoon, Spinosaurus was having a lovely swim. Out he climbed, dripping wet, and came up to say hello. \"Hello, Flower!\" And then he did what he always did after a swim. Wiggle, wiggle, SPLASH! Water flew everywhere. \"Oh! Sorry! I splashed you!\" But Flower lifted her head, slowly, slowly… \"Don't be sorry! That was just the drink I needed!\" Then a tiny voice called out: \"Me too, please?\" So Spinosaurus trotted over to Berry Bush, and wiggle, wiggle, SPLASH! Berry Bush puffed up, tall and round and shiny. \"I'll be right back,\" grinned Spinosaurus, \"with more!\"",
+          "audio": "audio/en-US/spinosaurus-waters-the-garden.m4a",
+          "effects": "audio/en-US/spinosaurus-waters-the-garden.effects.json"
+        },
+        "es-ES": {
+          "title": "Espinosaurio riega el jardín",
+          "text": "Hacía un día caluroso y seco. Llevaba días y días sin caer ni una gota. Flor estaba mustia. Arbusto, alicaído. —Qué… sed… En la laguna, Espinosaurio se daba un baño estupendo. Salió chorreando y subió a saludar. —¡Hola, Flor! Y entonces hizo lo que hacía siempre después de bañarse. ¡Meneo, meneo, y CHOF! El agua salió volando por todas partes. —¡Ay! ¡Perdona! ¡Te he mojado! Pero Flor levantó la cabeza, despacito, despacito… —¡No pidas perdón! ¡Era justo el agua que necesitaba! Entonces se oyó una vocecita: —¿Y a mí? Así que Espinosaurio se fue trotando hasta Arbusto, y meneo, meneo, ¡CHOF! Arbusto se esponjó, alto, redondo y brillante. —¡Ahora vuelvo —dijo Espinosaurio, sonriendo— con más!",
+          "audio": "audio/es-ES/spinosaurus-waters-the-garden.m4a",
+          "effects": "audio/es-ES/spinosaurus-waters-the-garden.effects.json"
+        }
+      }
+    },
+    {
+      "id": "splash-in-the-mud",
+      "requiredStickers": [
+        "puddle",
+        "pachycephalosaurus",
+        "psittacosaurus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "weather"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Splash in the Mud",
+          "text": "Pachycephalosaurus spotted it first: a big, brown, squishy mud puddle. \"Here I come!\" He jumped right in. SPLOSH! Mud everywhere. \"It's warm! It's squishy!\" Little Psittacosaurus stopped at the edge. \"No, thank you. I don't want to get muddy.\" \"Oh, come on!\" Psittacosaurus shook his head. Then… BLUP! A big mud bubble swelled up and popped, right between Pachycephalosaurus's feet. \"Who said that?\" Psittacosaurus laughed and laughed. He laughed so hard he wobbled, and slipped… and SPLAT! In he went. Now they were both muddy from nose to tail. And then, pitter-patter, down came the rain, and washed them both clean. \"First a mud bath,\" said Pachycephalosaurus, \"then a rain bath!\"",
+          "audio": "audio/en-US/splash-in-the-mud.m4a",
+          "effects": "audio/en-US/splash-in-the-mud.effects.json"
+        },
+        "es-ES": {
+          "title": "Chof en el barro",
+          "text": "Paquicefalosaurio lo vio el primero: un charco de barro grande, marrón y blandito. —¡Allá voy! Y saltó dentro. ¡CHOF! Barro por todas partes. —¡Está calentito! ¡Y blandito! El pequeño Psitacosaurio se paró en el borde. —No, gracias. No quiero mancharme. —¡Anda, ven! Psitacosaurio dijo que no con la cabeza. Y entonces… ¡BLUP! Una burbuja de barro enorme creció y explotó, justo entre las patas de Paquicefalosaurio. —¿Quién ha dicho eso? Psitacosaurio se rio y se rio. Se rio tanto que se tambaleó, resbaló… y ¡PLAF! Adentro. Ahora estaban los dos llenos de barro del hocico a la cola. Y entonces, plic, ploc, empezó a llover, y la lluvia los dejó limpios a los dos. —¡Primero, baño de barro —dijo Paquicefalosaurio—, y luego, baño de lluvia!",
+          "audio": "audio/es-ES/splash-in-the-mud.m4a",
+          "effects": "audio/es-ES/splash-in-the-mud.effects.json"
+        }
+      }
+    },
+    {
+      "id": "stegosaurus-finds-the-best-ferns",
+      "requiredStickers": [
+        "stegosaurus",
+        "triceratops",
+        "parasaurolophus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "curiosity",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Stegosaurus Finds the Best Shoots",
+          "text": "Stegosaurus always walked with his head down low, close to the grass. \"My head is so small,\" he said, \"and so low.\" Triceratops had three fine horns. Parasaurolophus had a long, curved crest. And Stegosaurus? Just a little head, down by his feet. One morning, Triceratops said, \"Let's find the softest new fern shoots in the valley!\" She looked with her head held high. \"None here.\" Parasaurolophus looked from way up tall. She found some old fronds and munched them. \"Too tough!\" But Stegosaurus kept his head where it always was, down low. Sniff, sniff. And there, hidden in the grass, where only a low head would look, were tiny, curly, soft new shoots. \"Over here!\" His friends came running. Munch, munch: the softest ever. \"How did you find them?\" asked Triceratops. Stegosaurus smiled shyly. \"I was looking down here anyway.\"",
+          "audio": "audio/en-US/stegosaurus-finds-the-best-ferns.m4a",
+          "effects": "audio/en-US/stegosaurus-finds-the-best-ferns.effects.json"
+        },
+        "es-ES": {
+          "title": "Los brotes más tiernos",
+          "text": "Estegosaurio siempre caminaba con la cabeza gacha, pegadita a la hierba. —Tengo la cabeza tan pequeña —decía—, y tan bajita… Triceratops tenía tres cuernos preciosos. Parasaurolophus, una cresta larga y curva. ¿Y Estegosaurio? Solo una cabecita, allá abajo, junto a las patas. Una mañana, Triceratops dijo: —¡Vamos a buscar los brotes de helecho más tiernos del valle! Buscó con la cabeza bien alta. —Aquí no hay. Parasaurolophus buscó desde allá arriba. Encontró unas frondas viejas y se puso a masticar. —¡Durísimas! Pero Estegosaurio tenía la cabeza donde siempre, bien abajo. Snif, snif. Y allí, escondidos entre la hierba, donde solo mira una cabeza bajita, había brotes nuevos, chiquitines, enroscados y tiernos. —¡Aquí, aquí! Sus amigas llegaron corriendo. Ñam, ñam: los más tiernos del mundo. —¿Cómo los has encontrado? —preguntó Triceratops. Estegosaurio sonrió, muy vergonzoso. —Es que yo ya miraba por aquí abajo.",
+          "audio": "audio/es-ES/stegosaurus-finds-the-best-ferns.m4a",
+          "effects": "audio/es-ES/stegosaurus-finds-the-best-ferns.effects.json"
+        }
+      }
+    },
+    {
+      "id": "stegosaurus-waits-for-the-flower",
+      "requiredStickers": [
+        "stegosaurus",
+        "flower",
+        "triceratops"
+      ],
+      "optionalStickers": [
+        "pachycephalosaurus"
+      ],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Two Shy Friends",
+          "text": "Overnight, a new magnolia flower had grown on the meadow. But she stayed folded up, tight as a bud. Pachycephalosaurus came bouncing over. \"Hello! Open up! Come and play!\" Nothing. Not one petal. Triceratops gave the bud a gentle nudge. \"Come on, little one.\" Nothing at all. So they gave up, and off they went to play somewhere else. Stegosaurus had watched it all. He was shy too, so he knew. He tiptoed over, lay down beside the bud, and didn't say a single word. The sun came out, warm and soft. One petal moved. Then another. And slowly, Flower opened, cream and pink. \"Hello,\" she whispered, to Stegosaurus first of all. Stegosaurus went all shy, and smiled. When the others came back, they found two shy friends, side by side, in the sun.",
+          "audio": "audio/en-US/stegosaurus-waits-for-the-flower.m4a",
+          "effects": "audio/en-US/stegosaurus-waits-for-the-flower.effects.json"
+        },
+        "es-ES": {
+          "title": "Dos amigos tímidos",
+          "text": "Durante la noche, en el prado había crecido una magnolia nueva. Pero estaba cerrada, apretadita como un capullo. Paquicefalosaurio llegó dando botes. —¡Hola! ¡Ábrete! ¡Ven a jugar! Nada. Ni un pétalo. Triceratops le dio al capullo un empujoncito suave. —Venga, pequeña. Nada de nada. Así que se cansaron, y se fueron a jugar a otra parte. Estegosaurio lo había visto todo. Él también era tímido, así que lo entendía. Se acercó de puntillas, se tumbó junto al capullo y no dijo ni una palabra. Salió el sol, tibio y suave. Un pétalo se movió. Luego otro. Y poco a poco, Flor se abrió, blanca y rosa. —Hola —susurró, a Estegosaurio el primero de todos. Estegosaurio se puso muy tímido, y sonrió. Cuando los otros volvieron, encontraron a dos amigos tímidos, uno junto al otro, al sol.",
+          "audio": "audio/es-ES/stegosaurus-waits-for-the-flower.m4a",
+          "effects": "audio/es-ES/stegosaurus-waits-for-the-flower.effects.json"
+        }
+      }
+    },
+    {
+      "id": "t-rex-finds-his-note",
+      "requiredStickers": [
+        "trex",
+        "parasaurolophus",
+        "archaeopteryx"
+      ],
+      "optionalStickers": [
+        "brachiosaurus"
+      ],
+      "weight": 1,
+      "tags": [
+        "music",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Littlest Roar",
+          "text": "Every morning, when the sun came up, the valley sang its morning song. Parasaurolophus honked the tune through her long crest: honk-a-honk! From a branch of the tree fern, Archaeopteryx sang the high part: tweedle-dee! And Brachiosaurus kept the beat. Stomp… stomp. T. rex came running. \"Can I join in? I'll do the big roar!\" He puffed himself up, lifted his head and… \"Eep!\" The song stopped. T. rex went very quiet. \"My roar is too small,\" he said. But Parasaurolophus was smiling. \"Do that again!\" \"The squeak?\" \"Our song always needed one little high note at the very end. That's it!\" So they began again. Honk-a-honk! Tweedle-dee! Stomp… stomp… And right at the end, T. rex: \"EEP!\" It was the best song the valley had ever sung.",
+          "audio": "audio/en-US/t-rex-finds-his-note.m4a",
+          "effects": "audio/en-US/t-rex-finds-his-note.effects.json"
+        },
+        "es-ES": {
+          "title": "El rugido más pequeño",
+          "text": "Cada mañana, cuando salía el sol, el valle cantaba su canción de los buenos días. Parasaurolophus tocaba la melodía con su larga cresta: ¡tu-ru-tú! Desde una rama del helecho gigante, Arqueoptérix cantaba la parte aguda: ¡pío-pirío! Y Braquiosaurio llevaba el ritmo. Pum… pum. T. rex llegó corriendo. —¿Puedo cantar yo también? ¡Hago el rugido grande! Se infló, levantó la cabeza y… —¡Iiip! La canción se paró. T. rex se quedó muy callado. —Mi rugido es demasiado pequeño —dijo. Pero Parasaurolophus sonreía. —¡Hazlo otra vez! —¿El chillido? —¡A nuestra canción siempre le faltó una notita aguda al final! ¡Es esa! Así que volvieron a empezar. ¡Tu-ru-tú! ¡Pío-pirío! Pum… pum… Y justo al final, T. rex: —¡IIIP! Fue la mejor canción que el valle había cantado nunca.",
+          "audio": "audio/es-ES/t-rex-finds-his-note.m4a",
+          "effects": "audio/es-ES/t-rex-finds-his-note.effects.json"
+        }
+      }
+    },
+    {
+      "id": "t-rex-follows-his-nose",
+      "requiredStickers": [
+        "trex",
+        "flower",
+        "gallimimus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "T. rex Follows His Nose",
+          "text": "Mmm. A sweet smell came drifting across the valley. Gallimimus stretched her long neck and looked far, far ahead. \"Where's it coming from?\" She looked and looked. Nothing but grass. T. rex came stomping along. \"I'll find it!\" He lifted his snout and sniffed. Sniff, sniff. This way… sniff, sniff… that way. \"But you can't even see it!\" said Gallimimus. \"I don't need to see it,\" said T. rex. \"I can SMELL it!\" Sniff. Sniff, sniff. And there, all on her own in the grass, was Flower. She opened her petals wide, and the sweet smell came pouring out. \"Ooh.\" Gallimimus came running over. \"You found her with your NOSE?\" T. rex grinned from ear to ear. And Flower, who was a little bit pink already, went a little bit pinker.",
+          "audio": "audio/en-US/t-rex-follows-his-nose.m4a",
+          "effects": "audio/en-US/t-rex-follows-his-nose.effects.json"
+        },
+        "es-ES": {
+          "title": "T. rex sigue su nariz",
+          "text": "Mmm. Un olor dulce llegaba flotando por el valle. Gallimimus estiró su largo cuello y miró lejos, muy lejos. —¿De dónde vendrá? Miró y remiró. Nada más que hierba. T. rex llegó dando pisotones. —¡Yo lo encuentro! Levantó el hocico y olfateó. Snif, snif. Por aquí… snif, snif… por allá. —¡Pero si no lo ves! —dijo Gallimimus. —No me hace falta verlo —dijo T. rex—. ¡Lo HUELO! Snif. Snif, snif. Y allí, solita entre la hierba, estaba Flor. Abrió sus pétalos de par en par, y el olor dulce salió a raudales. —Oooh. Gallimimus llegó corriendo. —¿La has encontrado con la NARIZ? T. rex sonrió de oreja a oreja. Y Flor, que ya era un poquito rosa, se puso un poquito más rosa todavía.",
+          "audio": "audio/es-ES/t-rex-follows-his-nose.m4a",
+          "effects": "audio/es-ES/t-rex-follows-his-nose.effects.json"
+        }
+      }
+    },
+    {
+      "id": "t-rex-watches-the-clouds",
+      "requiredStickers": [
+        "trex",
+        "pteranodon",
+        "turtle"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "curiosity"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Up in the Clouds",
+          "text": "High up in the sky, Pteranodon was floating near the clouds. T. rex watched her from the ground. \"I want to fly up there too!\" So he jumped. Thump. He jumped again. Thump. But his feet always came back down. \"I'll never get up to the clouds,\" he said. Slowly, slowly, Turtle came crawling over. \"I can't fly either,\" she said. \"But I know a way. Lie back, and look up.\" So they lay in the soft ferns, side by side, and looked. \"That cloud looks like an egg,\" said Turtle. \"That one looks like Pteranodon!\" said T. rex. And that little one, with a big round head and teeny tiny arms… \"That one's ME!\" Pteranodon floated down and landed right beside them. \"What are you two doing?\" \"Flying,\" said T. rex. \"With our eyes.\" So she lay down too. Three friends on the ground, all up in the clouds.",
+          "audio": "audio/en-US/t-rex-watches-the-clouds.m4a",
+          "effects": "audio/en-US/t-rex-watches-the-clouds.effects.json"
+        },
+        "es-ES": {
+          "title": "En las nubes",
+          "text": "Allá arriba, en el cielo, Pteranodon flotaba cerca de las nubes. T. rex la miraba desde el suelo. —¡Yo también quiero subir ahí! Así que saltó. Pum. Volvió a saltar. Pum. Pero los pies siempre le volvían al suelo. —Nunca llegaré a las nubes —dijo. Despacito, despacito, llegó Tortuga. —Yo tampoco sé volar —dijo—. Pero conozco un truco. Túmbate y mira hacia arriba. Así que se tumbaron entre los helechos blanditos, uno al lado del otro, y miraron. —Esa nube parece un huevo —dijo Tortuga. —¡Y esa parece Pteranodon! —dijo T. rex. Y aquella pequeñita, con la cabeza grande y redonda y unos bracitos diminutos… —¡Esa soy YO! Pteranodon bajó flotando y se posó justo a su lado. —¿Qué hacéis? —Volar —dijo T. rex—. Con los ojos. Así que ella también se tumbó. Tres amigos en el suelo, y los tres en las nubes.",
+          "audio": "audio/es-ES/t-rex-watches-the-clouds.m4a",
+          "effects": "audio/es-ES/t-rex-watches-the-clouds.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-eggs-are-listening",
+      "requiredStickers": [
+        "eggs",
+        "parasaurolophus",
+        "fern"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "music"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Eggs Are Listening",
+          "text": "Three eggs sat in their nest, warm and still. Parasaurolophus came to say good morning. \"Hello, little ones!\" She took a big breath and, HONK! All three eggs wobbled. Every one of Fern's fronds shook. \"Oh! Too loud,\" said Parasaurolophus. \"Sorry, sorry.\" So she tried a softer song, a slow little hum through her long crest. Hmm-mm-mm, hmm-mm-mm. Fern liked it. He swayed along, swish, swish. Then, from inside the front egg, tap… tap-tap. Parasaurolophus stopped. The egg stopped. She hummed again. Tap, tap, tap! \"They're listening!\" And every morning after that, Parasaurolophus came to sing, very softly, and every morning, from inside the eggs, little someones tapped along.",
+          "audio": "audio/en-US/the-eggs-are-listening.m4a",
+          "effects": "audio/en-US/the-eggs-are-listening.effects.json"
+        },
+        "es-ES": {
+          "title": "Los huevos escuchan",
+          "text": "Tres huevos descansaban en su nido, calentitos y quietos. Parasaurolophus vino a darles los buenos días. —¡Hola, pequeñines! Tomó aire y… ¡TUUUUU! Los tres huevos se tambalearon. A Helecho le temblaron todas las frondas. —¡Ay! Demasiado fuerte —dijo Parasaurolophus—. Perdón, perdón. Así que probó con una canción más suave, un tarareo lento por su larga cresta. Mmm-mm-mm, mmm-mm-mm. A Helecho le encantó. Se puso a mecerse al compás, fiu, fiu. Y entonces, desde dentro del huevo de delante: toc… toc, toc. Parasaurolophus se calló. El huevo se calló. Volvió a tararear. ¡Toc, toc, toc! —¡Nos están escuchando! Y desde aquel día, cada mañana, Parasaurolophus venía a cantar, muy bajito, y cada mañana, desde dentro de los huevos, alguien llamaba: toc, toc.",
+          "audio": "audio/es-ES/the-eggs-are-listening.m4a",
+          "effects": "audio/es-ES/the-eggs-are-listening.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-friend-in-the-puddle",
+      "requiredStickers": [
+        "puddle",
+        "pteranodon",
+        "archaeopteryx"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "curiosity"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Friend in the Puddle",
+          "text": "Pteranodon was thirsty. She hopped over to the mud puddle for a drink. And there in the shiny water was another pteranodon, looking back at her! Same crest. Same long beak. \"Hello!\" said Pteranodon. She waved. The other one waved too. \"Will you be my friend?\" Then… a little breeze ruffled the water, and the other pteranodon wobbled… and was gone. \"Come back!\" Archaeopteryx came hopping over. \"What's the matter?\" \"My friend in the puddle went away.\" Archaeopteryx bent down to the water, smooth and still again. \"Look! There's an archaeopteryx in there! And your pteranodon is back!\" Pteranodon tipped her head. The pteranodon in the water tipped hers. She lifted a wing. So did the other one. \"Oh! She's… ME!\" She laughed and laughed. \"Then you've got two friends,\" said Archaeopteryx. \"One in the puddle, and one right here.\" And Pteranodon decided the one right here was the best.",
+          "audio": "audio/en-US/the-friend-in-the-puddle.m4a",
+          "effects": "audio/en-US/the-friend-in-the-puddle.effects.json"
+        },
+        "es-ES": {
+          "title": "La amiga del charco",
+          "text": "Pteranodon tenía sed. Se acercó dando saltitos al charco de barro para beber. Y allí, en el agua brillante, había otra pteranodon, ¡mirándola a ella! La misma cresta. El mismo pico largo. —¡Hola! —dijo Pteranodon. Saludó con el ala. La otra también saludó. —¿Quieres ser mi amiga? Y entonces… una brisita rizó el agua, y la otra pteranodon tembló… y desapareció. —¡Vuelve! Arqueoptérix llegó dando saltitos. —¿Qué te pasa? —Mi amiga del charco se ha ido. Arqueoptérix se agachó hasta el agua. Ya estaba lisa y quieta otra vez. —¡Mira! ¡Aquí dentro hay una arqueoptérix! ¡Y ha vuelto tu pteranodon! Pteranodon ladeó la cabeza. La del agua ladeó la suya. Levantó un ala. La otra, también. —¡Oh! ¡Si soy… YO! Y se rio con ganas. —Entonces tienes dos amigas —dijo Arqueoptérix—: una en el charco, y otra aquí mismo. Y Pteranodon decidió que la de aquí mismo era la mejor.",
+          "audio": "audio/es-ES/the-friend-in-the-puddle.m4a",
+          "effects": "audio/es-ES/the-friend-in-the-puddle.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-hooting-log",
+      "requiredStickers": [
+        "log",
+        "dragonfly",
+        "beetle"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "weather"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Hooting Log",
+          "text": "It was a windy afternoon. Hooo… A soft, hooting sound came out of the old hollow log. Dragonfly zipped over to look. Zig, zag, round the log she went. \"Somebody's snoring in there!\" Beetle came too, but when he heard it… hooo… he tucked down flat under his shell and kept very, very still. \"Who is it?\" \"Hello?\" called Dragonfly into the log. Nobody answered. Only… hooo. Beetle took a deep breath. He popped back up. Then, step by step, he crept to the dark, round end of the log, and peeked inside. Nobody! Just a breeze, blowing in his face. Whoosh! \"It's the wind!\" laughed Beetle. \"The wind is blowing through the log!\" The little fern on top swayed. So when the wind blew again… hooo… Dragonfly and Beetle hummed along: hmmm… And that was the windy-day song of the hollow log.",
+          "audio": "audio/en-US/the-hooting-log.m4a",
+          "effects": "audio/en-US/the-hooting-log.effects.json"
+        },
+        "es-ES": {
+          "title": "El tronco que ululaba",
+          "text": "Era una tarde de viento. Uuuh… Del viejo tronco hueco salía un sonido suave, como un ulular. Libélula se acercó zumbando a mirar. Zig, zag, dio vueltas al tronco. —¡Ahí dentro hay alguien roncando! Escarabajo llegó también, pero al oírlo… uuuh… se agachó bajo su caparazón y se quedó quieto, quietísimo. —¿Quién será? —¿Hola? —dijo Libélula, asomándose al tronco. Nadie contestó. Solo… uuuh. Escarabajo respiró hondo. Se levantó. Y luego, pasito a pasito, se acercó a la boca oscura y redonda del tronco, y miró dentro. ¡Nadie! Solo una brisa que le soplaba en la cara. ¡Fiuuu! —¡Es el viento! —se rio Escarabajo—. ¡El viento sopla por dentro del tronco! El helechito de encima se meció. Así que, cuando el viento volvió a soplar… uuuh… Libélula y Escarabajo cantaron con él: mmmm… Y esa fue la canción del tronco hueco en los días de viento.",
+          "audio": "audio/es-ES/the-hooting-log.m4a",
+          "effects": "audio/es-ES/the-hooting-log.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-leaf-full-of-rain",
+      "requiredStickers": [
+        "leaf",
+        "archaeopteryx",
+        "beetle"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "weather"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Leaf Full of Rain",
+          "text": "Pitter-patter, pitter-patter. Down came the rain. Archaeopteryx and Beetle hurried under the big leaf. \"Warm and dry!\" said Archaeopteryx. Plip, plop, the raindrops bounced on top. But the rain kept coming, and the leaf filled up. It bent lower, and lower, and LOWER. \"Er… Leaf?\" Beetle knew what was coming. He tucked his legs in and sat flat and still under his shiny shell. Then, with one last drop, the big leaf bent so low that all its rain slid off at once. SPLOSH! Right onto Archaeopteryx. \"Brrr!\" She shivered and shook, drip, drip, from her beak to her tail feathers. Beetle popped up, dry as a pebble. Every drop had run straight off his shell. Then the rain stopped, and out came the sun. Archaeopteryx laughed and fluffed her wet feathers. \"Well,\" she said, \"now I'm the cleanest one in the whole valley!\"",
+          "audio": "audio/en-US/the-leaf-full-of-rain.m4a",
+          "effects": "audio/en-US/the-leaf-full-of-rain.effects.json"
+        },
+        "es-ES": {
+          "title": "La hoja llena de lluvia",
+          "text": "Plic, ploc, plic, ploc. Empezó a llover. Arqueoptérix y Escarabajo corrieron a meterse bajo la hoja grande. —¡Aquí, sequitos y calentitos! —dijo Arqueoptérix. Plic, ploc, las gotas rebotaban encima. Pero seguía lloviendo, y la hoja se iba llenando de agua. Se doblaba más, y más, y MÁS. —Esto… ¿Hoja? Escarabajo sabía lo que iba a pasar. Metió las patas y se quedó quietecito bajo su caparazón brillante. Y entonces, con una última gota, la hoja grande se dobló tanto que toda el agua resbaló de una vez. ¡CHOF! Justo encima de Arqueoptérix. —¡Brrr! Tiritó y se sacudió, chorreando de la cabeza a la cola. Escarabajo asomó, seco como una piedrecita: el agua le había resbalado por el caparazón. Entonces paró de llover y salió el sol. Arqueoptérix se echó a reír y ahuecó las plumas mojadas. —Bueno —dijo—, ¡ahora soy la más limpia de todo el valle!",
+          "audio": "audio/es-ES/the-leaf-full-of-rain.m4a",
+          "effects": "audio/es-ES/the-leaf-full-of-rain.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-leaf-that-tickles",
+      "requiredStickers": [
+        "fern",
+        "leaf",
+        "psittacosaurus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "weather"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Rain That Tickles",
+          "text": "Pitter-patter. A short summer rain fell on the valley. Fern lifted every frond and drank it all in. Little Psittacosaurus came hurrying under the big leaf to keep dry. Then, as quick as it came, the rain stopped. Out came the sun. But, drip. Drip. Drip. Psittacosaurus looked this way and that. Who was still dripping? It was Fern! Drops were rolling off his fronds, drip, drip, drip. \"Oh, Fern,\" said Psittacosaurus, \"are you crying?\" Fern wiggled all over and giggled. \"Crying? No! It's the leftover rain, and it TICKLES!\" Just then, the big leaf dripped too. Plip! Right on Psittacosaurus's nose. Then he laughed and laughed. \"It DOES tickle!\" So that day the rain fell twice: once from the sky, and once, just for fun, from the leaves.",
+          "audio": "audio/en-US/the-leaf-that-tickles.m4a",
+          "effects": "audio/en-US/the-leaf-that-tickles.effects.json"
+        },
+        "es-ES": {
+          "title": "Las gotas que hacen cosquillas",
+          "text": "Plic, ploc. Cayó sobre el valle una lluvia de verano, cortita. Helecho levantó todas sus frondas y se la bebió enterita. El pequeño Psitacosaurio corrió a meterse bajo la hoja grande para no mojarse. Y, tan deprisa como había llegado, la lluvia paró. Salió el sol. Pero, plic. Plic. Plic. Psitacosaurio miró a un lado y a otro. ¿Quién seguía goteando? ¡Era Helecho! Le resbalaban gotitas por las frondas, plic, plic, plic. —Ay, Helecho —dijo Psitacosaurio—, ¿estás llorando? Helecho se meneó entero y soltó una risita. —¿Llorando? ¡Qué va! Son las gotas que sobran de la lluvia, ¡y me hacen COSQUILLAS! Justo entonces, la hoja grande también goteó. ¡Plic! En toda la nariz de Psitacosaurio. Y se echó a reír. —¡Es verdad, hacen cosquillas! Así que aquel día llovió dos veces: una desde el cielo, y otra, solo por diversión, desde las hojas.",
+          "audio": "audio/es-ES/the-leaf-that-tickles.m4a",
+          "effects": "audio/es-ES/the-leaf-that-tickles.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-lily-pad-race",
+      "requiredStickers": [
+        "spinosaurus",
+        "gallimimus",
+        "ammonite"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "race",
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Lily Pad Race",
+          "text": "Out by the giant lily pads, Ammonite waved her curly tentacles. \"Race you to me!\" Gallimimus, the fastest runner in the valley, ran down to the shore and crouched, ready to go. Spinosaurus came plodding up beside her. \"You're much too slow,\" she teased. \"We'll see,\" said Spinosaurus. Ready… steady… GO! Whoosh! Off ran Gallimimus, all the way round the edge of the lagoon. But Spinosaurus waded straight into the water, swept his long tail like a paddle, swish, swoosh, and swam right across. He got there first! Ammonite twirled for the winner. Gallimimus came puffing up. \"But… HOW?\" Spinosaurus climbed out beside her and shook himself dry. Wiggle, wiggle, SPLASH! Gallimimus was dripping from her beak to the tip of her tail. \"Tomorrow,\" she laughed, \"we race on land!\" \"And then,\" said Spinosaurus, \"we swim back.\"",
+          "audio": "audio/en-US/the-lily-pad-race.m4a",
+          "effects": "audio/en-US/the-lily-pad-race.effects.json"
+        },
+        "es-ES": {
+          "title": "La carrera de los nenúfares",
+          "text": "Junto a los nenúfares gigantes, Amonites saludaba con sus tentáculos rizados. —¡A ver quién llega antes hasta mí! Gallimimus, la corredora más rápida del valle, bajó a la orilla de una carrera y se agachó, lista para salir. Espinosaurio llegó a su lado, pasito a pasito. —Eres demasiado lento —le dijo ella, de broma. —Ya veremos —dijo Espinosaurio. Preparados… listos… ¡YA! ¡Fiuuu! Gallimimus salió disparada, bordeando toda la laguna. Pero Espinosaurio se metió en el agua sin pensárselo, movió su larga cola como un remo, chis, chas, y cruzó nadando en línea recta. ¡Llegó el primero! Amonites dio una vuelta para el ganador. Gallimimus llegó resoplando. —Pero… ¿CÓMO? Espinosaurio salió del agua, se puso a su lado y se sacudió. ¡Meneo, meneo, y CHOF! Gallimimus quedó chorreando del pico a la punta de la cola. —Mañana —dijo, partiéndose de risa— corremos por tierra. —Y luego —dijo Espinosaurio— volvemos nadando.",
+          "audio": "audio/es-ES/the-lily-pad-race.m4a",
+          "effects": "audio/es-ES/the-lily-pad-race.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-prettiest-ripples",
+      "requiredStickers": [
+        "puddle",
+        "trex",
+        "dragonfly"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "kindness"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Prettiest Ripples",
+          "text": "T. rex wanted to make ripples in the mud puddle. Big ones. The BIGGEST. He lifted one big foot and, THUMP, SPLASH! Mud flew everywhere. Mud on his nose, mud on his tummy. The water sloshed and slopped, and then it went flat. No ripples at all. He tried again. THUMP, SPLOSH! Slosh, slop. Flat again. \"I can't make any.\" Dragonfly came zipping by. \"Can I try?\" She hung quite still above the water, her wings a blur. Then she touched it with the very tip of her tail. Tip. One ring. Two rings. Three rings, spreading slowly, wider and wider, all across the puddle. \"Ooh,\" said T. rex. \"The prettiest ripples ever!\" He clapped his tiny arms, pat, pat, pat. Then T. rex touched the water, very, very gently, with one toe. Tip. And a little ring spread out. \"Mine's small,\" he said. \"But it's ROUND!\"",
+          "audio": "audio/en-US/the-prettiest-ripples.m4a",
+          "effects": "audio/en-US/the-prettiest-ripples.effects.json"
+        },
+        "es-ES": {
+          "title": "Las ondas más bonitas",
+          "text": "T. rex quería hacer ondas en el charco de barro. Grandes. Las MÁS grandes. Levantó una patota y… ¡PUM, CHOF! El barro saltó por todas partes. Barro en el hocico, barro en la barriga. El agua se agitó, chapoteó… y se quedó lisa. Ni una onda. Lo intentó otra vez. ¡PUM, CHOF! Chap, chap. Lisa otra vez. —No me sale ninguna. Libélula pasó zumbando. —¿Puedo probar yo? Se quedó quietecita sobre el agua, con las alas zumbando. Y lo tocó con la puntita de la cola. Tip. Una onda. Dos ondas. Tres ondas, abriéndose despacito, cada vez más grandes, por todo el charco. —Oooh —dijo T. rex—. ¡Las ondas más bonitas del mundo! Aplaudió con sus bracitos, plas, plas, plas. Luego T. rex tocó el agua, muy, muy suavecito, con un dedo del pie. Tip. Y salió una ondita. —La mía es pequeña —dijo—. ¡Pero es REDONDA!",
+          "audio": "audio/es-ES/the-prettiest-ripples.m4a",
+          "effects": "audio/es-ES/the-prettiest-ripples.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-quietest-song",
+      "requiredStickers": [
+        "flower",
+        "plesiosaur",
+        "parasaurolophus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Quietest Song",
+          "text": "The sun was going down over the valley. Flower gave a little yawn and folded her petals up tight, ready for sleep. Parasaurolophus came by to say goodnight. She took a great big breath, lifted her head and, HONK! \"Goodnight, Flower!\" POP! Flower's petals sprang wide open. \"Oops,\" said Parasaurolophus. \"Too loud.\" Up came the moon. She tried again, very softly this time. Hmm-mm, hmm-mm, a quiet little tune through her long crest. Out on the lagoon, Plesiosaur heard it, and hummed along, soft and low. Flower's eyes grew heavy. Slowly, slowly, her petals folded up again. Plesiosaur's long neck drooped. He was fast asleep too. \"Goodnight,\" whispered Parasaurolophus, without a single honk. And that was the quietest goodnight song the valley had ever heard.",
+          "audio": "audio/en-US/the-quietest-song.m4a",
+          "effects": "audio/en-US/the-quietest-song.effects.json"
+        },
+        "es-ES": {
+          "title": "La canción más bajita",
+          "text": "El sol se ponía sobre el valle. Flor dio un bostecito y cerró sus pétalos bien apretados, lista para dormir. Parasaurolophus vino a darle las buenas noches. Tomó aire, muchísimo aire, levantó la cabeza y, ¡TUUUUU! —¡Buenas noches, Flor! ¡PLOP! A Flor se le abrieron los pétalos de repente. —Uy —dijo Parasaurolophus—. Demasiado fuerte. Salió la luna. Lo intentó otra vez, muy bajito. Mmm-mm, mmm-mm, una cancioncita suave por su larga cresta. En la laguna, Plesiosaurio la oyó y se puso a tararearla con ella, bajito, bajito. A Flor se le cerraban los ojos. Despacito, despacito, sus pétalos se volvieron a cerrar. A Plesiosaurio se le cayó el largo cuello: también se había dormido. —Buenas noches —susurró Parasaurolophus, sin ni un solo tuuu. Y esa fue la canción de buenas noches más bajita que el valle había oído jamás.",
+          "audio": "audio/es-ES/the-quietest-song.m4a",
+          "effects": "audio/es-ES/the-quietest-song.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-sail-shade",
+      "requiredStickers": [
+        "spinosaurus",
+        "eggs",
+        "pteranodon"
+      ],
+      "optionalStickers": [
+        "triceratops"
+      ],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "sunny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Sail Shade",
+          "text": "It was the hottest day of the summer. Mama Triceratops was thirsty, so she went down to the lagoon for a drink. But her three eggs sat in the nest, in the hot, hot sun. Wobble, wobble, wobble. Phew! Spinosaurus came walking by. \"Too hot for little ones,\" he said. So he stood beside the nest and stretched his tall stripy sail up to the sun. Under the sail, ahh, was a patch of cool shade, just the size of a nest. High above, Pteranodon spotted it. \"Ooh, shade!\" Down she came, and hopped in beside the nest. She spread her wings, wide, wider, and made more shade. When Mama came back, she found her eggs cool and cosy, in the shade of one sail and two wings. She nuzzled them gently. And Spinosaurus? He didn't move a single scale until the day cooled down.",
+          "audio": "audio/en-US/the-sail-shade.m4a",
+          "effects": "audio/en-US/the-sail-shade.effects.json"
+        },
+        "es-ES": {
+          "title": "La sombra de la vela",
+          "text": "Era el día más caluroso del verano. Mamá Triceratops tenía sed, así que bajó a la laguna a beber. Pero sus tres huevos se quedaron en el nido, al sol, con un calor… Se movieron, uno, dos y tres: ¡uf! Espinosaurio pasaba por allí. —Demasiado calor para los pequeñines —dijo. Así que se plantó junto al nido y estiró su gran vela de rayas hacia el sol. Y debajo, ¡aaah!, quedó una sombra fresquita, justo del tamaño de un nido. Desde allá arriba, Pteranodon la vio. —¡Uy, sombra! Bajó en un vuelo y se coló de un saltito junto al nido. Abrió las alas, anchas, más anchas, e hizo más sombra. Cuando Mamá volvió, encontró sus huevos fresquitos, a la sombra de una vela y dos alas. Les dio un mimo con el hocico. ¿Y Espinosaurio? No movió ni una escama hasta que refrescó.",
+          "audio": "audio/es-ES/the-sail-shade.m4a",
+          "effects": "audio/es-ES/the-sail-shade.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-seed-nobody-could-open",
+      "requiredStickers": [
+        "psittacosaurus",
+        "brachiosaurus",
+        "trex"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Seed Nobody Could Open",
+          "text": "Brachiosaurus found something in the grass: a little round seed head, hard as a pebble and full of seeds. Sniff, sniff. Yum! But his mouth was made for big leafy mouthfuls from the treetops, and the seed head just rolled away. Oh dear. T. rex came bouncing up. \"I'll open it for you!\" He lifted one big foot and stomped. THUMP! The seed head just bounced away, without a crack. \"Oops.\" Then along came little Psittacosaurus. \"Can I try?\" He picked it up in his little hands. His beak was hooked and strong, just like a parrot's. CRACK! Crunch, crunch! Open it came. \"Some for you,\" said Psittacosaurus, holding up the seeds. Down, down came the long, long neck, all the way to his hands. The biggest in the valley and the smallest, sharing one little seed head. And T. rex? He did the clapping.",
+          "audio": "audio/en-US/the-seed-nobody-could-open.m4a",
+          "effects": "audio/en-US/the-seed-nobody-could-open.effects.json"
+        },
+        "es-ES": {
+          "title": "La semilla que nadie abría",
+          "text": "Braquiosaurio encontró algo entre la hierba: una cabecita redonda de semillas, dura como un guijarro. Snif, snif. ¡Qué rica! Pero su boca era para grandes bocados de hojas, allá en lo alto, y la cabecita se le escapó rodando. Vaya por Dios. T. rex llegó dando saltitos. —¡Yo te la abro! Levantó una patota y dio un pisotón. ¡PUM! La cabecita salió botando, sin una grieta. —Uy. Entonces llegó el pequeño Psitacosaurio. —¿Puedo probar yo? Cogió la cabecita con sus manitas. Tenía un pico curvo y fuerte, igualito que el de un loro. ¡CRAC! ¡Cronch, cronch! Y se abrió. —Toma, para ti —dijo Psitacosaurio, con las semillas en alto. Y el cuello larguísimo bajó, bajó y bajó, hasta sus manitas. El más grande del valle y el más pequeño, compartiendo una cabecita de semillas. ¿Y T. rex? T. rex se encargó de los aplausos.",
+          "audio": "audio/es-ES/the-seed-nobody-could-open.m4a",
+          "effects": "audio/es-ES/the-seed-nobody-could-open.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-sleepy-egg",
+      "requiredStickers": [
+        "eggs",
+        "triceratops",
+        "brachiosaurus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Sleepy Egg",
+          "text": "The sun was going down, and Mama Triceratops settled down beside her nest. Three speckled eggs, snug in the ferns. They wobbled, one, two, three, as if the babies inside were wriggling. \"Shhh,\" said Mama. \"Bedtime.\" Along came Brachiosaurus, slow and gentle. \"I'll hum them a lullaby,\" he said. Hmm-mmm, hmm-mmm, he hummed, swaying his long neck. Up came the moon. Out came the fireflies, to listen. Then… tap, tap… crack! Out popped a baby, in an eggshell cap. He gave a great big yawn… and fell fast asleep, right there in his shell. \"Hello, little one,\" whispered Mama. \"And goodnight.\" She laid her head down beside him and closed her eyes. Brachiosaurus hummed one last, slow note. And the other two eggs? They could wait till morning.",
+          "audio": "audio/en-US/the-sleepy-egg.m4a",
+          "effects": "audio/en-US/the-sleepy-egg.effects.json"
+        },
+        "es-ES": {
+          "title": "El huevo dormilón",
+          "text": "El sol se ponía, y Mamá Triceratops se tumbó junto a su nido. Tres huevos moteados, calentitos entre los helechos. Se movieron, uno, dos y tres, como si los bebés se estiraran por dentro. —Chist —dijo Mamá—. A dormir. Llegó Braquiosaurio, despacio y con cuidado. —Les tarareo una nana —dijo. Mmm-mmm, mmm-mmm, tarareó, meciendo su largo cuello. Salió la luna. Salieron las luciérnagas, a escuchar. Y entonces… toc, toc… ¡crac! Asomó un bebé con un gorrito de cáscara. Bostezó muy fuerte… y se quedó dormido, allí mismo, en su cascarón. —Hola, pequeñín —susurró Mamá—. Y buenas noches. Apoyó la cabeza a su lado y cerró los ojos. Braquiosaurio tarareó una última nota, muy despacito. ¿Y los otros dos huevos? Esos podían esperar a mañana.",
+          "audio": "audio/es-ES/the-sleepy-egg.m4a",
+          "effects": "audio/es-ES/the-sleepy-egg.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-slowest-race",
+      "requiredStickers": [
+        "gallimimus",
+        "turtle",
+        "pachycephalosaurus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "race",
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Slowest Race",
+          "text": "Gallimimus had two long legs, like an ostrich, and she was the fastest runner in the valley. Every race was over in a flash. Zip! She'd won again. And that was no fun at all. So she had an idea. \"The SLOWEST race! To the lagoon! Last one there wins!\" Pachycephalosaurus and Turtle wanted to play. \"Ready, steady,\" \"go-o-o!\" Gallimimus tiptoed. But Pachycephalosaurus couldn't keep still. He bounced and he bounced, all the way to the lagoon. \"Oops! First!\" Gallimimus came second, on very slow tiptoes. And Turtle? Turtle crawled. Step. And step. And a little rest. Gallimimus tapped her foot, tap, tap, tap. \"Hurry up, Turtle!\" Then she laughed. \"No! Slow DOWN!\" At last, very last of all, Turtle arrived. Turtle WINS! Everyone cheered, and Turtle, smiling, did a slow, slow victory dance. \"Best race ever,\" said Gallimimus. \"It took all afternoon!\"",
+          "audio": "audio/en-US/the-slowest-race.m4a",
+          "effects": "audio/en-US/the-slowest-race.effects.json"
+        },
+        "es-ES": {
+          "title": "La carrera más lenta",
+          "text": "Gallimimus tenía dos patas largas, como un avestruz, y era la más rápida del valle. Todas las carreras se acababan en un suspiro. ¡Zas! Había vuelto a ganar. Y así no tenía gracia. Entonces se le ocurrió una idea. —¡La carrera MÁS LENTA! ¡Hasta la laguna! ¡Gana el último! Paquicefalosaurio y Tortuga se apuntaron. —Preparados, listos… ¡yaaa! Gallimimus fue de puntillas. Pero Paquicefalosaurio no podía estarse quieto: botando, botando, llegó hasta la laguna. —¡Uy! ¡El primero! Gallimimus llegó la segunda, de puntillas. ¿Y Tortuga? Tortuga caminaba. Un pasito. Otro pasito. Y un descansito. Gallimimus tamborileaba con el pie, tap, tap, tap. —¡Corre, Tortuga! —Y se echó a reír—. ¡No, no! ¡Más DESPACIO! Por fin, la última de todas, llegó Tortuga. ¡Tortuga GANA! Todos la vitorearon, y Tortuga, muy sonriente, se marcó un bailecito lento, lentísimo. —¡La mejor carrera del mundo! —dijo Gallimimus—. ¡Ha durado toda la tarde!",
+          "audio": "audio/es-ES/the-slowest-race.m4a",
+          "effects": "audio/es-ES/the-slowest-race.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-top-of-the-tree",
+      "requiredStickers": [
+        "brachiosaurus",
+        "stegosaurus",
+        "trex"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Top of the Tree",
+          "text": "Stegosaurus was munching ferns, low down in the meadow. Munch, munch. Then he looked up… and up… at the very top of the monkey-puzzle tree. \"I wonder what those leaves taste like.\" T. rex came stomping over. \"I'll get you one!\" He stood on tiptoe and stretched his tiny arms up high. Higher! Higher! Not even close. T. rex gave a little shrug. Oh well. Then — thump… thump… along came Brachiosaurus. \"Allow me.\" Up went his long, long neck, all the way to the very highest leaves. Rustle, rustle. Down it came, with a mouthful. Munch… munch… \"Well?\" asked Stegosaurus. \"PRICKLY,\" said Brachiosaurus, chewing happily. \"Just how I like them.\" T. rex giggled. Stegosaurus looked at his soft ferns. \"I think I'll stay down here.\" So the tall one ate up high, the low one ate down low… and T. rex jumped, just to say he'd tried.",
+          "audio": "audio/en-US/the-top-of-the-tree.m4a",
+          "effects": "audio/en-US/the-top-of-the-tree.effects.json"
+        },
+        "es-ES": {
+          "title": "Lo más alto del árbol",
+          "text": "Estegosaurio mordisqueaba helechos, bien bajito, en el prado. Ñam, ñam. Entonces miró hacia arriba… muy arriba… a la copa de la araucaria. —¿A qué sabrán esas hojas de ahí arriba? T. rex llegó dando zancadas. —¡Yo te cojo una! Se puso de puntillas y estiró sus bracitos todo lo que pudo. ¡Más! ¡Más! Ni de lejos. T. rex se encogió de hombros. Vaya. Y entonces… pum… pum… llegó Braquiosaurio. —Ya voy yo. Su cuello largo, larguísimo, subió y subió hasta las hojas más altas de todas. Fru, fru. Y bajó con la boca llena. Ñam… ñam… —¿Y bien? —preguntó Estegosaurio. —PINCHAN —dijo Braquiosaurio, masticando tan contento—. ¡Como a mí me gustan! T. rex se rio. Estegosaurio miró sus helechos blanditos. —Creo que me quedo aquí abajo. Así que el alto comió arriba, el bajito comió abajo… y T. rex dio un salto, solo para decir que lo había intentado.",
+          "audio": "audio/es-ES/the-top-of-the-tree.m4a",
+          "effects": "audio/es-ES/the-top-of-the-tree.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-windy-day",
+      "requiredStickers": [
+        "leaf",
+        "log",
+        "pteranodon"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "weather",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Windy Day",
+          "text": "WHOOOSH! A big wind came sweeping across the valley. The big leaf bent right over, flap, flap, and sprang back up. On top of the log, its little fern lay flat and held on tight. But Pteranodon? Pteranodon loved the wind more than anything. \"Wheee! My favourite!\" she called. She spread her wings, and the wind lifted her up, up, up! There she hung, wings spread wide. Not one flap. The wind puffed, and she bobbed. The wind swirled, and she twirled. She could see the whole valley, all the way to the sleepy old mountain far away. Then, slowly, the wind dropped. The little fern on the log sprang back up. And Pteranodon drifted down, gently, gently, and landed on the big flat rock. \"Thank you, wind,\" she said. But the wind had gone off to play somewhere else.",
+          "audio": "audio/en-US/the-windy-day.m4a",
+          "effects": "audio/en-US/the-windy-day.effects.json"
+        },
+        "es-ES": {
+          "title": "El día del viento",
+          "text": "¡FIUUUUU! Un viento fuerte llegó barriendo el valle. La hoja grande se dobló del todo, flap, flap, y volvió a enderezarse. Encima del tronco, su helechito se quedó aplastado, agarrándose bien fuerte. Pero ¿y Pteranodon? A Pteranodon el viento le gustaba más que nada en el mundo. —¡Yupiii! ¡Mi preferido! —gritó. Abrió las alas, y el viento la subió arriba, arriba, arriba. Y allí se quedó, con las alas bien abiertas. Ni un aleteo. El viento soplaba, y ella se mecía. El viento hacía remolinos, y ella daba vueltas. Desde allí veía todo el valle, hasta la vieja montaña dormida, allá lejos. Hasta que, poco a poco, el viento se calmó. El helechito del tronco se levantó de un brinco. Y Pteranodon bajó planeando, despacito, despacito, y se posó en la gran roca plana. —Gracias, viento —dijo. Pero el viento ya se había ido a jugar a otra parte.",
+          "audio": "audio/es-ES/the-windy-day.m4a",
+          "effects": "audio/es-ES/the-windy-day.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-wobbly-log",
+      "requiredStickers": [
+        "log",
+        "psittacosaurus",
+        "turtle"
+      ],
+      "optionalStickers": [
+        "brachiosaurus"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "friendship"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Wobbly Log",
+          "text": "Little Psittacosaurus and Turtle had walked a long, long way. \"My feet are tired,\" said Psittacosaurus. So they sat down on the log to rest. Ahh. Then, thump, thump, along came Brachiosaurus. THUMP! went his big foot. And the log went wibble, wobble, wibble! Psittacosaurus held on tight. Turtle pulled her head right in. \"Oh! Sorry!\" said Brachiosaurus. He took another step. THUMP! Wibble, wobble! And this time, Psittacosaurus laughed and laughed. \"Again! Do it again!\" Turtle popped her head out. \"Again!\" So Brachiosaurus did a big, slow, stompy dance, thump, thump, THUMP, and the log rocked and rolled with the two little friends on top, squealing with joy. The best ride in the whole valley. All it needed was one log, and one very big friend with very big feet.",
+          "audio": "audio/en-US/the-wobbly-log.m4a",
+          "effects": "audio/en-US/the-wobbly-log.effects.json"
+        },
+        "es-ES": {
+          "title": "El tronco que se meneaba",
+          "text": "El pequeño Psitacosaurio y Tortuga habían caminado mucho, muchísimo. —Tengo los pies cansados —dijo Psitacosaurio. Así que se sentaron en el tronco a descansar. Aaah. Entonces, pum, pum, llegó Braquiosaurio. ¡PUM!, hizo su patota. Y el tronco se meneó: ¡zis, zas, zis! Psitacosaurio se agarró fuerte. Tortuga metió la cabeza en su caparazón. —¡Ay, perdón! —dijo Braquiosaurio. Dio otro paso. ¡PUM! ¡Zis, zas! Y esta vez, Psitacosaurio se partió de risa. —¡Otra vez! ¡Otra vez! Tortuga sacó la cabeza. —¡Otra! Así que Braquiosaurio se marcó un baile lento y pesado, pum, pum, PUM, y el tronco se meneaba y se meneaba con los dos amiguitos encima, chillando de alegría. El mejor columpio del valle. Solo hacía falta un tronco y un amigo muy grande, con unos pies muy grandes.",
+          "audio": "audio/es-ES/the-wobbly-log.m4a",
+          "effects": "audio/es-ES/the-wobbly-log.effects.json"
+        }
+      }
+    },
+    {
+      "id": "too-hot-to-sunbathe",
+      "requiredStickers": [
+        "spinosaurus",
+        "stegosaurus",
+        "ankylosaurus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "sunny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Too Hot to Sunbathe",
+          "text": "It was the hottest day of the year, and three friends lay in the sun to see who could soak up the most sunshine. Spinosaurus lifted his big sail up high. \"My sail catches the most!\" Stegosaurus lay down and lifted his plates. \"My plates catch more!\" Ankylosaurus spread out his wide, bumpy back. \"I'm the biggest of all!\" So there they lay, baking. Warmer… hotter… PHEW. \"Too… hot!\" puffed Spinosaurus. He jumped up, hurried down to the lagoon and dived right in. SPLOOSH! \"Ahhh! Come in, it's lovely!\" The other two hurried down to the water's edge. Spinosaurus slapped his tail, splash, splash, and cool water flew all over them. Ankylosaurus giggled till his bumpy back bounced. \"So who won?\" asked Stegosaurus. \"The lagoon!\" said everyone.",
+          "audio": "audio/en-US/too-hot-to-sunbathe.m4a",
+          "effects": "audio/en-US/too-hot-to-sunbathe.effects.json"
+        },
+        "es-ES": {
+          "title": "Demasiado sol",
+          "text": "Era el día más caluroso del año, y tres amigos se tumbaron al sol a ver quién se calentaba más. Espinosaurio levantó bien alta su gran vela. —¡Mi vela es la que más sol coge! Estegosaurio se tumbó y levantó sus placas. —¡Pues mis placas cogen más! Anquilosaurio estiró su ancha espalda llena de bultos. —¡Yo soy el más grande! Y allí se quedaron, tostándose. Más calor… más calor… UF. —¡Qué… calor! —resopló Espinosaurio. Se levantó de un salto, bajó corriendo a la laguna y se tiró al agua. ¡CHOF! —¡Aaah! ¡Venid, que está buenísima! Los otros dos bajaron deprisa hasta el borde del agua. Espinosaurio dio coletazos, ¡plas, plas!, y el agua fresquita les salpicó por todas partes. Anquilosaurio se rio tanto que le botaba la espalda. —¿Y quién ha ganado? —preguntó Estegosaurio. —¡La laguna! —dijeron todos.",
+          "audio": "audio/es-ES/too-hot-to-sunbathe.m4a",
+          "effects": "audio/es-ES/too-hot-to-sunbathe.effects.json"
+        }
+      }
+    },
+    {
+      "id": "turtle-warms-up",
+      "requiredStickers": [
+        "turtle",
+        "log",
+        "beetle"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "weather",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Turtle Warms Up",
+          "text": "It was a cool, cloudy morning in the valley. Turtle was so chilly that everything felt slow. Even slower than usual. Beetle came scuttling up. \"Come and play!\" \"Too cold,\" said Turtle. \"I need the sun first.\" But the sun was hiding behind the clouds. So Turtle crawled, very slowly, up onto the old log. It gave a little creak. \"Why up there?\" asked Beetle. \"To be ready,\" said Turtle. And she waited. Beetle waited too. Then… the clouds drifted away, and out came the sun. Turtle stretched out her neck and her legs, long and warm, and closed her eyes. Ahhh. Beetle climbed up beside her, and his shell shone green and gold. \"Warm enough to play now?\" \"Mmm,\" said Turtle. \"In a minute.\" And Beetle stayed right there with her, shining in the sun.",
+          "audio": "audio/en-US/turtle-warms-up.m4a",
+          "effects": "audio/en-US/turtle-warms-up.effects.json"
+        },
+        "es-ES": {
+          "title": "Tortuga entra en calor",
+          "text": "Era una mañana fresquita y gris en el valle. Tortuga tenía tanto frío que todo le salía despacio. Aún más despacio que de costumbre. Escarabajo llegó correteando. —¡Ven a jugar! —Tengo frío —dijo Tortuga—. Primero necesito el sol. Pero el sol estaba escondido detrás de las nubes. Así que Tortuga se subió al viejo tronco, despacito, despacito. El tronco crujió un poquito. —¿Por qué ahí arriba? —preguntó Escarabajo. —Para estar preparada —dijo Tortuga. Y esperó. Escarabajo esperó también. Y entonces… las nubes se apartaron, y salió el sol. Tortuga estiró el cuello y las patas, bien largas, y cerró los ojos. Aaah. Escarabajo trepó a su lado, y su caparazón brilló verde y dorado. —¿Ya tienes calor para jugar? —Mmm —dijo Tortuga—. Dentro de un ratito. Y Escarabajo se quedó allí con ella, brillando al sol.",
+          "audio": "audio/es-ES/turtle-warms-up.m4a",
+          "effects": "audio/es-ES/turtle-warms-up.effects.json"
+        }
+      }
+    },
+    {
+      "id": "two-shells",
+      "requiredStickers": [
+        "ammonite",
+        "turtle",
+        "dragonfly"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "friendship"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Two Shells",
+          "text": "Little Ammonite lived in the lagoon, and she was very, very shy. ZIP! Dragonfly came zooming up, her wings all a-shimmer. \"Hello, Ammonite!\" Whoop! Ammonite tucked herself into her shell. Only the stripes were showing. \"Oh,\" said Dragonfly. \"Maybe she doesn't like me.\" Turtle had seen it all. She slid into the water and swam over, slow and calm. She didn't say a word. She just tucked her own head in, right beside Ammonite, and peeked out with only her eyes. \"It's cosy in here, isn't it?\" Two shells, side by side. Then, very slowly, one little face came out, and then another. Dragonfly waved one clear wing, softly this time. \"Hello,\" whispered Ammonite, and she waved all her curly little arms. From then on, whenever Dragonfly came zipping by, two shells said hello together.",
+          "audio": "audio/en-US/two-shells.m4a",
+          "effects": "audio/en-US/two-shells.effects.json"
+        },
+        "es-ES": {
+          "title": "Dos casitas a cuestas",
+          "text": "En la laguna vivía la pequeña Amonites, que era muy, muy tímida. ¡ZUUUM! Libélula llegó zumbando, con las alas brillantes. —¡Hola, Amonites! ¡Uy! Amonites se escondió en su concha en un santiamén. Solo se veían las rayas. —Vaya —dijo Libélula—. A lo mejor no le caigo bien. Tortuga lo había visto todo. Se deslizó en el agua y se acercó nadando, despacito y tranquila. No dijo nada. Solo metió la cabeza justo al lado de Amonites, y se asomó con los ojitos nada más. —Aquí dentro se está calentito, ¿verdad? Una concha y un caparazón, uno junto al otro. Y entonces, muy despacio, salió una carita, y luego otra. Libélula saludó con un ala transparente, muy suavecito esta vez. —Hola —susurró Amonites, y saludó con todos sus bracitos rizados. Desde entonces, cada vez que Libélula pasaba zumbando, una concha y un caparazón la saludaban a la vez.",
+          "audio": "audio/es-ES/two-shells.m4a",
+          "effects": "audio/es-ES/two-shells.effects.json"
+        }
+      }
+    },
+    {
+      "id": "wishes-on-the-lagoon",
+      "requiredStickers": [
+        "plesiosaur",
+        "parasaurolophus",
+        "glider"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "wonder"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Wishes on the Lagoon",
+          "text": "It was a clear, warm night, and the moon was up. Plesiosaur lay floating on the lagoon, face up to the sky, eyes closed, listening to the night. On the shore, Parasaurolophus stretched and yawned, but she just couldn't sleep. And on his branch, little Glider was wide awake. \"Psst!\" \"Look up!\" Whoosh… a shooting star streaked across the sky. Plesiosaur opened his eyes. \"Ooh! Make a wish!\" said Parasaurolophus. So they did. Parasaurolophus wished for a brand-new song. Glider wished for the longest glide ever. And Plesiosaur thought, and thought. \"I wish,\" he said, \"we could all do this again tomorrow.\" Another star flew by. \"That one's easy,\" said Parasaurolophus. \"We'll be right here.\" And one by one, under the twinkling stars, they all fell asleep.",
+          "audio": "audio/en-US/wishes-on-the-lagoon.m4a",
+          "effects": "audio/en-US/wishes-on-the-lagoon.effects.json"
+        },
+        "es-ES": {
+          "title": "Deseos en la laguna",
+          "text": "Era una noche clara y templada, y había salido la luna. Plesiosaurio flotaba en la laguna, boca arriba, con los ojos cerrados, escuchando la noche. En la orilla, Parasaurolophus se estiró y bostezó, pero no había manera de dormirse. Y en su rama, el pequeño Planeador estaba despierto del todo. —¡Psst! ¡Mirad arriba! Fiuuu… una estrella fugaz cruzó el cielo. Plesiosaurio abrió los ojos. —¡Oh! ¡Pedid un deseo! —dijo Parasaurolophus. Y eso hicieron. Parasaurolophus deseó una canción nueva. Planeador deseó el planeo más largo del mundo. Y Plesiosaurio pensó, y pensó. —Yo deseo —dijo— que mañana podamos hacer esto otra vez. Pasó otra estrella. —Ese es fácil —dijo Parasaurolophus—. Aquí estaremos. Y uno a uno, bajo las estrellas, se quedaron todos dormidos.",
+          "audio": "audio/es-ES/wishes-on-the-lagoon.m4a",
+          "effects": "audio/es-ES/wishes-on-the-lagoon.effects.json"
+        }
+      }
+    }
+  ]
+}

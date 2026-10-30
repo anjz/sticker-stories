@@ -1,0 +1,82 @@
+{
+  "id": "shake-head",
+  "sticker": "plesiosaur",
+  "kind": "action",
+  "description": "the plesiosaur shakes its little head no.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.10156,
+    "width": 0.83984,
+    "height": 0.79557
+  },
+  "on": [
+    "lagoon"
+  ],
+  "puppet": {
+    "rig": "anims/plesiosaur.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "x": -4
+          },
+          "head": {
+            "r": -7
+          },
+          "neck": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 4
+          },
+          "head": {
+            "r": 7
+          },
+          "neck": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": -4
+          },
+          "head": {
+            "r": -7
+          },
+          "neck": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 3
+          },
+          "head": {
+            "r": 6
+          },
+          "neck": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

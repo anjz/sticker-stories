@@ -1,0 +1,189 @@
+{
+  "id": "sleep",
+  "sticker": "glider",
+  "description": "the glider gives a big yawn, closes its eyes and dozes off sitting up, its arms folded in, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26432,
+    "width": 0.5,
+    "height": 0.47005
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the glider dozing sitting up, eyes shut, head drooped"
+  },
+  "perched": true,
+  "puppet": {
+    "rig": "anims/glider.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 14
+          },
+          "armR": {
+            "r": -14
+          },
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -5,
+            "y": -4
+          },
+          "skinL": {
+            "r": 11.2,
+            "sx": 0.888
+          },
+          "skinR": {
+            "r": -11.2,
+            "sx": 0.888
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": 14
+          },
+          "armR": {
+            "r": -14
+          },
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -5,
+            "y": -4
+          },
+          "skinL": {
+            "r": 11.2,
+            "sx": 0.888
+          },
+          "skinR": {
+            "r": -11.2,
+            "sx": 0.888
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": -14
+          },
+          "armR": {
+            "r": 14
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": 7,
+            "y": 10
+          },
+          "skinL": {
+            "r": -5.6,
+            "sx": 0.888
+          },
+          "skinR": {
+            "r": 5.6,
+            "sx": 0.888
+          },
+          "tail": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "armL": {
+            "r": -14
+          },
+          "armR": {
+            "r": 14
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": 7,
+            "y": 10
+          },
+          "skinL": {
+            "r": -5.6,
+            "sx": 0.888
+          },
+          "skinR": {
+            "r": 5.6,
+            "sx": 0.888
+          },
+          "tail": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.2,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

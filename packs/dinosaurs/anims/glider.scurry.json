@@ -1,0 +1,519 @@
+{
+  "id": "scurry",
+  "sticker": "glider",
+  "kind": "move",
+  "description": "the glider scurries along to the left on its little back legs, leaning forward with its gliding skin folded in and its long tail trailing, then sits up.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26432,
+    "width": 0.5,
+    "height": 0.47005
+  },
+  "loop": {
+    "from": 1,
+    "to": 12
+  },
+  "facing": "left",
+  "stride": 0.27,
+  "puppet": {
+    "rig": "anims/glider.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.037,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "body": {
+            "r": -6.69,
+            "y": -0.05
+          },
+          "head": {
+            "r": 4.2
+          },
+          "legL": {
+            "x": 22.46
+          },
+          "legR": {
+            "x": -28.59
+          },
+          "root": {},
+          "skinL": {
+            "r": -5,
+            "sx": 0.8
+          },
+          "skinR": {
+            "r": 5,
+            "sx": 0.8
+          },
+          "tail": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.037,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "body": {
+            "r": -7.67,
+            "y": -0.48
+          },
+          "head": {
+            "r": 4.6
+          },
+          "legL": {
+            "x": 28.2,
+            "y": -5.79
+          },
+          "legR": {
+            "x": -20.08
+          },
+          "root": {},
+          "skinL": {
+            "r": -5,
+            "sx": 0.8
+          },
+          "skinR": {
+            "r": 5,
+            "sx": 0.8
+          },
+          "tail": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.037,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "body": {
+            "r": -7.98,
+            "y": -2.02
+          },
+          "head": {
+            "r": 5.4
+          },
+          "legL": {
+            "x": 20.69,
+            "y": -8.66
+          },
+          "legR": {
+            "x": -11.57
+          },
+          "root": {},
+          "skinL": {
+            "r": -5,
+            "sx": 0.8
+          },
+          "skinR": {
+            "r": 5,
+            "sx": 0.8
+          },
+          "tail": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.037,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "body": {
+            "r": -7.31,
+            "y": -3.13
+          },
+          "head": {
+            "r": 5.8
+          },
+          "legL": {
+            "x": 6.08,
+            "y": -7.55
+          },
+          "legR": {
+            "x": -3.06
+          },
+          "root": {},
+          "skinL": {
+            "r": -5,
+            "sx": 0.8
+          },
+          "skinR": {
+            "r": 5,
+            "sx": 0.8
+          },
+          "tail": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.037,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "body": {
+            "r": -6.33,
+            "y": -2.7
+          },
+          "head": {
+            "r": 5.4
+          },
+          "legL": {
+            "x": -10.63,
+            "y": -5.83
+          },
+          "legR": {
+            "x": 5.45
+          },
+          "root": {},
+          "skinL": {
+            "r": -5,
+            "sx": 0.8
+          },
+          "skinR": {
+            "r": 5,
+            "sx": 0.8
+          },
+          "tail": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.037,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "body": {
+            "r": -6.02,
+            "y": -1.16
+          },
+          "head": {
+            "r": 4.6
+          },
+          "legL": {
+            "x": -23.68,
+            "y": -5.95
+          },
+          "legR": {
+            "x": 13.96
+          },
+          "root": {},
+          "skinL": {
+            "r": -5,
+            "sx": 0.8
+          },
+          "skinR": {
+            "r": 5,
+            "sx": 0.8
+          },
+          "tail": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.037,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "body": {
+            "r": -6.69,
+            "y": -0.05
+          },
+          "head": {
+            "r": 4.2
+          },
+          "legL": {
+            "x": -28.59
+          },
+          "legR": {
+            "x": 22.46
+          },
+          "root": {},
+          "skinL": {
+            "r": -5,
+            "sx": 0.8
+          },
+          "skinR": {
+            "r": 5,
+            "sx": 0.8
+          },
+          "tail": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.037,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "body": {
+            "r": -7.67,
+            "y": -0.48
+          },
+          "head": {
+            "r": 4.6
+          },
+          "legL": {
+            "x": -20.08
+          },
+          "legR": {
+            "x": 28.2,
+            "y": -4.83
+          },
+          "root": {},
+          "skinL": {
+            "r": -5,
+            "sx": 0.8
+          },
+          "skinR": {
+            "r": 5,
+            "sx": 0.8
+          },
+          "tail": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.037,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "body": {
+            "r": -7.98,
+            "y": -2.02
+          },
+          "head": {
+            "r": 5.4
+          },
+          "legL": {
+            "x": -11.57
+          },
+          "legR": {
+            "x": 20.69,
+            "y": -8.66
+          },
+          "root": {},
+          "skinL": {
+            "r": -5,
+            "sx": 0.8
+          },
+          "skinR": {
+            "r": 5,
+            "sx": 0.8
+          },
+          "tail": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.037,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "body": {
+            "r": -7.31,
+            "y": -3.13
+          },
+          "head": {
+            "r": 5.8
+          },
+          "legL": {
+            "x": -3.06
+          },
+          "legR": {
+            "x": 6.08,
+            "y": -7.55
+          },
+          "root": {},
+          "skinL": {
+            "r": -5,
+            "sx": 0.8
+          },
+          "skinR": {
+            "r": 5,
+            "sx": 0.8
+          },
+          "tail": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.037,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "body": {
+            "r": -6.33,
+            "y": -2.7
+          },
+          "head": {
+            "r": 5.4
+          },
+          "legL": {
+            "x": 5.45
+          },
+          "legR": {
+            "x": -10.63,
+            "y": -3.88
+          },
+          "root": {},
+          "skinL": {
+            "r": -5,
+            "sx": 0.8
+          },
+          "skinR": {
+            "r": 5,
+            "sx": 0.8
+          },
+          "tail": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.037,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "body": {
+            "r": -6.02,
+            "y": -1.16
+          },
+          "head": {
+            "r": 4.6
+          },
+          "legL": {
+            "x": 13.96
+          },
+          "legR": {
+            "x": -23.68,
+            "y": -5
+          },
+          "root": {},
+          "skinL": {
+            "r": -5,
+            "sx": 0.8
+          },
+          "skinR": {
+            "r": 5,
+            "sx": 0.8
+          },
+          "tail": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "body": {
+            "r": -6.89,
+            "y": -0.02
+          },
+          "head": {
+            "r": 4.72
+          },
+          "legL": {
+            "x": 7.86
+          },
+          "legR": {
+            "x": -10.01
+          },
+          "root": {},
+          "skinL": {
+            "r": -5,
+            "sx": 0.8
+          },
+          "skinR": {
+            "r": 5,
+            "sx": 0.8
+          },
+          "tail": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.35
+      }
+    ]
+  }
+}

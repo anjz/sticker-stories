@@ -1,0 +1,107 @@
+{
+  "id": "nuzzle",
+  "sticker": "triceratops",
+  "kind": "action",
+  "description": "the Triceratops tips its big head down lovingly and nuzzles in, eyes shut happily, all gentle and warm.",
+  "stickerBox": {
+    "x": 0.08333,
+    "y": 0.07943,
+    "width": 0.83333,
+    "height": 0.83984
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the Triceratops with its head tipped down, nuzzling in, eyes shut happily"
+  },
+  "puppet": {
+    "rig": "anims/triceratops.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "head": {
+            "r": -8,
+            "x": -2,
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "head": {
+            "r": -10,
+            "x": -3,
+            "y": 5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "head": {
+            "r": -8,
+            "x": -2,
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "head": {
+            "r": -10,
+            "x": -3,
+            "y": 5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

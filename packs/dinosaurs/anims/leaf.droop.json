@@ -1,0 +1,132 @@
+{
+  "id": "droop",
+  "sticker": "leaf",
+  "kind": "action",
+  "description": "the big leaf droops, heavy with rain, its edges hanging down; then it tips the water off with a splash and springs back up.",
+  "stickerBox": {
+    "x": 0.10547,
+    "y": 0.07943,
+    "width": 0.78906,
+    "height": 0.83984
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the big leaf drooping, heavy with rain, its edges hanging down"
+  },
+  "particles": [
+    {
+      "frame": 5,
+      "effect": "spray",
+      "x": 0.75,
+      "y": 0.48,
+      "intensity": 0.35
+    }
+  ],
+  "puppet": {
+    "rig": "anims/leaf.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "blade": {
+            "y": 10,
+            "sx": 0.92,
+            "sy": 0.9
+          },
+          "body": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "blade": {
+            "y": 10,
+            "sx": 0.97,
+            "sy": 0.97
+          },
+          "body": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "blade": "droop"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "blade": {
+            "r": 3,
+            "y": 14
+          },
+          "body": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "blade": "droop"
+        }
+      },
+      {
+        "hold": 0.35,
+        "ease": "in",
+        "bones": {
+          "blade": {
+            "r": 10,
+            "y": 12
+          },
+          "body": {
+            "r": 7
+          }
+        },
+        "slots": {
+          "blade": "droop"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "blade": {
+            "y": -4,
+            "sx": 0.95,
+            "sy": 1.04
+          },
+          "body": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "blade": {
+            "r": -2,
+            "sy": 0.98
+          },
+          "body": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "blade": {
+            "r": 0.5
+          },
+          "body": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

@@ -273,7 +273,11 @@ its puppet and its shadow are cut off at the waterline and sunk by as
 much, so the waterline lies where its feet were, and ripples ring it
 there, the far half behind it and the near half in front
 (`StageWorld.afloat`, `StickerNode.float`). It sinks in over its first
-half-height into the water and rises as it climbs out. A sticker in water
+half-height into the water and rises as it climbs out. While the child
+places it, it floats just the same where they put it in its water
+(`CanvasScene.updateAfloat`, its still art cut by a shader) — never
+standing on the water, nor sinking in as the story starts; held up by
+a finger, it is whole. A sticker in water
 without a waterline would stand on the water, so the pack staging test
 fails one — except in **shallow** water (Beach's rock pool, `shallow` in
 the space): whoever belongs there sits on its clear bottom, seen whole,
@@ -318,7 +322,9 @@ front of the canopy line, and steps back under it only as its next action
 — cued within a second of its getting there (Lola crouching) — takes it
 down, that action playing as it steps; with none, it stays in front. A
 small one that fits under them whole
-stands in front, as before; both keep their sizes. The staging test fails
+stands in front, as before; both keep their sizes. The row moves along
+off a plane's footprint where it can (the beetle under the leaf by the
+rock ledge). The staging test fails
 one sheltering so that neither its face nor its middle shows past its
 host's painted shape; being partly behind its own host is no fault there.
 

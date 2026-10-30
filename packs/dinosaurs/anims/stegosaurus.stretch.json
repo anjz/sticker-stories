@@ -1,0 +1,113 @@
+{
+  "id": "stretch",
+  "sticker": "stegosaurus",
+  "kind": "action",
+  "description": "the Stegosaurus stretches its head up and its tail out long with a big yawn, then relaxes with a happy sigh.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.16146,
+    "width": 0.83984,
+    "height": 0.67708
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the Stegosaurus stretching tall, head up and tail out, mid-yawn"
+  },
+  "puppet": {
+    "rig": "anims/stegosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 1.03
+          },
+          "head": {
+            "r": 7,
+            "y": -5
+          },
+          "legFF": {
+            "r": 6
+          },
+          "legFN": {
+            "r": 6
+          },
+          "plates": {
+            "sy": 1.03
+          },
+          "tail": {
+            "r": -7,
+            "sx": 1.05
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 1.04
+          },
+          "head": {
+            "r": 9,
+            "y": -7
+          },
+          "legFF": {
+            "r": 7
+          },
+          "legFN": {
+            "r": 7
+          },
+          "plates": {
+            "sy": 1.04
+          },
+          "tail": {
+            "r": -9,
+            "sx": 1.06
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "head": {
+            "y": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

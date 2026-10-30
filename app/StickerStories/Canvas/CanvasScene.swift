@@ -2177,6 +2177,43 @@ final class CanvasScene: SKScene {
         }
     }
 
+    /// The stage as the window shows it, for `updateAfloat`: rebuilt when
+    /// the world or its art changes.
+    private var afloatWorld: (size: CGSize, wide: Bool, world: StageWorld)?
+
+    /// Afloat while the child places it: a sticker with a way into a deep
+    /// water (a move's `waterline`: the duckling, the turtle) that the child
+    /// put in that water floats there as deep as a story floats it at that
+    /// spot (`StageWorld.afloat`, `StickerNode.float`) — never standing on
+    /// the water, nor sinking in as a story starts. Held up by the child's
+    /// finger, it is whole. A story floats it itself.
+    private func updateAfloat() {
+        guard playSession == nil, let space = pack.manifest.space, worldSize.width > 0, worldSize.height > 0 else { return }
+        let wide = artVariant == .wide
+        if afloatWorld?.size != worldSize || afloatWorld?.wide != wide {
+            let aspect = baseArtPixelSize.height > 0 ? Double(baseArtPixelSize.width / baseArtPixelSize.height) : 4.0 / 3
+            let world = StageWorld(
+                space: space, aspect: aspect, wide: wide, frame: StageSize(width: worldSize.width, height: worldSize.height))
+            afloatWorld = (worldSize, wide, world)
+        }
+        guard let world = afloatWorld?.world else { return }
+        for node in allStickerNodes() {
+            guard let moves = stageMoves[node.stickerID], moves.contains(where: { $0.waterline > 0 }) else { continue }
+            let box = drawingBox(of: node.stickerID)
+            var depth = 0.0
+            if !node.isLifted {
+                // Its feet, as the director reads them (`StoryStage.actors`).
+                let p = node.placement, unit = node.unscaledSize
+                let feet = SceneSpace.Point(
+                    (p.x + (Double(box.midX) - 0.5) * Double(unit.width) * p.scale) / Double(worldSize.width),
+                    (p.y + (Double(box.minY) - 0.5) * Double(unit.height) * p.scale) / Double(worldSize.height))
+                depth = world.afloat(
+                    at: world.groundPoint(feet).onGround, moves: moves, ramp: (space.sizes[node.stickerID] ?? 0.2) * 0.5)
+            }
+            node.float(depth, drawing: box)
+        }
+    }
+
     private lazy var stages: [String: StickerStage] = Dictionary(
         uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.stage.map { (s.id, $0) } })
     /// Each sticker's moves (its walk, flight or sprout), its usual one
@@ -2357,7 +2394,10 @@ final class CanvasScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         sceneTime = currentTime
         // (Last, once the stickers are where this frame puts them.)
-        defer { updateUnderwater() }
+        defer {
+            updateUnderwater()
+            updateAfloat()
+        }
         updateHints()
         guard let session = playSession else { return }
         let time = session.clock.now()

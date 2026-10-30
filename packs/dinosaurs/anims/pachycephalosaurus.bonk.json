@@ -1,0 +1,289 @@
+{
+  "id": "bonk",
+  "sticker": "pachycephalosaurus",
+  "kind": "action",
+  "description": "the Pachycephalosaurus leans forward and gives a gentle, playful bonk with its round dome, then rubs its head with a little hand and giggles.",
+  "stickerBox": {
+    "x": 0.1849,
+    "y": 0.13932,
+    "width": 0.63021,
+    "height": 0.72005
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the Pachycephalosaurus leaning forward, giving a gentle little bonk with its round dome"
+  },
+  "puppet": {
+    "rig": "anims/pachycephalosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 5,
+            "y": -2
+          },
+          "root": {
+            "x": 3
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": 12
+          },
+          "armR": {
+            "r": 12
+          },
+          "body": {
+            "r": -8
+          },
+          "head": {
+            "r": -20
+          },
+          "root": {
+            "x": -8
+          },
+          "tail": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "armL": {
+            "r": 14
+          },
+          "armR": {
+            "r": 14
+          },
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.97
+          },
+          "body": {
+            "r": -9
+          },
+          "head": {
+            "r": -23,
+            "y": 2
+          },
+          "root": {
+            "x": -11
+          },
+          "tail": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -6
+          },
+          "root": {
+            "x": -4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "armR": {
+            "r": 95
+          },
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -10,
+            "y": 8
+          }
+        },
+        "slots": {
+          "armR": "none",
+          "armRFront": "arm",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "armR": {
+            "r": 80
+          },
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -8,
+            "y": 7
+          }
+        },
+        "slots": {
+          "armR": "none",
+          "armRFront": "arm",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "armR": {
+            "r": 95
+          },
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -10,
+            "y": 8
+          }
+        },
+        "slots": {
+          "armR": "none",
+          "armRFront": "arm",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "armR": {
+            "r": 80
+          },
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -8,
+            "y": 7
+          }
+        },
+        "slots": {
+          "armR": "none",
+          "armRFront": "arm",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sx": 0.98,
+            "sy": 1.04
+          },
+          "head": {
+            "r": 4,
+            "y": -3
+          },
+          "root": {
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "head": {
+            "r": 1,
+            "y": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sx": 0.98,
+            "sy": 1.04
+          },
+          "head": {
+            "r": 4,
+            "y": -3
+          },
+          "root": {
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

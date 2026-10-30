@@ -1,0 +1,134 @@
+{
+  "id": "call",
+  "sticker": "pteranodon",
+  "description": "the pteranodon lifts its head and calls out happily, its beak wide open, twice.",
+  "stickerBox": {
+    "x": 0.27474,
+    "y": 0.20052,
+    "width": 0.45052,
+    "height": 0.59896
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the pteranodon calling out happily, its head up and its beak open"
+  },
+  "puppet": {
+    "rig": "anims/pteranodon.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "head": {
+            "r": -4,
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 14,
+            "y": -6
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 14,
+            "y": -6
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 6,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 14,
+            "y": -6
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.55,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 14,
+            "y": -6
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

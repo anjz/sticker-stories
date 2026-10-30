@@ -1,0 +1,441 @@
+{
+  "id": "swim",
+  "sticker": "turtle",
+  "kind": "move",
+  "description": "the turtle swims along to the left, paddling with its little legs, its head held up out of the water, then stops.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.26042,
+    "width": 0.59896,
+    "height": 0.47917
+  },
+  "loop": {
+    "from": 1,
+    "to": 16
+  },
+  "facing": "left",
+  "stride": 0.7,
+  "on": [
+    "lagoon"
+  ],
+  "stays": true,
+  "waterline": 0.4,
+  "puppet": {
+    "rig": "anims/turtle.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.075,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": 44
+          },
+          "armR": {
+            "r": 28.8
+          },
+          "body": {
+            "r": 0.88
+          },
+          "head": {
+            "r": 0.39
+          },
+          "legR": {
+            "r": -4.66
+          },
+          "root": {
+            "y": 1.08
+          }
+        }
+      },
+      {
+        "hold": 0.075,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": 42.23
+          },
+          "armR": {
+            "r": 27.21
+          },
+          "body": {
+            "r": 0.35
+          },
+          "head": {
+            "r": 0.92
+          },
+          "legR": {
+            "r": -3.61
+          },
+          "root": {
+            "y": -0.27
+          }
+        }
+      },
+      {
+        "hold": 0.075,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": 37.16
+          },
+          "armR": {
+            "r": 22.64
+          },
+          "body": {
+            "r": -0.23
+          },
+          "head": {
+            "r": 1.31
+          },
+          "legR": {
+            "r": -2.01
+          },
+          "root": {
+            "y": -1.59
+          }
+        }
+      },
+      {
+        "hold": 0.075,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": 29.42
+          },
+          "armR": {
+            "r": 15.68
+          },
+          "body": {
+            "r": -0.78
+          },
+          "head": {
+            "r": 1.51
+          },
+          "legR": {
+            "r": -0.11
+          },
+          "root": {
+            "y": -2.66
+          }
+        }
+      },
+      {
+        "hold": 0.075,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": 19.98
+          },
+          "armR": {
+            "r": 7.19
+          },
+          "body": {
+            "r": -1.21
+          },
+          "head": {
+            "r": 1.47
+          },
+          "legR": {
+            "r": 1.81
+          },
+          "root": {
+            "y": -3.33
+          }
+        }
+      },
+      {
+        "hold": 0.075,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": 10.05
+          },
+          "armR": {
+            "r": -1.76
+          },
+          "body": {
+            "r": -1.46
+          },
+          "head": {
+            "r": 1.21
+          },
+          "legR": {
+            "r": 3.46
+          },
+          "root": {
+            "y": -3.49
+          }
+        }
+      },
+      {
+        "hold": 0.075,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": 0.86
+          },
+          "armR": {
+            "r": -10.02
+          },
+          "body": {
+            "r": -1.48
+          },
+          "head": {
+            "r": 0.77
+          },
+          "legR": {
+            "r": 4.58
+          },
+          "root": {
+            "y": -3.12
+          }
+        }
+      },
+      {
+        "hold": 0.075,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -6.42
+          },
+          "armR": {
+            "r": -16.57
+          },
+          "body": {
+            "r": -1.28
+          },
+          "head": {
+            "r": 0.21
+          },
+          "legR": {
+            "r": 5
+          },
+          "root": {
+            "y": -2.27
+          }
+        }
+      },
+      {
+        "hold": 0.075,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -10.87
+          },
+          "armR": {
+            "r": -20.58
+          },
+          "body": {
+            "r": -0.88
+          },
+          "head": {
+            "r": -0.39
+          },
+          "legR": {
+            "r": 4.66
+          },
+          "root": {
+            "y": -1.08
+          }
+        }
+      },
+      {
+        "hold": 0.075,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -11.89
+          },
+          "armR": {
+            "r": -21.5
+          },
+          "body": {
+            "r": -0.35
+          },
+          "head": {
+            "r": -0.92
+          },
+          "legR": {
+            "r": 3.61
+          },
+          "root": {
+            "y": 0.27
+          }
+        }
+      },
+      {
+        "hold": 0.075,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -8.25
+          },
+          "armR": {
+            "r": -18.22
+          },
+          "body": {
+            "r": 0.23
+          },
+          "head": {
+            "r": -1.31
+          },
+          "legR": {
+            "r": 2.01
+          },
+          "root": {
+            "y": 1.59
+          }
+        }
+      },
+      {
+        "hold": 0.075,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -0.06
+          },
+          "armR": {
+            "r": -10.85
+          },
+          "body": {
+            "r": 0.78
+          },
+          "head": {
+            "r": -1.51
+          },
+          "legR": {
+            "r": 0.11
+          },
+          "root": {
+            "y": 2.66
+          }
+        }
+      },
+      {
+        "hold": 0.075,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": 11.14
+          },
+          "armR": {
+            "r": -0.78
+          },
+          "body": {
+            "r": 1.21
+          },
+          "head": {
+            "r": -1.47
+          },
+          "legR": {
+            "r": -1.81
+          },
+          "root": {
+            "y": 3.33
+          }
+        }
+      },
+      {
+        "hold": 0.075,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": 23.25
+          },
+          "armR": {
+            "r": 10.12
+          },
+          "body": {
+            "r": 1.46
+          },
+          "head": {
+            "r": -1.21
+          },
+          "legR": {
+            "r": -3.46
+          },
+          "root": {
+            "y": 3.49
+          }
+        }
+      },
+      {
+        "hold": 0.075,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": 34
+          },
+          "armR": {
+            "r": 19.8
+          },
+          "body": {
+            "r": 1.48
+          },
+          "head": {
+            "r": -0.77
+          },
+          "legR": {
+            "r": -4.58
+          },
+          "root": {
+            "y": 3.12
+          }
+        }
+      },
+      {
+        "hold": 0.075,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": 41.38
+          },
+          "armR": {
+            "r": 26.44
+          },
+          "body": {
+            "r": 1.28
+          },
+          "head": {
+            "r": -0.21
+          },
+          "legR": {
+            "r": -5
+          },
+          "root": {
+            "y": 2.27
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": 15.4
+          },
+          "armR": {
+            "r": 10.08
+          },
+          "body": {
+            "r": 0.31
+          },
+          "head": {
+            "r": 0.14
+          },
+          "legR": {
+            "r": -1.63
+          },
+          "root": {
+            "y": 0.38
+          }
+        }
+      },
+      {
+        "hold": 0.35
+      }
+    ]
+  }
+}

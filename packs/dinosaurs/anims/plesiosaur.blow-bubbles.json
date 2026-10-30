@@ -1,0 +1,175 @@
+{
+  "id": "blow-bubbles",
+  "sticker": "plesiosaur",
+  "kind": "action",
+  "description": "the plesiosaur puckers its mouth into a little o and blows bubbles, puff, puff, puff, then smiles.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.10156,
+    "width": 0.83984,
+    "height": 0.79557
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the plesiosaur with its mouth a round little o, blowing bubbles"
+  },
+  "on": [
+    "lagoon"
+  ],
+  "particles": [
+    {
+      "frame": 2,
+      "effect": "bubble-puff",
+      "x": 0.18,
+      "y": 0.72,
+      "intensity": 0.6
+    },
+    {
+      "frame": 4,
+      "effect": "bubble-puff",
+      "x": 0.18,
+      "y": 0.72,
+      "intensity": 0.6
+    },
+    {
+      "frame": 6,
+      "effect": "bubble-puff",
+      "x": 0.18,
+      "y": 0.72,
+      "intensity": 0.6
+    }
+  ],
+  "puppet": {
+    "rig": "anims/plesiosaur.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "head": {
+            "r": -10
+          },
+          "neck": {
+            "r": -9
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "head": {
+            "r": -12
+          },
+          "neck": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 0.99,
+            "sy": 1.03
+          },
+          "head": {
+            "r": -10
+          },
+          "neck": {
+            "r": -9
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "head": {
+            "r": -12
+          },
+          "neck": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 0.99,
+            "sy": 1.03
+          },
+          "head": {
+            "r": -10
+          },
+          "neck": {
+            "r": -9
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "head": {
+            "r": -12
+          },
+          "neck": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "head": {
+            "r": -1
+          },
+          "neck": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

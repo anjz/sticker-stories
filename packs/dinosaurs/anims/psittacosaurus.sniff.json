@@ -1,0 +1,141 @@
+{
+  "id": "sniff",
+  "sticker": "psittacosaurus",
+  "kind": "action",
+  "description": "the little Psittacosaurus lowers its beak and sniffs, sniff, sniff, then lifts its head with a happy smile.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.20443,
+    "width": 0.59896,
+    "height": 0.59115
+  },
+  "puppet": {
+    "rig": "anims/psittacosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -8,
+            "y": 3
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -10,
+            "y": 4
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -8,
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -10,
+            "y": 4
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -8,
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -10,
+            "y": 4
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -8,
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": 5,
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

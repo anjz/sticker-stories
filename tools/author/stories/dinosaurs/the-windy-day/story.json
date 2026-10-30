@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "the-windy-day",
+  "pack": "dinosaurs",
+  "featured": [
+    "leaf",
+    "log",
+    "pteranodon"
+  ],
+  "supporting": [],
+  "tags": [
+    "weather",
+    "funny"
+  ],
+  "premise": "A big wind sweeps the valley: the big leaf bends right over, the little fern on the log lies flat and holds on, and Pteranodon, who loves wind more than anything, spreads her wings and floats on it without a single flap — until the wind drops and she drifts gently down onto the big flat rock.",
+  "inspiration": "The North Wind's games (Aesop, Andersen's 'The Wind Tells…'), turned: the wind plays with everyone, and the flyer plays back.",
+  "lesson": "What blows others over can lift you up.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "The Windy Day",
+      "text": "{leaf:enter} {log:enter} {canvas:wind 0.7} {sfx:gust} WHOOOSH! A big wind came sweeping across the valley. {sfx:wind} {leaf:live gust} The big leaf bent right over, flap, flap, and sprang back up. {log:live gust hold} On top of the log, its little fern lay flat and held on tight. But {pteranodon:enter} Pteranodon? Pteranodon loved the wind more than anything. {pteranodon:face happy} \"Wheee! My favourite!\" {pteranodon:live call} she called. She spread her wings, {pteranodon:go to sky right} and the wind {pteranodon:face surprised} lifted her up, up, up! {pteranodon:live glide hold} There she hung, wings spread wide. Not one flap. The wind puffed, and she bobbed. {pteranodon:float} The wind swirled, and she {pteranodon:spin} twirled. [in awe] She could see the whole valley, all the way to the sleepy old mountain far away. Then, slowly, {canvas:wind stop} the wind dropped. {log:live gust resume} The little fern on the log sprang back up. {pteranodon:live glide resume} And Pteranodon drifted down, gently, gently, {pteranodon:go to rocks} and landed on the big flat rock. {pteranodon:face happy} {pteranodon:hearts} [softly] \"Thank you, wind,\" she said. But the wind had gone off to play somewhere else."
+    },
+    "es-ES": {
+      "title": "El día del viento",
+      "text": "{leaf:enter} {log:enter} {canvas:wind 0.7} {sfx:gust} ¡FIUUUUU! Un viento fuerte llegó barriendo el valle. {sfx:wind} {leaf:live gust} La hoja grande se dobló del todo, flap, flap, y volvió a enderezarse. {log:live gust hold} Encima del tronco, su helechito se quedó aplastado, agarrándose bien fuerte. Pero ¿y {pteranodon:enter} Pteranodon? A Pteranodon el viento le gustaba más que nada en el mundo. {pteranodon:face happy} —¡Yupiii! ¡Mi preferido! {pteranodon:live call} —gritó. Abrió las alas, {pteranodon:go to sky right} y el viento {pteranodon:face surprised} la subió arriba, arriba, arriba. {pteranodon:live glide hold} Y allí se quedó, con las alas bien abiertas. Ni un aleteo. El viento soplaba, y ella se mecía. {pteranodon:float} El viento hacía remolinos, y ella daba {pteranodon:spin} vueltas. [in awe] Desde allí veía todo el valle, hasta la vieja montaña dormida, allá lejos. Hasta que, poco a poco, {canvas:wind stop} el viento se calmó. {log:live gust resume} El helechito del tronco se levantó de un brinco. {pteranodon:live glide resume} Y Pteranodon bajó planeando, despacito, despacito, {pteranodon:go to rocks} y se posó en la gran roca plana. {pteranodon:face happy} {pteranodon:hearts} [softly] —Gracias, viento —dijo. Pero el viento ya se había ido a jugar a otra parte."
+    }
+  },
+  "sounds": {
+    "gust": {
+      "prompt": "a big gust of wind rushing across an open grassy valley, realistic field recording",
+      "seconds": 2
+    },
+    "wind": {
+      "prompt": "steady wind blowing across an open grassy valley, leaves rustling, realistic field recording",
+      "seconds": 30,
+      "loop": true
+    }
+  }
+}

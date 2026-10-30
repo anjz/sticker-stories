@@ -1,0 +1,130 @@
+{
+  "id": "stomp",
+  "sticker": "brachiosaurus",
+  "kind": "action",
+  "description": "the brachiosaurus lifts one big front foot and sets it down with a gentle, heavy stomp and a little puff of dust, then smiles.",
+  "stickerBox": {
+    "x": 0.07682,
+    "y": 0.02995,
+    "width": 0.84635,
+    "height": 0.9401
+  },
+  "particles": [
+    {
+      "frame": 3,
+      "effect": "dust-puff",
+      "x": 0.49,
+      "y": 0.93,
+      "intensity": 0.5
+    }
+  ],
+  "puppet": {
+    "rig": "anims/brachiosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "r": 1
+          },
+          "head": {
+            "r": 3
+          },
+          "legFN": {
+            "r": 3,
+            "y": -26
+          },
+          "tail": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "r": 1
+          },
+          "head": {
+            "r": 3
+          },
+          "legFN": {
+            "r": 3,
+            "y": -26
+          },
+          "tail": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.95
+          },
+          "head": {
+            "r": -3
+          },
+          "neckTop": {
+            "r": -2
+          },
+          "root": {
+            "y": 3
+          },
+          "tail": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sx": 1.01,
+            "sy": 0.99
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

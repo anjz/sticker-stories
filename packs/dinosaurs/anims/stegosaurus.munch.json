@@ -1,0 +1,191 @@
+{
+  "id": "munch",
+  "sticker": "stegosaurus",
+  "kind": "action",
+  "description": "the Stegosaurus bends down, bites off a fern frond and munches it, munch, munch, then licks its lips happily.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.16146,
+    "width": 0.83984,
+    "height": 0.67708
+  },
+  "puppet": {
+    "rig": "anims/stegosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "head": {
+            "r": -10,
+            "y": 8
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "head": {
+            "r": -10,
+            "y": 8
+          }
+        },
+        "slots": {
+          "fern": "fern"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "fern": "fern",
+          "mouth": "chew"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "fern": {
+            "sx": 0.8,
+            "sy": 0.8
+          },
+          "head": {
+            "r": 1,
+            "y": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "fern": "fern",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "fern": {
+            "sx": 0.8,
+            "sy": 0.8
+          },
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "fern": "fern",
+          "mouth": "chew"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "fern": {
+            "sx": 0.55,
+            "sy": 0.55
+          },
+          "head": {
+            "r": 1,
+            "y": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "fern": "fern",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "fern": {
+            "sx": 0.55,
+            "sy": 0.55
+          },
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "fern": "fern",
+          "mouth": "chew"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "fern": {
+            "sx": 0.3,
+            "sy": 0.3
+          },
+          "head": {
+            "r": 1,
+            "y": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "fern": "fern",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "chew"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

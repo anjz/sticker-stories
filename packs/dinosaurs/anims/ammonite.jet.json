@@ -1,0 +1,153 @@
+{
+  "id": "jet",
+  "sticker": "ammonite",
+  "kind": "action",
+  "description": "the ammonite squeezes and shoots backwards a little, shell first, with a puff of bubbles, then bobs gently back.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.25781,
+    "width": 0.5,
+    "height": 0.48307
+  },
+  "on": [
+    "lagoon"
+  ],
+  "particles": [
+    {
+      "frame": 2,
+      "effect": "bubble-puff",
+      "x": 0.33,
+      "y": 0.64,
+      "intensity": 0.6
+    }
+  ],
+  "puppet": {
+    "rig": "anims/ammonite.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 1.03
+          },
+          "head": {
+            "x": -3
+          },
+          "t1": {
+            "r": -8
+          },
+          "t2": {
+            "r": 8
+          },
+          "t3": {
+            "r": -8
+          },
+          "t4": {
+            "r": 8
+          },
+          "t5": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.96,
+            "sy": 0.97
+          },
+          "body": {
+            "r": 4
+          },
+          "fringe": {
+            "sy": 0.9
+          },
+          "root": {
+            "x": 46,
+            "y": -4
+          },
+          "t1": {
+            "r": 36
+          },
+          "t2": {
+            "r": 24
+          },
+          "t3": {
+            "r": 18
+          },
+          "t4": {
+            "r": 14
+          },
+          "t5": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "root": {
+            "x": 54,
+            "y": -2
+          },
+          "t1": {
+            "r": 14
+          },
+          "t2": {
+            "r": 10
+          },
+          "t3": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "root": {
+            "x": 24
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "root": {
+            "x": 6
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

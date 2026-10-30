@@ -1,0 +1,173 @@
+{
+  "id": "sleep",
+  "sticker": "bush",
+  "kind": "action",
+  "description": "the berry bush gives a big yawn, closes its eyes and nods off to sleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.15365,
+    "width": 0.72005,
+    "height": 0.69271
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the berry bush fast asleep, eyes shut, settled low"
+  },
+  "puppet": {
+    "rig": "anims/bush.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "head": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "head": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "belly": {
+            "sx": 1.015,
+            "sy": 0.97
+          },
+          "berriesA": {
+            "r": -2
+          },
+          "berriesB": {
+            "r": 2
+          },
+          "berriesC": {
+            "r": -2
+          },
+          "berriesD": {
+            "r": 2
+          },
+          "berriesE": {
+            "r": -2
+          },
+          "berriesF": {
+            "r": 2
+          },
+          "berriesG": {
+            "r": -2
+          },
+          "berriesH": {
+            "r": 2
+          },
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -5,
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "belly": {
+            "sx": 1.0165,
+            "sy": 0.967
+          },
+          "berriesA": {
+            "r": -2.2
+          },
+          "berriesB": {
+            "r": 2.2
+          },
+          "berriesC": {
+            "r": -2.2
+          },
+          "berriesD": {
+            "r": 2.2
+          },
+          "berriesE": {
+            "r": -2.2
+          },
+          "berriesF": {
+            "r": 2.2
+          },
+          "berriesG": {
+            "r": -2.2
+          },
+          "berriesH": {
+            "r": 2.2
+          },
+          "body": {
+            "r": -2.2
+          },
+          "head": {
+            "r": -5.5,
+            "y": 4.4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.2,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

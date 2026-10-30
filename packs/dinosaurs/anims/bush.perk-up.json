@@ -1,0 +1,185 @@
+{
+  "id": "perk-up",
+  "sticker": "bush",
+  "kind": "action",
+  "description": "the berry bush perks up, puffing up tall and round with its berries bright, eyes wide, and beams.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.15365,
+    "width": 0.72005,
+    "height": 0.69271
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the berry bush perked up tall and round, beaming"
+  },
+  "puppet": {
+    "rig": "anims/bush.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.98,
+            "sy": 1.05
+          },
+          "berriesA": {
+            "sx": 1.06,
+            "sy": 1.06
+          },
+          "berriesB": {
+            "sx": 1.06,
+            "sy": 1.06
+          },
+          "berriesC": {
+            "sx": 1.06,
+            "sy": 1.06
+          },
+          "berriesD": {
+            "sx": 1.06,
+            "sy": 1.06
+          },
+          "berriesE": {
+            "sx": 1.06,
+            "sy": 1.06
+          },
+          "berriesF": {
+            "sx": 1.06,
+            "sy": 1.06
+          },
+          "berriesG": {
+            "sx": 1.06,
+            "sy": 1.06
+          },
+          "berriesH": {
+            "sx": 1.06,
+            "sy": 1.06
+          },
+          "head": {
+            "y": -5
+          }
+        },
+        "slots": {
+          "browL": "up",
+          "browR": "up",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "belly": {
+            "sx": 0.982,
+            "sy": 1.045
+          },
+          "berriesA": {
+            "sx": 1.054,
+            "sy": 1.054
+          },
+          "berriesB": {
+            "sx": 1.054,
+            "sy": 1.054
+          },
+          "berriesC": {
+            "sx": 1.054,
+            "sy": 1.054
+          },
+          "berriesD": {
+            "sx": 1.054,
+            "sy": 1.054
+          },
+          "berriesE": {
+            "sx": 1.054,
+            "sy": 1.054
+          },
+          "berriesF": {
+            "sx": 1.054,
+            "sy": 1.054
+          },
+          "berriesG": {
+            "sx": 1.054,
+            "sy": 1.054
+          },
+          "berriesH": {
+            "sx": 1.054,
+            "sy": 1.054
+          },
+          "head": {
+            "y": -4.5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sx": 0.994,
+            "sy": 1.0150000000000001
+          },
+          "berriesA": {
+            "sx": 1.018,
+            "sy": 1.018
+          },
+          "berriesB": {
+            "sx": 1.018,
+            "sy": 1.018
+          },
+          "berriesC": {
+            "sx": 1.018,
+            "sy": 1.018
+          },
+          "berriesD": {
+            "sx": 1.018,
+            "sy": 1.018
+          },
+          "berriesE": {
+            "sx": 1.018,
+            "sy": 1.018
+          },
+          "berriesF": {
+            "sx": 1.018,
+            "sy": 1.018
+          },
+          "berriesG": {
+            "sx": 1.018,
+            "sy": 1.018
+          },
+          "berriesH": {
+            "sx": 1.018,
+            "sy": 1.018
+          },
+          "head": {
+            "y": -1.5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

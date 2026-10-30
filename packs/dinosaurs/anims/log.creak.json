@@ -1,0 +1,61 @@
+{
+  "id": "creak",
+  "sticker": "log",
+  "kind": "action",
+  "description": "the old log settles with a tiny creaking wobble, then lies still.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.19531,
+    "width": 0.72005,
+    "height": 0.60938
+  },
+  "puppet": {
+    "rig": "anims/log.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "tipR": {
+            "r": 0.8
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "fern": {
+            "r": 1
+          },
+          "tip": {
+            "r": -0.5
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "fern": {
+            "r": -1
+          },
+          "tipR": {
+            "r": 0.5
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "tip": {
+            "r": -0.25
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

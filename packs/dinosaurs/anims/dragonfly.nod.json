@@ -1,0 +1,63 @@
+{
+  "id": "nod",
+  "sticker": "dragonfly",
+  "kind": "action",
+  "description": "the dragonfly nods yes, twice.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26563,
+    "width": 0.5,
+    "height": 0.46745
+  },
+  "puppet": {
+    "rig": "anims/dragonfly.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "y": 1
+          },
+          "head": {
+            "r": -8,
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "y": 1
+          },
+          "head": {
+            "r": -8,
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

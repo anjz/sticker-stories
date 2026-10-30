@@ -1,0 +1,211 @@
+{
+  "id": "sprout",
+  "sticker": "fern",
+  "kind": "move",
+  "description": "the fern sprouts: a fuzzy green tuft pushes up from its root ball, its fronds shoot up and spread, the fiddleheads curl over at the top, and it smiles.",
+  "stickerBox": {
+    "x": 0.21484,
+    "y": 0.20052,
+    "width": 0.56901,
+    "height": 0.59896
+  },
+  "puppet": {
+    "rig": "anims/fern.rig.json",
+    "keys": [
+      {
+        "hold": 0.1,
+        "bones": {
+          "curlShort": {
+            "y": 48,
+            "sx": 0.25,
+            "sy": 0.08
+          },
+          "curlTall": {
+            "y": 48,
+            "sx": 0.25,
+            "sy": 0.08
+          },
+          "frondsL": {
+            "y": 48,
+            "sx": 0.25,
+            "sy": 0.08
+          },
+          "frondsMid": {
+            "y": 48,
+            "sx": 0.25,
+            "sy": 0.08
+          },
+          "frondsR": {
+            "y": 48,
+            "sx": 0.25,
+            "sy": 0.08
+          },
+          "head": {
+            "sx": 0.5,
+            "sy": 0.3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "curlShort": {
+            "y": 22,
+            "sx": 0.35,
+            "sy": 0.15
+          },
+          "curlTall": {
+            "y": 22,
+            "sx": 0.35,
+            "sy": 0.15
+          },
+          "frondsL": {
+            "y": 22,
+            "sx": 0.35,
+            "sy": 0.15
+          },
+          "frondsMid": {
+            "y": 22,
+            "sx": 0.35,
+            "sy": 0.15
+          },
+          "frondsR": {
+            "y": 22,
+            "sx": 0.35,
+            "sy": 0.15
+          },
+          "head": {
+            "sx": 0.8,
+            "sy": 0.75
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "linear",
+        "bones": {
+          "curlShort": {
+            "r": 8,
+            "sx": 0.6,
+            "sy": 0.45
+          },
+          "curlTall": {
+            "r": -6,
+            "sx": 0.6,
+            "sy": 0.45
+          },
+          "frondsL": {
+            "r": 18,
+            "sx": 0.6,
+            "sy": 0.45
+          },
+          "frondsMid": {
+            "sx": 0.6,
+            "sy": 0.45
+          },
+          "frondsR": {
+            "r": -18,
+            "sx": 0.6,
+            "sy": 0.45
+          },
+          "head": {
+            "sx": 0.95,
+            "sy": 0.95
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "curlShort": {
+            "sx": 1,
+            "sy": 1.05
+          },
+          "curlTall": {
+            "sx": 1,
+            "sy": 1.05
+          },
+          "frondsL": {
+            "sx": 1,
+            "sy": 1.05
+          },
+          "frondsMid": {
+            "sx": 1,
+            "sy": 1.05
+          },
+          "frondsR": {
+            "sx": 1,
+            "sy": 1.05
+          },
+          "head": {
+            "sy": 1.02
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "curlTall": {
+            "r": -2
+          },
+          "frondsL": {
+            "r": -2
+          },
+          "frondsR": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": 1.5
+          },
+          "curlTall": {
+            "r": 1.5
+          },
+          "frondsL": {
+            "r": 1
+          },
+          "frondsR": {
+            "r": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

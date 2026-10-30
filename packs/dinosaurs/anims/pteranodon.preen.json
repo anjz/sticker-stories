@@ -1,0 +1,181 @@
+{
+  "id": "preen",
+  "sticker": "pteranodon",
+  "description": "the pteranodon tucks its beak down against its wing and tidies it, nibble-nibble, then fluffs up and smooths itself down.",
+  "stickerBox": {
+    "x": 0.27474,
+    "y": 0.20052,
+    "width": 0.45052,
+    "height": 0.59896
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the pteranodon with its beak tucked against its wing, tidying it"
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/pteranodon.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": -8
+          },
+          "head": {
+            "r": -34,
+            "x": 4,
+            "y": 8
+          },
+          "wingL": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -8
+          },
+          "head": {
+            "r": -38,
+            "x": 4,
+            "y": 8
+          },
+          "wingL": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -8
+          },
+          "head": {
+            "r": -34,
+            "x": 4,
+            "y": 8
+          },
+          "wingL": {
+            "r": 8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -8
+          },
+          "head": {
+            "r": -38,
+            "x": 4,
+            "y": 8
+          },
+          "wingL": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -8
+          },
+          "head": {
+            "r": -34,
+            "x": 4,
+            "y": 8
+          },
+          "wingL": {
+            "r": 8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -14,
+            "x": 2,
+            "y": 4
+          },
+          "wingL": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 1.04
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 0.99
+          },
+          "root": {
+            "x": -2
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.02
+          },
+          "root": {
+            "x": 2
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

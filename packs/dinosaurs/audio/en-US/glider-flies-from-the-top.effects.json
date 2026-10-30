@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "on",
+      "sticker": "glider",
+      "enter": true
+    },
+    {
+      "at": 5,
+      "cue": "lived",
+      "sticker": "glider",
+      "go": "to",
+      "target": "branches",
+      "toward": "left"
+    },
+    {
+      "at": 14.12,
+      "cue": "he",
+      "sticker": "glider",
+      "expression": "happy"
+    },
+    {
+      "at": 17.96,
+      "cue": "he",
+      "sticker": "glider",
+      "animation": "spread"
+    },
+    {
+      "at": 21.64,
+      "cue": "plop",
+      "sticker": "glider",
+      "go": "to",
+      "target": "meadow"
+    },
+    {
+      "at": 25.53,
+      "cue": "the",
+      "sticker": "glider",
+      "expression": "sad"
+    },
+    {
+      "at": 28.92,
+      "cue": "brachiosaurus",
+      "sticker": "brachiosaurus",
+      "enter": true
+    },
+    {
+      "at": 28.92,
+      "cue": "brachiosaurus",
+      "sticker": "brachiosaurus",
+      "go": "to",
+      "target": "glider"
+    },
+    {
+      "at": 34.12,
+      "cue": "he",
+      "sticker": "brachiosaurus",
+      "animation": "bend-down",
+      "mode": "hold"
+    },
+    {
+      "at": 37.6,
+      "cue": "glider",
+      "sticker": "glider",
+      "go": "on",
+      "target": "brachiosaurus",
+      "by": "scurry"
+    },
+    {
+      "at": 41.36,
+      "cue": "and",
+      "sticker": "brachiosaurus",
+      "animation": "bend-down",
+      "mode": "resume"
+    },
+    {
+      "at": 44.52,
+      "cue": "down",
+      "sticker": "gallimimus",
+      "enter": true
+    },
+    {
+      "at": 44.52,
+      "cue": "down",
+      "sticker": "gallimimus",
+      "go": "to",
+      "target": "meadow"
+    },
+    {
+      "at": 49,
+      "cue": "glider",
+      "sticker": "glider",
+      "expression": "happy"
+    },
+    {
+      "at": 49.4,
+      "cue": "spread",
+      "sticker": "glider",
+      "animation": "spread"
+    },
+    {
+      "at": 51.56,
+      "cue": "wheee",
+      "sticker": "glider",
+      "go": "to",
+      "target": "branches",
+      "toward": "right"
+    },
+    {
+      "at": 58.2,
+      "cue": "gallimimus",
+      "sticker": "gallimimus",
+      "animation": "jump"
+    },
+    {
+      "at": 60.9,
+      "cue": "again",
+      "sticker": "brachiosaurus",
+      "expression": "happy"
+    },
+    {
+      "at": 63.6,
+      "cue": "was",
+      "sticker": "brachiosaurus",
+      "animation": "bend-down"
+    }
+  ]
+}

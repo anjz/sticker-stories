@@ -1,0 +1,80 @@
+{
+  "id": "look-around",
+  "sticker": "parasaurolophus",
+  "kind": "action",
+  "description": "the Parasaurolophus looks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.13542,
+    "y": 0.07943,
+    "width": 0.72786,
+    "height": 0.83984
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/parasaurolophus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "face": {
+            "x": -1
+          },
+          "head": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "face": {
+            "x": -1
+          },
+          "head": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": 1.5
+          },
+          "face": {
+            "x": 7
+          },
+          "head": {
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 1.5
+          },
+          "face": {
+            "x": 7
+          },
+          "head": {
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

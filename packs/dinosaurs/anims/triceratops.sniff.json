@@ -1,0 +1,110 @@
+{
+  "id": "sniff",
+  "sticker": "triceratops",
+  "kind": "action",
+  "description": "the Triceratops lowers its snout and sniffs the ground, sniff, sniff, then lifts its head with a happy smile.",
+  "stickerBox": {
+    "x": 0.08333,
+    "y": 0.07943,
+    "width": 0.83333,
+    "height": 0.83984
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the Triceratops with its snout down, sniffing the ground"
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/triceratops.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "head": {
+            "r": -16,
+            "y": 7
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "head": {
+            "r": -15,
+            "x": -3,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "head": {
+            "r": -16,
+            "y": 7
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "head": {
+            "r": -15,
+            "x": -3,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "head": {
+            "r": -16,
+            "y": 7
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "head": {
+            "r": 4,
+            "y": -1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "una",
+      "effect": "fog",
+      "duration": 55.05,
+      "intensity": 0.9
+    },
+    {
+      "at": 7.56,
+      "cue": "tortuga",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 8.08,
+      "cue": "salió",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "lagoon",
+      "by": "swim"
+    },
+    {
+      "at": 9.28,
+      "cue": "amonites",
+      "sticker": "ammonite",
+      "enter": true
+    },
+    {
+      "at": 9.28,
+      "cue": "amonites",
+      "sticker": "ammonite",
+      "go": "to",
+      "target": "lagoon"
+    },
+    {
+      "at": 15.4,
+      "cue": "miró",
+      "sticker": "turtle",
+      "animation": "look-around"
+    },
+    {
+      "at": 18.12,
+      "cue": "todo",
+      "sticker": "turtle",
+      "expression": "sad"
+    },
+    {
+      "at": 23.88,
+      "cue": "amonites",
+      "sticker": "ammonite",
+      "animation": "peek"
+    },
+    {
+      "at": 30.04,
+      "cue": "entonces",
+      "sticker": "ammonite",
+      "expression": "sad"
+    },
+    {
+      "at": 36.68,
+      "cue": "era",
+      "sticker": "plesiosaur",
+      "enter": true
+    },
+    {
+      "at": 36.68,
+      "cue": "era",
+      "sticker": "plesiosaur",
+      "go": "to",
+      "target": "lagoon"
+    },
+    {
+      "at": 36.68,
+      "cue": "era",
+      "sticker": "plesiosaur",
+      "expression": "happy"
+    },
+    {
+      "at": 36.68,
+      "cue": "era",
+      "sticker": "plesiosaur",
+      "animation": "stretch-neck",
+      "mode": "hold"
+    },
+    {
+      "at": 47.76,
+      "cue": "chap",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "ammonite",
+      "by": "swim"
+    },
+    {
+      "at": 49.28,
+      "cue": "y",
+      "sticker": "turtle",
+      "expression": "happy"
+    },
+    {
+      "at": 49.28,
+      "cue": "y",
+      "sticker": "ammonite",
+      "expression": "happy"
+    },
+    {
+      "at": 52.55,
+      "cue": "entonces",
+      "effect": "sunshine",
+      "duration": 10.27,
+      "intensity": 0.7
+    },
+    {
+      "at": 55.48,
+      "cue": "plesiosaurio",
+      "sticker": "plesiosaur",
+      "animation": "stretch-neck",
+      "mode": "resume"
+    },
+    {
+      "at": 57.88,
+      "cue": "las",
+      "sticker": "turtle",
+      "effect": "hearts"
+    },
+    {
+      "at": 57.88,
+      "cue": "las",
+      "sticker": "ammonite",
+      "effect": "hearts"
+    },
+    {
+      "at": 61.32,
+      "cue": "cuello",
+      "sticker": "plesiosaur",
+      "effect": "wobble"
+    }
+  ]
+}

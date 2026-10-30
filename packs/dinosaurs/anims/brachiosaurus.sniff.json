@@ -1,0 +1,140 @@
+{
+  "id": "sniff",
+  "sticker": "brachiosaurus",
+  "kind": "action",
+  "description": "the brachiosaurus dips its little head and sniffs, sniff, sniff, then lifts it with a happy smile.",
+  "stickerBox": {
+    "x": 0.07682,
+    "y": 0.02995,
+    "width": 0.84635,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/brachiosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "head": {
+            "r": -8
+          },
+          "neck": {
+            "r": -2
+          },
+          "neckTop": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "head": {
+            "r": -10
+          },
+          "neck": {
+            "r": -2
+          },
+          "neckTop": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "head": {
+            "r": -8
+          },
+          "neck": {
+            "r": -2
+          },
+          "neckTop": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "head": {
+            "r": -10
+          },
+          "neck": {
+            "r": -2
+          },
+          "neckTop": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "head": {
+            "r": -8
+          },
+          "neck": {
+            "r": -2
+          },
+          "neckTop": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "head": {
+            "r": -10
+          },
+          "neck": {
+            "r": -2
+          },
+          "neckTop": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "head": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

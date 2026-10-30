@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "id": "eggs-hatch-one-two-three",
+  "pack": "dinosaurs",
+  "featured": [
+    "eggs",
+    "triceratops",
+    "psittacosaurus"
+  ],
+  "supporting": [],
+  "tags": [
+    "gentle",
+    "counting",
+    "home",
+    "learning"
+  ],
+  "premise": "Mama Triceratops waits by her nest of three eggs; tap… wobble… crack — one after another three baby Triceratops pop out in eggshell caps, and little Psittacosaurus counts them, one, two, three.",
+  "inspiration": "The folk-tale three-in-turn (three sons, three tries) made into three hatchings: the last egg keeps everyone waiting, and arrives with a cap on.",
+  "lesson": "Some things are worth the wait, and the last one is as welcome as the first.",
+  "learning": "Baby dinosaurs hatched out of eggs.",
+  "languages": {
+    "en-US": {
+      "title": "One, Two, Three Eggs",
+      "text": "{eggs:enter} {canvas:sunshine 0.6} [softly] The sun was warm, and in a nest of soft ferns sat three speckled eggs. {triceratops:enter} {triceratops:go to eggs} Mama Triceratops lay down beside them, {triceratops:face happy} just as she did every day. Along came little {psittacosaurus:enter} {psittacosaurus:go to eggs} Psittacosaurus. [curious] \"When will they hatch?\" {triceratops:live talk} \"Soon,\" said Mama. \"Listen.\" {sfx:tap} {eggs:live tap} Tap. Tap, tap. The front egg gave a little hop! {psittacosaurus:face surprised} Psittacosaurus gasped. Then… {eggs:live hatch-all hold} crick, crack, out popped a baby Triceratops! [excited] \"One!\" counted Psittacosaurus. {sfx:crack} Crack! \"Two!\" And the last egg… took its time… crack! \"THREE!\" Three babies blinked in the sunshine, each with an eggshell cap on its head. {triceratops:live nuzzle} Mama nuzzled them, one, two, three. {canvas:confetti} {psittacosaurus:face happy} {psittacosaurus:live hop} [happily] Psittacosaurus hopped for joy. \"I hatched out of an egg too,\" he said. \"A long, long time ago. Last spring.\" {triceratops:hearts} And three little babies smiled up at him, as if they knew. {canvas:sunshine stop}"
+    },
+    "es-ES": {
+      "title": "Uno, dos y tres huevos",
+      "text": "{eggs:enter} {canvas:sunshine 0.6} [softly] El sol calentaba, y en un nido de helechos blanditos había tres huevos moteados. {triceratops:enter} {triceratops:go to eggs} Mamá Triceratops se tumbó a su lado, {triceratops:face happy} como hacía cada día. Y llegó el pequeño {psittacosaurus:enter} {psittacosaurus:go to eggs} Psitacosaurio. [curious] —¿Cuándo van a nacer? {triceratops:live talk} —Muy pronto —dijo Mamá—. Escucha. {sfx:tap} {eggs:live tap} Toc. Toc, toc. ¡El huevo de delante dio un saltito! {psittacosaurus:face surprised} —¡Oh! —dijo Psitacosaurio. Y entonces… {eggs:live hatch-all hold} cric, crac, ¡asomó un bebé triceratops! [excited] —¡Uno! —contó Psitacosaurio. {sfx:crack} ¡Crac! —¡Dos! Y el último huevo… se hizo esperar… ¡crac! —¡TRES! Los tres bebés parpadeaban al sol, cada uno con un gorrito de cáscara en la cabeza. {triceratops:live nuzzle} Mamá les hizo un mimo con el hocico, uno, dos y tres. {canvas:confetti} {psittacosaurus:face happy} {psittacosaurus:live hop} [happily] Psitacosaurio daba saltos de alegría. —Yo también salí de un huevo —dijo—. Hace muchísimo tiempo. La primavera pasada. {triceratops:hearts} Y los tres bebés le sonrieron, como si lo supieran. {canvas:sunshine stop}"
+    }
+  },
+  "sounds": {
+    "tap": {
+      "prompt": "a tiny baby animal tapping softly from inside an eggshell, three small hollow taps, close up, realistic",
+      "seconds": 1.5
+    },
+    "crack": {
+      "prompt": "a thin eggshell cracking open, a small crisp crack and crumble, close up, realistic",
+      "seconds": 1
+    }
+  }
+}

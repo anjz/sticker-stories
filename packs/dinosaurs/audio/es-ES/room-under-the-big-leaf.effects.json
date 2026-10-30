@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "plic",
+      "sticker": "leaf",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "plic",
+      "sticker": "fern",
+      "enter": true
+    },
+    {
+      "at": 5,
+      "cue": "plic",
+      "effect": "rain",
+      "duration": 53.9,
+      "intensity": 0.7
+    },
+    {
+      "at": 7.88,
+      "cue": "planeador",
+      "sticker": "glider",
+      "enter": true
+    },
+    {
+      "at": 7.88,
+      "cue": "planeador",
+      "sticker": "glider",
+      "go": "under",
+      "target": "leaf"
+    },
+    {
+      "at": 11.24,
+      "cue": "aquí",
+      "sticker": "glider",
+      "expression": "happy"
+    },
+    {
+      "at": 13.56,
+      "cue": "libélula",
+      "sticker": "dragonfly",
+      "enter": true
+    },
+    {
+      "at": 13.56,
+      "cue": "libélula",
+      "sticker": "dragonfly",
+      "go": "under",
+      "target": "leaf"
+    },
+    {
+      "at": 18.36,
+      "cue": "gota",
+      "sticker": "leaf",
+      "animation": "drip"
+    },
+    {
+      "at": 22.68,
+      "cue": "planeador",
+      "sticker": "glider",
+      "animation": "shiver"
+    },
+    {
+      "at": 30.23,
+      "cue": "y",
+      "sticker": "glider",
+      "expression": "surprised"
+    },
+    {
+      "at": 30.23,
+      "cue": "y",
+      "sticker": "dragonfly",
+      "expression": "surprised"
+    },
+    {
+      "at": 42.04,
+      "cue": "levantó",
+      "sticker": "fern",
+      "expression": "happy"
+    },
+    {
+      "at": 42.04,
+      "cue": "levantó",
+      "sticker": "fern",
+      "animation": "perk-up",
+      "mode": "hold"
+    },
+    {
+      "at": 49.64,
+      "cue": "así",
+      "sticker": "glider",
+      "expression": "happy"
+    },
+    {
+      "at": 49.64,
+      "cue": "así",
+      "sticker": "dragonfly",
+      "expression": "happy"
+    },
+    {
+      "at": 58.2,
+      "cue": "un",
+      "effect": "rainbow"
+    },
+    {
+      "at": 60.92,
+      "cue": "y",
+      "sticker": "glider",
+      "effect": "hop"
+    },
+    {
+      "at": 60.92,
+      "cue": "y",
+      "sticker": "dragonfly",
+      "effect": "hop"
+    }
+  ]
+}

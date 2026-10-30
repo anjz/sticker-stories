@@ -68,7 +68,9 @@ magenta, to check that treetops and ridges are left out.
   is, so a sticker the child puts behind it never shows below it (Forest's
   oak and birch, 0.1); it re-lays the layer for free and leaves the
   planes in front as they are. A layer with `cut` (a mask image in the
-  art directory, white where the layer is, at the 4:3 picture's size)
+  art directory, white where the layer is, at the 4:3 picture's size,
+  or at the wide one's for something that runs past the 4:3 picture's
+  sides: Dinosaurs' rock ledge, `art/dinosaurs/cuts/`)
   instead of a prompt is cut from the finished background itself, on
   both renditions, for free: something the background already shows
   (Beach's boulders on the rock pool's rim, `art/beach/cuts/`, traced by
@@ -159,7 +161,12 @@ magenta, to check that treetops and ridges are left out.
    outline inside the old one showed both. The new face is taken fully over
    the whole face box and fades out only across the mask's margin, so no
    half of an old eye or mouth shows next to the new one. A variant whose
-   face differs a lot at that rim is flagged (`!`) to look at. A composite
+   face differs a lot at that rim is flagged (`!`) to look at. A sticker's
+   `faceKeep` narrows that band for the composite alone (Dinosaurs: 0.005,
+   0.003 for the beaked ones): a three-quarter head's far eye sits on the
+   outline, and the default band keeps the old, open eye beside a new,
+   closed one; the kept generations are re-composited at no cost. The rim
+   flag does not catch this, so zoom on every variant. A composite
    change (`faceVersion`) re-composites the kept generations at no cost.
    `-only faces` renders just the variants, `-only bear.happy` one; the
    edits model allows five image inputs a minute, so use `-parallel 2`.

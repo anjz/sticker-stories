@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "era",
+      "sticker": "log",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "era",
+      "effect": "wind",
+      "duration": 72.98,
+      "intensity": 0.5
+    },
+    {
+      "at": 5,
+      "cue": "uuuh",
+      "sticker": "log",
+      "animation": "blow"
+    },
+    {
+      "at": 11.16,
+      "cue": "libélula",
+      "sticker": "dragonfly",
+      "enter": true
+    },
+    {
+      "at": 11.16,
+      "cue": "libélula",
+      "sticker": "dragonfly",
+      "go": "to",
+      "target": "log"
+    },
+    {
+      "at": 13.96,
+      "cue": "zig",
+      "sticker": "dragonfly",
+      "animation": "zigzag"
+    },
+    {
+      "at": 19.32,
+      "cue": "escarabajo",
+      "sticker": "beetle",
+      "enter": true
+    },
+    {
+      "at": 19.32,
+      "cue": "escarabajo",
+      "sticker": "beetle",
+      "go": "to",
+      "target": "log"
+    },
+    {
+      "at": 23.64,
+      "cue": "se",
+      "sticker": "beetle",
+      "expression": "surprised"
+    },
+    {
+      "at": 23.64,
+      "cue": "se",
+      "sticker": "beetle",
+      "animation": "tuck",
+      "mode": "hold"
+    },
+    {
+      "at": 29.4,
+      "cue": "hola",
+      "sticker": "dragonfly",
+      "expression": "surprised"
+    },
+    {
+      "at": 39,
+      "cue": "se",
+      "sticker": "beetle",
+      "animation": "tuck",
+      "mode": "resume"
+    },
+    {
+      "at": 42.36,
+      "cue": "se",
+      "sticker": "beetle",
+      "go": "to",
+      "target": "log"
+    },
+    {
+      "at": 52.44,
+      "cue": "es",
+      "sticker": "beetle",
+      "expression": "happy"
+    },
+    {
+      "at": 57.96,
+      "cue": "el",
+      "sticker": "log",
+      "animation": "rustle"
+    },
+    {
+      "at": 60.2,
+      "cue": "así",
+      "sticker": "dragonfly",
+      "expression": "happy"
+    },
+    {
+      "at": 63,
+      "cue": "uuuh",
+      "sticker": "log",
+      "animation": "blow"
+    },
+    {
+      "at": 67.08,
+      "cue": "mmmm",
+      "sticker": "dragonfly",
+      "effect": "hop"
+    },
+    {
+      "at": 67.08,
+      "cue": "mmmm",
+      "sticker": "beetle",
+      "effect": "hop"
+    }
+  ]
+}

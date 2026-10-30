@@ -1,0 +1,130 @@
+{
+  "id": "stretch-wings",
+  "sticker": "pteranodon",
+  "description": "the pteranodon stretches up tall and opens both its big wings out wide, holds them there, then folds them away.",
+  "stickerBox": {
+    "x": 0.27474,
+    "y": 0.20052,
+    "width": 0.45052,
+    "height": 0.59896
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the pteranodon standing tall with both wings stretched out wide"
+  },
+  "puppet": {
+    "rig": "anims/pteranodon.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": 5,
+            "y": -3
+          },
+          "wingL": {
+            "r": 12
+          },
+          "wingR": {
+            "r": -12
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": 7,
+            "y": -4
+          },
+          "wingL": {
+            "r": 3
+          },
+          "wingR": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": 7,
+            "y": -4
+          },
+          "wingL": {
+            "r": 3
+          },
+          "wingR": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "wingL": {
+            "r": 2
+          },
+          "wingR": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpenL": "open",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

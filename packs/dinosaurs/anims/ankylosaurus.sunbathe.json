@@ -1,0 +1,181 @@
+{
+  "id": "sunbathe",
+  "sticker": "ankylosaurus",
+  "kind": "action",
+  "description": "the Ankylosaurus settles down on its tummy, lifts its chin up to the warm sun and closes its eyes happily, warm and cosy, then gets up again.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.26432,
+    "width": 0.72005,
+    "height": 0.47005
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the Ankylosaurus lying on its tummy in the sun, chin up, eyes closed happily"
+  },
+  "puppet": {
+    "rig": "anims/ankylosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "y": 18
+          },
+          "legBF": {
+            "sy": 0.85
+          },
+          "legBN": {
+            "sy": 0.85
+          },
+          "legFF": {
+            "sy": 0.85
+          },
+          "legFN": {
+            "sy": 0.85
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "y": 40
+          }
+        },
+        "slots": {
+          "foldBN": "fold",
+          "foldFN": "fold",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "y": 40
+          },
+          "head": {
+            "r": 6,
+            "y": -1
+          },
+          "tail": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "foldBN": "fold",
+          "foldFN": "fold",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 1
+          },
+          "body": {
+            "y": 40
+          },
+          "head": {
+            "r": 7,
+            "y": -1
+          },
+          "tail": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "foldBN": "fold",
+          "foldFN": "fold",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "y": 40
+          },
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "foldBN": "fold",
+          "foldFN": "fold",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "y": 18
+          },
+          "legBF": {
+            "sy": 0.85
+          },
+          "legBN": {
+            "sy": 0.85
+          },
+          "legFF": {
+            "sy": 0.85
+          },
+          "legFN": {
+            "sy": 0.85
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

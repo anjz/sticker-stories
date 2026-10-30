@@ -1,0 +1,83 @@
+{
+  "id": "crack",
+  "sticker": "eggs",
+  "kind": "action",
+  "description": "the front egg wobbles and little cracks zigzag across its shell.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.22656,
+    "width": 0.59896,
+    "height": 0.54557
+  },
+  "pause": {
+    "frame": 5,
+    "shows": "the front egg cracked across its middle, about to hatch"
+  },
+  "puppet": {
+    "rig": "anims/eggs.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "egg3": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "egg3": {
+            "r": 3.5
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "egg3": {
+            "r": -1.5
+          }
+        },
+        "slots": {
+          "crack3": "crack"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "egg3": {
+            "r": 1.5,
+            "y": -3
+          }
+        },
+        "slots": {
+          "crack3": "crack"
+        }
+      },
+      {
+        "hold": 0.9,
+        "slots": {
+          "crack3": "crack"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "egg3": {
+            "r": -1
+          }
+        },
+        "slots": {
+          "crack3": "crack"
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

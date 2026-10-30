@@ -1,0 +1,86 @@
+{
+  "id": "bump",
+  "sticker": "log",
+  "kind": "action",
+  "description": "something bumps into the log: it jolts with a puff of dust from underneath, rocks, and settles.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.19531,
+    "width": 0.72005,
+    "height": 0.60938
+  },
+  "particles": [
+    {
+      "frame": 1,
+      "effect": "dust-puff",
+      "x": 0.5,
+      "y": 0.77,
+      "intensity": 0.35
+    }
+  ],
+  "puppet": {
+    "rig": "anims/log.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.12,
+        "ease": "out",
+        "bones": {
+          "fern": {
+            "r": 6
+          },
+          "root": {
+            "x": -6
+          },
+          "tip": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "fern": {
+            "r": -4
+          },
+          "root": {
+            "x": 2
+          },
+          "tipR": {
+            "r": 1.5
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "fern": {
+            "r": 2
+          },
+          "root": {
+            "x": -1
+          },
+          "tip": {
+            "r": -0.8
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "fern": {
+            "r": -0.8
+          },
+          "tipR": {
+            "r": 0.3
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

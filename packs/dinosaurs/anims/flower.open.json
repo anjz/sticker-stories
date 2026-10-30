@@ -1,0 +1,107 @@
+{
+  "id": "open",
+  "sticker": "flower",
+  "kind": "action",
+  "description": "the flower opens its petals wide to the warm sun and beams, then settles back.",
+  "stickerBox": {
+    "x": 0.28516,
+    "y": 0.25,
+    "width": 0.42969,
+    "height": 0.5
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the flower with its petals opened wide in the sun, beaming"
+  },
+  "puppet": {
+    "rig": "anims/flower.rig.json",
+    "keys": [
+      {
+        "hold": 0.25
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "head": {
+            "sx": 0.97,
+            "sy": 1.02
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "ease": "out",
+        "bones": {
+          "head": {
+            "y": -3,
+            "sx": 1.04,
+            "sy": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "flower": "open",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 1.2,
+        "bones": {
+          "head": {
+            "y": -4,
+            "sx": 1.08,
+            "sy": 1.02
+          },
+          "leafL": {
+            "r": 6
+          },
+          "leafR": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "flower": "open",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "head": {
+            "y": -1,
+            "sx": 1.02
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "flower": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "sx": 0.98,
+            "sy": 1.01
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

@@ -1,0 +1,742 @@
+{
+  "sticker": "leaf",
+  "called": "the big leaf",
+  "skeleton": "one giant round leaf on a thick stalk growing straight up out of the ground, like an umbrella: root at the stalk's foot in the ground; the foot (the curled new leaf and the little sheath leaves round the stalk's base) on root, in front of the stalk, so the stalk's turning foot is always hidden under it; stalk bone at the stalk's foot; blade bone at the top of the stalk where the leaf meets it (the leaf drawn in front of the stalk's top end); a drooping leaf and a furled young leaf swap in for the blade. A plant with no face: it only moves as wind, rain or a bump would move it.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of one giant round leaf on a thick green stalk growing straight up out of the ground like an umbrella. Draw it as a cut-out paper puppet: its separate pieces laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every piece at the size it has in image 1 (if they do not all fit, draw them all a little smaller, at the same scale as each other).\n\nDraw each piece on its own, spread out over the sheet with wide empty gaps between them, no piece touching or overlapping another:\n1. the big round leaf alone, without its stalk: glossy green with lighter veins and a gently wavy edge, exactly as in image 1, with the notch in its lower edge where the stalk meets it; the veins all start from the top of that notch.\n2. the stalk alone: the long, thick, smooth green stalk of image 1, from its foot to its top, drawn whole, including its foot that the little leaves hide and its top that the big leaf hides; its top end is a soft rounded end with no outline drawn across it.\n3. the stalk's foot alone: the little pointed sheath leaves wrapped round the bottom of the stalk and the short curl of new leaf beside them, exactly as at the bottom of image 1, without the stalk (where the stalk would rise out of them, their top is open).\n4. the same big leaf drooping, heavy with rain: its round edges hanging down all round like a half-closed umbrella, its middle still on top, the same green and veins, seen from the same side, a little narrower and taller than piece 1, without its stalk.\n5. the big leaf as a young leaf, not yet open: rolled up tight into a slim upright green scroll, like the curl at the stalk's foot, its veins showing, without its stalk.\n\nEvery piece is drawn whole, including what is normally hidden behind another piece, with its edges clean and smooth. It is a plant, not a character: no face, no eyes, no mouth. No text, no labels, no numbers, no outline around the pieces beyond the drawing's own line, no shadows, no ground, no grass, no rain, no drops. Fully transparent background."
+    },
+    {
+      "id": "foot",
+      "size": "1024x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of one giant round leaf on a thick green stalk; image 2 shows it cut into puppet pieces. Draw ONE piece on its own, at the size piece 3 has in image 2 (the stalk's foot, bottom left), the same drawing style, colours, texture and line: the little pointed sheath leaves at the foot of the stalk and the short curl of new leaf beside them, exactly as at the bottom of image 1, all joined in one piece at their bottoms, but with NO stalk and nothing at all between the two front pointed leaves: no cup, no rim, no inner opening, no stalk end — the space between and above them is empty and fully transparent, so a stalk standing behind them shows between them. Their bottom edge is one smooth rounded line, as in image 1. It is a plant, not a character: no face, no eyes, no mouth. No text, no labels, no shadows, no ground. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "blade": {
+      "sheet": "parts",
+      "at": [
+        447,
+        262
+      ]
+    },
+    "droop": {
+      "sheet": "parts",
+      "at": [
+        1210,
+        306
+      ]
+    },
+    "foot": {
+      "sheet": "foot",
+      "at": [
+        512,
+        522
+      ]
+    },
+    "stalk": {
+      "sheet": "parts",
+      "at": [
+        847,
+        720
+      ]
+    },
+    "furled": {
+      "sheet": "parts",
+      "at": [
+        1184,
+        755
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 372,
+      "y": 688
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 372,
+      "y": 668
+    },
+    {
+      "id": "stalk",
+      "parent": "body",
+      "x": 372,
+      "y": 668
+    },
+    {
+      "id": "blade",
+      "parent": "body",
+      "x": 396,
+      "y": 292
+    }
+  ],
+  "slots": [
+    {
+      "id": "stalk",
+      "bone": "stalk",
+      "default": "stalk",
+      "attachments": {
+        "stalk": {
+          "part": "stalk",
+          "x": 385,
+          "y": 467,
+          "scale": 0.6,
+          "scaleY": 1.3,
+          "rotate": 3.6
+        }
+      }
+    },
+    {
+      "id": "blade",
+      "bone": "blade",
+      "default": "blade",
+      "attachments": {
+        "blade": {
+          "part": "blade",
+          "x": 383,
+          "y": 234,
+          "scale": 0.66,
+          "scaleY": 1.04
+        },
+        "droop": {
+          "part": "droop",
+          "x": 390,
+          "y": 262,
+          "scale": 0.72
+        },
+        "furled": {
+          "part": "furled",
+          "x": 398,
+          "y": 190,
+          "scale": 0.5
+        }
+      }
+    },
+    {
+      "id": "foot",
+      "bone": "root",
+      "default": "foot",
+      "attachments": {
+        "foot": {
+          "part": "foot",
+          "x": 355,
+          "y": 604,
+          "scale": 0.214
+        }
+      }
+    }
+  ],
+  "animations": [
+    {
+      "id": "grow",
+      "kind": "move",
+      "description": "the big leaf grows up out of the ground: its stalk shoots up tall with the young leaf rolled up tight on top, then the leaf unrolls and opens out wide like an umbrella.",
+      "keys": [
+        {
+          "hold": 0.1,
+          "bones": {
+            "stalk": {
+              "sx": 0.624,
+              "sy": 0.06
+            },
+            "blade": {
+              "y": 353.4,
+              "sx": 0.2,
+              "sy": 0.2
+            }
+          },
+          "slots": {
+            "blade": "furled"
+          }
+        },
+        {
+          "hold": 0.35,
+          "ease": "out",
+          "bones": {
+            "stalk": {
+              "sx": 0.624,
+              "sy": 0.06
+            },
+            "blade": {
+              "y": 353.4,
+              "sx": 0.2,
+              "sy": 0.2
+            }
+          },
+          "slots": {
+            "blade": "furled"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "stalk": {
+              "sx": 0.8200000000000001,
+              "sy": 0.55
+            },
+            "blade": {
+              "y": 169.2,
+              "sx": 0.6,
+              "sy": 0.6
+            }
+          },
+          "slots": {
+            "blade": "furled"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "stalk": {
+              "sx": 1.0,
+              "sy": 1.0
+            },
+            "blade": {
+              "y": 0.0,
+              "sx": 1.0,
+              "sy": 1.0
+            }
+          },
+          "slots": {
+            "blade": "furled"
+          },
+          "ease": "step"
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "blade": {
+              "sx": 0.2,
+              "sy": 0.75
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "blade": {
+              "sx": 1.06,
+              "sy": 1.03
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "blade": {
+              "sx": 0.98,
+              "sy": 0.99
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sway",
+      "kind": "action",
+      "description": "the big leaf sways gently from side to side in the breeze.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "body": {
+              "r": 3
+            },
+            "blade": {
+              "r": -1.5
+            }
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "body": {
+              "r": -3
+            },
+            "blade": {
+              "r": 1.5
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "body": {
+              "r": 2
+            },
+            "blade": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "body": {
+              "r": -0.8
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "gust",
+      "kind": "action",
+      "description": "a big gust of wind bends the big leaf right over to one side; then it springs back up and wobbles still.",
+      "pause": {
+        "frame": 2,
+        "shows": "the big leaf bent right over in a gust of wind"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.55,
+          "ease": "out",
+          "bones": {
+            "body": {
+              "r": 12
+            },
+            "blade": {
+              "r": 10,
+              "sx": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": 13
+            },
+            "blade": {
+              "r": 13,
+              "sx": 0.95
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": 11.5
+            },
+            "blade": {
+              "r": 10,
+              "sx": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": 13
+            },
+            "blade": {
+              "r": 12.5,
+              "sx": 0.95
+            }
+          }
+        },
+        {
+          "hold": 0.4,
+          "ease": "in",
+          "bones": {
+            "body": {
+              "r": -5
+            },
+            "blade": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "body": {
+              "r": 2.5
+            },
+            "blade": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "r": -1
+            },
+            "blade": {
+              "r": -0.5
+            }
+          }
+        },
+        {
+          "hold": 0.25
+        }
+      ]
+    },
+    {
+      "id": "drip",
+      "kind": "action",
+      "description": "rain drips off the edges of the big leaf, drop by drop, and it gives a little bob with each one.",
+      "particles": [
+        {
+          "frame": 1,
+          "effect": "spray",
+          "x": 0.15,
+          "y": 0.4,
+          "intensity": 0.1
+        },
+        {
+          "frame": 3,
+          "effect": "spray",
+          "x": 0.79,
+          "y": 0.5,
+          "intensity": 0.1
+        },
+        {
+          "frame": 5,
+          "effect": "spray",
+          "x": 0.33,
+          "y": 0.47,
+          "intensity": 0.1
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "blade": {
+              "r": -1,
+              "y": 3
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "blade": {
+              "r": 1,
+              "y": 3
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "blade": {
+              "r": -0.6,
+              "y": 2
+            }
+          }
+        },
+        {
+          "hold": 0.35
+        }
+      ]
+    },
+    {
+      "id": "bounce",
+      "kind": "action",
+      "description": "raindrops patter on top of the big leaf and it bobs gently up and down under them, then is still.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.22,
+          "ease": "out",
+          "bones": {
+            "blade": {
+              "y": 6,
+              "sy": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.28,
+          "bones": {
+            "blade": {
+              "y": -2
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "ease": "out",
+          "bones": {
+            "blade": {
+              "y": 5,
+              "sy": 0.975,
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.28,
+          "bones": {
+            "blade": {
+              "y": -1.5
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "ease": "out",
+          "bones": {
+            "blade": {
+              "y": 4,
+              "sy": 0.98,
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "blade": {
+              "y": -1
+            }
+          }
+        },
+        {
+          "hold": 0.25
+        }
+      ]
+    },
+    {
+      "id": "droop",
+      "kind": "action",
+      "description": "the big leaf droops, heavy with rain, its edges hanging down; then it tips the water off with a splash and springs back up.",
+      "pause": {
+        "frame": 3,
+        "shows": "the big leaf drooping, heavy with rain, its edges hanging down"
+      },
+      "particles": [
+        {
+          "frame": 5,
+          "effect": "spray",
+          "x": 0.75,
+          "y": 0.48,
+          "intensity": 0.35
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "body": {
+              "r": 2
+            },
+            "blade": {
+              "y": 10,
+              "sx": 0.92,
+              "sy": 0.9
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "r": 3
+            },
+            "blade": {
+              "y": 10,
+              "sx": 0.97,
+              "sy": 0.97
+            }
+          },
+          "slots": {
+            "blade": "droop"
+          }
+        },
+        {
+          "hold": 0.9,
+          "bones": {
+            "body": {
+              "r": 4
+            },
+            "blade": {
+              "y": 14,
+              "r": 3
+            }
+          },
+          "slots": {
+            "blade": "droop"
+          }
+        },
+        {
+          "hold": 0.35,
+          "ease": "in",
+          "bones": {
+            "body": {
+              "r": 7
+            },
+            "blade": {
+              "y": 12,
+              "r": 10
+            }
+          },
+          "slots": {
+            "blade": "droop"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "body": {
+              "r": 2
+            },
+            "blade": {
+              "y": -4,
+              "sx": 0.95,
+              "sy": 1.04
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "body": {
+              "r": -2
+            },
+            "blade": {
+              "r": -2,
+              "sy": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "r": 1
+            },
+            "blade": {
+              "r": 0.5
+            }
+          }
+        },
+        {
+          "hold": 0.25
+        }
+      ]
+    },
+    {
+      "id": "rustle",
+      "kind": "action",
+      "description": "the big leaf rustles in the breeze, its wavy edges trembling.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "blade": {
+              "r": 1.5,
+              "sx": 1.01
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "blade": {
+              "r": -1,
+              "sx": 0.995
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "blade": {
+              "r": 1.5,
+              "sx": 1.01
+            },
+            "body": {
+              "r": 0.8
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "blade": {
+              "r": -1.2,
+              "sx": 0.995
+            },
+            "body": {
+              "r": 0.5
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "blade": {
+              "r": 1,
+              "sx": 1.008
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "blade": {
+              "r": -0.6
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "blade": {
+              "r": 0.4
+            }
+          }
+        },
+        {
+          "hold": 0.25
+        }
+      ]
+    }
+  ]
+}

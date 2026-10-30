@@ -1,0 +1,140 @@
+{
+  "id": "wave",
+  "sticker": "turtle",
+  "kind": "action",
+  "description": "the turtle lifts a front foot and waves hello.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.26042,
+    "width": 0.59896,
+    "height": 0.47917
+  },
+  "on": [
+    "lagoon"
+  ],
+  "puppet": {
+    "rig": "anims/turtle.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armR": {
+            "r": 38,
+            "y": -4
+          },
+          "body": {
+            "r": 1.5
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "armR": {
+            "r": 26,
+            "y": -4
+          },
+          "body": {
+            "r": 1.5
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "armR": {
+            "r": 40,
+            "y": -4
+          },
+          "body": {
+            "r": 1.5
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "armR": {
+            "r": 26,
+            "y": -4
+          },
+          "body": {
+            "r": 1.5
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "armR": {
+            "r": 38,
+            "y": -4
+          },
+          "body": {
+            "r": 1.5
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armR": {
+            "r": 10,
+            "y": -4
+          },
+          "body": {
+            "r": 1.5
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

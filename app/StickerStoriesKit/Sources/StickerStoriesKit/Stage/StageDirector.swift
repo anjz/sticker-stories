@@ -1843,9 +1843,14 @@ public enum StageDirector {
                 }
             }
             // Along its back (or before it) out from behind a tree, when
-            // the row would be hidden there.
+            // the row would be hidden there — or standing on a plane's
+            // footprint (the beetle by the leaf in front of the rock ledge).
             func hiddenRow(_ shift: Double) -> Double {
-                zip(members, centres(shift)).map { hidden($0, at: pushedOnScreen($0, Vec3($1, y, z))) }.reduce(0, +)
+                zip(members, centres(shift)).map { m, x in
+                    let feet = pushedOnScreen(m, Vec3(x, y, shelters(m) ? behind : z)).ground
+                    let blocked = !on && world.footprints.contains { $0.contains(feet) }
+                    return hidden(m, at: pushedOnScreen(m, Vec3(x, y, z))) + (blocked ? 1 : 0)
+                }.reduce(0, +)
             }
             var shift = 0.0
             for candidate in [-0.25, 0.25, -0.5, 0.5].map({ $0 * them.width }) where hiddenRow(candidate) < hiddenRow(shift) - 0.05 {

@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "id": "room-under-the-big-leaf",
+  "pack": "dinosaurs",
+  "featured": [
+    "leaf",
+    "fern",
+    "glider",
+    "dragonfly"
+  ],
+  "supporting": [],
+  "tags": [
+    "weather",
+    "kindness"
+  ],
+  "premise": "Rain comes and the small ones squeeze under the big leaf — Glider, Dragonfly — drip, drop off its edge; they worry about Fern out in the rain, but Fern can't walk and doesn't want to: he lifts every frond and drinks it in. Then a rainbow.",
+  "inspiration": "The Mitten (Ukrainian folk tale: the animals squeezing into one mitten), turned: the one left outside is the happiest of all.",
+  "lesson": "What's right for one friend isn't right for every friend.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "Room Under the Leaf",
+      "text": "{leaf:enter} {fern:enter} [curious] Plip. Plop. {canvas:rain 0.7} {sfx:rain} Pitter-patter… here came the rain! {glider:enter} {glider:go under leaf} Glider scampered under the big leaf. {glider:face happy} \"It's dry under here! Come in!\" {dragonfly:enter} {dragonfly:go under leaf} Dragonfly zipped in beside him. Squeeze, squeeze. {leaf:live drip} {sfx:drip} Drip… drop… went the edges of the leaf. {glider:live shiver} Glider gave a little shiver: one drop had landed on his whiskers. [giggles] Then they peeked out… {glider:face surprised} {dragonfly:face surprised} and there was Fern, out in the rain, all on his own! [nervously] \"Fern! Come under here!\" called Dragonfly. \"You'll get soaked!\" But Fern couldn't walk. And he didn't want to. {fern:face happy} {fern:live perk-up hold} He lifted every frond up high, as wide as they would go. [happily] \"Soaked? I LOVE the rain!\" {glider:face happy} {dragonfly:face happy} [laughs] So Glider and Dragonfly stayed snug under the leaf, and Fern drank up the rain, until… {canvas:rain stop} it stopped. {canvas:rainbow} A rainbow curved over the valley. {glider:hop} {dragonfly:hop} And there was Fern, the shiniest, greenest fern of all."
+    },
+    "es-ES": {
+      "title": "Sitio bajo la hoja",
+      "text": "{leaf:enter} {fern:enter} [curious] Plic. Ploc. {canvas:rain 0.7} {sfx:rain} Plic, ploc, plic… ¡venía la lluvia! {glider:enter} {glider:go under leaf} Planeador corrió a meterse debajo de la hoja grande. {glider:face happy} —¡Aquí no se moja nadie! ¡Venid! {dragonfly:enter} {dragonfly:go under leaf} Libélula entró zumbando a su lado. Apretaditos, apretaditos. {leaf:live drip} {sfx:drip} Gota… gota… caía del borde de la hoja. {glider:live shiver} Planeador tiritó un poquito: una gota le había caído en los bigotes. [giggles] Entonces se asomaron… {glider:face surprised} {dragonfly:face surprised} ¡y allí estaba Helecho, solito bajo la lluvia! [nervously] —¡Helecho! ¡Ven aquí debajo! —gritó Libélula—. ¡Te vas a empapar! Pero Helecho no podía andar. Y tampoco quería. {fern:face happy} {fern:live perk-up hold} Levantó todas sus hojas, bien altas, bien abiertas. [happily] —¿Empaparme? ¡Me ENCANTA la lluvia! {glider:face happy} {dragonfly:face happy} [laughs] Así que Planeador y Libélula se quedaron calentitos bajo la hoja, y Helecho se bebió toda la lluvia, hasta que… {canvas:rain stop} paró. {canvas:rainbow} Un arcoíris se dibujó sobre el valle. {glider:hop} {dragonfly:hop} Y allí estaba Helecho, el más verde y el más brillante de todos."
+    }
+  },
+  "sounds": {
+    "rain": {
+      "prompt": "steady gentle rain falling on big leaves and grass, realistic field recording",
+      "seconds": 20,
+      "loop": true
+    },
+    "drip": {
+      "prompt": "single water drops dripping slowly off the edge of a big leaf onto the ground, close up, realistic",
+      "seconds": 1.5
+    }
+  }
+}
