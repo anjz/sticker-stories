@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "triceratops",
+      "sticker": "puddle",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "triceratops",
+      "sticker": "triceratops",
+      "enter": true,
+      "by": "trot"
+    },
+    {
+      "at": 3.8,
+      "cue": "llegó",
+      "sticker": "triceratops",
+      "go": "to",
+      "target": "puddle",
+      "by": "trot"
+    },
+    {
+      "at": 6.04,
+      "cue": "qué",
+      "sticker": "triceratops",
+      "expression": "happy"
+    },
+    {
+      "at": 8.84,
+      "cue": "chof",
+      "sticker": "triceratops",
+      "animation": "stomp"
+    },
+    {
+      "at": 8.84,
+      "cue": "chof",
+      "sticker": "puddle",
+      "animation": "splash"
+    },
+    {
+      "at": 11.8,
+      "cue": "allí",
+      "sticker": "triceratops",
+      "expression": "surprised"
+    },
+    {
+      "at": 16.76,
+      "cue": "braquiosaurio",
+      "sticker": "brachiosaurus",
+      "enter": true
+    },
+    {
+      "at": 19.64,
+      "cue": "chooof",
+      "sticker": "brachiosaurus",
+      "go": "to",
+      "target": "puddle"
+    },
+    {
+      "at": 28.44,
+      "cue": "braquiosaurio",
+      "sticker": "brachiosaurus",
+      "animation": "bend-down",
+      "mode": "hold"
+    },
+    {
+      "at": 33,
+      "cue": "y",
+      "effect": "sunshine",
+      "intensity": 0.8
+    },
+    {
+      "at": 41.96,
+      "cue": "triceratops",
+      "sticker": "triceratops",
+      "effect": "pulse"
+    },
+    {
+      "at": 46.52,
+      "cue": "cuánto",
+      "sticker": "triceratops",
+      "expression": "happy"
+    },
+    {
+      "at": 49.08,
+      "cue": "braquiosaurio",
+      "sticker": "brachiosaurus",
+      "animation": "bend-down",
+      "mode": "resume"
+    },
+    {
+      "at": 53.39,
+      "cue": "muchísimo",
+      "sticker": "brachiosaurus",
+      "expression": "happy"
+    },
+    {
+      "at": 56.52,
+      "cue": "triceratops",
+      "sticker": "triceratops",
+      "effect": "hearts"
+    },
+    {
+      "at": 63.88,
+      "cue": "volvieron",
+      "sticker": "puddle",
+      "animation": "splash"
+    }
+  ]
+}

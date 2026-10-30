@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "on",
+      "sticker": "fern",
+      "enter": true
+    },
+    {
+      "at": 8.92,
+      "cue": "pachycephalosaurus",
+      "sticker": "pachycephalosaurus",
+      "enter": true
+    },
+    {
+      "at": 8.92,
+      "cue": "pachycephalosaurus",
+      "sticker": "pachycephalosaurus",
+      "go": "to",
+      "target": "fern"
+    },
+    {
+      "at": 11.64,
+      "cue": "when",
+      "sticker": "pachycephalosaurus",
+      "animation": "bounce"
+    },
+    {
+      "at": 14.28,
+      "cue": "not",
+      "sticker": "fern",
+      "expression": "happy"
+    },
+    {
+      "at": 18.4,
+      "cue": "archaeopteryx",
+      "sticker": "archaeopteryx",
+      "enter": true
+    },
+    {
+      "at": 18.4,
+      "cue": "archaeopteryx",
+      "sticker": "archaeopteryx",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 19.28,
+      "cue": "was",
+      "sticker": "archaeopteryx",
+      "animation": "preen"
+    },
+    {
+      "at": 24.64,
+      "cue": "pachycephalosaurus",
+      "sticker": "pachycephalosaurus",
+      "expression": "sad"
+    },
+    {
+      "at": 27.88,
+      "cue": "pitter-patter",
+      "effect": "rain",
+      "duration": 9.42,
+      "intensity": 0.6
+    },
+    {
+      "at": 32.44,
+      "cue": "not",
+      "sticker": "fern",
+      "effect": "wobble"
+    },
+    {
+      "at": 36.92,
+      "cue": "the",
+      "effect": "sunshine",
+      "duration": 30.74,
+      "intensity": 0.8
+    },
+    {
+      "at": 42.52,
+      "cue": "one",
+      "sticker": "fern",
+      "animation": "unfurl",
+      "mode": "hold"
+    },
+    {
+      "at": 48.57,
+      "cue": "it's",
+      "sticker": "pachycephalosaurus",
+      "expression": "surprised"
+    },
+    {
+      "at": 54.28,
+      "cue": "he",
+      "sticker": "pachycephalosaurus",
+      "expression": "happy"
+    },
+    {
+      "at": 55.88,
+      "cue": "even",
+      "sticker": "archaeopteryx",
+      "expression": "happy"
+    },
+    {
+      "at": 55.88,
+      "cue": "even",
+      "sticker": "archaeopteryx",
+      "effect": "hop"
+    },
+    {
+      "at": 63.08,
+      "cue": "and",
+      "sticker": "fern",
+      "effect": "wobble",
+      "repeat": 2
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "planeador",
+      "sticker": "bush",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "planeador",
+      "sticker": "glider",
+      "enter": true
+    },
+    {
+      "at": 3.8,
+      "cue": "parasaurolophus",
+      "sticker": "parasaurolophus",
+      "enter": true
+    },
+    {
+      "at": 6.76,
+      "cue": "puedo",
+      "sticker": "bush",
+      "expression": "happy"
+    },
+    {
+      "at": 19.48,
+      "cue": "parasaurolophus",
+      "sticker": "parasaurolophus",
+      "effect": "pulse"
+    },
+    {
+      "at": 25.84,
+      "cue": "y",
+      "sticker": "bush",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 34.12,
+      "cue": "parasaurolophus",
+      "sticker": "parasaurolophus",
+      "go": "to",
+      "target": "lagoon"
+    },
+    {
+      "at": 38.28,
+      "cue": "planeador",
+      "sticker": "glider",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 40.92,
+      "cue": "y",
+      "sticker": "glider",
+      "animation": "look-around",
+      "mode": "hold"
+    },
+    {
+      "at": 54.52,
+      "cue": "asomó",
+      "sticker": "bush",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 56.04,
+      "cue": "y",
+      "sticker": "bush",
+      "animation": "wink"
+    },
+    {
+      "at": 57.64,
+      "cue": "ahí",
+      "sticker": "glider",
+      "animation": "look-around",
+      "mode": "resume"
+    },
+    {
+      "at": 57.64,
+      "cue": "ahí",
+      "sticker": "glider",
+      "expression": "surprised"
+    },
+    {
+      "at": 59.24,
+      "cue": "volvieron",
+      "sticker": "parasaurolophus",
+      "go": "to",
+      "target": "bush"
+    },
+    {
+      "at": 59.24,
+      "cue": "volvieron",
+      "sticker": "glider",
+      "go": "to",
+      "target": "bush",
+      "by": "scurry"
+    },
+    {
+      "at": 60.64,
+      "cue": "riéndose",
+      "sticker": "parasaurolophus",
+      "expression": "happy"
+    },
+    {
+      "at": 60.64,
+      "cue": "riéndose",
+      "sticker": "parasaurolophus",
+      "animation": "laugh"
+    },
+    {
+      "at": 62.44,
+      "cue": "arbusto",
+      "sticker": "all",
+      "expression": "happy"
+    }
+  ]
+}

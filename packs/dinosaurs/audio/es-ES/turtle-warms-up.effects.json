@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "era",
+      "sticker": "log",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "era",
+      "effect": "clouds",
+      "duration": 44.78,
+      "intensity": 0.7
+    },
+    {
+      "at": 6.44,
+      "cue": "tortuga",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 8.44,
+      "cue": "que",
+      "sticker": "turtle",
+      "effect": "tint",
+      "duration": 1.5,
+      "color": "#9AD0FF"
+    },
+    {
+      "at": 13.48,
+      "cue": "escarabajo",
+      "sticker": "beetle",
+      "enter": true
+    },
+    {
+      "at": 13.48,
+      "cue": "escarabajo",
+      "sticker": "beetle",
+      "go": "to",
+      "target": "turtle"
+    },
+    {
+      "at": 15.56,
+      "cue": "ven",
+      "sticker": "beetle",
+      "expression": "happy"
+    },
+    {
+      "at": 16.68,
+      "cue": "tengo",
+      "sticker": "turtle",
+      "animation": "shake-head"
+    },
+    {
+      "at": 21.45,
+      "cue": "pero",
+      "sticker": "beetle",
+      "expression": "sad"
+    },
+    {
+      "at": 25.4,
+      "cue": "se",
+      "sticker": "turtle",
+      "go": "on",
+      "target": "log"
+    },
+    {
+      "at": 29.8,
+      "cue": "el",
+      "sticker": "log",
+      "animation": "creak"
+    },
+    {
+      "at": 38.92,
+      "cue": "escarabajo",
+      "sticker": "beetle",
+      "effect": "wobble"
+    },
+    {
+      "at": 43.76,
+      "cue": "y",
+      "effect": "sunshine",
+      "duration": 22.9,
+      "intensity": 0.9
+    },
+    {
+      "at": 45.32,
+      "cue": "tortuga",
+      "sticker": "turtle",
+      "expression": "happy"
+    },
+    {
+      "at": 45.32,
+      "cue": "tortuga",
+      "sticker": "turtle",
+      "animation": "sunbathe",
+      "mode": "hold"
+    },
+    {
+      "at": 51.96,
+      "cue": "escarabajo",
+      "sticker": "beetle",
+      "expression": "happy"
+    },
+    {
+      "at": 51.96,
+      "cue": "escarabajo",
+      "sticker": "beetle",
+      "go": "on",
+      "target": "log"
+    },
+    {
+      "at": 53.84,
+      "cue": "y",
+      "sticker": "beetle",
+      "animation": "shine"
+    },
+    {
+      "at": 62.04,
+      "cue": "y",
+      "sticker": "beetle",
+      "effect": "hearts"
+    }
+  ]
+}

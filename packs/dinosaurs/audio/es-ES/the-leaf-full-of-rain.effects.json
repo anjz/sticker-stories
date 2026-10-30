@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "plic",
+      "sticker": "leaf",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "plic",
+      "effect": "rain",
+      "duration": 58.1,
+      "intensity": 0.6
+    },
+    {
+      "at": 6.55,
+      "cue": "arqueoptérix",
+      "sticker": "archaeopteryx",
+      "enter": true
+    },
+    {
+      "at": 7.88,
+      "cue": "escarabajo",
+      "sticker": "beetle",
+      "enter": true
+    },
+    {
+      "at": 9.04,
+      "cue": "a",
+      "sticker": "archaeopteryx",
+      "go": "under",
+      "target": "leaf"
+    },
+    {
+      "at": 9.04,
+      "cue": "a",
+      "sticker": "beetle",
+      "go": "under",
+      "target": "leaf"
+    },
+    {
+      "at": 11.4,
+      "cue": "aquí",
+      "sticker": "archaeopteryx",
+      "expression": "happy"
+    },
+    {
+      "at": 15.48,
+      "cue": "plic",
+      "sticker": "leaf",
+      "animation": "bounce"
+    },
+    {
+      "at": 23,
+      "cue": "se",
+      "sticker": "leaf",
+      "animation": "droop",
+      "mode": "hold"
+    },
+    {
+      "at": 26.59,
+      "cue": "esto",
+      "sticker": "archaeopteryx",
+      "expression": "surprised"
+    },
+    {
+      "at": 31.16,
+      "cue": "metió",
+      "sticker": "beetle",
+      "animation": "tuck"
+    },
+    {
+      "at": 38.12,
+      "cue": "la",
+      "sticker": "leaf",
+      "animation": "droop",
+      "mode": "resume"
+    },
+    {
+      "at": 45.88,
+      "cue": "brrr",
+      "sticker": "archaeopteryx",
+      "animation": "shiver"
+    },
+    {
+      "at": 50.52,
+      "cue": "escarabajo",
+      "sticker": "beetle",
+      "expression": "happy"
+    },
+    {
+      "at": 51.88,
+      "cue": "seco",
+      "sticker": "beetle",
+      "effect": "sparkle"
+    },
+    {
+      "at": 56.6,
+      "cue": "entonces",
+      "effect": "sunshine",
+      "intensity": 0.8
+    },
+    {
+      "at": 60.52,
+      "cue": "arqueoptérix",
+      "sticker": "archaeopteryx",
+      "expression": "happy"
+    },
+    {
+      "at": 60.52,
+      "cue": "arqueoptérix",
+      "sticker": "archaeopteryx",
+      "animation": "laugh"
+    }
+  ]
+}

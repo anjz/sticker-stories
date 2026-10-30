@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "en",
+      "sticker": "ammonite",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "en",
+      "sticker": "ammonite",
+      "go": "to",
+      "target": "lagoon"
+    },
+    {
+      "at": 9.88,
+      "cue": "libélula",
+      "sticker": "dragonfly",
+      "enter": true
+    },
+    {
+      "at": 9.88,
+      "cue": "libélula",
+      "sticker": "dragonfly",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 13.68,
+      "cue": "hola",
+      "sticker": "dragonfly",
+      "go": "to",
+      "target": "ammonite"
+    },
+    {
+      "at": 14.92,
+      "cue": "uy",
+      "sticker": "ammonite",
+      "expression": "surprised"
+    },
+    {
+      "at": 15.72,
+      "cue": "amonites",
+      "sticker": "ammonite",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 21,
+      "cue": "vaya",
+      "sticker": "dragonfly",
+      "expression": "sad"
+    },
+    {
+      "at": 25.32,
+      "cue": "tortuga",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 27.48,
+      "cue": "se",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "ammonite",
+      "by": "swim"
+    },
+    {
+      "at": 34.92,
+      "cue": "justo",
+      "sticker": "turtle",
+      "animation": "peek",
+      "mode": "hold"
+    },
+    {
+      "at": 47.96,
+      "cue": "salió",
+      "sticker": "ammonite",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 49.48,
+      "cue": "y",
+      "sticker": "turtle",
+      "animation": "peek",
+      "mode": "resume"
+    },
+    {
+      "at": 50.8,
+      "cue": "libélula",
+      "sticker": "ammonite",
+      "expression": "happy"
+    },
+    {
+      "at": 50.8,
+      "cue": "libélula",
+      "sticker": "turtle",
+      "expression": "happy"
+    },
+    {
+      "at": 50.8,
+      "cue": "libélula",
+      "sticker": "dragonfly",
+      "expression": "happy"
+    },
+    {
+      "at": 50.8,
+      "cue": "libélula",
+      "sticker": "dragonfly",
+      "animation": "wave"
+    },
+    {
+      "at": 57.44,
+      "cue": "y",
+      "sticker": "ammonite",
+      "animation": "wave-tentacles"
+    }
+  ]
+}

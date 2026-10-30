@@ -1,0 +1,369 @@
+{
+  "id": "open-wings",
+  "sticker": "beetle",
+  "kind": "action",
+  "description": "the beetle lifts its shiny wing cases and spreads the two thin clear wings folded underneath, flutters them without flying off, then folds them all away.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.27865,
+    "width": 0.5,
+    "height": 0.44141
+  },
+  "pause": {
+    "frame": 11,
+    "shows": "the beetle with its shiny wing cases lifted and its two thin clear wings spread out"
+  },
+  "puppet": {
+    "rig": "anims/beetle.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "shell": {
+            "r": -12,
+            "y": -2
+          },
+          "shellFar": {
+            "r": -14,
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "shell": {
+            "r": -26,
+            "y": -3
+          },
+          "shellFar": {
+            "r": -32,
+            "y": -3
+          },
+          "wingL": {
+            "sx": 0.55
+          },
+          "wingR": {
+            "sx": 0.55
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "shell": {
+            "r": -26,
+            "y": -3
+          },
+          "shellFar": {
+            "r": -32,
+            "y": -3
+          },
+          "wingL": {
+            "sx": 1
+          },
+          "wingR": {
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "shell": {
+            "r": -26,
+            "y": -3
+          },
+          "shellFar": {
+            "r": -32,
+            "y": -3
+          },
+          "wingL": {
+            "r": 5,
+            "sx": 1
+          },
+          "wingR": {
+            "r": 7,
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "shell": {
+            "r": -26,
+            "y": -3
+          },
+          "shellFar": {
+            "r": -32,
+            "y": -3
+          },
+          "wingL": {
+            "r": -5,
+            "sx": 1
+          },
+          "wingR": {
+            "r": -7,
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "shell": {
+            "r": -26,
+            "y": -3
+          },
+          "shellFar": {
+            "r": -32,
+            "y": -3
+          },
+          "wingL": {
+            "r": 5,
+            "sx": 1
+          },
+          "wingR": {
+            "r": 7,
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "shell": {
+            "r": -26,
+            "y": -3
+          },
+          "shellFar": {
+            "r": -32,
+            "y": -3
+          },
+          "wingL": {
+            "r": -5,
+            "sx": 1
+          },
+          "wingR": {
+            "r": -7,
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "shell": {
+            "r": -26,
+            "y": -3
+          },
+          "shellFar": {
+            "r": -32,
+            "y": -3
+          },
+          "wingL": {
+            "r": 5,
+            "sx": 1
+          },
+          "wingR": {
+            "r": 7,
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "shell": {
+            "r": -26,
+            "y": -3
+          },
+          "shellFar": {
+            "r": -32,
+            "y": -3
+          },
+          "wingL": {
+            "r": -5,
+            "sx": 1
+          },
+          "wingR": {
+            "r": -7,
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "y": -2
+          },
+          "shell": {
+            "r": -26,
+            "y": -3
+          },
+          "shellFar": {
+            "r": -32,
+            "y": -3
+          },
+          "wingL": {
+            "sx": 1
+          },
+          "wingR": {
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "y": -2
+          },
+          "shell": {
+            "r": -26,
+            "y": -3
+          },
+          "shellFar": {
+            "r": -32,
+            "y": -3
+          },
+          "wingL": {
+            "sx": 1
+          },
+          "wingR": {
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "shell": {
+            "r": -26,
+            "y": -3
+          },
+          "shellFar": {
+            "r": -32,
+            "y": -3
+          },
+          "wingL": {
+            "sx": 0.55
+          },
+          "wingR": {
+            "sx": 0.55
+          }
+        },
+        "slots": {
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "shell": {
+            "r": -6,
+            "y": -1
+          },
+          "shellFar": {
+            "r": -8,
+            "y": -1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}
