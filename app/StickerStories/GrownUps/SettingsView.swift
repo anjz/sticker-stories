@@ -22,6 +22,12 @@ struct SettingsView: View {
         (nil, Text("System language")),
         ("en-US", Text(verbatim: "English")),
         ("es-ES", Text(verbatim: "Español")),
+        ("de-DE", Text(verbatim: "Deutsch")),
+        ("fr-FR", Text(verbatim: "Français")),
+        ("it-IT", Text(verbatim: "Italiano")),
+        ("ja-JP", Text(verbatim: "日本語")),
+        ("zh-TW", Text(verbatim: "繁體中文（台灣）")),
+        ("zh-HK", Text(verbatim: "繁體中文（香港）")),
     ]
 
     var body: some View {

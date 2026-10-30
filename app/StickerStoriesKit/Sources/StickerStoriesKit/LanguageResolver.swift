@@ -7,6 +7,11 @@ import Foundation
 /// 2. else primary-subtag match (`es-MX` device → `es-ES` pack);
 /// 3. else the pack's first declared language (its fallback).
 ///
+/// Chinese goes by script and region rather than by its primary subtag:
+/// Traditional Chinese in Hong Kong or Macau, and Cantonese (`yue`), is
+/// `zh-HK` (Cantonese narration); any other Traditional Chinese (`zh-Hant`,
+/// Taiwan) is `zh-TW`; Simplified Chinese matches neither (no pack has it).
+///
 /// Pure logic with injectable device preferences so it is unit-testable; the
 /// app uses the default `Locale.preferredLanguages`.
 public struct LanguageResolver: Sendable {
@@ -18,6 +23,11 @@ public struct LanguageResolver: Sendable {
 
     public func resolve(from available: [String]) -> String {
         for preferred in preferredLanguages {
+            if let chinese = Self.chinese(preferred) {
+                // Only its own kind of Chinese, never another by primary subtag.
+                if let match = available.first(where: { Self.chinese($0) == chinese }) { return match }
+                continue
+            }
             if let exact = available.first(where: {
                 $0.caseInsensitiveCompare(preferred) == .orderedSame
             }) {
@@ -31,6 +41,17 @@ public struct LanguageResolver: Sendable {
             }
         }
         return available.first ?? "en-US"
+    }
+
+    /// Which Chinese a tag is: `zh-HK` (Hong Kong, Macau, Cantonese),
+    /// `zh-TW` (other Traditional), `zh-Hans` (Simplified); nil for any
+    /// other language.
+    public static func chinese(_ tag: String) -> String? {
+        let parts = tag.split(whereSeparator: { $0 == "-" || $0 == "_" }).map { $0.lowercased() }
+        guard let primary = parts.first, primary == "zh" || primary == "yue" else { return nil }
+        if primary == "yue" || parts.contains("hk") || parts.contains("mo") { return "zh-HK" }
+        if parts.contains("hant") || parts.contains("tw") { return "zh-TW" }
+        return "zh-Hans"
     }
 
     public static func primarySubtag(_ tag: String) -> String {
