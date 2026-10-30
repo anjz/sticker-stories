@@ -68,7 +68,9 @@ magenta, to check that treetops and ridges are left out.
   is, so a sticker the child puts behind it never shows below it (Forest's
   oak and birch, 0.1); it re-lays the layer for free and leaves the
   planes in front as they are. A layer with `cut` (a mask image in the
-  art directory, white where the layer is, at the 4:3 picture's size)
+  art directory, white where the layer is, at the 4:3 picture's size,
+  or at the wide one's for something that runs past the 4:3 picture's
+  sides: Dinosaurs' rock ledge, `art/dinosaurs/cuts/`)
   instead of a prompt is cut from the finished background itself, on
   both renditions, for free: something the background already shows
   (Beach's boulders on the rock pool's rim, `art/beach/cuts/`, traced by

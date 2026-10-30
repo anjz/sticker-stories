@@ -268,7 +268,8 @@ type sceneLayer struct {
 	// Cut (optional, instead of Prompt) makes the layer from the finished
 	// background itself, nothing painted: a mask image in the art
 	// directory, white where the layer is, at the 4:3 picture's size, laid
-	// over the 4:3 background and the wide one's centre. Something the
+	// over the 4:3 background and the wide one's centre — or at the wide
+	// picture's size, its centre on the 4:3 one. Something the
 	// background already shows (the boulders on a rock pool's rim) then
 	// stands in front of the stickers behind it in a story, and looks just
 	// the same while the child plays.
@@ -1470,16 +1471,21 @@ func (r *renderer) cutLayer(l sceneLayer, bgBase, bgWide string) error {
 }
 
 // cutThrough is the picture where the mask is white, transparent elsewhere:
-// the mask, at the 4:3 picture's size, centred on a wider picture.
+// the mask, at the 4:3 or the wide picture's size, centred on the picture
+// (a wide mask reaches past the 4:3 picture's sides: Dinosaurs' rock
+// ledge).
 func cutThrough(pic, mask image.Image) (*image.RGBA, error) {
 	pb, mb := pic.Bounds(), mask.Bounds()
-	if mb.Dy() != pb.Dy() || mb.Dx() > pb.Dx() {
-		return nil, fmt.Errorf("the mask is %dx%d, the picture %dx%d: make it the 4:3 picture's size", mb.Dx(), mb.Dy(), pb.Dx(), pb.Dy())
+	if mb.Dy() != pb.Dy() {
+		return nil, fmt.Errorf("the mask is %dx%d, the picture %dx%d: make it the 4:3 or the wide picture's size", mb.Dx(), mb.Dy(), pb.Dx(), pb.Dy())
 	}
 	off := image.Pt(pb.Min.X+(pb.Dx()-mb.Dx())/2, pb.Min.Y)
 	out := image.NewRGBA(pb)
 	for y := 0; y < mb.Dy(); y++ {
 		for x := 0; x < mb.Dx(); x++ {
+			if px := off.X + x; px < pb.Min.X || px >= pb.Max.X {
+				continue
+			}
 			mr, _, _, _ := mask.At(mb.Min.X+x, mb.Min.Y+y).RGBA()
 			if mr == 0 {
 				continue
