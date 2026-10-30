@@ -93,13 +93,17 @@ it to see how freely a beat can be retold.
 - **Chinese (Taiwan)** — Traditional characters, Taiwan Mandarin words
   (腳踏車, 冰淇淋, 好棒), full-width punctuation, 「…」 quotes with the
   same space rule as Japanese. Narration read in Mandarin. About 175–260
-  characters.
+  characters. Animals are 牠, a "she" plant or thing (Acorn, Flower) 她,
+  "you" 你. Ducks go 嘎嘎, frogs 呱呱. Hide-and-seek is 躲貓貓, and never
+  name the seeker 鬼 ("我來數！").
 - **Chinese (Hong Kong)** — Traditional characters, Hong Kong words (雪糕,
   單車, 士多啤梨), read aloud in **Cantonese**: the narration in written
   Chinese that sounds natural read in Cantonese, the characters' quoted
   lines in natural spoken Cantonese (佢、係、唔、咗、啲、嘅、喺、嘩). Not a
   copy of the Taiwan text: write it for a Hong Kong child. About 175–260
-  characters.
+  characters. The same pronoun and sound conventions as Taiwan (牠, 她;
+  ducks 嘎嘎, frogs 呱呱), Hong Kong's own words for games (捉迷藏) and
+  never a 鬼 for the seeker.
 
 ## Titles
 
