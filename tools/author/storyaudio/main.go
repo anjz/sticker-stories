@@ -245,7 +245,7 @@ type voiceChoice struct {
 	VoiceID string `json:"voiceId"`
 	Name    string `json:"name"`
 	Gender  string `json:"gender,omitempty"`
-	Source  string `json:"source"` // "flag" | "library"
+	Source  string `json:"source"` // "flag" | "library" | "picked" (the author's choice: never topped up)
 }
 
 // voiceSet is <stories>/voices.json: the voices used per language. Stories
@@ -384,12 +384,13 @@ func resolveVoices(ctx context.Context, el *elevenlabs.Client, c *ctxt, flagValu
 		}
 	}
 	for _, lang := range c.pack.Languages {
-		// Pinned by flag: use as given. From the library: make sure both
-		// genders are present (tops up a voices.json from an older run).
+		// Pinned by flag or picked by the author: use as given (a language
+		// may have one narrator). From the library: make sure both genders
+		// are present (tops up a voices.json from an older run).
 		pinned := false
 		have := map[string]bool{}
 		for _, v := range chosen[lang] {
-			pinned = pinned || v.Source == "flag"
+			pinned = pinned || v.Source == "flag" || v.Source == "picked"
 			have[strings.ToLower(v.Gender)] = true
 		}
 		if pinned || (have["male"] && have["female"]) {

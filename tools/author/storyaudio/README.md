@@ -96,7 +96,10 @@ Pin your own with `-voice en-US=<id>,es-ES=<id>` (one voice per language)
 or `-voice en-US=<id>+<id>,es-ES=<id>+<id>` (several, shared out the same
 way); a bare id applies to every language. Choices are saved to
 `voices.json`; edit or delete that file to start over. `voices` lists the
-top candidates with their gender.
+top candidates with their gender. A language whose voices.json voices are
+missing a gender gets one from the library, unless they are marked
+`"source": "picked"` (chosen by hand: Hong Kong's Cantonese is read by
+Lina alone).
 
 ## Music
 
