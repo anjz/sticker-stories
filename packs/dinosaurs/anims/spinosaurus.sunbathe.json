@@ -1,0 +1,130 @@
+{
+  "id": "sunbathe",
+  "sticker": "spinosaurus",
+  "kind": "action",
+  "description": "the Spinosaurus lifts its chin and stretches its big sail up to the sun, eyes closed happily, warm and cosy, then relaxes.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.19401,
+    "width": 0.83984,
+    "height": 0.61068
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the Spinosaurus basking, chin up and sail stretched up tall to the sun, eyes closed happily"
+  },
+  "puppet": {
+    "rig": "anims/spinosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "r": 0.8
+          },
+          "head": {
+            "r": 5,
+            "y": -2
+          },
+          "sail": {
+            "sy": 1.068
+          },
+          "tail": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "r": 0.8
+          },
+          "head": {
+            "r": 8,
+            "y": -2
+          },
+          "sail": {
+            "sy": 1.108
+          },
+          "tail": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 1.2,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "r": 0.8
+          },
+          "head": {
+            "r": 9,
+            "y": -2
+          },
+          "sail": {
+            "sy": 1.122
+          },
+          "tail": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "r": 0.8
+          },
+          "head": {
+            "r": 3,
+            "y": -2
+          },
+          "sail": {
+            "sy": 1.041
+          },
+          "tail": {
+            "r": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

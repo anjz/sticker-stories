@@ -1,0 +1,264 @@
+{
+  "id": "droop",
+  "sticker": "bush",
+  "kind": "action",
+  "description": "the berry bush droops sadly, sagging low with its berries hanging down, then slowly lifts itself up again.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.15365,
+    "width": 0.72005,
+    "height": 0.69271
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the berry bush drooping sadly, sagging low"
+  },
+  "puppet": {
+    "rig": "anims/bush.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.9650000000000001
+          },
+          "berriesA": {
+            "r": -3,
+            "y": 2
+          },
+          "berriesB": {
+            "r": 3,
+            "y": 2
+          },
+          "berriesC": {
+            "r": -3,
+            "y": 2
+          },
+          "berriesD": {
+            "r": 3,
+            "y": 2
+          },
+          "berriesE": {
+            "r": -3,
+            "y": 2
+          },
+          "berriesF": {
+            "r": 3,
+            "y": 2
+          },
+          "berriesG": {
+            "r": -3,
+            "y": 2
+          },
+          "berriesH": {
+            "r": 3,
+            "y": 2
+          },
+          "body": {
+            "r": -1
+          },
+          "cover": {
+            "y": 1
+          },
+          "head": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.93
+          },
+          "berriesA": {
+            "r": -6,
+            "y": 4
+          },
+          "berriesB": {
+            "r": 6,
+            "y": 4
+          },
+          "berriesC": {
+            "r": -6,
+            "y": 4
+          },
+          "berriesD": {
+            "r": 6,
+            "y": 4
+          },
+          "berriesE": {
+            "r": -6,
+            "y": 4
+          },
+          "berriesF": {
+            "r": 6,
+            "y": 4
+          },
+          "berriesG": {
+            "r": -6,
+            "y": 4
+          },
+          "berriesH": {
+            "r": 6,
+            "y": 4
+          },
+          "body": {
+            "r": -2
+          },
+          "cover": {
+            "y": 2
+          },
+          "head": {
+            "y": 8
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "belly": {
+            "sx": 1.042,
+            "sy": 0.9265000000000001
+          },
+          "berriesA": {
+            "r": -6.300000000000001,
+            "y": 4.2
+          },
+          "berriesB": {
+            "r": 6.300000000000001,
+            "y": 4.2
+          },
+          "berriesC": {
+            "r": -6.300000000000001,
+            "y": 4.2
+          },
+          "berriesD": {
+            "r": 6.300000000000001,
+            "y": 4.2
+          },
+          "berriesE": {
+            "r": -6.300000000000001,
+            "y": 4.2
+          },
+          "berriesF": {
+            "r": 6.300000000000001,
+            "y": 4.2
+          },
+          "berriesG": {
+            "r": -6.300000000000001,
+            "y": 4.2
+          },
+          "berriesH": {
+            "r": 6.300000000000001,
+            "y": 4.2
+          },
+          "body": {
+            "r": -2.1
+          },
+          "cover": {
+            "y": 2.1
+          },
+          "head": {
+            "y": 8.4
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "belly": {
+            "sx": 1.01,
+            "sy": 0.9825
+          },
+          "berriesA": {
+            "r": -1.5,
+            "y": 1
+          },
+          "berriesB": {
+            "r": 1.5,
+            "y": 1
+          },
+          "berriesC": {
+            "r": -1.5,
+            "y": 1
+          },
+          "berriesD": {
+            "r": 1.5,
+            "y": 1
+          },
+          "berriesE": {
+            "r": -1.5,
+            "y": 1
+          },
+          "berriesF": {
+            "r": 1.5,
+            "y": 1
+          },
+          "berriesG": {
+            "r": -1.5,
+            "y": 1
+          },
+          "berriesH": {
+            "r": 1.5,
+            "y": 1
+          },
+          "body": {
+            "r": -0.5
+          },
+          "cover": {
+            "y": 0.5
+          },
+          "head": {
+            "y": 2
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "head": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

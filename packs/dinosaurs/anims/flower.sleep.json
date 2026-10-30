@@ -1,0 +1,143 @@
+{
+  "id": "sleep",
+  "sticker": "flower",
+  "kind": "action",
+  "description": "the flower gives a big yawn, closes its eyes and nods off to sleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.28516,
+    "y": 0.25,
+    "width": 0.42969,
+    "height": 0.5
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the flower fast asleep, eyes shut, its head nodding to one side"
+  },
+  "puppet": {
+    "rig": "anims/flower.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "head": {
+            "r": 3,
+            "y": -4
+          },
+          "leafL": {
+            "r": 10
+          },
+          "leafR": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "head": {
+            "r": 3,
+            "y": -4
+          },
+          "leafL": {
+            "r": 10
+          },
+          "leafR": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": -14,
+            "y": 5
+          },
+          "leafL": {
+            "r": -6
+          },
+          "leafR": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "body": {
+            "r": -3.24
+          },
+          "face": {
+            "y": 3.24
+          },
+          "head": {
+            "r": -15.120000000000001,
+            "y": 5.4
+          },
+          "leafL": {
+            "r": -6.48
+          },
+          "leafR": {
+            "r": 6.48
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.2,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "id": "ruffle",
+  "sticker": "gallimimus",
+  "kind": "action",
+  "description": "the Gallimimus fluffs up all its feathers, gives a quick little shake and smooths them down again, pleased.",
+  "stickerBox": {
+    "x": 0.15495,
+    "y": 0.13932,
+    "width": 0.6901,
+    "height": 0.72005
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the Gallimimus with its feathers all fluffed up"
+  },
+  "puppet": {
+    "rig": "anims/gallimimus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 1.04
+          },
+          "feathers": {
+            "r": -5,
+            "sx": 1.1,
+            "sy": 1.14
+          },
+          "neck": {
+            "r": 1
+          },
+          "tail": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 1.04
+          },
+          "feathers": {
+            "r": -5,
+            "sx": 1.1,
+            "sy": 1.14
+          },
+          "neck": {
+            "r": 1
+          },
+          "tail": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.08,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 1.04
+          },
+          "feathers": {
+            "r": -3,
+            "sx": 1.1,
+            "sy": 1.14
+          },
+          "neck": {
+            "r": 1
+          },
+          "root": {
+            "x": -3
+          },
+          "tail": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.08,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 1.04
+          },
+          "feathers": {
+            "r": -7,
+            "sx": 1.1,
+            "sy": 1.14
+          },
+          "neck": {
+            "r": 1
+          },
+          "root": {
+            "x": 3
+          },
+          "tail": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.08,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 1.04
+          },
+          "feathers": {
+            "r": -3,
+            "sx": 1.1,
+            "sy": 1.14
+          },
+          "neck": {
+            "r": 1
+          },
+          "root": {
+            "x": -3
+          },
+          "tail": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.08,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 1.04
+          },
+          "feathers": {
+            "r": -7,
+            "sx": 1.1,
+            "sy": 1.14
+          },
+          "neck": {
+            "r": 1
+          },
+          "root": {
+            "x": 3
+          },
+          "tail": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.08,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 1.04
+          },
+          "feathers": {
+            "r": -3,
+            "sx": 1.1,
+            "sy": 1.14
+          },
+          "neck": {
+            "r": 1
+          },
+          "root": {
+            "x": -3
+          },
+          "tail": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 1.04
+          },
+          "feathers": {
+            "r": -5,
+            "sx": 1.1,
+            "sy": 1.14
+          },
+          "neck": {
+            "r": 1
+          },
+          "tail": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

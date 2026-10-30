@@ -1,0 +1,89 @@
+{
+  "id": "stretch-neck",
+  "sticker": "plesiosaur",
+  "kind": "action",
+  "description": "the plesiosaur rises up tall out of the water, stretching its long neck high to look far away, then settles back down.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.10156,
+    "width": 0.83984,
+    "height": 0.79557
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the plesiosaur risen up tall, its long neck stretched high, looking far away"
+  },
+  "on": [
+    "lagoon"
+  ],
+  "puppet": {
+    "rig": "anims/plesiosaur.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "head": {
+            "r": 9
+          },
+          "neck": {
+            "r": 6
+          },
+          "root": {
+            "y": -30
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "head": {
+            "r": 9
+          },
+          "neck": {
+            "r": 6
+          },
+          "root": {
+            "y": -30
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "head": {
+            "r": 4
+          },
+          "neck": {
+            "r": 4
+          },
+          "root": {
+            "y": -30
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

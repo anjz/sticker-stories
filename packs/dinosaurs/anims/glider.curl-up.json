@@ -1,0 +1,244 @@
+{
+  "id": "curl-up",
+  "sticker": "glider",
+  "description": "the glider tucks in its head, wraps its long tail round and curls up into a round fluffy ball, fast asleep, then uncurls, stretches and smiles.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26432,
+    "width": 0.5,
+    "height": 0.47005
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the glider curled up into a round fluffy ball, fast asleep"
+  },
+  "perched": true,
+  "puppet": {
+    "rig": "anims/glider.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": -5,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "r": -20
+          },
+          "armR": {
+            "r": 20
+          },
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.86
+          },
+          "head": {
+            "r": 8,
+            "y": 16
+          },
+          "root": {
+            "y": 4
+          },
+          "skinL": {
+            "r": -8,
+            "sx": 0.84
+          },
+          "skinR": {
+            "r": 8,
+            "sx": 0.84
+          },
+          "tail": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "ball": {
+            "sx": 1.05,
+            "sy": 0.94
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armR": "none",
+          "ball": "ball",
+          "body": "none",
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "none",
+          "legL": "none",
+          "legR": "none",
+          "mouth": "none",
+          "nose": "none",
+          "skinL": "none",
+          "skinR": "none",
+          "tail": "none",
+          "tearR": "none",
+          "whiskL": "none",
+          "whiskR": "none"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "ball": {
+            "sx": 1,
+            "sy": 1
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armR": "none",
+          "ball": "ball",
+          "body": "none",
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "none",
+          "legL": "none",
+          "legR": "none",
+          "mouth": "none",
+          "nose": "none",
+          "skinL": "none",
+          "skinR": "none",
+          "tail": "none",
+          "tearR": "none",
+          "whiskL": "none",
+          "whiskR": "none"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "ball": {
+            "sx": 1.03,
+            "sy": 0.97
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armR": "none",
+          "ball": "ball",
+          "body": "none",
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "none",
+          "legL": "none",
+          "legR": "none",
+          "mouth": "none",
+          "nose": "none",
+          "skinL": "none",
+          "skinR": "none",
+          "tail": "none",
+          "tearR": "none",
+          "whiskL": "none",
+          "whiskR": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": -20
+          },
+          "armR": {
+            "r": 20
+          },
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.86
+          },
+          "head": {
+            "r": 8,
+            "y": 16
+          },
+          "root": {
+            "y": 4
+          },
+          "skinL": {
+            "r": -8,
+            "sx": 0.84
+          },
+          "skinR": {
+            "r": 8,
+            "sx": 0.84
+          },
+          "tail": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "r": 18
+          },
+          "armR": {
+            "r": -18
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": -4
+          },
+          "root": {
+            "y": -3
+          },
+          "skinL": {
+            "r": 14.4,
+            "sx": 0.856
+          },
+          "skinR": {
+            "r": -14.4,
+            "sx": 0.856
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

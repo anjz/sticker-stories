@@ -1,0 +1,134 @@
+{
+  "id": "stretch-neck",
+  "sticker": "brachiosaurus",
+  "kind": "action",
+  "description": "the brachiosaurus stretches its long neck up, up, up, as high as the treetops, then settles back down with a happy sigh.",
+  "stickerBox": {
+    "x": 0.07682,
+    "y": 0.02995,
+    "width": 0.84635,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the brachiosaurus reaching its long neck up high to the treetops"
+  },
+  "puppet": {
+    "rig": "anims/brachiosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "belly": {
+            "sx": 0.99,
+            "sy": 1.03
+          },
+          "head": {
+            "r": 14
+          },
+          "neck": {
+            "r": 3,
+            "y": -12
+          },
+          "neckTop": {
+            "r": -2,
+            "y": -10
+          },
+          "tail": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sx": 0.99,
+            "sy": 1.03
+          },
+          "head": {
+            "r": 16
+          },
+          "neck": {
+            "r": 3,
+            "y": -14
+          },
+          "neckTop": {
+            "r": -2,
+            "y": -12
+          },
+          "tail": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "belly": {
+            "sx": 0.99,
+            "sy": 1.03
+          },
+          "head": {
+            "r": 16
+          },
+          "neck": {
+            "r": 3,
+            "y": -14
+          },
+          "neckTop": {
+            "r": -2,
+            "y": -12
+          },
+          "tail": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

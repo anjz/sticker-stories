@@ -1,0 +1,214 @@
+{
+  "id": "roll-ball",
+  "sticker": "beetle",
+  "kind": "action",
+  "description": "the beetle pats together a little ball of mud and rolls it along with its back legs, push, push, as some beetles really do, then smiles as it rolls away.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.27865,
+    "width": 0.5,
+    "height": 0.44141
+  },
+  "puppet": {
+    "rig": "anims/beetle.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "ball": {
+            "y": 18,
+            "sx": 0.4,
+            "sy": 0.4
+          },
+          "face": {
+            "x": 5
+          },
+          "head": {
+            "r": 3
+          },
+          "legL3": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "ball": "ball"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "ball": {
+            "y": 9,
+            "sx": 0.7,
+            "sy": 0.7
+          },
+          "face": {
+            "x": 5
+          },
+          "head": {
+            "r": 3
+          },
+          "legL3": {
+            "r": -4
+          },
+          "legR3": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "ball": "ball"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "ball": {
+            "sx": 1,
+            "sy": 1
+          },
+          "face": {
+            "x": 5
+          },
+          "head": {
+            "r": 3
+          },
+          "legL3": {
+            "r": -16
+          },
+          "legR3": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "ball": "ball"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "ball": {
+            "r": 55,
+            "x": 24
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": -2
+          },
+          "legL3": {
+            "r": -26
+          },
+          "legR3": {
+            "r": -22
+          }
+        },
+        "slots": {
+          "ball": "ball"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "ball": {
+            "r": 55,
+            "x": 24
+          },
+          "body": {
+            "r": 1
+          },
+          "legL3": {
+            "r": -6
+          },
+          "legR3": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "ball": "ball"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "ball": {
+            "r": 120,
+            "x": 52
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": -2
+          },
+          "legL3": {
+            "r": -26
+          },
+          "legR3": {
+            "r": -22
+          }
+        },
+        "slots": {
+          "ball": "ball"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "ball": {
+            "r": 136,
+            "x": 60
+          },
+          "face": {
+            "x": 5
+          },
+          "head": {
+            "r": 3
+          },
+          "legL3": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "ball": "ball",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "ball": {
+            "r": 250,
+            "x": 110
+          },
+          "face": {
+            "x": 5
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "ball": "ball",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

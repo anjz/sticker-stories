@@ -1,0 +1,210 @@
+{
+  "id": "sleep",
+  "sticker": "triceratops",
+  "kind": "action",
+  "description": "the Triceratops gives a big yawn, lies down with its legs tucked under it and falls asleep, then wakes up, gets up and smiles.",
+  "stickerBox": {
+    "x": 0.08333,
+    "y": 0.07943,
+    "width": 0.83333,
+    "height": 0.83984
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the Triceratops lying down fast asleep, eyes shut, head resting low"
+  },
+  "puppet": {
+    "rig": "anims/triceratops.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "head": {
+            "r": 6,
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": 4,
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.97
+          },
+          "body": {
+            "y": 48
+          },
+          "head": {
+            "r": -5,
+            "y": 4
+          },
+          "legBF": {
+            "sy": 0.59
+          },
+          "legBN": {
+            "sy": 0.673
+          },
+          "legFF": {
+            "sy": 0.676
+          },
+          "legFN": {
+            "sy": 0.716
+          },
+          "tail": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.96
+          },
+          "body": {
+            "y": 48
+          },
+          "head": {
+            "r": -7,
+            "y": 6
+          },
+          "legBF": {
+            "sy": 0.59
+          },
+          "legBN": {
+            "sy": 0.673
+          },
+          "legFF": {
+            "sy": 0.676
+          },
+          "legFN": {
+            "sy": 0.716
+          },
+          "tail": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.97
+          },
+          "body": {
+            "y": 48
+          },
+          "head": {
+            "r": -6,
+            "y": 5
+          },
+          "legBF": {
+            "sy": 0.59
+          },
+          "legBN": {
+            "sy": 0.673
+          },
+          "legFF": {
+            "sy": 0.676
+          },
+          "legFN": {
+            "sy": 0.716
+          },
+          "tail": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.97
+          },
+          "body": {
+            "y": 48
+          },
+          "head": {},
+          "legBF": {
+            "sy": 0.59
+          },
+          "legBN": {
+            "sy": 0.673
+          },
+          "legFF": {
+            "sy": 0.676
+          },
+          "legFN": {
+            "sy": 0.716
+          },
+          "tail": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

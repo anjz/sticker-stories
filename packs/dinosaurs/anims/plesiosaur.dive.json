@@ -1,0 +1,168 @@
+{
+  "id": "dive",
+  "sticker": "plesiosaur",
+  "kind": "action",
+  "description": "the plesiosaur dips its head and dives under the water with a few bubbles, then pops up again with a happy grin.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.10156,
+    "width": 0.83984,
+    "height": 0.79557
+  },
+  "on": [
+    "lagoon"
+  ],
+  "particles": [
+    {
+      "frame": 3,
+      "effect": "bubble-puff",
+      "x": 0.2,
+      "y": 0.88,
+      "intensity": 0.6
+    },
+    {
+      "frame": 5,
+      "effect": "spray",
+      "x": 0.26,
+      "y": 0.89,
+      "intensity": 0.3
+    }
+  ],
+  "puppet": {
+    "rig": "anims/plesiosaur.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": 8
+          },
+          "neck": {
+            "r": 5
+          },
+          "root": {
+            "y": -5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.45,
+        "ease": "in",
+        "bones": {
+          "body": {
+            "r": -4
+          },
+          "head": {
+            "r": -22
+          },
+          "neck": {
+            "r": -26
+          },
+          "root": {
+            "y": 70
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "body": {
+            "r": -6
+          },
+          "head": {
+            "r": -24
+          },
+          "neck": {
+            "r": -30
+          },
+          "root": {
+            "y": 300
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.55,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "r": -6
+          },
+          "head": {
+            "r": -24
+          },
+          "neck": {
+            "r": -30
+          },
+          "root": {
+            "y": 300
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 9
+          },
+          "neck": {
+            "r": 5
+          },
+          "root": {
+            "y": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": 4
+          },
+          "neck": {
+            "r": 2
+          },
+          "root": {}
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

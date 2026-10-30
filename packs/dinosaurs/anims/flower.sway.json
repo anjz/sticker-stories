@@ -1,0 +1,99 @@
+{
+  "id": "sway",
+  "sticker": "flower",
+  "kind": "action",
+  "description": "the flower sways gently from side to side in the breeze, smiling.",
+  "stickerBox": {
+    "x": 0.28516,
+    "y": 0.25,
+    "width": 0.42969,
+    "height": 0.5
+  },
+  "puppet": {
+    "rig": "anims/flower.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "body": {
+            "r": -4
+          },
+          "head": {
+            "r": 2
+          },
+          "leafL": {
+            "r": -4
+          },
+          "leafR": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "body": {
+            "r": 4
+          },
+          "head": {
+            "r": -2
+          },
+          "leafL": {
+            "r": 4
+          },
+          "leafR": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "body": {
+            "r": -4
+          },
+          "head": {
+            "r": 2
+          },
+          "leafL": {
+            "r": -4
+          },
+          "leafR": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "body": {
+            "r": 3.2
+          },
+          "head": {
+            "r": -1.6
+          },
+          "leafL": {
+            "r": 3.2
+          },
+          "leafR": {
+            "r": 3.2
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": -0.5
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

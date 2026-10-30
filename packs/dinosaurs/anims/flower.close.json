@@ -1,0 +1,167 @@
+{
+  "id": "close",
+  "sticker": "flower",
+  "kind": "action",
+  "description": "the flower yawns and slowly folds its petals up into a closed bud for the night, then opens them again and smiles.",
+  "stickerBox": {
+    "x": 0.28516,
+    "y": 0.25,
+    "width": 0.42969,
+    "height": 0.5
+  },
+  "pause": {
+    "frame": 5,
+    "shows": "the flower closed up into a bud for the night"
+  },
+  "puppet": {
+    "rig": "anims/flower.rig.json",
+    "keys": [
+      {
+        "hold": 0.3
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "head": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.45,
+        "ease": "in",
+        "bones": {
+          "head": {
+            "sx": 0.92,
+            "sy": 0.94
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "in",
+        "bones": {
+          "head": {
+            "sx": 0.8,
+            "sy": 0.84
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "head": {
+            "sx": 0.98,
+            "sy": 0.98
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "flower": "bud",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "head": {
+            "sx": 1,
+            "sy": 1
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "flower": "bud",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "in",
+        "bones": {
+          "head": {
+            "sx": 1.02,
+            "sy": 1.03
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "flower": "bud",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "head": {
+            "sx": 0.84,
+            "sy": 0.86
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "sx": 1.04,
+            "sy": 1.04
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

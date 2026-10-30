@@ -1,0 +1,79 @@
+{
+  "id": "look-around",
+  "sticker": "spinosaurus",
+  "kind": "action",
+  "description": "the Spinosaurus looks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.19401,
+    "width": 0.83984,
+    "height": 0.61068
+  },
+  "puppet": {
+    "rig": "anims/spinosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": -7
+          },
+          "head": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": -7
+          },
+          "head": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 12
+          },
+          "head": {
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 12
+          },
+          "head": {
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

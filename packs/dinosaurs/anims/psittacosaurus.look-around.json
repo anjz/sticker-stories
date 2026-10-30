@@ -1,0 +1,83 @@
+{
+  "id": "look-around",
+  "sticker": "psittacosaurus",
+  "kind": "action",
+  "description": "the little Psittacosaurus looks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.20443,
+    "width": 0.59896,
+    "height": 0.59115
+  },
+  "puppet": {
+    "rig": "anims/psittacosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "face": {},
+          "head": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "face": {},
+          "head": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": 1.5
+          },
+          "face": {
+            "x": 7
+          },
+          "head": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 1.5
+          },
+          "face": {
+            "x": 7
+          },
+          "head": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

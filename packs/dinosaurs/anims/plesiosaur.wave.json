@@ -1,0 +1,138 @@
+{
+  "id": "wave",
+  "sticker": "plesiosaur",
+  "kind": "action",
+  "description": "the plesiosaur lifts a big front flipper out of the water and waves hello.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.10156,
+    "width": 0.83984,
+    "height": 0.79557
+  },
+  "on": [
+    "lagoon"
+  ],
+  "puppet": {
+    "rig": "anims/plesiosaur.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 88
+          },
+          "head": {
+            "r": 4
+          },
+          "neck": {
+            "r": 2
+          },
+          "root": {
+            "y": -20
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armL": {
+            "r": 78
+          },
+          "head": {
+            "r": 4
+          },
+          "neck": {
+            "r": 2
+          },
+          "root": {
+            "y": -20
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armL": {
+            "r": 96
+          },
+          "head": {
+            "r": 4
+          },
+          "neck": {
+            "r": 2
+          },
+          "root": {
+            "y": -20
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armL": {
+            "r": 78
+          },
+          "head": {
+            "r": 4
+          },
+          "neck": {
+            "r": 2
+          },
+          "root": {
+            "y": -20
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 90
+          },
+          "head": {
+            "r": 4
+          },
+          "neck": {
+            "r": 2
+          },
+          "root": {
+            "y": -20
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

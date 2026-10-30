@@ -1,0 +1,387 @@
+{
+  "id": "swim",
+  "sticker": "spinosaurus",
+  "kind": "move",
+  "description": "the Spinosaurus swims along to the left, its head and sail above the water and its paddle tail sweeping, then stops.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.19401,
+    "width": 0.83984,
+    "height": 0.61068
+  },
+  "loop": {
+    "from": 1,
+    "to": 14
+  },
+  "facing": "left",
+  "stride": 0.7,
+  "on": [
+    "lagoon"
+  ],
+  "stays": true,
+  "waterline": 0.4,
+  "puppet": {
+    "rig": "anims/spinosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.093,
+        "ease": "linear",
+        "bones": {
+          "body": {},
+          "head": {
+            "r": -0.39
+          },
+          "legFF": {
+            "r": -12.49
+          },
+          "legFN": {
+            "r": -15.46
+          },
+          "root": {
+            "y": -0.78
+          },
+          "tail": {
+            "r": -14.45
+          }
+        }
+      },
+      {
+        "hold": 0.093,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 0.95
+          },
+          "head": {
+            "r": -0.81
+          },
+          "legFF": {
+            "r": -12.7
+          },
+          "legFN": {
+            "r": -15.46
+          },
+          "root": {
+            "y": -1.5
+          },
+          "tail": {
+            "r": -12.24
+          }
+        }
+      },
+      {
+        "hold": 0.093,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 1.72
+          },
+          "head": {
+            "r": -1.07
+          },
+          "legFF": {
+            "r": -12.6
+          },
+          "legFN": {
+            "r": -15.18
+          },
+          "root": {
+            "y": -1.93
+          },
+          "tail": {
+            "r": -7.59
+          }
+        }
+      },
+      {
+        "hold": 0.093,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 2.14
+          },
+          "head": {
+            "r": -1.12
+          },
+          "legFF": {
+            "r": -12.23
+          },
+          "legFN": {
+            "r": -14.66
+          },
+          "root": {
+            "y": -1.97
+          },
+          "tail": {
+            "r": -1.45
+          }
+        }
+      },
+      {
+        "hold": 0.093,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 2.14
+          },
+          "head": {
+            "r": -0.95
+          },
+          "legFF": {
+            "r": -11.65
+          },
+          "legFN": {
+            "r": -14.01
+          },
+          "root": {
+            "y": -1.62
+          },
+          "tail": {
+            "r": 4.98
+          }
+        }
+      },
+      {
+        "hold": 0.093,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 1.72
+          },
+          "head": {
+            "r": -0.59
+          },
+          "legFF": {
+            "r": -10.98
+          },
+          "legFN": {
+            "r": -13.36
+          },
+          "root": {
+            "y": -0.95
+          },
+          "tail": {
+            "r": 10.43
+          }
+        }
+      },
+      {
+        "hold": 0.093,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 0.95
+          },
+          "head": {
+            "r": -0.11
+          },
+          "legFF": {
+            "r": -10.36
+          },
+          "legFN": {
+            "r": -12.83
+          },
+          "root": {
+            "y": -0.1
+          },
+          "tail": {
+            "r": 13.81
+          }
+        }
+      },
+      {
+        "hold": 0.093,
+        "ease": "linear",
+        "bones": {
+          "body": {},
+          "head": {
+            "r": 0.39
+          },
+          "legFF": {
+            "r": -9.91
+          },
+          "legFN": {
+            "r": -12.54
+          },
+          "root": {
+            "y": 0.78
+          },
+          "tail": {
+            "r": 14.45
+          }
+        }
+      },
+      {
+        "hold": 0.093,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -0.95
+          },
+          "head": {
+            "r": 0.81
+          },
+          "legFF": {
+            "r": -9.7
+          },
+          "legFN": {
+            "r": -12.54
+          },
+          "root": {
+            "y": 1.5
+          },
+          "tail": {
+            "r": 12.24
+          }
+        }
+      },
+      {
+        "hold": 0.093,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -1.72
+          },
+          "head": {
+            "r": 1.07
+          },
+          "legFF": {
+            "r": -9.8
+          },
+          "legFN": {
+            "r": -12.82
+          },
+          "root": {
+            "y": 1.93
+          },
+          "tail": {
+            "r": 7.59
+          }
+        }
+      },
+      {
+        "hold": 0.093,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -2.14
+          },
+          "head": {
+            "r": 1.12
+          },
+          "legFF": {
+            "r": -10.17
+          },
+          "legFN": {
+            "r": -13.34
+          },
+          "root": {
+            "y": 1.97
+          },
+          "tail": {
+            "r": 1.45
+          }
+        }
+      },
+      {
+        "hold": 0.093,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -2.14
+          },
+          "head": {
+            "r": 0.95
+          },
+          "legFF": {
+            "r": -10.75
+          },
+          "legFN": {
+            "r": -13.99
+          },
+          "root": {
+            "y": 1.62
+          },
+          "tail": {
+            "r": -4.98
+          }
+        }
+      },
+      {
+        "hold": 0.093,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -1.72
+          },
+          "head": {
+            "r": 0.59
+          },
+          "legFF": {
+            "r": -11.42
+          },
+          "legFN": {
+            "r": -14.64
+          },
+          "root": {
+            "y": 0.95
+          },
+          "tail": {
+            "r": -10.43
+          }
+        }
+      },
+      {
+        "hold": 0.093,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -0.95
+          },
+          "head": {
+            "r": 0.11
+          },
+          "legFF": {
+            "r": -12.04
+          },
+          "legFN": {
+            "r": -15.17
+          },
+          "root": {
+            "y": 0.1
+          },
+          "tail": {
+            "r": -13.81
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {},
+          "head": {
+            "r": -0.14
+          },
+          "legFF": {
+            "r": -4.37
+          },
+          "legFN": {
+            "r": -5.41
+          },
+          "root": {
+            "y": -0.27
+          },
+          "tail": {
+            "r": -5.06
+          }
+        }
+      },
+      {
+        "hold": 0.35
+      }
+    ]
+  }
+}

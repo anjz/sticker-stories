@@ -1,0 +1,148 @@
+{
+  "id": "stomp",
+  "sticker": "trex",
+  "kind": "action",
+  "description": "the little T. rex lifts one big foot and stomps it down, thump, with a little puff of dust, then giggles.",
+  "stickerBox": {
+    "x": 0.13021,
+    "y": 0.07943,
+    "width": 0.73828,
+    "height": 0.83984
+  },
+  "particles": [
+    {
+      "frame": 3,
+      "effect": "dust-puff",
+      "x": 0.56,
+      "y": 0.9,
+      "intensity": 0.45
+    }
+  ],
+  "puppet": {
+    "rig": "anims/trex.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "r": 14
+          },
+          "armR": {
+            "r": 14
+          },
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 2
+          },
+          "legR": {
+            "r": 6,
+            "y": -34
+          },
+          "tail": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armL": {
+            "r": 16
+          },
+          "armR": {
+            "r": 16
+          },
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "r": 2.5
+          },
+          "head": {
+            "r": 2
+          },
+          "legR": {
+            "r": 7,
+            "y": -38
+          },
+          "tail": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.12,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": -6
+          },
+          "armR": {
+            "r": -6
+          },
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.94
+          },
+          "head": {
+            "y": 5
+          },
+          "root": {
+            "y": 4
+          },
+          "tail": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.01,
+            "sy": 0.99
+          },
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

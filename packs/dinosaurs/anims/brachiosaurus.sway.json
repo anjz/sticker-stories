@@ -1,0 +1,118 @@
+{
+  "id": "sway",
+  "sticker": "brachiosaurus",
+  "kind": "action",
+  "description": "the brachiosaurus sways its long neck gently from side to side, humming a happy tune with its eyes closed.",
+  "stickerBox": {
+    "x": 0.07682,
+    "y": 0.02995,
+    "width": 0.84635,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/brachiosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.25
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "head": {
+            "r": 5
+          },
+          "neck": {
+            "r": -4
+          },
+          "neckTop": {
+            "r": -4
+          },
+          "tail": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.75,
+        "bones": {
+          "head": {
+            "r": -5
+          },
+          "neck": {
+            "r": 4
+          },
+          "neckTop": {
+            "r": 4
+          },
+          "tail": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.75,
+        "bones": {
+          "head": {
+            "r": 5
+          },
+          "neck": {
+            "r": -4
+          },
+          "neckTop": {
+            "r": -4
+          },
+          "tail": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.75,
+        "bones": {
+          "head": {
+            "r": -5
+          },
+          "neck": {
+            "r": 4
+          },
+          "neckTop": {
+            "r": 4
+          },
+          "tail": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.6,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

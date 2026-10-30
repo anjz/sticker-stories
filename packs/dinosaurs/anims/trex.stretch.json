@@ -1,0 +1,117 @@
+{
+  "id": "stretch",
+  "sticker": "trex",
+  "kind": "action",
+  "description": "the little T. rex stretches its tiny arms up and its tail out long with a big yawn, then flops back down with a happy sigh.",
+  "stickerBox": {
+    "x": 0.13021,
+    "y": 0.07943,
+    "width": 0.73828,
+    "height": 0.83984
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the little T. rex stretching up tall with a big yawn, tiny arms up"
+  },
+  "puppet": {
+    "rig": "anims/trex.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "armL": {
+            "r": 55
+          },
+          "armR": {
+            "r": 55
+          },
+          "belly": {
+            "sx": 0.98,
+            "sy": 1.05
+          },
+          "head": {
+            "r": 7,
+            "y": -5
+          },
+          "root": {
+            "y": -3
+          },
+          "tail": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "roar"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "armL": {
+            "r": 66
+          },
+          "armR": {
+            "r": 66
+          },
+          "belly": {
+            "sx": 0.98,
+            "sy": 1.05
+          },
+          "head": {
+            "r": 8,
+            "y": -7
+          },
+          "root": {
+            "y": -5
+          },
+          "tail": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "roar"
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": -8
+          },
+          "armR": {
+            "r": -8
+          },
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.95
+          },
+          "head": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

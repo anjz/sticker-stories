@@ -1,0 +1,191 @@
+{
+  "id": "curl-up",
+  "sticker": "fern",
+  "kind": "action",
+  "description": "the fern shyly folds its fronds in close and shuts its eyes, then peeks out and slowly spreads them out again.",
+  "stickerBox": {
+    "x": 0.21484,
+    "y": 0.20052,
+    "width": 0.56901,
+    "height": 0.59896
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the fern with its fronds folded in close, shy, its eyes shut"
+  },
+  "puppet": {
+    "rig": "anims/fern.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.6,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "sy": 0.982
+          },
+          "curlShort": {
+            "r": 6,
+            "sy": 0.964
+          },
+          "curlTall": {
+            "r": 3.5999999999999996,
+            "sy": 0.964
+          },
+          "frondsL": {
+            "r": 13.2,
+            "sx": 0.9520000000000001
+          },
+          "frondsMid": {
+            "sx": 0.892,
+            "sy": 0.9520000000000001
+          },
+          "frondsR": {
+            "r": -13.2,
+            "sx": 0.9520000000000001
+          },
+          "head": {
+            "y": 1.7999999999999998
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "body": {
+            "sy": 0.97
+          },
+          "curlShort": {
+            "r": 10,
+            "sy": 0.94
+          },
+          "curlTall": {
+            "r": 6,
+            "sy": 0.94
+          },
+          "frondsL": {
+            "r": 22,
+            "sx": 0.92
+          },
+          "frondsMid": {
+            "sx": 0.82,
+            "sy": 0.92
+          },
+          "frondsR": {
+            "r": -22,
+            "sx": 0.92
+          },
+          "head": {
+            "y": 3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "body": {
+            "sy": 0.97
+          },
+          "curlShort": {
+            "r": 10,
+            "sy": 0.94
+          },
+          "curlTall": {
+            "r": 6,
+            "sy": 0.94
+          },
+          "frondsL": {
+            "r": 22,
+            "sx": 0.92
+          },
+          "frondsMid": {
+            "sx": 0.82,
+            "sy": 0.92
+          },
+          "frondsR": {
+            "r": -22,
+            "sx": 0.92
+          },
+          "head": {
+            "y": 3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "sy": 0.97
+          },
+          "curlShort": {
+            "r": 10,
+            "sy": 0.94
+          },
+          "curlTall": {
+            "r": 6,
+            "sy": 0.94
+          },
+          "frondsL": {
+            "r": 22,
+            "sx": 0.92
+          },
+          "frondsMid": {
+            "sx": 0.82,
+            "sy": 0.92
+          },
+          "frondsR": {
+            "r": -22,
+            "sx": 0.92
+          },
+          "head": {
+            "y": 3
+          }
+        },
+        "slots": {
+          "eyeL": "open",
+          "eyeR": "open"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "frondsL": {
+            "r": 6
+          },
+          "frondsR": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

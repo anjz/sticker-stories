@@ -1,0 +1,101 @@
+{
+  "id": "gust",
+  "sticker": "log",
+  "kind": "action",
+  "description": "a gust of wind sweeps over the log: its little fern bends right over and flutters, a puff of dust blows off the top, then the fern springs back.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.19531,
+    "width": 0.72005,
+    "height": 0.60938
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the log's little fern bent right over in a gust of wind"
+  },
+  "particles": [
+    {
+      "frame": 1,
+      "effect": "dust-puff",
+      "x": 0.52,
+      "y": 0.4,
+      "intensity": 0.25
+    }
+  ],
+  "puppet": {
+    "rig": "anims/log.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.45,
+        "ease": "out",
+        "bones": {
+          "fern": {
+            "r": 17,
+            "sx": 0.95
+          },
+          "tip": {
+            "r": -0.4
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "fern": {
+            "r": 19,
+            "sx": 0.94
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "fern": {
+            "r": 16,
+            "sx": 0.96
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "fern": {
+            "r": 19,
+            "sx": 0.94
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "ease": "in",
+        "bones": {
+          "fern": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "fern": {
+            "r": 2.5
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "fern": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "id": "rock",
+  "sticker": "log",
+  "kind": "action",
+  "description": "a bump rocks the log gently from one end to the other on its round side, then it settles.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.19531,
+    "width": 0.72005,
+    "height": 0.60938
+  },
+  "puppet": {
+    "rig": "anims/log.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "fern": {
+            "r": 3
+          },
+          "tip": {
+            "r": -2.5
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "fern": {
+            "r": -3.5
+          },
+          "tipR": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "fern": {
+            "r": 2
+          },
+          "tip": {
+            "r": -1.2
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "fern": {
+            "r": -1
+          },
+          "tipR": {
+            "r": 0.6
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "id": "wag-tail",
+  "sticker": "triceratops",
+  "kind": "action",
+  "description": "the Triceratops wags its short, thick tail happily from side to side.",
+  "stickerBox": {
+    "x": 0.08333,
+    "y": 0.07943,
+    "width": 0.83333,
+    "height": 0.83984
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/triceratops.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -0.6
+          },
+          "head": {
+            "r": 1.5
+          },
+          "tail": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 0.6
+          },
+          "head": {
+            "r": -1.5
+          },
+          "tail": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -0.6
+          },
+          "head": {
+            "r": 1.5
+          },
+          "tail": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 0.6
+          },
+          "head": {
+            "r": -1.5
+          },
+          "tail": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -0.6
+          },
+          "head": {
+            "r": 1.5
+          },
+          "tail": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 0.6
+          },
+          "head": {
+            "r": -1.5
+          },
+          "tail": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

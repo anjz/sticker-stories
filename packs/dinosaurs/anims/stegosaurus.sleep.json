@@ -1,0 +1,229 @@
+{
+  "id": "sleep",
+  "sticker": "stegosaurus",
+  "kind": "action",
+  "description": "the Stegosaurus gives a big yawn, lies down with its legs tucked under and falls asleep, then wakes up, blinks, smiles and gets up.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.16146,
+    "width": 0.83984,
+    "height": 0.67708
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the Stegosaurus lying down fast asleep, legs tucked under, eyes shut, head drooped"
+  },
+  "puppet": {
+    "rig": "anims/stegosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": 7,
+            "y": -3
+          },
+          "plates": {
+            "sy": 1.03
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "y": 22
+          },
+          "head": {
+            "r": 2
+          },
+          "legBF": {
+            "sy": 0.837
+          },
+          "legBN": {
+            "sy": 0.837
+          },
+          "legFF": {
+            "sy": 0.837
+          },
+          "legFN": {
+            "sy": 0.837
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "y": 48
+          },
+          "head": {
+            "r": -5,
+            "y": 4
+          },
+          "tail": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "foldBN": "fold",
+          "foldFN": "fold",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "y": 48
+          },
+          "head": {
+            "r": -6,
+            "y": 5
+          },
+          "tail": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "foldBN": "fold",
+          "foldFN": "fold",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "y": 48
+          },
+          "head": {
+            "r": 1
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "foldBN": "fold",
+          "foldFN": "fold",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "y": 48
+          },
+          "head": {
+            "r": 1
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "foldBN": "fold",
+          "foldFN": "fold",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "y": 48
+          },
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "foldBN": "fold",
+          "foldFN": "fold",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "y": 22
+          },
+          "head": {
+            "r": 1
+          },
+          "legBF": {
+            "sy": 0.837
+          },
+          "legBN": {
+            "sy": 0.837
+          },
+          "legFF": {
+            "sy": 0.837
+          },
+          "legFN": {
+            "sy": 0.837
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

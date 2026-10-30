@@ -1,0 +1,94 @@
+{
+  "id": "plonk",
+  "sticker": "eggs",
+  "kind": "move",
+  "description": "the nest of eggs is set down on the ground: it rocks gently on its round bottom and settles, the eggs snug inside.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.22656,
+    "width": 0.59896,
+    "height": 0.54557
+  },
+  "particles": [
+    {
+      "frame": 3,
+      "effect": "dust-puff",
+      "x": 0.5,
+      "y": 0.74,
+      "intensity": 0.35
+    }
+  ],
+  "puppet": {
+    "rig": "anims/eggs.rig.json",
+    "keys": [
+      {
+        "hold": 0.02,
+        "ease": "step"
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "root": {
+            "r": -4,
+            "y": -50
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "in",
+        "bones": {
+          "root": {
+            "r": -2,
+            "y": -30
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "egg1": {
+            "r": -1.5
+          },
+          "egg2": {
+            "r": 1.5
+          },
+          "egg3": {
+            "r": -1
+          },
+          "root": {
+            "r": 2.5
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "egg1": {
+            "r": 1
+          },
+          "egg2": {
+            "r": -1
+          },
+          "egg3": {
+            "r": 1
+          },
+          "root": {
+            "r": -1.5
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "root": {
+            "r": 0.6
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

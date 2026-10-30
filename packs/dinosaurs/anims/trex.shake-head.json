@@ -1,0 +1,67 @@
+{
+  "id": "shake-head",
+  "sticker": "trex",
+  "kind": "action",
+  "description": "the little T. rex shakes its head no.",
+  "stickerBox": {
+    "x": 0.13021,
+    "y": 0.07943,
+    "width": 0.73828,
+    "height": 0.83984
+  },
+  "puppet": {
+    "rig": "anims/trex.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "x": -5
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 9
+          },
+          "head": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": -5
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 8
+          },
+          "head": {
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

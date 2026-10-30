@@ -1,0 +1,103 @@
+{
+  "id": "stomp",
+  "sticker": "triceratops",
+  "kind": "action",
+  "description": "the Triceratops lifts one front foot and stomps it down, thump, with a little puff of dust, then giggles.",
+  "stickerBox": {
+    "x": 0.08333,
+    "y": 0.07943,
+    "width": 0.83333,
+    "height": 0.83984
+  },
+  "particles": [
+    {
+      "frame": 3,
+      "effect": "dust-puff",
+      "x": 0.46,
+      "y": 0.89,
+      "intensity": 0.45
+    }
+  ],
+  "puppet": {
+    "rig": "anims/triceratops.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 2
+          },
+          "legFN": {
+            "r": 12,
+            "y": -16
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": 2.5
+          },
+          "head": {
+            "r": 3
+          },
+          "legFN": {
+            "r": 14,
+            "y": -20
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.97
+          },
+          "body": {
+            "r": -0.5
+          },
+          "head": {
+            "y": 3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

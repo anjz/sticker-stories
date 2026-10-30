@@ -1,0 +1,145 @@
+{
+  "id": "jump",
+  "sticker": "parasaurolophus",
+  "kind": "action",
+  "description": "the Parasaurolophus crouches, jumps up for joy with its little arms up and lands with a little squash.",
+  "stickerBox": {
+    "x": 0.13542,
+    "y": 0.07943,
+    "width": 0.72786,
+    "height": 0.83984
+  },
+  "puppet": {
+    "rig": "anims/parasaurolophus.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "armL": {
+            "r": -6
+          },
+          "armR": {
+            "r": -6
+          },
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.93
+          },
+          "head": {
+            "y": 5
+          },
+          "root": {
+            "y": 8
+          }
+        }
+      },
+      {
+        "hold": 0.24,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": 30
+          },
+          "armR": {
+            "r": 30
+          },
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.04
+          },
+          "head": {
+            "r": 4
+          },
+          "legL": {
+            "r": 6
+          },
+          "legR": {
+            "r": -6
+          },
+          "root": {
+            "y": -60
+          },
+          "tail": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": 30
+          },
+          "armR": {
+            "r": 30
+          },
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.04
+          },
+          "head": {
+            "r": 4
+          },
+          "legL": {
+            "r": 6
+          },
+          "legR": {
+            "r": -6
+          },
+          "root": {
+            "y": -64
+          },
+          "tail": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.91
+          },
+          "head": {
+            "y": 5
+          },
+          "root": {
+            "y": 4
+          },
+          "tail": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

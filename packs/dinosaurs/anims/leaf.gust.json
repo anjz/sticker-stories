@@ -1,0 +1,110 @@
+{
+  "id": "gust",
+  "sticker": "leaf",
+  "kind": "action",
+  "description": "a big gust of wind bends the big leaf right over to one side; then it springs back up and wobbles still.",
+  "stickerBox": {
+    "x": 0.10547,
+    "y": 0.07943,
+    "width": 0.78906,
+    "height": 0.83984
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the big leaf bent right over in a gust of wind"
+  },
+  "puppet": {
+    "rig": "anims/leaf.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.55,
+        "ease": "out",
+        "bones": {
+          "blade": {
+            "r": 10,
+            "sx": 0.97
+          },
+          "body": {
+            "r": 12
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "blade": {
+            "r": 13,
+            "sx": 0.95
+          },
+          "body": {
+            "r": 13
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "blade": {
+            "r": 10,
+            "sx": 0.97
+          },
+          "body": {
+            "r": 11.5
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "blade": {
+            "r": 12.5,
+            "sx": 0.95
+          },
+          "body": {
+            "r": 13
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "in",
+        "bones": {
+          "blade": {
+            "r": -4
+          },
+          "body": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "blade": {
+            "r": 2
+          },
+          "body": {
+            "r": 2.5
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "blade": {
+            "r": -0.5
+          },
+          "body": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "id": "slow-dance",
+  "sticker": "turtle",
+  "kind": "action",
+  "description": "the turtle sways slowly from side to side, lifting one front foot and then the other, in a happy little dance.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.26042,
+    "width": 0.59896,
+    "height": 0.47917
+  },
+  "puppet": {
+    "rig": "anims/turtle.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": 12,
+            "y": -3
+          },
+          "body": {
+            "r": 2.5
+          },
+          "head": {
+            "r": -4
+          },
+          "root": {
+            "x": -7
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armR": {
+            "r": 14,
+            "y": -3
+          },
+          "body": {
+            "r": -2.5
+          },
+          "head": {
+            "r": 4
+          },
+          "root": {
+            "x": 7
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": 12,
+            "y": -3
+          },
+          "body": {
+            "r": 2.5
+          },
+          "head": {
+            "r": -4
+          },
+          "root": {
+            "x": -7
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armR": {
+            "r": 14,
+            "y": -3
+          },
+          "body": {
+            "r": -2.5
+          },
+          "head": {
+            "r": 4
+          },
+          "root": {
+            "x": 7
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": 12,
+            "y": -3
+          },
+          "body": {
+            "r": 2.5
+          },
+          "head": {
+            "r": -4
+          },
+          "root": {
+            "x": -7
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armR": {
+            "r": 14,
+            "y": -3
+          },
+          "body": {
+            "r": -2.5
+          },
+          "head": {
+            "r": 4
+          },
+          "root": {
+            "x": 7
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

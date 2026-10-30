@@ -1,0 +1,107 @@
+{
+  "id": "paddle-tail",
+  "sticker": "spinosaurus",
+  "kind": "action",
+  "description": "the Spinosaurus sweeps its long paddle tail up and down, slow and strong, like a paddle.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.19401,
+    "width": 0.83984,
+    "height": 0.61068
+  },
+  "puppet": {
+    "rig": "anims/spinosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": 0.8
+          },
+          "sail": {
+            "r": -1
+          },
+          "tail": {
+            "r": -11
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": -0.8
+          },
+          "sail": {
+            "r": 1
+          },
+          "tail": {
+            "r": 9
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": 0.8
+          },
+          "sail": {
+            "r": -1
+          },
+          "tail": {
+            "r": -11
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": -0.8
+          },
+          "sail": {
+            "r": 1
+          },
+          "tail": {
+            "r": 9
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": 0.8
+          },
+          "sail": {
+            "r": -1
+          },
+          "tail": {
+            "r": -11
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": -0.8
+          },
+          "sail": {
+            "r": 1
+          },
+          "tail": {
+            "r": 9
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

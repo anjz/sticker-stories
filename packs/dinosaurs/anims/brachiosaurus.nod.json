@@ -1,0 +1,64 @@
+{
+  "id": "nod",
+  "sticker": "brachiosaurus",
+  "kind": "action",
+  "description": "the brachiosaurus nods its little head yes, twice, slowly and kindly.",
+  "stickerBox": {
+    "x": 0.07682,
+    "y": 0.02995,
+    "width": 0.84635,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/brachiosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": -10
+          },
+          "neckTop": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.28,
+        "bones": {
+          "head": {
+            "r": 2
+          },
+          "neckTop": {
+            "r": 0.5
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": -10
+          },
+          "neckTop": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.28,
+        "bones": {
+          "head": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

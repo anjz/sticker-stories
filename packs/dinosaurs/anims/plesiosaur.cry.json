@@ -1,0 +1,222 @@
+{
+  "id": "cry",
+  "sticker": "plesiosaur",
+  "kind": "action",
+  "description": "the plesiosaur cries, its head hanging low, bobbing in the water with little sobs.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.10156,
+    "width": 0.83984,
+    "height": 0.79557
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the plesiosaur crying, its head hanging low, eyes squeezed shut with tears"
+  },
+  "on": [
+    "lagoon"
+  ],
+  "puppet": {
+    "rig": "anims/plesiosaur.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "head": {
+            "r": -7
+          },
+          "neck": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": -7
+          },
+          "neck": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "head": {
+            "r": -9
+          },
+          "neck": {
+            "r": -6
+          },
+          "root": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sob"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "head": {
+            "r": -7
+          },
+          "neck": {
+            "r": -5
+          },
+          "root": {}
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sob"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "head": {
+            "r": -9
+          },
+          "neck": {
+            "r": -6
+          },
+          "root": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sob"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "head": {
+            "r": -7
+          },
+          "neck": {
+            "r": -5
+          },
+          "root": {}
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sob"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "head": {
+            "r": -9
+          },
+          "neck": {
+            "r": -6
+          },
+          "root": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sob"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "head": {
+            "r": -7
+          },
+          "neck": {
+            "r": -5
+          },
+          "root": {}
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sob"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "head": {
+            "r": -5
+          },
+          "neck": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "id": "hide",
+  "sticker": "ammonite",
+  "kind": "action",
+  "description": "the shy ammonite pulls itself right into its shell and stays hidden for a while, then pops out again with a smile.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.25781,
+    "width": 0.5,
+    "height": 0.48307
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the ammonite hidden in its shell, only the shell showing"
+  },
+  "on": [
+    "lagoon"
+  ],
+  "puppet": {
+    "rig": "anims/ammonite.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "head": {
+            "x": 10,
+            "y": 4,
+            "sx": 0.85,
+            "sy": 0.85
+          },
+          "t1": {
+            "r": 12
+          },
+          "t2": {
+            "r": -8
+          },
+          "t5": {
+            "r": 8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "head": {
+            "x": 18,
+            "y": 6,
+            "sx": 0.7,
+            "sy": 0.7
+          },
+          "t1": {
+            "r": 30
+          },
+          "t2": {
+            "r": -20
+          },
+          "t3": {
+            "r": -10
+          },
+          "t4": {
+            "r": 10
+          },
+          "t5": {
+            "r": 20
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 1.2,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "root": {
+            "y": 2
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "fringe": "none",
+          "head": "none",
+          "mouth": "none",
+          "t1": "none",
+          "t2": "none",
+          "t3": "none",
+          "t4": "none",
+          "t5": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "root": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "fringe": "none",
+          "head": "none",
+          "mouth": "none",
+          "t1": "none",
+          "t2": "none",
+          "t3": "none",
+          "t4": "none",
+          "t5": "none"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "head": {
+            "x": 18,
+            "y": 6,
+            "sx": 0.7,
+            "sy": 0.7
+          },
+          "t1": {
+            "r": 30
+          },
+          "t2": {
+            "r": -20
+          },
+          "t3": {
+            "r": -10
+          },
+          "t4": {
+            "r": 10
+          },
+          "t5": {
+            "r": 20
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

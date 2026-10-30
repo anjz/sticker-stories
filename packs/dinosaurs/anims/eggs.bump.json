@@ -1,0 +1,82 @@
+{
+  "id": "bump",
+  "sticker": "eggs",
+  "kind": "action",
+  "description": "a bump jostles the nest: it rocks on its round bottom and the eggs rattle snugly in it, then everything settles.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.22656,
+    "width": 0.59896,
+    "height": 0.54557
+  },
+  "puppet": {
+    "rig": "anims/eggs.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "egg1": {
+            "r": 2
+          },
+          "egg2": {
+            "r": 2
+          },
+          "egg3": {
+            "r": 1.5
+          },
+          "root": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "egg1": {
+            "r": -2
+          },
+          "egg2": {
+            "r": -2.5
+          },
+          "egg3": {
+            "r": -1.5
+          },
+          "root": {
+            "r": 2.5
+          }
+        }
+      },
+      {
+        "hold": 0.28,
+        "bones": {
+          "egg1": {
+            "r": 1
+          },
+          "egg2": {
+            "r": 1
+          },
+          "egg3": {
+            "r": 0.8
+          },
+          "root": {
+            "r": -1.2
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "root": {
+            "r": 0.5
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

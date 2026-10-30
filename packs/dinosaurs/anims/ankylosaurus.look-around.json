@@ -1,0 +1,83 @@
+{
+  "id": "look-around",
+  "sticker": "ankylosaurus",
+  "kind": "action",
+  "description": "the Ankylosaurus looks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.26432,
+    "width": 0.72005,
+    "height": 0.47005
+  },
+  "puppet": {
+    "rig": "anims/ankylosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "face": {
+            "x": -7
+          },
+          "head": {
+            "r": 2,
+            "x": -4
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "face": {
+            "x": -7
+          },
+          "head": {
+            "r": 2,
+            "x": -4
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": 1.5
+          },
+          "face": {
+            "x": 7
+          },
+          "head": {
+            "r": -2,
+            "x": 3
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 1.5
+          },
+          "face": {
+            "x": 7
+          },
+          "head": {
+            "r": -2,
+            "x": 3
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

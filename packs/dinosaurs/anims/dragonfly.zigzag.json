@@ -1,0 +1,1352 @@
+{
+  "id": "zigzag",
+  "sticker": "dragonfly",
+  "kind": "action",
+  "description": "the dragonfly zigzags along through the air, up and down and up again, then glides back to its spot.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26563,
+    "width": 0.5,
+    "height": 0.46745
+  },
+  "puppet": {
+    "rig": "anims/dragonfly.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -0.24
+          },
+          "root": {
+            "x": -1.36,
+            "y": -1.07
+          },
+          "wingL": {
+            "r": 2.52
+          },
+          "wingL2": {
+            "r": -2.1
+          },
+          "wingR": {
+            "r": -2.52
+          },
+          "wingR2": {
+            "r": 2.1
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -0.88
+          },
+          "root": {
+            "x": -4.91,
+            "y": -3.86
+          },
+          "wingL": {
+            "r": -4.86
+          },
+          "wingL2": {
+            "r": -1.43
+          },
+          "wingR": {
+            "r": 4.86
+          },
+          "wingR2": {
+            "r": 1.43
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -1.76
+          },
+          "root": {
+            "x": -9.86,
+            "y": -7.74
+          },
+          "wingL": {
+            "r": -0.54
+          },
+          "wingL2": {
+            "r": 8.37
+          },
+          "wingR": {
+            "r": 0.54
+          },
+          "wingR2": {
+            "r": -8.37
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -2.75
+          },
+          "root": {
+            "x": -15.4,
+            "y": -12.1
+          },
+          "wingL": {
+            "r": 10.42
+          },
+          "wingL2": {
+            "r": -7.89
+          },
+          "wingR": {
+            "r": -10.42
+          },
+          "wingR2": {
+            "r": 7.89
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -3.7
+          },
+          "root": {
+            "x": -20.74,
+            "y": -16.3
+          },
+          "wingL": {
+            "r": -9.71
+          },
+          "wingL2": {
+            "r": -3.71
+          },
+          "wingR": {
+            "r": 9.71
+          },
+          "wingR2": {
+            "r": 3.71
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -4.48
+          },
+          "root": {
+            "x": -25.09,
+            "y": -19.71
+          },
+          "wingL": {
+            "r": -1.5
+          },
+          "wingL2": {
+            "r": 11.79
+          },
+          "wingR": {
+            "r": 1.5
+          },
+          "wingR2": {
+            "r": -11.79
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -4.94
+          },
+          "root": {
+            "x": -27.64,
+            "y": -21.72
+          },
+          "wingL": {
+            "r": 11.16
+          },
+          "wingL2": {
+            "r": -7.65
+          },
+          "wingR": {
+            "r": -11.16
+          },
+          "wingR2": {
+            "r": 7.65
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -4.89
+          },
+          "root": {
+            "x": -28.36,
+            "y": -21.59
+          },
+          "wingL": {
+            "r": -9.25
+          },
+          "wingL2": {
+            "r": -4.42
+          },
+          "wingR": {
+            "r": 9.25
+          },
+          "wingR2": {
+            "r": 4.42
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -4.06
+          },
+          "root": {
+            "x": -30.91,
+            "y": -18.67
+          },
+          "wingL": {
+            "r": -2.25
+          },
+          "wingL2": {
+            "r": 11.91
+          },
+          "wingR": {
+            "r": 2.25
+          },
+          "wingR2": {
+            "r": -11.91
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -2.67
+          },
+          "root": {
+            "x": -35.26,
+            "y": -13.7
+          },
+          "wingL": {
+            "r": 11.41
+          },
+          "wingL2": {
+            "r": -7.05
+          },
+          "wingR": {
+            "r": -11.41
+          },
+          "wingR2": {
+            "r": 7.05
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -0.95
+          },
+          "root": {
+            "x": -40.6,
+            "y": -7.6
+          },
+          "wingL": {
+            "r": -8.75
+          },
+          "wingL2": {
+            "r": -5.11
+          },
+          "wingR": {
+            "r": 8.75
+          },
+          "wingR2": {
+            "r": 5.11
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 0.83
+          },
+          "root": {
+            "x": -46.14,
+            "y": -1.26
+          },
+          "wingL": {
+            "r": -2.98
+          },
+          "wingL2": {
+            "r": 11.98
+          },
+          "wingR": {
+            "r": 2.98
+          },
+          "wingR2": {
+            "r": -11.98
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 2.42
+          },
+          "root": {
+            "x": -51.09,
+            "y": 4.39
+          },
+          "wingL": {
+            "r": 11.62
+          },
+          "wingL2": {
+            "r": -6.43
+          },
+          "wingR": {
+            "r": -11.62
+          },
+          "wingR2": {
+            "r": 6.43
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 3.56
+          },
+          "root": {
+            "x": -54.64,
+            "y": 8.45
+          },
+          "wingL": {
+            "r": -8.21
+          },
+          "wingL2": {
+            "r": -5.78
+          },
+          "wingR": {
+            "r": 8.21
+          },
+          "wingR2": {
+            "r": 5.78
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 4
+          },
+          "root": {
+            "x": -56,
+            "y": 10
+          },
+          "wingL": {
+            "r": -3.71
+          },
+          "wingL2": {
+            "r": 12
+          },
+          "wingR": {
+            "r": 3.71
+          },
+          "wingR2": {
+            "r": -12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 3.56
+          },
+          "root": {
+            "x": -57.36,
+            "y": 8.64
+          },
+          "wingL": {
+            "r": 11.79
+          },
+          "wingL2": {
+            "r": -5.78
+          },
+          "wingR": {
+            "r": -11.79
+          },
+          "wingR2": {
+            "r": 5.78
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 2.42
+          },
+          "root": {
+            "x": -60.91,
+            "y": 5.09
+          },
+          "wingL": {
+            "r": -7.65
+          },
+          "wingL2": {
+            "r": -6.43
+          },
+          "wingR": {
+            "r": 7.65
+          },
+          "wingR2": {
+            "r": 6.43
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 0.83
+          },
+          "root": {
+            "x": -65.86,
+            "y": 0.14
+          },
+          "wingL": {
+            "r": -4.42
+          },
+          "wingL2": {
+            "r": 11.98
+          },
+          "wingR": {
+            "r": 4.42
+          },
+          "wingR2": {
+            "r": -11.98
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -0.95
+          },
+          "root": {
+            "x": -71.4,
+            "y": -5.4
+          },
+          "wingL": {
+            "r": 11.91
+          },
+          "wingL2": {
+            "r": -5.11
+          },
+          "wingR": {
+            "r": -11.91
+          },
+          "wingR2": {
+            "r": 5.11
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -2.67
+          },
+          "root": {
+            "x": -76.74,
+            "y": -10.74
+          },
+          "wingL": {
+            "r": -7.05
+          },
+          "wingL2": {
+            "r": -7.05
+          },
+          "wingR": {
+            "r": 7.05
+          },
+          "wingR2": {
+            "r": 7.05
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -4.06
+          },
+          "root": {
+            "x": -81.09,
+            "y": -15.09
+          },
+          "wingL": {
+            "r": -5.11
+          },
+          "wingL2": {
+            "r": 11.91
+          },
+          "wingR": {
+            "r": 5.11
+          },
+          "wingR2": {
+            "r": -11.91
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -4.89
+          },
+          "root": {
+            "x": -83.64,
+            "y": -17.64
+          },
+          "wingL": {
+            "r": 11.98
+          },
+          "wingL2": {
+            "r": -4.42
+          },
+          "wingR": {
+            "r": -11.98
+          },
+          "wingR2": {
+            "r": 4.42
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -4.95
+          },
+          "root": {
+            "x": -84,
+            "y": -18
+          },
+          "wingL": {
+            "r": -6.43
+          },
+          "wingL2": {
+            "r": -7.65
+          },
+          "wingR": {
+            "r": 6.43
+          },
+          "wingR2": {
+            "r": 7.65
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -4.58
+          },
+          "root": {
+            "x": -84,
+            "y": -18
+          },
+          "wingL": {
+            "r": -5.78
+          },
+          "wingL2": {
+            "r": 11.79
+          },
+          "wingR": {
+            "r": 5.78
+          },
+          "wingR2": {
+            "r": -11.79
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -3.96
+          },
+          "root": {
+            "x": -84,
+            "y": -18
+          },
+          "wingL": {
+            "r": 12
+          },
+          "wingL2": {
+            "r": -3.71
+          },
+          "wingR": {
+            "r": -12
+          },
+          "wingR2": {
+            "r": 3.71
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -3.2
+          },
+          "root": {
+            "x": -84,
+            "y": -18
+          },
+          "wingL": {
+            "r": -5.78
+          },
+          "wingL2": {
+            "r": -8.21
+          },
+          "wingR": {
+            "r": 5.78
+          },
+          "wingR2": {
+            "r": 8.21
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -2.41
+          },
+          "root": {
+            "x": -84,
+            "y": -18
+          },
+          "wingL": {
+            "r": -6.43
+          },
+          "wingL2": {
+            "r": 11.62
+          },
+          "wingR": {
+            "r": 6.43
+          },
+          "wingR2": {
+            "r": -11.62
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -1.7
+          },
+          "root": {
+            "x": -84,
+            "y": -18
+          },
+          "wingL": {
+            "r": 11.98
+          },
+          "wingL2": {
+            "r": -2.98
+          },
+          "wingR": {
+            "r": -11.98
+          },
+          "wingR2": {
+            "r": 2.98
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -1.19
+          },
+          "root": {
+            "x": -84,
+            "y": -18
+          },
+          "wingL": {
+            "r": -5.11
+          },
+          "wingL2": {
+            "r": -8.75
+          },
+          "wingR": {
+            "r": 5.11
+          },
+          "wingR2": {
+            "r": 8.75
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "root": {
+            "x": -84,
+            "y": -18
+          },
+          "wingL": {
+            "r": -7.05
+          },
+          "wingL2": {
+            "r": 11.41
+          },
+          "wingR": {
+            "r": 7.05
+          },
+          "wingR2": {
+            "r": -11.41
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -0.97
+          },
+          "root": {
+            "x": -82.65,
+            "y": -17.71
+          },
+          "wingL": {
+            "r": 11.91
+          },
+          "wingL2": {
+            "r": -2.25
+          },
+          "wingR": {
+            "r": -11.91
+          },
+          "wingR2": {
+            "r": 2.25
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -0.88
+          },
+          "root": {
+            "x": -78.9,
+            "y": -16.91
+          },
+          "wingL": {
+            "r": -4.42
+          },
+          "wingL2": {
+            "r": -9.25
+          },
+          "wingR": {
+            "r": 4.42
+          },
+          "wingR2": {
+            "r": 9.25
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -0.74
+          },
+          "root": {
+            "x": -73.16,
+            "y": -15.68
+          },
+          "wingL": {
+            "r": -7.65
+          },
+          "wingL2": {
+            "r": 11.16
+          },
+          "wingR": {
+            "r": 7.65
+          },
+          "wingR2": {
+            "r": -11.16
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -0.57
+          },
+          "root": {
+            "x": -65.86,
+            "y": -14.11
+          },
+          "wingL": {
+            "r": 11.79
+          },
+          "wingL2": {
+            "r": -1.5
+          },
+          "wingR": {
+            "r": -11.79
+          },
+          "wingR2": {
+            "r": 1.5
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -0.37
+          },
+          "root": {
+            "x": -57.42,
+            "y": -12.3
+          },
+          "wingL": {
+            "r": -3.71
+          },
+          "wingL2": {
+            "r": -9.71
+          },
+          "wingR": {
+            "r": 3.71
+          },
+          "wingR2": {
+            "r": 9.71
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -0.15
+          },
+          "root": {
+            "x": -48.28,
+            "y": -10.35
+          },
+          "wingL": {
+            "r": -8.21
+          },
+          "wingL2": {
+            "r": 10.86
+          },
+          "wingR": {
+            "r": 8.21
+          },
+          "wingR2": {
+            "r": -10.86
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 0.07
+          },
+          "root": {
+            "x": -38.85,
+            "y": -8.33
+          },
+          "wingL": {
+            "r": 11.62
+          },
+          "wingL2": {
+            "r": -0.75
+          },
+          "wingR": {
+            "r": -11.62
+          },
+          "wingR2": {
+            "r": 0.75
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 0.3
+          },
+          "root": {
+            "x": -29.57,
+            "y": -6.34
+          },
+          "wingL": {
+            "r": -2.98
+          },
+          "wingL2": {
+            "r": -10.13
+          },
+          "wingR": {
+            "r": 2.98
+          },
+          "wingR2": {
+            "r": 10.13
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 0.5
+          },
+          "root": {
+            "x": -20.85,
+            "y": -4.47
+          },
+          "wingL": {
+            "r": -8.75
+          },
+          "wingL2": {
+            "r": 10.52
+          },
+          "wingR": {
+            "r": 8.75
+          },
+          "wingR2": {
+            "r": -10.52
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 0.69
+          },
+          "root": {
+            "x": -13.13,
+            "y": -2.81
+          },
+          "wingL": {
+            "r": 11.41
+          },
+          "wingL2": {},
+          "wingR": {
+            "r": -11.41
+          },
+          "wingR2": {}
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 0.84
+          },
+          "root": {
+            "x": -6.82,
+            "y": -1.46
+          },
+          "wingL": {
+            "r": -2.25
+          },
+          "wingL2": {
+            "r": -10.52
+          },
+          "wingR": {
+            "r": 2.25
+          },
+          "wingR2": {
+            "r": 10.52
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 0.94
+          },
+          "root": {
+            "x": -2.35,
+            "y": -0.5
+          },
+          "wingL": {
+            "r": -9.25
+          },
+          "wingL2": {
+            "r": 10.13
+          },
+          "wingR": {
+            "r": 9.25
+          },
+          "wingR2": {
+            "r": -10.13
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "root": {
+            "x": -0.15,
+            "y": -0.03
+          },
+          "wingL": {
+            "r": 11.16
+          },
+          "wingL2": {
+            "r": 0.75
+          },
+          "wingR": {
+            "r": -11.16
+          },
+          "wingR2": {
+            "r": -0.75
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 0.95
+          },
+          "root": {},
+          "wingL": {
+            "r": -1.5
+          },
+          "wingL2": {
+            "r": -10.86
+          },
+          "wingR": {
+            "r": 1.5
+          },
+          "wingR2": {
+            "r": 10.86
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 0.74
+          },
+          "root": {},
+          "wingL": {
+            "r": -9.71
+          },
+          "wingL2": {
+            "r": 9.71
+          },
+          "wingR": {
+            "r": 9.71
+          },
+          "wingR2": {
+            "r": -9.71
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 0.45
+          },
+          "root": {},
+          "wingL": {
+            "r": 10.42
+          },
+          "wingL2": {
+            "r": 1.44
+          },
+          "wingR": {
+            "r": -10.42
+          },
+          "wingR2": {
+            "r": -1.44
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 0.18
+          },
+          "root": {},
+          "wingL": {
+            "r": -0.54
+          },
+          "wingL2": {
+            "r": -8.03
+          },
+          "wingR": {
+            "r": 0.54
+          },
+          "wingR2": {
+            "r": 8.03
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 0.01
+          },
+          "root": {},
+          "wingL": {
+            "r": -4.86
+          },
+          "wingL2": {
+            "r": 4.44
+          },
+          "wingR": {
+            "r": 4.86
+          },
+          "wingR2": {
+            "r": -4.44
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": 2.52
+          },
+          "wingL2": {
+            "r": 0.54
+          },
+          "wingR": {
+            "r": -2.52
+          },
+          "wingR2": {
+            "r": -0.54
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "wingL": {},
+          "wingL2": {},
+          "wingR": {},
+          "wingR2": {}
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

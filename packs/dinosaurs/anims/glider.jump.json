@@ -1,0 +1,159 @@
+{
+  "id": "jump",
+  "sticker": "glider",
+  "description": "the glider crouches, jumps up high for joy with its arms and gliding skin stretched out, and lands with a little squash.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26432,
+    "width": 0.5,
+    "height": 0.47005
+  },
+  "puppet": {
+    "rig": "anims/glider.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "armL": {
+            "r": -10
+          },
+          "armR": {
+            "r": 10
+          },
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.91
+          },
+          "head": {
+            "y": 5
+          },
+          "root": {
+            "y": 7
+          },
+          "skinL": {
+            "r": -4,
+            "sx": 0.92
+          },
+          "skinR": {
+            "r": 4,
+            "sx": 0.92
+          }
+        }
+      },
+      {
+        "hold": 0.24,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": 28
+          },
+          "armR": {
+            "r": -28
+          },
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.05
+          },
+          "legL": {
+            "r": 12
+          },
+          "legR": {
+            "r": -12
+          },
+          "root": {
+            "y": -70
+          },
+          "skinL": {
+            "r": 22.4,
+            "sx": 0.776
+          },
+          "skinR": {
+            "r": -22.4,
+            "sx": 0.776
+          },
+          "tail": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": 30
+          },
+          "armR": {
+            "r": -30
+          },
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.05
+          },
+          "legL": {
+            "r": 12
+          },
+          "legR": {
+            "r": -12
+          },
+          "root": {
+            "y": -76
+          },
+          "skinL": {
+            "r": 24,
+            "sx": 0.76
+          },
+          "skinR": {
+            "r": -24,
+            "sx": 0.76
+          },
+          "tail": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.9
+          },
+          "head": {
+            "y": 5
+          },
+          "root": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "id": "sleep",
+  "sticker": "pachycephalosaurus",
+  "kind": "action",
+  "description": "the Pachycephalosaurus gives a big yawn, closes its eyes and falls asleep standing up, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.1849,
+    "y": 0.13932,
+    "width": 0.63021,
+    "height": 0.72005
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the Pachycephalosaurus fast asleep standing up, eyes shut, head drooped"
+  },
+  "puppet": {
+    "rig": "anims/pachycephalosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 30
+          },
+          "armR": {
+            "r": 30
+          },
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": 6,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "armL": {
+            "r": 30
+          },
+          "armR": {
+            "r": 30
+          },
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": 6,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": -8
+          },
+          "armR": {
+            "r": -8
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": -6,
+            "y": 8
+          },
+          "tail": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "armL": {
+            "r": -8
+          },
+          "armR": {
+            "r": -8
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": -6,
+            "y": 8
+          },
+          "tail": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

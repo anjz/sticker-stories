@@ -1,0 +1,105 @@
+{
+  "id": "wave",
+  "sticker": "flower",
+  "kind": "action",
+  "description": "the flower waves hello with one of its leaves.",
+  "stickerBox": {
+    "x": 0.28516,
+    "y": 0.25,
+    "width": 0.42969,
+    "height": 0.5
+  },
+  "puppet": {
+    "rig": "anims/flower.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "head": {
+            "r": 3
+          },
+          "leafR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "head": {
+            "r": 3
+          },
+          "leafR": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "head": {
+            "r": 3
+          },
+          "leafR": {
+            "r": -18
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "head": {
+            "r": 3
+          },
+          "leafR": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "head": {
+            "r": 3
+          },
+          "leafR": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

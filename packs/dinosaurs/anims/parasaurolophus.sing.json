@@ -1,0 +1,187 @@
+{
+  "id": "sing",
+  "sticker": "parasaurolophus",
+  "kind": "action",
+  "description": "the Parasaurolophus honks a little tune through its crest, swaying gently from side to side.",
+  "stickerBox": {
+    "x": 0.13542,
+    "y": 0.07943,
+    "width": 0.72786,
+    "height": 0.83984
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the Parasaurolophus singing, head lifted, bill open in a happy honk"
+  },
+  "puppet": {
+    "rig": "anims/parasaurolophus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 8
+          },
+          "armR": {
+            "r": 12
+          },
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": 10,
+            "y": -2
+          },
+          "tail": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 12
+          },
+          "armR": {
+            "r": 8
+          },
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "r": 4
+          },
+          "tail": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "honk"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 8
+          },
+          "armR": {
+            "r": 12
+          },
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": 10,
+            "y": -2
+          },
+          "tail": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 12
+          },
+          "armR": {
+            "r": 8
+          },
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "r": 4
+          },
+          "tail": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 8
+          },
+          "armR": {
+            "r": 12
+          },
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": 10,
+            "y": -2
+          },
+          "tail": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "honk"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 12
+          },
+          "armR": {
+            "r": 8
+          },
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "r": 4
+          },
+          "tail": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

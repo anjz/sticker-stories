@@ -1,0 +1,67 @@
+{
+  "id": "shake-head",
+  "sticker": "dragonfly",
+  "kind": "action",
+  "description": "the dragonfly shakes its head no.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26563,
+    "width": 0.5,
+    "height": 0.46745
+  },
+  "puppet": {
+    "rig": "anims/dragonfly.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "x": -2
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 2
+          },
+          "head": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": -2
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 2
+          },
+          "head": {
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

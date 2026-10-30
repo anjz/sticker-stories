@@ -1,0 +1,241 @@
+{
+  "id": "sleep",
+  "sticker": "spinosaurus",
+  "kind": "action",
+  "description": "the Spinosaurus gives a big yawn, lies down on its tummy with its legs tucked under it and falls asleep, then wakes up, gets up and smiles.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.19401,
+    "width": 0.83984,
+    "height": 0.61068
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the Spinosaurus lying on its tummy fast asleep, eyes shut, head resting low"
+  },
+  "puppet": {
+    "rig": "anims/spinosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": 7,
+            "y": -3
+          },
+          "sail": {
+            "sy": 1.02
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "y": 30
+          },
+          "head": {
+            "r": 2
+          },
+          "legBF": {
+            "sy": 0.8
+          },
+          "legBN": {
+            "sy": 0.8
+          },
+          "legFF": {
+            "sy": 0.8
+          },
+          "legFN": {
+            "sy": 0.8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "y": 70
+          },
+          "head": {
+            "r": -6,
+            "y": 6
+          },
+          "tail": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "foldBN": "fold",
+          "foldFN": "fold",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "y": 70
+          },
+          "head": {
+            "r": -7,
+            "y": 7
+          },
+          "tail": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "foldBN": "fold",
+          "foldFN": "fold",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "y": 70
+          },
+          "head": {
+            "r": 1
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "foldBN": "fold",
+          "foldFN": "fold",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "y": 70
+          },
+          "head": {
+            "r": 1
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "foldBN": "fold",
+          "foldFN": "fold",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "y": 70
+          },
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "foldBN": "fold",
+          "foldFN": "fold",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "y": 30
+          },
+          "head": {
+            "r": 1
+          },
+          "legBF": {
+            "sy": 0.8
+          },
+          "legBN": {
+            "sy": 0.8
+          },
+          "legFF": {
+            "sy": 0.8
+          },
+          "legFN": {
+            "sy": 0.8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

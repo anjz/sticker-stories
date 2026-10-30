@@ -1,0 +1,109 @@
+{
+  "id": "sniff",
+  "sticker": "spinosaurus",
+  "kind": "action",
+  "description": "the Spinosaurus lowers its snout and sniffs, sniff, sniff, then lifts its head with a happy smile.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.19401,
+    "width": 0.83984,
+    "height": 0.61068
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the Spinosaurus with its snout down, sniffing"
+  },
+  "puppet": {
+    "rig": "anims/spinosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "head": {
+            "r": -14,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "head": {
+            "r": -13,
+            "x": -3,
+            "y": 5
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "head": {
+            "r": -14,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "head": {
+            "r": -13,
+            "x": -3,
+            "y": 5
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "head": {
+            "r": -14,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "head": {
+            "r": 4,
+            "y": -1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

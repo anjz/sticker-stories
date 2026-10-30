@@ -1,0 +1,178 @@
+{
+  "id": "preen",
+  "sticker": "archaeopteryx",
+  "description": "the archaeopteryx tucks its beak into the soft feathers of its chest and wing and tidies them, nibble-nibble, then shakes and smooths itself down.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.21354,
+    "width": 0.59896,
+    "height": 0.57292
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the archaeopteryx with its beak tucked into its feathers, tidying them"
+  },
+  "perched": true,
+  "idle": true,
+  "puppet": {
+    "rig": "anims/archaeopteryx.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": -6
+          },
+          "head": {
+            "r": -36,
+            "x": -2,
+            "y": 6
+          },
+          "wingL": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -6
+          },
+          "head": {
+            "r": -40,
+            "x": -2,
+            "y": 6
+          },
+          "wingL": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -6
+          },
+          "head": {
+            "r": -36,
+            "x": -2,
+            "y": 6
+          },
+          "wingL": {
+            "r": 8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -6
+          },
+          "head": {
+            "r": -40,
+            "x": -2,
+            "y": 6
+          },
+          "wingL": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -6
+          },
+          "head": {
+            "r": -36,
+            "x": -2,
+            "y": 6
+          },
+          "wingL": {
+            "r": 8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -12,
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 1.04
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 0.99
+          },
+          "root": {
+            "x": -2
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.02
+          },
+          "root": {
+            "x": 2
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

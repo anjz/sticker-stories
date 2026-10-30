@@ -1,0 +1,117 @@
+{
+  "id": "grow",
+  "sticker": "leaf",
+  "kind": "move",
+  "description": "the big leaf grows up out of the ground: its stalk shoots up tall with the young leaf rolled up tight on top, then the leaf unrolls and opens out wide like an umbrella.",
+  "stickerBox": {
+    "x": 0.10547,
+    "y": 0.07943,
+    "width": 0.78906,
+    "height": 0.83984
+  },
+  "puppet": {
+    "rig": "anims/leaf.rig.json",
+    "keys": [
+      {
+        "hold": 0.1,
+        "bones": {
+          "blade": {
+            "y": 353.4,
+            "sx": 0.2,
+            "sy": 0.2
+          },
+          "stalk": {
+            "sx": 0.624,
+            "sy": 0.06
+          }
+        },
+        "slots": {
+          "blade": "furled"
+        }
+      },
+      {
+        "hold": 0.35,
+        "ease": "out",
+        "bones": {
+          "blade": {
+            "y": 353.4,
+            "sx": 0.2,
+            "sy": 0.2
+          },
+          "stalk": {
+            "sx": 0.624,
+            "sy": 0.06
+          }
+        },
+        "slots": {
+          "blade": "furled"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "blade": {
+            "y": 169.2,
+            "sx": 0.6,
+            "sy": 0.6
+          },
+          "stalk": {
+            "sx": 0.8200000000000001,
+            "sy": 0.55
+          }
+        },
+        "slots": {
+          "blade": "furled"
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "step",
+        "bones": {
+          "blade": {
+            "sx": 1,
+            "sy": 1
+          },
+          "stalk": {
+            "sx": 1,
+            "sy": 1
+          }
+        },
+        "slots": {
+          "blade": "furled"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "blade": {
+            "sx": 0.2,
+            "sy": 0.75
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "blade": {
+            "sx": 1.06,
+            "sy": 1.03
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "blade": {
+            "sx": 0.98,
+            "sy": 0.99
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

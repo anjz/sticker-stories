@@ -1,0 +1,212 @@
+{
+  "id": "stretch-legs",
+  "sticker": "gallimimus",
+  "kind": "action",
+  "description": "the Gallimimus stretches one long leg out in front, then the other out behind, toes pointed, then gives a happy little wiggle.",
+  "stickerBox": {
+    "x": 0.15495,
+    "y": 0.13932,
+    "width": 0.6901,
+    "height": 0.72005
+  },
+  "puppet": {
+    "rig": "anims/gallimimus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "head": {
+            "r": 3
+          },
+          "kneeL": {
+            "r": 14
+          },
+          "legL": {
+            "r": 16
+          },
+          "neck": {
+            "r": 2
+          },
+          "root": {
+            "y": 0.3
+          },
+          "tail": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "head": {
+            "r": 3
+          },
+          "kneeL": {
+            "r": 14
+          },
+          "legL": {
+            "r": 16
+          },
+          "neck": {
+            "r": 2
+          },
+          "root": {
+            "y": 0.3
+          },
+          "tail": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "legL": {
+            "r": -22
+          },
+          "root": {
+            "y": -9.6
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": 5
+          },
+          "kneeR": {
+            "r": 12
+          },
+          "legL": {
+            "r": -22
+          },
+          "legR": {
+            "r": -14
+          },
+          "neck": {
+            "r": -4
+          },
+          "root": {
+            "y": -9.6
+          },
+          "tail": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": 5
+          },
+          "kneeR": {
+            "r": 12
+          },
+          "legL": {
+            "r": -22
+          },
+          "legR": {
+            "r": -14
+          },
+          "neck": {
+            "r": -4
+          },
+          "root": {
+            "y": -9.6
+          },
+          "tail": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "legL": {
+            "r": -22
+          },
+          "root": {
+            "y": -9.6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "feathers": {
+            "r": -2
+          },
+          "tail": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "feathers": {
+            "r": 2
+          },
+          "tail": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

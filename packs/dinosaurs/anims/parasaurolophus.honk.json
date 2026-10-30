@@ -1,0 +1,147 @@
+{
+  "id": "honk",
+  "sticker": "parasaurolophus",
+  "kind": "action",
+  "description": "the Parasaurolophus takes a big breath, lifts its head and honks a big, happy call through its long crest, then smiles, pleased.",
+  "stickerBox": {
+    "x": 0.13542,
+    "y": 0.07943,
+    "width": 0.72786,
+    "height": 0.83984
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the Parasaurolophus honking a big happy call, head lifted, bill open wide"
+  },
+  "puppet": {
+    "rig": "anims/parasaurolophus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 1.04
+          },
+          "head": {
+            "r": -3,
+            "y": 2
+          },
+          "root": {
+            "y": 3
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": 14
+          },
+          "armR": {
+            "r": 14
+          },
+          "belly": {
+            "sx": 0.98,
+            "sy": 1.05
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 14,
+            "y": -4
+          },
+          "root": {
+            "y": -3
+          },
+          "tail": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "honk"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "armL": {
+            "r": 14
+          },
+          "armR": {
+            "r": 14
+          },
+          "belly": {
+            "sx": 0.98,
+            "sy": 1.05
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 15,
+            "y": -5
+          },
+          "root": {
+            "y": -3
+          },
+          "tail": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "honk"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

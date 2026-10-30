@@ -1,0 +1,83 @@
+{
+  "id": "nod",
+  "sticker": "flower",
+  "kind": "action",
+  "description": "the flower nods its head yes, twice.",
+  "stickerBox": {
+    "x": 0.28516,
+    "y": 0.25,
+    "width": 0.42969,
+    "height": 0.5
+  },
+  "puppet": {
+    "rig": "anims/flower.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "face": {
+            "y": 2
+          },
+          "head": {
+            "r": -5,
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "body": {
+            "r": 0.3
+          },
+          "face": {
+            "y": -0.6
+          },
+          "head": {
+            "r": 1.5,
+            "y": -0.8999999999999999
+          }
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "face": {
+            "y": 2
+          },
+          "head": {
+            "r": -5,
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "body": {
+            "r": 0.2
+          },
+          "face": {
+            "y": -0.4
+          },
+          "head": {
+            "r": 1,
+            "y": -0.6000000000000001
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

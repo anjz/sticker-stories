@@ -1,0 +1,82 @@
+{
+  "id": "thud",
+  "sticker": "log",
+  "kind": "action",
+  "description": "something heavy sits down on the log: it presses down into the ground with a thud and a puff of dust at both ends, its fern bobbing, then settles.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.19531,
+    "width": 0.72005,
+    "height": 0.60938
+  },
+  "particles": [
+    {
+      "frame": 1,
+      "effect": "dust-puff",
+      "x": 0.32,
+      "y": 0.78,
+      "intensity": 0.3
+    },
+    {
+      "frame": 1,
+      "effect": "dust-puff",
+      "x": 0.74,
+      "y": 0.72,
+      "intensity": 0.25
+    }
+  ],
+  "puppet": {
+    "rig": "anims/log.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.15,
+        "ease": "in",
+        "bones": {
+          "body": {
+            "sx": 1.01,
+            "sy": 0.97
+          },
+          "fern": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "body": {
+            "sy": 1.01
+          },
+          "fern": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "body": {
+            "sy": 0.995
+          },
+          "fern": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "fern": {
+            "r": 0.8
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

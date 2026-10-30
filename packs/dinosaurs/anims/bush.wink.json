@@ -1,0 +1,64 @@
+{
+  "id": "wink",
+  "sticker": "bush",
+  "kind": "action",
+  "description": "the berry bush gives a cheeky wink and a smile, its face tipping to one side.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.15365,
+    "width": 0.72005,
+    "height": 0.69271
+  },
+  "puppet": {
+    "rig": "anims/bush.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "head": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "browR": "up",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "head": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "browR": "up",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "id": "perk-up",
+  "sticker": "flower",
+  "kind": "action",
+  "description": "the flower perks up, stretching tall and lifting its leaves, eyes bright, and beams.",
+  "stickerBox": {
+    "x": 0.28516,
+    "y": 0.25,
+    "width": 0.42969,
+    "height": 0.5
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the flower perked up tall, its leaves lifted, beaming"
+  },
+  "puppet": {
+    "rig": "anims/flower.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "sy": 0.97
+          },
+          "head": {
+            "y": 2
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "sy": 1.05
+          },
+          "head": {
+            "y": -6,
+            "sx": 1.03,
+            "sy": 1.03
+          },
+          "leafL": {
+            "r": 14
+          },
+          "leafR": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "browL": "up",
+          "browR": "up",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "body": {
+            "sy": 1.045
+          },
+          "head": {
+            "y": -5.4,
+            "sx": 1.0270000000000001,
+            "sy": 1.0270000000000001
+          },
+          "leafL": {
+            "r": 12.6
+          },
+          "leafR": {
+            "r": -12.6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "body": {
+            "sy": 1.0150000000000001
+          },
+          "head": {
+            "y": -1.7999999999999998,
+            "sx": 1.009,
+            "sy": 1.009
+          },
+          "leafL": {
+            "r": 4.2
+          },
+          "leafR": {
+            "r": -4.2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

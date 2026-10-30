@@ -1,0 +1,100 @@
+{
+  "sticker": "log",
+  "atlas": "anims/log.rig.webp",
+  "size": 768,
+  "parts": {
+    "fern": {
+      "rect": [
+        1064,
+        0,
+        238,
+        160
+      ],
+      "border": [
+        1304,
+        0,
+        278,
+        200
+      ],
+      "pad": 20
+    },
+    "log": {
+      "rect": [
+        0,
+        0,
+        510,
+        360
+      ],
+      "border": [
+        512,
+        0,
+        550,
+        400
+      ],
+      "pad": 20
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 400,
+      "y": 580
+    },
+    {
+      "id": "tip",
+      "parent": "root",
+      "x": 255,
+      "y": 597
+    },
+    {
+      "id": "tipR",
+      "parent": "tip",
+      "x": 590,
+      "y": 548
+    },
+    {
+      "id": "body",
+      "parent": "tipR",
+      "x": 400,
+      "y": 580
+    },
+    {
+      "id": "fern",
+      "parent": "body",
+      "x": 483,
+      "y": 310
+    }
+  ],
+  "slots": [
+    {
+      "id": "fern",
+      "bone": "fern",
+      "default": "fern",
+      "attachments": {
+        "fern": {
+          "part": "fern",
+          "x": 375.31,
+          "y": 172.46,
+          "w": 237.39,
+          "h": 159.08,
+          "rotate": 4
+        }
+      }
+    },
+    {
+      "id": "log",
+      "bone": "body",
+      "default": "log",
+      "attachments": {
+        "log": {
+          "part": "log",
+          "x": 132.31,
+          "y": 237.29,
+          "w": 509.39,
+          "h": 359.42,
+          "rotate": -1.5
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "id": "sniff",
+  "sticker": "pachycephalosaurus",
+  "kind": "action",
+  "description": "the Pachycephalosaurus lowers its snout and sniffs, sniff, sniff, then lifts its head with a happy smile.",
+  "stickerBox": {
+    "x": 0.1849,
+    "y": 0.13932,
+    "width": 0.63021,
+    "height": 0.72005
+  },
+  "puppet": {
+    "rig": "anims/pachycephalosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -7,
+            "y": 3
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -8,
+            "y": 4
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -6,
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -8,
+            "y": 4
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -6,
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -8,
+            "y": 4
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": 4,
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

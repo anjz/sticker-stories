@@ -1,0 +1,137 @@
+{
+  "id": "blush",
+  "sticker": "stegosaurus",
+  "kind": "action",
+  "description": "the Stegosaurus goes all shy, tucks its head down a little and smiles with happy eyes, swaying bashfully.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.16146,
+    "width": 0.83984,
+    "height": 0.67708
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the Stegosaurus shy and bashful, head tucked a little, smiling with happy eyes"
+  },
+  "puppet": {
+    "rig": "anims/stegosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "face": {
+            "x": 3
+          },
+          "head": {
+            "r": -6,
+            "y": 4
+          },
+          "root": {
+            "x": 2
+          },
+          "tail": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": -0.6
+          },
+          "face": {
+            "x": 3
+          },
+          "head": {
+            "r": -5,
+            "y": 4
+          },
+          "root": {
+            "x": -2
+          },
+          "tail": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 0.6
+          },
+          "face": {
+            "x": 3
+          },
+          "head": {
+            "r": -6,
+            "y": 4
+          },
+          "root": {
+            "x": 2
+          },
+          "tail": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": -0.6
+          },
+          "face": {
+            "x": 3
+          },
+          "head": {
+            "r": -5,
+            "y": 4
+          },
+          "root": {
+            "x": -2
+          },
+          "tail": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

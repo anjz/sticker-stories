@@ -1,0 +1,110 @@
+{
+  "id": "wave",
+  "sticker": "dragonfly",
+  "kind": "action",
+  "description": "the dragonfly lifts one big clear wing and waves hello with it.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26563,
+    "width": 0.5,
+    "height": 0.46745
+  },
+  "puppet": {
+    "rig": "anims/dragonfly.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 3
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "head": {
+            "r": 3
+          },
+          "wingR": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "head": {
+            "r": 3
+          },
+          "wingR": {
+            "r": -18
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "head": {
+            "r": 3
+          },
+          "wingR": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "head": {
+            "r": 3
+          },
+          "wingR": {
+            "r": -18
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "wingR": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

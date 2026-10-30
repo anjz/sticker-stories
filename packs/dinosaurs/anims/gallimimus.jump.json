@@ -1,0 +1,196 @@
+{
+  "id": "jump",
+  "sticker": "gallimimus",
+  "kind": "action",
+  "description": "the Gallimimus crouches, springs up high for joy with its long legs tucked and lands with a little bounce.",
+  "stickerBox": {
+    "x": 0.15495,
+    "y": 0.13932,
+    "width": 0.6901,
+    "height": 0.72005
+  },
+  "puppet": {
+    "rig": "anims/gallimimus.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "armL": {
+            "r": -8
+          },
+          "armR": {
+            "r": -8
+          },
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.94
+          },
+          "body": {
+            "r": -3,
+            "y": 6
+          },
+          "head": {
+            "r": 4
+          },
+          "kneeR": {
+            "r": -10
+          },
+          "legR": {
+            "r": 6
+          },
+          "neck": {
+            "r": -4
+          },
+          "root": {
+            "y": -4.2
+          }
+        }
+      },
+      {
+        "hold": 0.24,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": 28
+          },
+          "armR": {
+            "r": 28
+          },
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.04
+          },
+          "body": {
+            "r": 2
+          },
+          "feathers": {
+            "r": -3,
+            "sy": 1.05
+          },
+          "head": {
+            "r": 5
+          },
+          "kneeL": {
+            "r": -22
+          },
+          "kneeR": {
+            "r": -30
+          },
+          "legL": {
+            "r": 10
+          },
+          "legR": {
+            "r": 8
+          },
+          "neck": {
+            "r": 3
+          },
+          "root": {
+            "y": -73
+          },
+          "tail": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": 28
+          },
+          "armR": {
+            "r": 28
+          },
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.04
+          },
+          "body": {
+            "r": 2
+          },
+          "feathers": {
+            "r": -3,
+            "sy": 1.05
+          },
+          "head": {
+            "r": 5
+          },
+          "kneeL": {
+            "r": -22
+          },
+          "kneeR": {
+            "r": -30
+          },
+          "legL": {
+            "r": 10
+          },
+          "legR": {
+            "r": 8
+          },
+          "neck": {
+            "r": 3
+          },
+          "root": {
+            "y": -79
+          },
+          "tail": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.93
+          },
+          "body": {
+            "y": 5
+          },
+          "head": {
+            "r": -2
+          },
+          "kneeR": {
+            "r": -6
+          },
+          "legR": {
+            "r": 4
+          },
+          "root": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

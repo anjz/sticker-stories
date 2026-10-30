@@ -1,0 +1,176 @@
+{
+  "id": "cry",
+  "sticker": "ankylosaurus",
+  "kind": "action",
+  "description": "the Ankylosaurus cries, head down, little tears falling, its armoured back shaking with sobs.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.26432,
+    "width": 0.72005,
+    "height": 0.47005
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the Ankylosaurus crying, head down, eyes squeezed shut with tears"
+  },
+  "puppet": {
+    "rig": "anims/ankylosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": -5,
+            "y": 2
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "head": {
+            "r": -6,
+            "y": 3
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sob"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 1.01,
+            "sy": 0.98
+          },
+          "head": {
+            "r": -7,
+            "y": 4
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sob"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "head": {
+            "r": -6,
+            "y": 3
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sob"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 1.01,
+            "sy": 0.98
+          },
+          "head": {
+            "r": -7,
+            "y": 4
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sob"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "head": {
+            "r": -6,
+            "y": 3
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sob"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 1.01,
+            "sy": 0.98
+          },
+          "head": {
+            "r": -7,
+            "y": 4
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sob"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": -3,
+            "y": 1
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

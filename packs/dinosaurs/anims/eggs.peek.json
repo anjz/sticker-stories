@@ -1,0 +1,232 @@
+{
+  "id": "peek",
+  "sticker": "eggs",
+  "kind": "action",
+  "description": "the front egg cracks and its top lifts like a lid: a baby Triceratops peeks out underneath, looks this way and that, then ducks back inside.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.22656,
+    "width": 0.59896,
+    "height": 0.54557
+  },
+  "pause": {
+    "frame": 6,
+    "shows": "a baby Triceratops peeking out from under the lifted top of the front egg"
+  },
+  "puppet": {
+    "rig": "anims/eggs.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "egg3": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "egg3": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "crack3": "crack"
+        }
+      },
+      {
+        "hold": 0.2,
+        "slots": {
+          "cap3": "cap",
+          "egg3": "broken"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "baby3": {
+            "y": 100,
+            "sx": 0.85,
+            "sy": 0.9
+          },
+          "cap3": {
+            "r": -3,
+            "y": -14
+          }
+        },
+        "slots": {
+          "baby3": "baby",
+          "cap3": "cap",
+          "egg3": "broken",
+          "eye3L": "closed",
+          "eye3R": "closed",
+          "mouth3": "smile"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "baby3": {
+            "y": 50,
+            "sx": 0.88,
+            "sy": 1
+          },
+          "cap3": {
+            "r": -16,
+            "x": -11.2,
+            "y": -57
+          }
+        },
+        "slots": {
+          "baby3": "baby",
+          "cap3": "cap",
+          "egg3": "broken",
+          "eye3L": "open",
+          "eye3R": "open",
+          "mouth3": "smile"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "baby3": {
+            "y": 50,
+            "sx": 0.88,
+            "sy": 1
+          },
+          "cap3": {
+            "r": -16,
+            "x": -11.2,
+            "y": -57
+          },
+          "face3": {
+            "x": -5
+          }
+        },
+        "slots": {
+          "baby3": "baby",
+          "cap3": "cap",
+          "egg3": "broken",
+          "eye3L": "open",
+          "eye3R": "open",
+          "mouth3": "smile"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "baby3": {
+            "y": 50,
+            "sx": 0.88,
+            "sy": 1
+          },
+          "cap3": {
+            "r": -16,
+            "x": -11.2,
+            "y": -57
+          },
+          "face3": {
+            "x": 4
+          }
+        },
+        "slots": {
+          "baby3": "baby",
+          "cap3": "cap",
+          "egg3": "broken",
+          "eye3L": "open",
+          "eye3R": "open",
+          "mouth3": "smile"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "baby3": {
+            "y": 50,
+            "sx": 0.88,
+            "sy": 1
+          },
+          "cap3": {
+            "r": -16,
+            "x": -11.2,
+            "y": -57
+          }
+        },
+        "slots": {
+          "baby3": "baby",
+          "cap3": "cap",
+          "egg3": "broken",
+          "eye3L": "closed",
+          "eye3R": "closed",
+          "mouth3": "smile"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "baby3": {
+            "y": 50,
+            "sx": 0.88,
+            "sy": 1
+          },
+          "cap3": {
+            "r": -16,
+            "x": -11.2,
+            "y": -57
+          }
+        },
+        "slots": {
+          "baby3": "baby",
+          "cap3": "cap",
+          "egg3": "broken",
+          "eye3L": "happy",
+          "eye3R": "happy",
+          "mouth3": "smile"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "in",
+        "bones": {
+          "baby3": {
+            "y": 110,
+            "sx": 0.9,
+            "sy": 0.9
+          }
+        },
+        "slots": {
+          "cap3": "cap",
+          "egg3": "broken"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "egg3": {
+            "r": -1.5
+          }
+        },
+        "slots": {
+          "cap3": "cap",
+          "egg3": "broken"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "egg3": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

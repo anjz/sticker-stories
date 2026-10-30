@@ -1,0 +1,146 @@
+{
+  "id": "wag-club",
+  "sticker": "ankylosaurus",
+  "kind": "action",
+  "description": "the Ankylosaurus happily wags its round club tail gently from side to side.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.26432,
+    "width": 0.72005,
+    "height": 0.47005
+  },
+  "puppet": {
+    "rig": "anims/ankylosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.32,
+        "ease": "inOut",
+        "bones": {
+          "body": {
+            "r": -0.6
+          },
+          "head": {
+            "r": 2
+          },
+          "tail": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "inOut",
+        "bones": {
+          "body": {
+            "r": 0.6
+          },
+          "head": {
+            "r": 1
+          },
+          "tail": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "inOut",
+        "bones": {
+          "body": {
+            "r": -0.6
+          },
+          "head": {
+            "r": 2
+          },
+          "tail": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "inOut",
+        "bones": {
+          "body": {
+            "r": 0.6
+          },
+          "head": {
+            "r": 1
+          },
+          "tail": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "inOut",
+        "bones": {
+          "body": {
+            "r": -0.6
+          },
+          "head": {
+            "r": 2
+          },
+          "tail": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "inOut",
+        "bones": {
+          "body": {
+            "r": 0.6
+          },
+          "head": {
+            "r": 1
+          },
+          "tail": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

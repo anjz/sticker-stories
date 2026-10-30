@@ -1,0 +1,64 @@
+{
+  "id": "sway",
+  "sticker": "leaf",
+  "kind": "action",
+  "description": "the big leaf sways gently from side to side in the breeze.",
+  "stickerBox": {
+    "x": 0.10547,
+    "y": 0.07943,
+    "width": 0.78906,
+    "height": 0.83984
+  },
+  "puppet": {
+    "rig": "anims/leaf.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "blade": {
+            "r": -1.5
+          },
+          "body": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "blade": {
+            "r": 1.5
+          },
+          "body": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "blade": {
+            "r": -1
+          },
+          "body": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "body": {
+            "r": -0.8
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

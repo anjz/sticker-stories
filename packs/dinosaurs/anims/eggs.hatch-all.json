@@ -1,0 +1,870 @@
+{
+  "id": "hatch-all",
+  "sticker": "eggs",
+  "kind": "action",
+  "description": "one after another, all three eggs crack and a baby Triceratops pops its head out of each, eggshell caps on their heads, and they smile.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.22656,
+    "width": 0.59896,
+    "height": 0.54557
+  },
+  "pause": {
+    "frame": 25,
+    "shows": "three baby Triceratops peeking out of their broken eggs in the nest, eggshell caps on their heads, smiling"
+  },
+  "particles": [
+    {
+      "frame": 3,
+      "effect": "dust-puff",
+      "x": 0.4031,
+      "y": 0.4411,
+      "intensity": 0.2,
+      "color": "#F3EBD2"
+    },
+    {
+      "frame": 11,
+      "effect": "dust-puff",
+      "x": 0.6161,
+      "y": 0.4715,
+      "intensity": 0.2,
+      "color": "#F3EBD2"
+    },
+    {
+      "frame": 19,
+      "effect": "dust-puff",
+      "x": 0.4922,
+      "y": 0.5385,
+      "intensity": 0.2,
+      "color": "#F3EBD2"
+    },
+    {
+      "frame": 25,
+      "effect": "sparks",
+      "x": 0.5,
+      "y": 0.3,
+      "intensity": 0.3,
+      "color": "#FFE7A3"
+    }
+  ],
+  "puppet": {
+    "rig": "anims/eggs.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.28,
+        "bones": {
+          "egg1": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "crack1": "crack"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "egg1": {
+            "r": 2,
+            "y": -3
+          }
+        },
+        "slots": {
+          "crack1": "crack"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "cap1": {
+            "y": -6
+          }
+        },
+        "slots": {
+          "cap1": "cap",
+          "egg1": "broken"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "baby1": {
+            "y": 85,
+            "sx": 0.85,
+            "sy": 0.85
+          },
+          "cap1": {
+            "r": 18,
+            "x": 6,
+            "y": -60
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "cap1": "cap",
+          "egg1": "broken",
+          "eye1L": "closed",
+          "eye1R": "closed",
+          "mouth1": "smile"
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "out",
+        "bones": {
+          "baby1": {
+            "y": 50,
+            "sx": 0.9,
+            "sy": 0.9
+          },
+          "cap1": {
+            "r": 14,
+            "x": -3.7,
+            "y": -74
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "cap1": "cap",
+          "egg1": "broken",
+          "eye1L": "closed",
+          "eye1R": "closed",
+          "mouth1": "smile"
+        }
+      },
+      {
+        "hold": 0.28,
+        "ease": "in",
+        "bones": {
+          "cap1": {
+            "r": 6,
+            "x": -6.2,
+            "y": -145.8
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "cap1": "cap",
+          "egg1": "broken",
+          "eye1L": "closed",
+          "eye1R": "closed",
+          "mouth1": "smile"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "hat1": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "egg1": "broken",
+          "eye1L": "closed",
+          "eye1R": "closed",
+          "hat1": "cap",
+          "mouth1": "smile"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "baby1": "baby",
+          "egg1": "broken",
+          "eye1L": "open",
+          "eye1R": "open",
+          "hat1": "cap",
+          "mouth1": "smile",
+          "paws1L": "paw",
+          "paws1R": "paw"
+        }
+      },
+      {
+        "hold": 0.28,
+        "bones": {
+          "egg2": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "crack2": "crack",
+          "egg1": "broken",
+          "eye1L": "open",
+          "eye1R": "open",
+          "hat1": "cap",
+          "mouth1": "smile",
+          "paws1L": "paw",
+          "paws1R": "paw"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "egg2": {
+            "r": 2,
+            "y": -3
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "crack2": "crack",
+          "egg1": "broken",
+          "eye1L": "open",
+          "eye1R": "open",
+          "hat1": "cap",
+          "mouth1": "smile",
+          "paws1L": "paw",
+          "paws1R": "paw"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "cap2": {
+            "y": -6
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "cap2": "cap",
+          "egg1": "broken",
+          "egg2": "broken",
+          "eye1L": "open",
+          "eye1R": "open",
+          "hat1": "cap",
+          "mouth1": "smile",
+          "paws1L": "paw",
+          "paws1R": "paw"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "baby2": {
+            "y": 85,
+            "sx": 0.85,
+            "sy": 0.85
+          },
+          "cap2": {
+            "r": 18,
+            "x": 6,
+            "y": -60
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "baby2": "baby",
+          "cap2": "cap",
+          "egg1": "broken",
+          "egg2": "broken",
+          "eye1L": "open",
+          "eye1R": "open",
+          "eye2L": "closed",
+          "eye2R": "closed",
+          "hat1": "cap",
+          "mouth1": "smile",
+          "mouth2": "smile",
+          "paws1L": "paw",
+          "paws1R": "paw"
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "out",
+        "bones": {
+          "baby2": {
+            "y": 50,
+            "sx": 0.9,
+            "sy": 0.9
+          },
+          "cap2": {
+            "r": 14,
+            "x": -8.8,
+            "y": -74
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "baby2": "baby",
+          "cap2": "cap",
+          "egg1": "broken",
+          "egg2": "broken",
+          "eye1L": "open",
+          "eye1R": "open",
+          "eye2L": "closed",
+          "eye2R": "closed",
+          "hat1": "cap",
+          "mouth1": "smile",
+          "mouth2": "smile",
+          "paws1L": "paw",
+          "paws1R": "paw"
+        }
+      },
+      {
+        "hold": 0.28,
+        "ease": "in",
+        "bones": {
+          "cap2": {
+            "r": -10,
+            "x": -14.6,
+            "y": -144.4
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "baby2": "baby",
+          "cap2": "cap",
+          "egg1": "broken",
+          "egg2": "broken",
+          "eye1L": "open",
+          "eye1R": "open",
+          "eye2L": "closed",
+          "eye2R": "closed",
+          "hat1": "cap",
+          "mouth1": "smile",
+          "mouth2": "smile",
+          "paws1L": "paw",
+          "paws1R": "paw"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "hat2": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "baby2": "baby",
+          "egg1": "broken",
+          "egg2": "broken",
+          "eye1L": "open",
+          "eye1R": "open",
+          "eye2L": "closed",
+          "eye2R": "closed",
+          "hat1": "cap",
+          "hat2": "cap",
+          "mouth1": "smile",
+          "mouth2": "smile",
+          "paws1L": "paw",
+          "paws1R": "paw"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "baby1": "baby",
+          "baby2": "baby",
+          "egg1": "broken",
+          "egg2": "broken",
+          "eye1L": "open",
+          "eye1R": "open",
+          "eye2L": "open",
+          "eye2R": "open",
+          "hat1": "cap",
+          "hat2": "cap",
+          "mouth1": "smile",
+          "mouth2": "smile",
+          "paws1L": "paw",
+          "paws1R": "paw",
+          "paws2L": "paw",
+          "paws2R": "paw"
+        }
+      },
+      {
+        "hold": 0.28,
+        "bones": {
+          "egg3": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "baby2": "baby",
+          "crack3": "crack",
+          "egg1": "broken",
+          "egg2": "broken",
+          "eye1L": "open",
+          "eye1R": "open",
+          "eye2L": "open",
+          "eye2R": "open",
+          "hat1": "cap",
+          "hat2": "cap",
+          "mouth1": "smile",
+          "mouth2": "smile",
+          "paws1L": "paw",
+          "paws1R": "paw",
+          "paws2L": "paw",
+          "paws2R": "paw"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "egg3": {
+            "r": 2,
+            "y": -3
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "baby2": "baby",
+          "crack3": "crack",
+          "egg1": "broken",
+          "egg2": "broken",
+          "eye1L": "open",
+          "eye1R": "open",
+          "eye2L": "open",
+          "eye2R": "open",
+          "hat1": "cap",
+          "hat2": "cap",
+          "mouth1": "smile",
+          "mouth2": "smile",
+          "paws1L": "paw",
+          "paws1R": "paw",
+          "paws2L": "paw",
+          "paws2R": "paw"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "cap3": {
+            "y": -6
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "baby2": "baby",
+          "cap3": "cap",
+          "egg1": "broken",
+          "egg2": "broken",
+          "egg3": "broken",
+          "eye1L": "open",
+          "eye1R": "open",
+          "eye2L": "open",
+          "eye2R": "open",
+          "hat1": "cap",
+          "hat2": "cap",
+          "mouth1": "smile",
+          "mouth2": "smile",
+          "paws1L": "paw",
+          "paws1R": "paw",
+          "paws2L": "paw",
+          "paws2R": "paw"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "baby3": {
+            "y": 85,
+            "sx": 0.85,
+            "sy": 0.85
+          },
+          "cap3": {
+            "r": 18,
+            "x": 6,
+            "y": -60
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "baby2": "baby",
+          "baby3": "baby",
+          "cap3": "cap",
+          "egg1": "broken",
+          "egg2": "broken",
+          "egg3": "broken",
+          "eye1L": "open",
+          "eye1R": "open",
+          "eye2L": "open",
+          "eye2R": "open",
+          "eye3L": "closed",
+          "eye3R": "closed",
+          "hat1": "cap",
+          "hat2": "cap",
+          "mouth1": "smile",
+          "mouth2": "smile",
+          "mouth3": "smile",
+          "paws1L": "paw",
+          "paws1R": "paw",
+          "paws2L": "paw",
+          "paws2R": "paw"
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "out",
+        "bones": {
+          "baby3": {
+            "y": 50,
+            "sx": 0.9,
+            "sy": 0.9
+          },
+          "cap3": {
+            "r": 14,
+            "x": -6.7,
+            "y": -74
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "baby2": "baby",
+          "baby3": "baby",
+          "cap3": "cap",
+          "egg1": "broken",
+          "egg2": "broken",
+          "egg3": "broken",
+          "eye1L": "open",
+          "eye1R": "open",
+          "eye2L": "open",
+          "eye2R": "open",
+          "eye3L": "closed",
+          "eye3R": "closed",
+          "hat1": "cap",
+          "hat2": "cap",
+          "mouth1": "smile",
+          "mouth2": "smile",
+          "mouth3": "smile",
+          "paws1L": "paw",
+          "paws1R": "paw",
+          "paws2L": "paw",
+          "paws2R": "paw"
+        }
+      },
+      {
+        "hold": 0.28,
+        "ease": "in",
+        "bones": {
+          "cap3": {
+            "r": -2,
+            "x": -11.2,
+            "y": -153
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "baby2": "baby",
+          "baby3": "baby",
+          "cap3": "cap",
+          "egg1": "broken",
+          "egg2": "broken",
+          "egg3": "broken",
+          "eye1L": "open",
+          "eye1R": "open",
+          "eye2L": "open",
+          "eye2R": "open",
+          "eye3L": "closed",
+          "eye3R": "closed",
+          "hat1": "cap",
+          "hat2": "cap",
+          "mouth1": "smile",
+          "mouth2": "smile",
+          "mouth3": "smile",
+          "paws1L": "paw",
+          "paws1R": "paw",
+          "paws2L": "paw",
+          "paws2R": "paw"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "hat3": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "baby2": "baby",
+          "baby3": "baby",
+          "egg1": "broken",
+          "egg2": "broken",
+          "egg3": "broken",
+          "eye1L": "open",
+          "eye1R": "open",
+          "eye2L": "open",
+          "eye2R": "open",
+          "eye3L": "closed",
+          "eye3R": "closed",
+          "hat1": "cap",
+          "hat2": "cap",
+          "hat3": "cap",
+          "mouth1": "smile",
+          "mouth2": "smile",
+          "mouth3": "smile",
+          "paws1L": "paw",
+          "paws1R": "paw",
+          "paws2L": "paw",
+          "paws2R": "paw"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "baby1": "baby",
+          "baby2": "baby",
+          "baby3": "baby",
+          "egg1": "broken",
+          "egg2": "broken",
+          "egg3": "broken",
+          "eye1L": "open",
+          "eye1R": "open",
+          "eye2L": "open",
+          "eye2R": "open",
+          "eye3L": "open",
+          "eye3R": "open",
+          "hat1": "cap",
+          "hat2": "cap",
+          "hat3": "cap",
+          "mouth1": "smile",
+          "mouth2": "smile",
+          "mouth3": "smile",
+          "paws1L": "paw",
+          "paws1R": "paw",
+          "paws2L": "paw",
+          "paws2R": "paw",
+          "paws3L": "paw",
+          "paws3R": "paw"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "hat1": {
+            "r": -3
+          },
+          "hat2": {
+            "r": -3
+          },
+          "hat3": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "baby2": "baby",
+          "baby3": "baby",
+          "egg1": "broken",
+          "egg2": "broken",
+          "egg3": "broken",
+          "eye1L": "happy",
+          "eye1R": "happy",
+          "eye2L": "happy",
+          "eye2R": "happy",
+          "eye3L": "happy",
+          "eye3R": "happy",
+          "hat1": "cap",
+          "hat2": "cap",
+          "hat3": "cap",
+          "mouth1": "open",
+          "mouth2": "open",
+          "mouth3": "open",
+          "paws1L": "paw",
+          "paws1R": "paw",
+          "paws2L": "paw",
+          "paws2R": "paw",
+          "paws3L": "paw",
+          "paws3R": "paw"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "baby1": "baby",
+          "baby2": "baby",
+          "baby3": "baby",
+          "egg1": "broken",
+          "egg2": "broken",
+          "egg3": "broken",
+          "eye1L": "open",
+          "eye1R": "open",
+          "eye2L": "open",
+          "eye2R": "open",
+          "eye3L": "open",
+          "eye3R": "open",
+          "hat1": "cap",
+          "hat2": "cap",
+          "hat3": "cap",
+          "mouth1": "smile",
+          "mouth2": "smile",
+          "mouth3": "smile"
+        }
+      },
+      {
+        "hold": 0.35,
+        "ease": "in",
+        "bones": {
+          "baby1": {
+            "y": 36,
+            "sx": 0.95,
+            "sy": 0.95
+          },
+          "baby2": {
+            "y": 36,
+            "sx": 0.95,
+            "sy": 0.95
+          },
+          "baby3": {
+            "y": 36,
+            "sx": 0.95,
+            "sy": 0.95
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "baby2": "baby",
+          "baby3": "baby",
+          "egg1": "broken",
+          "egg2": "broken",
+          "egg3": "broken",
+          "eye1L": "closed",
+          "eye1R": "closed",
+          "eye2L": "closed",
+          "eye2R": "closed",
+          "eye3L": "closed",
+          "eye3R": "closed",
+          "hat1": "cap",
+          "hat2": "cap",
+          "hat3": "cap",
+          "mouth1": "smile",
+          "mouth2": "smile",
+          "mouth3": "smile"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "baby1": {
+            "y": 36,
+            "sx": 0.95,
+            "sy": 0.95
+          },
+          "baby2": {
+            "y": 36,
+            "sx": 0.95,
+            "sy": 0.95
+          },
+          "baby3": {
+            "y": 36,
+            "sx": 0.95,
+            "sy": 0.95
+          },
+          "cap1": {
+            "r": -4,
+            "x": -6.2,
+            "y": -75.8
+          },
+          "cap2": {
+            "r": -20,
+            "x": -14.6,
+            "y": -74.4
+          },
+          "cap3": {
+            "r": -12,
+            "x": -11.2,
+            "y": -83
+          }
+        },
+        "slots": {
+          "baby1": "baby",
+          "baby2": "baby",
+          "baby3": "baby",
+          "cap1": "cap",
+          "cap2": "cap",
+          "cap3": "cap",
+          "egg1": "broken",
+          "egg2": "broken",
+          "egg3": "broken",
+          "eye1L": "closed",
+          "eye1R": "closed",
+          "eye2L": "closed",
+          "eye2R": "closed",
+          "eye3L": "closed",
+          "eye3R": "closed",
+          "mouth1": "smile",
+          "mouth2": "smile",
+          "mouth3": "smile"
+        }
+      },
+      {
+        "hold": 0.18,
+        "ease": "in",
+        "bones": {
+          "baby1": {
+            "y": 110,
+            "sx": 0.85,
+            "sy": 0.85
+          },
+          "baby2": {
+            "y": 110,
+            "sx": 0.85,
+            "sy": 0.85
+          },
+          "baby3": {
+            "y": 110,
+            "sx": 0.85,
+            "sy": 0.85
+          }
+        },
+        "slots": {
+          "cap1": "cap",
+          "cap2": "cap",
+          "cap3": "cap",
+          "egg1": "broken",
+          "egg2": "broken",
+          "egg3": "broken"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "egg1": {
+            "r": -2
+          },
+          "egg2": {
+            "r": -2
+          },
+          "egg3": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "cap1": "cap",
+          "cap2": "cap",
+          "cap3": "cap",
+          "egg1": "broken",
+          "egg2": "broken",
+          "egg3": "broken"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "egg1": {
+            "r": 1.5
+          },
+          "egg2": {
+            "r": -1.5
+          },
+          "egg3": {
+            "r": 1.5
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

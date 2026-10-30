@@ -1,0 +1,276 @@
+{
+  "id": "peek",
+  "sticker": "glider",
+  "description": "the glider ducks down small, then slowly lifts its head and peeks out with big round eyes, looks this way and that, and pops up happily.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26432,
+    "width": 0.5,
+    "height": 0.47005
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the glider crouched low, peeking out with big round eyes"
+  },
+  "perched": true,
+  "puppet": {
+    "rig": "anims/glider.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "r": -18
+          },
+          "armR": {
+            "r": 18
+          },
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.88
+          },
+          "head": {
+            "r": 3,
+            "y": 18
+          },
+          "root": {
+            "y": 5
+          },
+          "skinL": {
+            "r": -7.2,
+            "sx": 0.856
+          },
+          "skinR": {
+            "r": 7.2,
+            "sx": 0.856
+          },
+          "tail": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": -18
+          },
+          "armR": {
+            "r": 18
+          },
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.88
+          },
+          "head": {
+            "r": 3,
+            "y": 18
+          },
+          "root": {
+            "y": 5
+          },
+          "skinL": {
+            "r": -7.2,
+            "sx": 0.856
+          },
+          "skinR": {
+            "r": 7.2,
+            "sx": 0.856
+          },
+          "tail": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.95
+          },
+          "face": {
+            "x": -5
+          },
+          "head": {
+            "r": -4,
+            "y": 6
+          },
+          "root": {
+            "y": 2
+          },
+          "skinL": {
+            "r": -4.8,
+            "sx": 0.904
+          },
+          "skinR": {
+            "r": 4.8,
+            "sx": 0.904
+          },
+          "tail": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.95
+          },
+          "face": {
+            "x": 5
+          },
+          "head": {
+            "r": 4,
+            "y": 6
+          },
+          "root": {
+            "y": 2
+          },
+          "skinL": {
+            "r": -4.8,
+            "sx": 0.904
+          },
+          "skinR": {
+            "r": 4.8,
+            "sx": 0.904
+          },
+          "tail": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.95
+          },
+          "face": {
+            "x": -5
+          },
+          "head": {
+            "r": -4,
+            "y": 6
+          },
+          "root": {
+            "y": 2
+          },
+          "skinL": {
+            "r": -4.8,
+            "sx": 0.904
+          },
+          "skinR": {
+            "r": 4.8,
+            "sx": 0.904
+          },
+          "tail": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": 14
+          },
+          "armR": {
+            "r": -14
+          },
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.05
+          },
+          "root": {
+            "y": -14
+          },
+          "skinL": {
+            "r": 11.2,
+            "sx": 0.888
+          },
+          "skinR": {
+            "r": -11.2,
+            "sx": 0.888
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.95
+          },
+          "root": {
+            "y": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

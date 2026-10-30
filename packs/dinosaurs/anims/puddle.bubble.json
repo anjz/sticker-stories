@@ -1,0 +1,110 @@
+{
+  "id": "bubble",
+  "sticker": "puddle",
+  "kind": "action",
+  "description": "a mud bubble swells up slowly in the mud puddle and pops — blup! — leaving a little ripple.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.36198,
+    "width": 0.72005,
+    "height": 0.27474
+  },
+  "particles": [
+    {
+      "frame": 4,
+      "effect": "bubble-puff",
+      "x": 0.59,
+      "y": 0.51,
+      "intensity": 0.3
+    }
+  ],
+  "puppet": {
+    "rig": "anims/puddle.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "bubble": {
+            "sx": 0.35,
+            "sy": 0.2
+          }
+        },
+        "slots": {
+          "bubble": "bubble"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "bubble": {
+            "sx": 0.8,
+            "sy": 0.8
+          }
+        },
+        "slots": {
+          "bubble": "bubble"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "bubble": {
+            "sx": 1,
+            "sy": 1
+          }
+        },
+        "slots": {
+          "bubble": "bubble"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "ring2": {
+            "x": 62,
+            "y": 16,
+            "sx": 0.08,
+            "sy": 0.08
+          }
+        },
+        "slots": {
+          "ring2": "ring"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "ring2": {
+            "x": 62,
+            "y": 16,
+            "sx": 0.22,
+            "sy": 0.22
+          }
+        },
+        "slots": {
+          "ring2": "ring"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "ring2": {
+            "x": 62,
+            "y": 16,
+            "sx": 0.32,
+            "sy": 0.32
+          }
+        },
+        "slots": {
+          "ring2": "faint"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

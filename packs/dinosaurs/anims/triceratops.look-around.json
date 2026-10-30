@@ -1,0 +1,82 @@
+{
+  "id": "look-around",
+  "sticker": "triceratops",
+  "kind": "action",
+  "description": "the Triceratops looks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.08333,
+    "y": 0.07943,
+    "width": 0.83333,
+    "height": 0.83984
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/triceratops.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "face": {
+            "x": -7
+          },
+          "head": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "face": {
+            "x": -7
+          },
+          "head": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "face": {
+            "x": 8
+          },
+          "head": {
+            "r": -2,
+            "x": 3
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "face": {
+            "x": 8
+          },
+          "head": {
+            "r": -2,
+            "x": 3
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

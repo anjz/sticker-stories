@@ -1,0 +1,119 @@
+{
+  "id": "nod",
+  "sticker": "fern",
+  "kind": "action",
+  "description": "the fern nods yes, twice, its fronds bobbing.",
+  "stickerBox": {
+    "x": 0.21484,
+    "y": 0.20052,
+    "width": 0.56901,
+    "height": 0.59896
+  },
+  "puppet": {
+    "rig": "anims/fern.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "body": {
+            "sy": 0.985
+          },
+          "curlShort": {
+            "r": -2
+          },
+          "curlTall": {
+            "r": -3
+          },
+          "face": {
+            "y": 3
+          },
+          "frondsMid": {
+            "sy": 0.97
+          },
+          "head": {
+            "y": 6,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "body": {
+            "sy": 1.006
+          },
+          "curlShort": {
+            "r": 0.8
+          },
+          "curlTall": {
+            "r": 1.2000000000000002
+          },
+          "face": {
+            "y": -1.2000000000000002
+          },
+          "frondsMid": {
+            "sy": 1.012
+          },
+          "head": {
+            "y": -2.4000000000000004,
+            "sy": 1.012
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "body": {
+            "sy": 0.985
+          },
+          "curlShort": {
+            "r": -2
+          },
+          "curlTall": {
+            "r": -3
+          },
+          "face": {
+            "y": 3
+          },
+          "frondsMid": {
+            "sy": 0.97
+          },
+          "head": {
+            "y": 6,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "body": {
+            "sy": 1.0045
+          },
+          "curlShort": {
+            "r": 0.6
+          },
+          "curlTall": {
+            "r": 0.8999999999999999
+          },
+          "face": {
+            "y": -0.8999999999999999
+          },
+          "frondsMid": {
+            "sy": 1.009
+          },
+          "head": {
+            "y": -1.7999999999999998,
+            "sy": 1.009
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

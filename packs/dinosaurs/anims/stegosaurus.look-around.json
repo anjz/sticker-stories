@@ -1,0 +1,80 @@
+{
+  "id": "look-around",
+  "sticker": "stegosaurus",
+  "kind": "action",
+  "description": "the Stegosaurus looks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.16146,
+    "width": 0.83984,
+    "height": 0.67708
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/stegosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "face": {
+            "x": -6
+          },
+          "head": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "face": {
+            "x": -6
+          },
+          "head": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "face": {
+            "x": 10
+          },
+          "head": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "face": {
+            "x": 10
+          },
+          "head": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "id": "sleep",
+  "sticker": "brachiosaurus",
+  "kind": "action",
+  "description": "the brachiosaurus gives a big slow yawn, closes its eyes and dozes off standing up, its long neck drooping, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.07682,
+    "y": 0.02995,
+    "width": 0.84635,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the brachiosaurus fast asleep standing up, eyes shut, its long neck drooping"
+  },
+  "puppet": {
+    "rig": "anims/brachiosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": 10
+          },
+          "neckTop": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": 10
+          },
+          "neckTop": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "head": {
+            "r": -10
+          },
+          "neck": {
+            "r": -10
+          },
+          "neckTop": {
+            "r": -16
+          },
+          "tail": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "head": {
+            "r": -10
+          },
+          "neck": {
+            "r": -10
+          },
+          "neckTop": {
+            "r": -16
+          },
+          "tail": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

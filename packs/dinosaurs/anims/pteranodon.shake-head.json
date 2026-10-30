@@ -1,0 +1,66 @@
+{
+  "id": "shake-head",
+  "sticker": "pteranodon",
+  "description": "the pteranodon shakes its head no.",
+  "stickerBox": {
+    "x": 0.27474,
+    "y": 0.20052,
+    "width": 0.45052,
+    "height": 0.59896
+  },
+  "puppet": {
+    "rig": "anims/pteranodon.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "x": -5
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 5
+          },
+          "head": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": -5
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 4
+          },
+          "head": {
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

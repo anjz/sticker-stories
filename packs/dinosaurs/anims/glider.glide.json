@@ -1,0 +1,236 @@
+{
+  "id": "glide",
+  "sticker": "glider",
+  "kind": "move",
+  "description": "the glider spreads its arms and legs wide and glides down and across to the left on its stretched gliding skin, swaying gently, then tips up, lands on its feet and folds its skin.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26432,
+    "width": 0.5,
+    "height": 0.47005
+  },
+  "loop": {
+    "from": 1,
+    "to": 4
+  },
+  "facing": "left",
+  "stride": 1.6,
+  "flies": true,
+  "on": [
+    "branches",
+    "rocks"
+  ],
+  "puppet": {
+    "rig": "anims/glider.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1
+          },
+          "body": {
+            "r": -4
+          },
+          "head": {
+            "r": -2
+          },
+          "tail": {
+            "r": -10,
+            "x": 15,
+            "y": -59
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armR": "none",
+          "body": "sail",
+          "legL": "none",
+          "legR": "none",
+          "skinL": "none",
+          "skinR": "none"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.98
+          },
+          "body": {
+            "r": -7,
+            "y": 2
+          },
+          "head": {
+            "r": 1
+          },
+          "tail": {
+            "r": -4,
+            "x": 15,
+            "y": -59
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armR": "none",
+          "body": "sail",
+          "legL": "none",
+          "legR": "none",
+          "skinL": "none",
+          "skinR": "none"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1
+          },
+          "body": {
+            "r": -4
+          },
+          "head": {
+            "r": -2
+          },
+          "tail": {
+            "r": -14,
+            "x": 15,
+            "y": -59
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armR": "none",
+          "body": "sail",
+          "legL": "none",
+          "legR": "none",
+          "skinL": "none",
+          "skinR": "none"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.99
+          },
+          "body": {
+            "r": -1,
+            "y": -2
+          },
+          "head": {
+            "r": -4
+          },
+          "tail": {
+            "r": -8,
+            "x": 15,
+            "y": -59
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armR": "none",
+          "body": "sail",
+          "legL": "none",
+          "legR": "none",
+          "skinL": "none",
+          "skinR": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.04
+          },
+          "body": {
+            "r": 6,
+            "y": -4
+          },
+          "head": {
+            "r": -6
+          },
+          "tail": {
+            "r": 4,
+            "x": 15,
+            "y": -59
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armR": "none",
+          "body": "sail",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "legL": "none",
+          "legR": "none",
+          "skinL": "none",
+          "skinR": "none"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "armR": {
+            "r": -10
+          },
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.92
+          },
+          "head": {
+            "y": 5
+          },
+          "root": {
+            "y": 3
+          },
+          "skinL": {
+            "r": 8,
+            "sx": 0.92
+          },
+          "skinR": {
+            "r": -8,
+            "sx": 0.92
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 0.98,
+            "sy": 1.02
+          },
+          "head": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.35
+      }
+    ],
+    "wings": [
+      "belly",
+      "armL",
+      "armR",
+      "legL",
+      "legR",
+      "skinL",
+      "skinR",
+      "tail"
+    ]
+  }
+}

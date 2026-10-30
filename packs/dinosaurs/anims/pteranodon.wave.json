@@ -1,0 +1,114 @@
+{
+  "id": "wave",
+  "sticker": "pteranodon",
+  "description": "the pteranodon lifts its big wing and waves hello.",
+  "stickerBox": {
+    "x": 0.27474,
+    "y": 0.20052,
+    "width": 0.45052,
+    "height": 0.59896
+  },
+  "puppet": {
+    "rig": "anims/pteranodon.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 4
+          },
+          "wingR": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "head": {
+            "r": 4
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "head": {
+            "r": 4
+          },
+          "wingR": {
+            "r": -12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "head": {
+            "r": 4
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "head": {
+            "r": 4
+          },
+          "wingR": {
+            "r": -12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingOpenR": "open",
+          "wingR": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

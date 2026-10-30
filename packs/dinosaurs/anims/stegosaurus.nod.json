@@ -1,0 +1,59 @@
+{
+  "id": "nod",
+  "sticker": "stegosaurus",
+  "kind": "action",
+  "description": "the Stegosaurus nods yes, twice.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.16146,
+    "width": 0.83984,
+    "height": 0.67708
+  },
+  "puppet": {
+    "rig": "anims/stegosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "head": {
+            "r": -6,
+            "y": 4
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "head": {
+            "r": 1,
+            "y": -1
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "head": {
+            "r": -6,
+            "y": 4
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "head": {
+            "r": 1,
+            "y": -1
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "id": "shake-head",
+  "sticker": "glider",
+  "description": "the glider shakes its head no, its whiskers swishing.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26432,
+    "width": 0.5,
+    "height": 0.47005
+  },
+  "puppet": {
+    "rig": "anims/glider.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "x": -7
+          },
+          "head": {
+            "r": -6
+          },
+          "whiskL": {
+            "r": 4
+          },
+          "whiskR": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": 7
+          },
+          "head": {
+            "r": 6
+          },
+          "whiskL": {
+            "r": -4
+          },
+          "whiskR": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": -7
+          },
+          "head": {
+            "r": -6
+          },
+          "whiskL": {
+            "r": 4
+          },
+          "whiskR": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": 6
+          },
+          "head": {
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

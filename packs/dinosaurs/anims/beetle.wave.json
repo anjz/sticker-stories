@@ -1,0 +1,125 @@
+{
+  "id": "wave",
+  "sticker": "beetle",
+  "kind": "action",
+  "description": "the beetle lifts one little front leg and waves hello.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.27865,
+    "width": 0.5,
+    "height": 0.44141
+  },
+  "puppet": {
+    "rig": "anims/beetle.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 2
+          },
+          "legL1": {
+            "r": 40
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 2
+          },
+          "legL1": {
+            "r": 52
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 2
+          },
+          "legL1": {
+            "r": 34
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 2
+          },
+          "legL1": {
+            "r": 52
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 2
+          },
+          "legL1": {
+            "r": 34
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "legL1": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

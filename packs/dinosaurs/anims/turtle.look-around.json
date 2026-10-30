@@ -1,0 +1,83 @@
+{
+  "id": "look-around",
+  "sticker": "turtle",
+  "kind": "action",
+  "description": "the turtle stretches its neck a little and looks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.26042,
+    "width": 0.59896,
+    "height": 0.47917
+  },
+  "idle": true,
+  "on": [
+    "lagoon"
+  ],
+  "puppet": {
+    "rig": "anims/turtle.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "face": {
+            "x": -8
+          },
+          "head": {
+            "r": -3
+          },
+          "neck": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "face": {
+            "x": -8
+          },
+          "head": {
+            "r": -3
+          },
+          "neck": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "face": {
+            "x": 9
+          },
+          "head": {
+            "r": 4
+          },
+          "neck": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "face": {
+            "x": 9
+          },
+          "head": {
+            "r": 4
+          },
+          "neck": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

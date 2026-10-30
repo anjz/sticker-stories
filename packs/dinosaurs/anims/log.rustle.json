@@ -1,0 +1,98 @@
+{
+  "id": "rustle",
+  "sticker": "log",
+  "kind": "action",
+  "description": "a breeze rustles the little fern on top of the log: it sways and trembles, then is still.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.19531,
+    "width": 0.72005,
+    "height": 0.60938
+  },
+  "puppet": {
+    "rig": "anims/log.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "fern": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "fern": {
+            "r": 4,
+            "sx": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "fern": {
+            "r": 7
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "fern": {
+            "r": 4.5,
+            "sx": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "fern": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "fern": {
+            "r": -2,
+            "sx": 0.98
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "fern": {
+            "r": -4.5
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "fern": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "fern": {
+            "r": -0.8
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

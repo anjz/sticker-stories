@@ -1,0 +1,57 @@
+{
+  "id": "nod",
+  "sticker": "ankylosaurus",
+  "kind": "action",
+  "description": "the Ankylosaurus nods its little head yes, twice.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.26432,
+    "width": 0.72005,
+    "height": 0.47005
+  },
+  "puppet": {
+    "rig": "anims/ankylosaurus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "head": {
+            "r": -7,
+            "y": 2
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "head": {
+            "r": -7,
+            "y": 2
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

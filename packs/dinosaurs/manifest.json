@@ -1,0 +1,2054 @@
+{
+  "schemaVersion": 2,
+  "id": "dinosaurs",
+  "version": 2,
+  "languages": [
+    "en-US",
+    "es-ES"
+  ],
+  "displayName": {
+    "en-US": "Dinosaur Valley",
+    "es-ES": "El Valle de los Dinosaurios"
+  },
+  "description": {
+    "en-US": "A gentle giant, three eggs and a sunny valley full of friendly dinosaurs.",
+    "es-ES": "Un gigante amable, tres huevos y un valle soleado lleno de dinosaurios amigos."
+  },
+  "theme": "dinosaurs",
+  "setting": "outdoors",
+  "world": {
+    "ground": "#A9C25A"
+  },
+  "background": "art/background.webp",
+  "foreground": "art/foreground.webp",
+  "backgroundWide": "art/background-wide.webp",
+  "foregroundWide": "art/foreground-wide.webp",
+  "layers": [
+    {
+      "id": "araucaria",
+      "image": "art/layer-araucaria.webp",
+      "imageWide": "art/layer-araucaria-wide.webp"
+    },
+    {
+      "id": "treefern",
+      "image": "art/layer-treefern.webp",
+      "imageWide": "art/layer-treefern-wide.webp"
+    }
+  ],
+  "sky": {
+    "image": "art/sky.webp",
+    "imageWide": "art/sky-wide.webp"
+  },
+  "space": {
+    "horizon": 0.66,
+    "ground": 0,
+    "back": 4.7,
+    "stand": {
+      "near": 1.15,
+      "far": 4.3
+    },
+    "floor": 0.04,
+    "layers": [
+      {
+        "id": "araucaria",
+        "art": "araucaria",
+        "depth": 1.07,
+        "footprint": [
+          [
+            0.95,
+            0.03
+          ],
+          [
+            1.06,
+            0.03
+          ],
+          [
+            1.06,
+            0.08
+          ],
+          [
+            0.95,
+            0.08
+          ]
+        ],
+        "wide": {
+          "depth": 1.07,
+          "footprint": [
+            [
+              1.15,
+              0.03
+            ],
+            [
+              1.26,
+              0.03
+            ],
+            [
+              1.26,
+              0.08
+            ],
+            [
+              1.15,
+              0.08
+            ]
+          ]
+        }
+      },
+      {
+        "id": "treefern",
+        "art": "treefern",
+        "depth": 1.07,
+        "footprint": [
+          [
+            -0.14,
+            0.03
+          ],
+          [
+            0,
+            0.03
+          ],
+          [
+            0,
+            0.08
+          ],
+          [
+            -0.14,
+            0.08
+          ]
+        ],
+        "wide": {
+          "depth": 1.07,
+          "footprint": [
+            [
+              -0.28,
+              0.03
+            ],
+            [
+              -0.13,
+              0.03
+            ],
+            [
+              -0.13,
+              0.08
+            ],
+            [
+              -0.28,
+              0.08
+            ]
+          ]
+        }
+      },
+      {
+        "id": "foreground",
+        "depth": 1
+      }
+    ],
+    "places": {
+      "branches": {
+        "lines": [
+          {
+            "layer": "treefern",
+            "points": [
+              [
+                0.07,
+                0.745
+              ],
+              [
+                0.15,
+                0.75
+              ],
+              [
+                0.22,
+                0.738
+              ]
+            ]
+          },
+          {
+            "layer": "araucaria",
+            "points": [
+              [
+                0.76,
+                0.768
+              ],
+              [
+                0.83,
+                0.76
+              ],
+              [
+                0.9,
+                0.758
+              ]
+            ]
+          }
+        ],
+        "wideLines": [
+          {
+            "layer": "treefern",
+            "points": [
+              [
+                -0.08,
+                0.708
+              ],
+              [
+                -0.01,
+                0.712
+              ],
+              [
+                0.05,
+                0.705
+              ]
+            ]
+          },
+          {
+            "layer": "araucaria",
+            "points": [
+              [
+                0.95,
+                0.712
+              ],
+              [
+                1.02,
+                0.708
+              ],
+              [
+                1.1,
+                0.704
+              ]
+            ]
+          }
+        ]
+      },
+      "lagoon": {
+        "ground": [
+          [
+            -0.115,
+            0.47
+          ],
+          [
+            -0.1,
+            0.5
+          ],
+          [
+            0,
+            0.51
+          ],
+          [
+            0.2,
+            0.515
+          ],
+          [
+            0.4,
+            0.515
+          ],
+          [
+            0.55,
+            0.51
+          ],
+          [
+            0.64,
+            0.5
+          ],
+          [
+            0.67,
+            0.485
+          ],
+          [
+            0.63,
+            0.46
+          ],
+          [
+            0.58,
+            0.44
+          ],
+          [
+            0.54,
+            0.41
+          ],
+          [
+            0.5,
+            0.38
+          ],
+          [
+            0.5,
+            0.35
+          ],
+          [
+            0.45,
+            0.32
+          ],
+          [
+            0.38,
+            0.305
+          ],
+          [
+            0.28,
+            0.3
+          ],
+          [
+            0.18,
+            0.305
+          ],
+          [
+            0.08,
+            0.32
+          ],
+          [
+            0,
+            0.35
+          ],
+          [
+            -0.08,
+            0.4
+          ],
+          [
+            -0.11,
+            0.44
+          ]
+        ],
+        "water": true
+      },
+      "meadow": {
+        "ground": [
+          [
+            -0.2,
+            0.04
+          ],
+          [
+            1.22,
+            0.04
+          ],
+          [
+            1.22,
+            0.25
+          ],
+          [
+            1,
+            0.255
+          ],
+          [
+            0.66,
+            0.26
+          ],
+          [
+            0.64,
+            0.33
+          ],
+          [
+            0.65,
+            0.4
+          ],
+          [
+            0.75,
+            0.405
+          ],
+          [
+            1,
+            0.41
+          ],
+          [
+            1.22,
+            0.41
+          ],
+          [
+            1.22,
+            0.51
+          ],
+          [
+            0.9,
+            0.515
+          ],
+          [
+            0.7,
+            0.5
+          ],
+          [
+            0.66,
+            0.47
+          ],
+          [
+            0.6,
+            0.43
+          ],
+          [
+            0.55,
+            0.39
+          ],
+          [
+            0.53,
+            0.34
+          ],
+          [
+            0.47,
+            0.29
+          ],
+          [
+            0.35,
+            0.26
+          ],
+          [
+            0.2,
+            0.265
+          ],
+          [
+            0.05,
+            0.28
+          ],
+          [
+            -0.1,
+            0.33
+          ],
+          [
+            -0.2,
+            0.36
+          ]
+        ]
+      },
+      "rocks": {
+        "ground": [
+          [
+            0.67,
+            0.36
+          ],
+          [
+            0.98,
+            0.36
+          ],
+          [
+            1.12,
+            0.37
+          ],
+          [
+            1.12,
+            0.395
+          ],
+          [
+            0.98,
+            0.4
+          ],
+          [
+            0.67,
+            0.395
+          ]
+        ]
+      },
+      "shore": {
+        "ground": [
+          [
+            0.08,
+            0.3
+          ],
+          [
+            0.18,
+            0.285
+          ],
+          [
+            0.28,
+            0.28
+          ],
+          [
+            0.38,
+            0.285
+          ],
+          [
+            0.46,
+            0.3
+          ],
+          [
+            0.52,
+            0.33
+          ],
+          [
+            0.53,
+            0.37
+          ],
+          [
+            0.57,
+            0.41
+          ],
+          [
+            0.62,
+            0.44
+          ],
+          [
+            0.68,
+            0.47
+          ],
+          [
+            0.72,
+            0.48
+          ],
+          [
+            0.69,
+            0.45
+          ],
+          [
+            0.64,
+            0.42
+          ],
+          [
+            0.59,
+            0.37
+          ],
+          [
+            0.56,
+            0.33
+          ],
+          [
+            0.5,
+            0.29
+          ],
+          [
+            0.42,
+            0.26
+          ],
+          [
+            0.3,
+            0.25
+          ],
+          [
+            0.18,
+            0.255
+          ],
+          [
+            0.08,
+            0.27
+          ]
+        ]
+      },
+      "sky": {
+        "air": {
+          "area": [
+            [
+              0.38,
+              0.66
+            ],
+            [
+              0.66,
+              0.66
+            ],
+            [
+              0.66,
+              0.84
+            ],
+            [
+              0.38,
+              0.84
+            ]
+          ],
+          "depth": [
+            1.4,
+            3.8
+          ]
+        }
+      }
+    },
+    "sizes": {
+      "ammonite": 0.07,
+      "ankylosaurus": 0.27,
+      "archaeopteryx": 0.13,
+      "beetle": 0.05,
+      "brachiosaurus": 0.8,
+      "bush": 0.2,
+      "dragonfly": 0.07,
+      "eggs": 0.14,
+      "fern": 0.12,
+      "flower": 0.07,
+      "gallimimus": 0.33,
+      "glider": 0.08,
+      "leaf": 0.3,
+      "log": 0.17,
+      "pachycephalosaurus": 0.3,
+      "parasaurolophus": 0.44,
+      "plesiosaur": 0.4,
+      "psittacosaurus": 0.18,
+      "pteranodon": 0.21,
+      "puddle": 0.15,
+      "spinosaurus": 0.42,
+      "stegosaurus": 0.4,
+      "trex": 0.42,
+      "triceratops": 0.38,
+      "turtle": 0.11
+    },
+    "edit": {
+      "spread": 0.6,
+      "minimum": 60
+    }
+  },
+  "cover": "art/cover.webp",
+  "features": {
+    "branches": {
+      "description": "the long low frond stalk of the tree fern on the left and the low branch of the monkey-puzzle tree on the right",
+      "areas": [
+        {
+          "x": [
+            0.07,
+            0.22
+          ],
+          "y": [
+            0.735,
+            0.75
+          ]
+        },
+        {
+          "x": [
+            0.76,
+            0.9
+          ],
+          "y": [
+            0.755,
+            0.77
+          ]
+        }
+      ],
+      "words": {
+        "en-US": [
+          "branch",
+          "branches"
+        ],
+        "es-ES": [
+          "rama",
+          "ramas"
+        ]
+      },
+      "wideAreas": [
+        {
+          "x": [
+            -0.08,
+            0.05
+          ],
+          "y": [
+            0.7,
+            0.715
+          ]
+        },
+        {
+          "x": [
+            0.95,
+            1.1
+          ],
+          "y": [
+            0.7,
+            0.715
+          ]
+        }
+      ]
+    },
+    "lagoon": {
+      "description": "the calm turquoise lagoon on the left, with giant water-lily pads near its left bank",
+      "areas": [
+        {
+          "x": [
+            0.24,
+            0.56
+          ],
+          "y": [
+            0.38,
+            0.47
+          ]
+        },
+        {
+          "x": [
+            0.06,
+            0.22
+          ],
+          "y": [
+            0.44,
+            0.48
+          ]
+        }
+      ],
+      "words": {
+        "en-US": [
+          "lagoon",
+          "lake"
+        ],
+        "es-ES": [
+          "laguna",
+          "lago"
+        ]
+      },
+      "edge": [
+        {
+          "x": [
+            0.27,
+            0.44
+          ],
+          "y": [
+            0.27,
+            0.3
+          ]
+        },
+        {
+          "x": [
+            0.47,
+            0.53
+          ],
+          "y": [
+            0.33,
+            0.37
+          ]
+        },
+        {
+          "x": [
+            0.56,
+            0.64
+          ],
+          "y": [
+            0.41,
+            0.46
+          ]
+        }
+      ],
+      "wideAreas": [
+        {
+          "x": [
+            -0.08,
+            0.56
+          ],
+          "y": [
+            0.4,
+            0.47
+          ]
+        }
+      ]
+    },
+    "meadow": {
+      "description": "the wide open meadow of short ferns and grass in the middle and on the right",
+      "areas": [
+        {
+          "x": [
+            0.3,
+            0.88
+          ],
+          "y": [
+            0.08,
+            0.25
+          ]
+        },
+        {
+          "x": [
+            0.66,
+            0.92
+          ],
+          "y": [
+            0.42,
+            0.49
+          ]
+        }
+      ],
+      "words": {
+        "en-US": [
+          "meadow",
+          "ferns"
+        ],
+        "es-ES": [
+          "prado",
+          "helechos"
+        ]
+      }
+    },
+    "rocks": {
+      "description": "the flat top of the big warm terracotta rock ledge on the right of the meadow, good for basking",
+      "areas": [
+        {
+          "x": [
+            0.68,
+            0.92
+          ],
+          "y": [
+            0.365,
+            0.39
+          ]
+        }
+      ],
+      "words": {
+        "en-US": [
+          "rock",
+          "ledge"
+        ],
+        "es-ES": [
+          "roca",
+          "repisa"
+        ]
+      },
+      "wideAreas": [
+        {
+          "x": [
+            0.68,
+            1.08
+          ],
+          "y": [
+            0.365,
+            0.39
+          ]
+        }
+      ]
+    },
+    "shore": {
+      "description": "the sandy-mud bank with pebbles along the near side of the lagoon",
+      "areas": [
+        {
+          "x": [
+            0.27,
+            0.44
+          ],
+          "y": [
+            0.27,
+            0.3
+          ]
+        },
+        {
+          "x": [
+            0.47,
+            0.53
+          ],
+          "y": [
+            0.33,
+            0.37
+          ]
+        },
+        {
+          "x": [
+            0.56,
+            0.64
+          ],
+          "y": [
+            0.41,
+            0.46
+          ]
+        }
+      ],
+      "words": {
+        "en-US": [
+          "shore",
+          "bank"
+        ],
+        "es-ES": [
+          "orilla"
+        ]
+      }
+    },
+    "sky": {
+      "description": "the open sky over the valley, between the tree fern and the monkey-puzzle tree",
+      "areas": [
+        {
+          "x": [
+            0.38,
+            0.66
+          ],
+          "y": [
+            0.66,
+            0.84
+          ]
+        }
+      ],
+      "air": true
+    }
+  },
+  "stickers": [
+    {
+      "id": "ammonite",
+      "name": {
+        "en-US": "Ammonite",
+        "es-ES": "Amonites"
+      },
+      "image": "stickers/ammonite.webp",
+      "animations": [
+        "anims/ammonite.swim.json",
+        "anims/ammonite.wave-tentacles.json",
+        "anims/ammonite.bob.json",
+        "anims/ammonite.spin.json",
+        "anims/ammonite.jet.json",
+        "anims/ammonite.hide.json",
+        "anims/ammonite.peek.json",
+        "anims/ammonite.laugh.json",
+        "anims/ammonite.sleep.json",
+        "anims/ammonite.blow-bubbles.json"
+      ],
+      "expressions": {
+        "happy": "stickers/ammonite.happy.webp",
+        "sad": "stickers/ammonite.sad.webp",
+        "sleeping": "stickers/ammonite.sleeping.webp",
+        "surprised": "stickers/ammonite.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "lagoon"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.25,
+          0.75
+        ],
+        "y": [
+          0.2591,
+          0.7422
+        ]
+      }
+    },
+    {
+      "id": "ankylosaurus",
+      "name": {
+        "en-US": "Ankylosaurus",
+        "es-ES": "Anquilosaurio"
+      },
+      "image": "stickers/ankylosaurus.webp",
+      "animations": [
+        "anims/ankylosaurus.walk.json",
+        "anims/ankylosaurus.jump.json",
+        "anims/ankylosaurus.nod.json",
+        "anims/ankylosaurus.shake-head.json",
+        "anims/ankylosaurus.look-around.json",
+        "anims/ankylosaurus.laugh.json",
+        "anims/ankylosaurus.dance.json",
+        "anims/ankylosaurus.talk.json",
+        "anims/ankylosaurus.cry.json",
+        "anims/ankylosaurus.sleep.json",
+        "anims/ankylosaurus.shiver.json",
+        "anims/ankylosaurus.wag-club.json",
+        "anims/ankylosaurus.hide.json",
+        "anims/ankylosaurus.munch.json",
+        "anims/ankylosaurus.sniff.json",
+        "anims/ankylosaurus.sunbathe.json"
+      ],
+      "expressions": {
+        "happy": "stickers/ankylosaurus.happy.webp",
+        "sad": "stickers/ankylosaurus.sad.webp",
+        "sleeping": "stickers/ankylosaurus.sleeping.webp",
+        "surprised": "stickers/ankylosaurus.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "rocks"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.1393,
+          0.8594
+        ],
+        "y": [
+          0.2656,
+          0.7357
+        ]
+      }
+    },
+    {
+      "id": "archaeopteryx",
+      "name": {
+        "en-US": "Archaeopteryx",
+        "es-ES": "Arqueoptérix"
+      },
+      "image": "stickers/archaeopteryx.webp",
+      "animations": [
+        "anims/archaeopteryx.fly.json",
+        "anims/archaeopteryx.hop.json",
+        "anims/archaeopteryx.flap.json",
+        "anims/archaeopteryx.jump.json",
+        "anims/archaeopteryx.nod.json",
+        "anims/archaeopteryx.shake-head.json",
+        "anims/archaeopteryx.look-around.json",
+        "anims/archaeopteryx.laugh.json",
+        "anims/archaeopteryx.dance.json",
+        "anims/archaeopteryx.talk.json",
+        "anims/archaeopteryx.cry.json",
+        "anims/archaeopteryx.sleep.json",
+        "anims/archaeopteryx.wave.json",
+        "anims/archaeopteryx.shiver.json",
+        "anims/archaeopteryx.sing.json",
+        "anims/archaeopteryx.preen.json",
+        "anims/archaeopteryx.peck.json",
+        "anims/archaeopteryx.fluff-up.json",
+        "anims/archaeopteryx.stretch-wing.json"
+      ],
+      "expressions": {
+        "happy": "stickers/archaeopteryx.happy.webp",
+        "sad": "stickers/archaeopteryx.sad.webp",
+        "sleeping": "stickers/archaeopteryx.sleeping.webp",
+        "surprised": "stickers/archaeopteryx.surprised.webp"
+      },
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "branches",
+          "rocks",
+          "meadow"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2005,
+          0.7995
+        ],
+        "y": [
+          0.2135,
+          0.7865
+        ]
+      }
+    },
+    {
+      "id": "beetle",
+      "name": {
+        "en-US": "Beetle",
+        "es-ES": "Escarabajo"
+      },
+      "image": "stickers/beetle.webp",
+      "animations": [
+        "anims/beetle.walk.json",
+        "anims/beetle.fly.json",
+        "anims/beetle.nod.json",
+        "anims/beetle.shake-head.json",
+        "anims/beetle.look-around.json",
+        "anims/beetle.wiggle-antennae.json",
+        "anims/beetle.laugh.json",
+        "anims/beetle.dance.json",
+        "anims/beetle.cry.json",
+        "anims/beetle.sleep.json",
+        "anims/beetle.wave.json",
+        "anims/beetle.tuck.json",
+        "anims/beetle.roll-ball.json",
+        "anims/beetle.shine.json"
+      ],
+      "expressions": {
+        "happy": "stickers/beetle.happy.webp",
+        "sad": "stickers/beetle.sad.webp",
+        "sleeping": "stickers/beetle.sleeping.webp",
+        "surprised": "stickers/beetle.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "rocks"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.25,
+          0.75
+        ],
+        "y": [
+          0.2799,
+          0.7214
+        ]
+      }
+    },
+    {
+      "id": "brachiosaurus",
+      "name": {
+        "en-US": "Brachiosaurus",
+        "es-ES": "Braquiosaurio"
+      },
+      "image": "stickers/brachiosaurus.webp",
+      "animations": [
+        "anims/brachiosaurus.walk.json",
+        "anims/brachiosaurus.nod.json",
+        "anims/brachiosaurus.shake-head.json",
+        "anims/brachiosaurus.look-around.json",
+        "anims/brachiosaurus.laugh.json",
+        "anims/brachiosaurus.dance.json",
+        "anims/brachiosaurus.talk.json",
+        "anims/brachiosaurus.cry.json",
+        "anims/brachiosaurus.sleep.json",
+        "anims/brachiosaurus.shiver.json",
+        "anims/brachiosaurus.stretch-neck.json",
+        "anims/brachiosaurus.munch.json",
+        "anims/brachiosaurus.bend-down.json",
+        "anims/brachiosaurus.sniff.json",
+        "anims/brachiosaurus.wag-tail.json",
+        "anims/brachiosaurus.stomp.json",
+        "anims/brachiosaurus.sway.json"
+      ],
+      "expressions": {
+        "happy": "stickers/brachiosaurus.happy.webp",
+        "sad": "stickers/brachiosaurus.sad.webp",
+        "sleeping": "stickers/brachiosaurus.sleeping.webp",
+        "surprised": "stickers/brachiosaurus.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "huge",
+      "content": {
+        "x": [
+          0.0768,
+          0.9232
+        ],
+        "y": [
+          0.0299,
+          0.9701
+        ]
+      }
+    },
+    {
+      "id": "bush",
+      "name": {
+        "en-US": "Berry bush",
+        "es-ES": "Arbusto de bayas"
+      },
+      "image": "stickers/bush.webp",
+      "animations": [
+        "anims/bush.sprout.json",
+        "anims/bush.sway.json",
+        "anims/bush.rustle.json",
+        "anims/bush.shake.json",
+        "anims/bush.droop.json",
+        "anims/bush.perk-up.json",
+        "anims/bush.laugh.json",
+        "anims/bush.sleep.json",
+        "anims/bush.wink.json",
+        "anims/bush.hide.json"
+      ],
+      "expressions": {
+        "happy": "stickers/bush.happy.webp",
+        "sad": "stickers/bush.sad.webp",
+        "sleeping": "stickers/bush.sleeping.webp",
+        "surprised": "stickers/bush.surprised.webp"
+      },
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.1393,
+          0.8594
+        ],
+        "y": [
+          0.1536,
+          0.8464
+        ]
+      }
+    },
+    {
+      "id": "dragonfly",
+      "name": {
+        "en-US": "Dragonfly",
+        "es-ES": "Libélula"
+      },
+      "image": "stickers/dragonfly.webp",
+      "animations": [
+        "anims/dragonfly.fly.json",
+        "anims/dragonfly.hover.json",
+        "anims/dragonfly.dart.json",
+        "anims/dragonfly.zigzag.json",
+        "anims/dragonfly.nod.json",
+        "anims/dragonfly.shake-head.json",
+        "anims/dragonfly.look-around.json",
+        "anims/dragonfly.laugh.json",
+        "anims/dragonfly.cry.json",
+        "anims/dragonfly.sleep.json",
+        "anims/dragonfly.wave.json"
+      ],
+      "expressions": {
+        "happy": "stickers/dragonfly.happy.webp",
+        "sad": "stickers/dragonfly.sad.webp",
+        "sleeping": "stickers/dragonfly.sleeping.webp",
+        "surprised": "stickers/dragonfly.surprised.webp"
+      },
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky",
+          "meadow"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.25,
+          0.75
+        ],
+        "y": [
+          0.2669,
+          0.7344
+        ]
+      }
+    },
+    {
+      "id": "eggs",
+      "name": {
+        "en-US": "Eggs",
+        "es-ES": "Huevos"
+      },
+      "image": "stickers/eggs.webp",
+      "animations": [
+        "anims/eggs.plonk.json",
+        "anims/eggs.wobble.json",
+        "anims/eggs.wobble-all.json",
+        "anims/eggs.crack.json",
+        "anims/eggs.hatch.json",
+        "anims/eggs.hatch-all.json",
+        "anims/eggs.peek.json",
+        "anims/eggs.tap.json",
+        "anims/eggs.bump.json",
+        "anims/eggs.hatch-sleepy.json"
+      ],
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2005,
+          0.7995
+        ],
+        "y": [
+          0.2279,
+          0.7734
+        ]
+      }
+    },
+    {
+      "id": "fern",
+      "name": {
+        "en-US": "Fern",
+        "es-ES": "Helecho"
+      },
+      "image": "stickers/fern.webp",
+      "animations": [
+        "anims/fern.sprout.json",
+        "anims/fern.sway.json",
+        "anims/fern.unfurl.json",
+        "anims/fern.curl-up.json",
+        "anims/fern.wiggle.json",
+        "anims/fern.droop.json",
+        "anims/fern.perk-up.json",
+        "anims/fern.laugh.json",
+        "anims/fern.sleep.json",
+        "anims/fern.nod.json"
+      ],
+      "expressions": {
+        "happy": "stickers/fern.happy.webp",
+        "sad": "stickers/fern.sad.webp",
+        "sleeping": "stickers/fern.sleeping.webp",
+        "surprised": "stickers/fern.surprised.webp"
+      },
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2148,
+          0.7839
+        ],
+        "y": [
+          0.2005,
+          0.7995
+        ]
+      }
+    },
+    {
+      "id": "flower",
+      "name": {
+        "en-US": "Flower",
+        "es-ES": "Flor"
+      },
+      "image": "stickers/flower.webp",
+      "animations": [
+        "anims/flower.sprout.json",
+        "anims/flower.sway.json",
+        "anims/flower.open.json",
+        "anims/flower.close.json",
+        "anims/flower.nod.json",
+        "anims/flower.droop.json",
+        "anims/flower.perk-up.json",
+        "anims/flower.laugh.json",
+        "anims/flower.sleep.json",
+        "anims/flower.wave.json"
+      ],
+      "expressions": {
+        "happy": "stickers/flower.happy.webp",
+        "sad": "stickers/flower.sad.webp",
+        "sleeping": "stickers/flower.sleeping.webp",
+        "surprised": "stickers/flower.surprised.webp"
+      },
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.2852,
+          0.7148
+        ],
+        "y": [
+          0.25,
+          0.75
+        ]
+      }
+    },
+    {
+      "id": "gallimimus",
+      "name": {
+        "en-US": "Gallimimus",
+        "es-ES": "Gallimimus"
+      },
+      "image": "stickers/gallimimus.webp",
+      "animations": [
+        "anims/gallimimus.run.json",
+        "anims/gallimimus.walk.json",
+        "anims/gallimimus.jump.json",
+        "anims/gallimimus.nod.json",
+        "anims/gallimimus.shake-head.json",
+        "anims/gallimimus.look-around.json",
+        "anims/gallimimus.laugh.json",
+        "anims/gallimimus.dance.json",
+        "anims/gallimimus.talk.json",
+        "anims/gallimimus.cry.json",
+        "anims/gallimimus.sleep.json",
+        "anims/gallimimus.wave.json",
+        "anims/gallimimus.ready-set.json",
+        "anims/gallimimus.stretch-legs.json",
+        "anims/gallimimus.peck.json",
+        "anims/gallimimus.ruffle.json",
+        "anims/gallimimus.tap-foot.json",
+        "anims/gallimimus.sniff.json"
+      ],
+      "expressions": {
+        "happy": "stickers/gallimimus.happy.webp",
+        "sad": "stickers/gallimimus.sad.webp",
+        "sleeping": "stickers/gallimimus.sleeping.webp",
+        "surprised": "stickers/gallimimus.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.1549,
+          0.8451
+        ],
+        "y": [
+          0.1406,
+          0.8607
+        ]
+      }
+    },
+    {
+      "id": "glider",
+      "name": {
+        "en-US": "Glider",
+        "es-ES": "Planeador"
+      },
+      "image": "stickers/glider.webp",
+      "animations": [
+        "anims/glider.glide.json",
+        "anims/glider.scurry.json",
+        "anims/glider.jump.json",
+        "anims/glider.nod.json",
+        "anims/glider.shake-head.json",
+        "anims/glider.look-around.json",
+        "anims/glider.laugh.json",
+        "anims/glider.dance.json",
+        "anims/glider.talk.json",
+        "anims/glider.cry.json",
+        "anims/glider.sleep.json",
+        "anims/glider.wave.json",
+        "anims/glider.shiver.json",
+        "anims/glider.spread.json",
+        "anims/glider.groom.json",
+        "anims/glider.sniff.json",
+        "anims/glider.curl-up.json",
+        "anims/glider.peek.json"
+      ],
+      "expressions": {
+        "happy": "stickers/glider.happy.webp",
+        "sad": "stickers/glider.sad.webp",
+        "sleeping": "stickers/glider.sleeping.webp",
+        "surprised": "stickers/glider.surprised.webp"
+      },
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "branches",
+          "rocks",
+          "meadow"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.25,
+          0.75
+        ],
+        "y": [
+          0.2656,
+          0.7357
+        ]
+      }
+    },
+    {
+      "id": "leaf",
+      "name": {
+        "en-US": "Big leaf",
+        "es-ES": "Hoja grande"
+      },
+      "image": "stickers/leaf.webp",
+      "animations": [
+        "anims/leaf.grow.json",
+        "anims/leaf.sway.json",
+        "anims/leaf.gust.json",
+        "anims/leaf.drip.json",
+        "anims/leaf.bounce.json",
+        "anims/leaf.droop.json",
+        "anims/leaf.rustle.json"
+      ],
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.1055,
+          0.8945
+        ],
+        "y": [
+          0.0807,
+          0.9206
+        ]
+      }
+    },
+    {
+      "id": "log",
+      "name": {
+        "en-US": "Log",
+        "es-ES": "Tronco"
+      },
+      "image": "stickers/log.webp",
+      "animations": [
+        "anims/log.plonk.json",
+        "anims/log.rock.json",
+        "anims/log.rustle.json",
+        "anims/log.gust.json",
+        "anims/log.bump.json",
+        "anims/log.creak.json",
+        "anims/log.blow.json",
+        "anims/log.thud.json"
+      ],
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.1393,
+          0.8594
+        ],
+        "y": [
+          0.1953,
+          0.8047
+        ]
+      }
+    },
+    {
+      "id": "pachycephalosaurus",
+      "name": {
+        "en-US": "Pachycephalosaurus",
+        "es-ES": "Paquicefalosaurio"
+      },
+      "image": "stickers/pachycephalosaurus.webp",
+      "animations": [
+        "anims/pachycephalosaurus.walk.json",
+        "anims/pachycephalosaurus.run.json",
+        "anims/pachycephalosaurus.jump.json",
+        "anims/pachycephalosaurus.nod.json",
+        "anims/pachycephalosaurus.shake-head.json",
+        "anims/pachycephalosaurus.look-around.json",
+        "anims/pachycephalosaurus.laugh.json",
+        "anims/pachycephalosaurus.dance.json",
+        "anims/pachycephalosaurus.talk.json",
+        "anims/pachycephalosaurus.cry.json",
+        "anims/pachycephalosaurus.sleep.json",
+        "anims/pachycephalosaurus.wave.json",
+        "anims/pachycephalosaurus.bonk.json",
+        "anims/pachycephalosaurus.rub-head.json",
+        "anims/pachycephalosaurus.bounce.json",
+        "anims/pachycephalosaurus.sniff.json",
+        "anims/pachycephalosaurus.wag-tail.json",
+        "anims/pachycephalosaurus.stretch.json"
+      ],
+      "expressions": {
+        "happy": "stickers/pachycephalosaurus.happy.webp",
+        "sad": "stickers/pachycephalosaurus.sad.webp",
+        "sleeping": "stickers/pachycephalosaurus.sleeping.webp",
+        "surprised": "stickers/pachycephalosaurus.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "rocks"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.1849,
+          0.8151
+        ],
+        "y": [
+          0.1406,
+          0.8607
+        ]
+      }
+    },
+    {
+      "id": "parasaurolophus",
+      "name": {
+        "en-US": "Parasaurolophus",
+        "es-ES": "Parasaurolophus"
+      },
+      "image": "stickers/parasaurolophus.webp",
+      "animations": [
+        "anims/parasaurolophus.walk.json",
+        "anims/parasaurolophus.jump.json",
+        "anims/parasaurolophus.nod.json",
+        "anims/parasaurolophus.shake-head.json",
+        "anims/parasaurolophus.look-around.json",
+        "anims/parasaurolophus.laugh.json",
+        "anims/parasaurolophus.dance.json",
+        "anims/parasaurolophus.talk.json",
+        "anims/parasaurolophus.cry.json",
+        "anims/parasaurolophus.sleep.json",
+        "anims/parasaurolophus.wave.json",
+        "anims/parasaurolophus.honk.json",
+        "anims/parasaurolophus.sing.json",
+        "anims/parasaurolophus.munch.json",
+        "anims/parasaurolophus.sniff.json",
+        "anims/parasaurolophus.stretch.json",
+        "anims/parasaurolophus.wag-tail.json"
+      ],
+      "expressions": {
+        "happy": "stickers/parasaurolophus.happy.webp",
+        "sad": "stickers/parasaurolophus.sad.webp",
+        "sleeping": "stickers/parasaurolophus.sleeping.webp",
+        "surprised": "stickers/parasaurolophus.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.1354,
+          0.8633
+        ],
+        "y": [
+          0.0807,
+          0.9206
+        ]
+      }
+    },
+    {
+      "id": "plesiosaur",
+      "name": {
+        "en-US": "Plesiosaur",
+        "es-ES": "Plesiosaurio"
+      },
+      "image": "stickers/plesiosaur.webp",
+      "animations": [
+        "anims/plesiosaur.swim.json",
+        "anims/plesiosaur.nod.json",
+        "anims/plesiosaur.shake-head.json",
+        "anims/plesiosaur.look-around.json",
+        "anims/plesiosaur.laugh.json",
+        "anims/plesiosaur.talk.json",
+        "anims/plesiosaur.cry.json",
+        "anims/plesiosaur.sleep.json",
+        "anims/plesiosaur.dance.json",
+        "anims/plesiosaur.wave.json",
+        "anims/plesiosaur.dive.json",
+        "anims/plesiosaur.splash.json",
+        "anims/plesiosaur.stretch-neck.json",
+        "anims/plesiosaur.blow-bubbles.json",
+        "anims/plesiosaur.float.json"
+      ],
+      "expressions": {
+        "happy": "stickers/plesiosaur.happy.webp",
+        "sad": "stickers/plesiosaur.sad.webp",
+        "sleeping": "stickers/plesiosaur.sleeping.webp",
+        "surprised": "stickers/plesiosaur.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "lagoon"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.0794,
+          0.9193
+        ],
+        "y": [
+          0.1029,
+          0.8984
+        ]
+      }
+    },
+    {
+      "id": "psittacosaurus",
+      "name": {
+        "en-US": "Psittacosaurus",
+        "es-ES": "Psitacosaurio"
+      },
+      "image": "stickers/psittacosaurus.webp",
+      "animations": [
+        "anims/psittacosaurus.walk.json",
+        "anims/psittacosaurus.nod.json",
+        "anims/psittacosaurus.shake-head.json",
+        "anims/psittacosaurus.look-around.json",
+        "anims/psittacosaurus.laugh.json",
+        "anims/psittacosaurus.dance.json",
+        "anims/psittacosaurus.talk.json",
+        "anims/psittacosaurus.cry.json",
+        "anims/psittacosaurus.sleep.json",
+        "anims/psittacosaurus.wave.json",
+        "anims/psittacosaurus.shiver.json",
+        "anims/psittacosaurus.nibble.json",
+        "anims/psittacosaurus.peek.json",
+        "anims/psittacosaurus.cuddle.json",
+        "anims/psittacosaurus.wag-tail.json",
+        "anims/psittacosaurus.sniff.json",
+        "anims/psittacosaurus.hop.json"
+      ],
+      "expressions": {
+        "happy": "stickers/psittacosaurus.happy.webp",
+        "sad": "stickers/psittacosaurus.sad.webp",
+        "sleeping": "stickers/psittacosaurus.sleeping.webp",
+        "surprised": "stickers/psittacosaurus.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "rocks",
+          "shore"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2005,
+          0.7995
+        ],
+        "y": [
+          0.2044,
+          0.7956
+        ]
+      }
+    },
+    {
+      "id": "pteranodon",
+      "name": {
+        "en-US": "Pteranodon",
+        "es-ES": "Pteranodon"
+      },
+      "image": "stickers/pteranodon.webp",
+      "animations": [
+        "anims/pteranodon.fly.json",
+        "anims/pteranodon.hop.json",
+        "anims/pteranodon.flap.json",
+        "anims/pteranodon.stretch-wings.json",
+        "anims/pteranodon.call.json",
+        "anims/pteranodon.preen.json",
+        "anims/pteranodon.glide.json",
+        "anims/pteranodon.peck.json",
+        "anims/pteranodon.jump.json",
+        "anims/pteranodon.nod.json",
+        "anims/pteranodon.shake-head.json",
+        "anims/pteranodon.look-around.json",
+        "anims/pteranodon.laugh.json",
+        "anims/pteranodon.dance.json",
+        "anims/pteranodon.talk.json",
+        "anims/pteranodon.cry.json",
+        "anims/pteranodon.sleep.json",
+        "anims/pteranodon.wave.json"
+      ],
+      "expressions": {
+        "happy": "stickers/pteranodon.happy.webp",
+        "sad": "stickers/pteranodon.sad.webp",
+        "sleeping": "stickers/pteranodon.sleeping.webp",
+        "surprised": "stickers/pteranodon.surprised.webp"
+      },
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "rocks",
+          "branches",
+          "meadow"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2747,
+          0.7253
+        ],
+        "y": [
+          0.2005,
+          0.7995
+        ]
+      }
+    },
+    {
+      "id": "puddle",
+      "name": {
+        "en-US": "Mud puddle",
+        "es-ES": "Charco de barro"
+      },
+      "image": "stickers/puddle.webp",
+      "animations": [
+        "anims/puddle.spread.json",
+        "anims/puddle.ripple.json",
+        "anims/puddle.splash.json",
+        "anims/puddle.plop.json",
+        "anims/puddle.shimmer.json",
+        "anims/puddle.bubble.json",
+        "anims/puddle.rain.json"
+      ],
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.1393,
+          0.8594
+        ],
+        "y": [
+          0.3633,
+          0.638
+        ]
+      }
+    },
+    {
+      "id": "spinosaurus",
+      "name": {
+        "en-US": "Spinosaurus",
+        "es-ES": "Espinosaurio"
+      },
+      "image": "stickers/spinosaurus.webp",
+      "animations": [
+        "anims/spinosaurus.walk.json",
+        "anims/spinosaurus.swim.json",
+        "anims/spinosaurus.jump.json",
+        "anims/spinosaurus.nod.json",
+        "anims/spinosaurus.shake-head.json",
+        "anims/spinosaurus.look-around.json",
+        "anims/spinosaurus.laugh.json",
+        "anims/spinosaurus.dance.json",
+        "anims/spinosaurus.talk.json",
+        "anims/spinosaurus.cry.json",
+        "anims/spinosaurus.sleep.json",
+        "anims/spinosaurus.shiver.json",
+        "anims/spinosaurus.splash.json",
+        "anims/spinosaurus.paddle-tail.json",
+        "anims/spinosaurus.sunbathe.json",
+        "anims/spinosaurus.sniff.json",
+        "anims/spinosaurus.shake-off.json"
+      ],
+      "expressions": {
+        "happy": "stickers/spinosaurus.happy.webp",
+        "sad": "stickers/spinosaurus.sad.webp",
+        "sleeping": "stickers/spinosaurus.sleeping.webp",
+        "surprised": "stickers/spinosaurus.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "shore",
+          "lagoon",
+          "meadow"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.0794,
+          0.9193
+        ],
+        "y": [
+          0.1953,
+          0.806
+        ]
+      }
+    },
+    {
+      "id": "stegosaurus",
+      "name": {
+        "en-US": "Stegosaurus",
+        "es-ES": "Estegosaurio"
+      },
+      "image": "stickers/stegosaurus.webp",
+      "animations": [
+        "anims/stegosaurus.walk.json",
+        "anims/stegosaurus.jump.json",
+        "anims/stegosaurus.nod.json",
+        "anims/stegosaurus.shake-head.json",
+        "anims/stegosaurus.look-around.json",
+        "anims/stegosaurus.laugh.json",
+        "anims/stegosaurus.dance.json",
+        "anims/stegosaurus.talk.json",
+        "anims/stegosaurus.cry.json",
+        "anims/stegosaurus.sleep.json",
+        "anims/stegosaurus.shiver.json",
+        "anims/stegosaurus.swish-tail.json",
+        "anims/stegosaurus.munch.json",
+        "anims/stegosaurus.sniff.json",
+        "anims/stegosaurus.sunbathe.json",
+        "anims/stegosaurus.blush.json",
+        "anims/stegosaurus.stretch.json"
+      ],
+      "expressions": {
+        "happy": "stickers/stegosaurus.happy.webp",
+        "sad": "stickers/stegosaurus.sad.webp",
+        "sleeping": "stickers/stegosaurus.sleeping.webp",
+        "surprised": "stickers/stegosaurus.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.0794,
+          0.9193
+        ],
+        "y": [
+          0.1615,
+          0.8385
+        ]
+      }
+    },
+    {
+      "id": "trex",
+      "name": {
+        "en-US": "T. rex",
+        "es-ES": "T. rex"
+      },
+      "image": "stickers/trex.webp",
+      "animations": [
+        "anims/trex.walk.json",
+        "anims/trex.jump.json",
+        "anims/trex.nod.json",
+        "anims/trex.shake-head.json",
+        "anims/trex.look-around.json",
+        "anims/trex.laugh.json",
+        "anims/trex.dance.json",
+        "anims/trex.talk.json",
+        "anims/trex.cry.json",
+        "anims/trex.sleep.json",
+        "anims/trex.wave.json",
+        "anims/trex.roar.json",
+        "anims/trex.stomp.json",
+        "anims/trex.reach.json",
+        "anims/trex.clap.json",
+        "anims/trex.wag-tail.json",
+        "anims/trex.sniff.json",
+        "anims/trex.stretch.json"
+      ],
+      "expressions": {
+        "happy": "stickers/trex.happy.webp",
+        "sad": "stickers/trex.sad.webp",
+        "sleeping": "stickers/trex.sleeping.webp",
+        "surprised": "stickers/trex.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.1302,
+          0.8685
+        ],
+        "y": [
+          0.0807,
+          0.9206
+        ]
+      }
+    },
+    {
+      "id": "triceratops",
+      "name": {
+        "en-US": "Triceratops",
+        "es-ES": "Triceratops"
+      },
+      "image": "stickers/triceratops.webp",
+      "animations": [
+        "anims/triceratops.walk.json",
+        "anims/triceratops.trot.json",
+        "anims/triceratops.jump.json",
+        "anims/triceratops.nod.json",
+        "anims/triceratops.shake-head.json",
+        "anims/triceratops.look-around.json",
+        "anims/triceratops.laugh.json",
+        "anims/triceratops.dance.json",
+        "anims/triceratops.talk.json",
+        "anims/triceratops.cry.json",
+        "anims/triceratops.sleep.json",
+        "anims/triceratops.shiver.json",
+        "anims/triceratops.nudge.json",
+        "anims/triceratops.munch.json",
+        "anims/triceratops.sniff.json",
+        "anims/triceratops.wag-tail.json",
+        "anims/triceratops.stomp.json",
+        "anims/triceratops.nuzzle.json"
+      ],
+      "expressions": {
+        "happy": "stickers/triceratops.happy.webp",
+        "sad": "stickers/triceratops.sad.webp",
+        "sleeping": "stickers/triceratops.sleeping.webp",
+        "surprised": "stickers/triceratops.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "meadow",
+          "shore"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.0833,
+          0.9167
+        ],
+        "y": [
+          0.0807,
+          0.9206
+        ]
+      }
+    },
+    {
+      "id": "turtle",
+      "name": {
+        "en-US": "Turtle",
+        "es-ES": "Tortuga"
+      },
+      "image": "stickers/turtle.webp",
+      "animations": [
+        "anims/turtle.crawl.json",
+        "anims/turtle.swim.json",
+        "anims/turtle.nod.json",
+        "anims/turtle.shake-head.json",
+        "anims/turtle.look-around.json",
+        "anims/turtle.laugh.json",
+        "anims/turtle.talk.json",
+        "anims/turtle.cry.json",
+        "anims/turtle.sleep.json",
+        "anims/turtle.wave.json",
+        "anims/turtle.hide.json",
+        "anims/turtle.peek.json",
+        "anims/turtle.sunbathe.json",
+        "anims/turtle.munch.json",
+        "anims/turtle.slow-dance.json"
+      ],
+      "expressions": {
+        "happy": "stickers/turtle.happy.webp",
+        "sad": "stickers/turtle.sad.webp",
+        "sleeping": "stickers/turtle.sleeping.webp",
+        "surprised": "stickers/turtle.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "shore",
+          "lagoon",
+          "meadow"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2005,
+          0.7995
+        ],
+        "y": [
+          0.2604,
+          0.7396
+        ]
+      }
+    }
+  ],
+  "stories": [
+    {
+      "id": "dinosaurs-welcome",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "placeholder"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Welcome to Dino Valley",
+          "text": "Welcome to Dino Valley! The stories are on their way.",
+          "audio": "audio/en-US/dinosaurs-welcome.m4a"
+        },
+        "es-ES": {
+          "title": "Bienvenidos al valle de los dinosaurios",
+          "text": "¡Bienvenidos al valle de los dinosaurios! Los cuentos están en camino.",
+          "audio": "audio/es-ES/dinosaurs-welcome.m4a"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "id": "wobble",
+  "sticker": "eggs",
+  "kind": "action",
+  "description": "the front egg rocks gently from side to side, as if something inside is stirring, then sits still.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.22656,
+    "width": 0.59896,
+    "height": 0.54557
+  },
+  "puppet": {
+    "rig": "anims/eggs.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.38,
+        "bones": {
+          "egg3": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "egg3": {
+            "r": 4.5
+          }
+        }
+      },
+      {
+        "hold": 0.36,
+        "bones": {
+          "egg3": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.32,
+        "bones": {
+          "egg3": {
+            "r": 1.5
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

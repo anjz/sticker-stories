@@ -1,0 +1,79 @@
+{
+  "id": "shake-head",
+  "sticker": "gallimimus",
+  "kind": "action",
+  "description": "the Gallimimus shakes its head no.",
+  "stickerBox": {
+    "x": 0.15495,
+    "y": 0.13932,
+    "width": 0.6901,
+    "height": 0.72005
+  },
+  "puppet": {
+    "rig": "anims/gallimimus.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "x": -1
+          },
+          "head": {
+            "r": -4
+          },
+          "neck": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 4
+          },
+          "head": {
+            "r": 4
+          },
+          "neck": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": -1
+          },
+          "head": {
+            "r": -4
+          },
+          "neck": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 3
+          },
+          "head": {
+            "r": 3
+          },
+          "neck": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

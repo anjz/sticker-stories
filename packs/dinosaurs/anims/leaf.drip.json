@@ -1,0 +1,79 @@
+{
+  "id": "drip",
+  "sticker": "leaf",
+  "kind": "action",
+  "description": "rain drips off the edges of the big leaf, drop by drop, and it gives a little bob with each one.",
+  "stickerBox": {
+    "x": 0.10547,
+    "y": 0.07943,
+    "width": 0.78906,
+    "height": 0.83984
+  },
+  "particles": [
+    {
+      "frame": 1,
+      "effect": "spray",
+      "x": 0.15,
+      "y": 0.4,
+      "intensity": 0.1
+    },
+    {
+      "frame": 3,
+      "effect": "spray",
+      "x": 0.79,
+      "y": 0.5,
+      "intensity": 0.1
+    },
+    {
+      "frame": 5,
+      "effect": "spray",
+      "x": 0.33,
+      "y": 0.47,
+      "intensity": 0.1
+    }
+  ],
+  "puppet": {
+    "rig": "anims/leaf.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "blade": {
+            "r": -1,
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "blade": {
+            "r": 1,
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "blade": {
+            "r": -0.6,
+            "y": 2
+          }
+        }
+      },
+      {
+        "hold": 0.35
+      }
+    ]
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "id": "splash",
+  "sticker": "puddle",
+  "kind": "action",
+  "description": "something stomps into the mud puddle: muddy water splashes up in a big spray and ripples spread out across it and fade.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.36198,
+    "width": 0.72005,
+    "height": 0.27474
+  },
+  "particles": [
+    {
+      "frame": 1,
+      "effect": "spray",
+      "x": 0.5,
+      "y": 0.49,
+      "intensity": 0.8,
+      "color": "#8A6040"
+    },
+    {
+      "frame": 2,
+      "effect": "spray",
+      "x": 0.46,
+      "y": 0.5,
+      "intensity": 0.4,
+      "color": "#8A6040"
+    }
+  ],
+  "puppet": {
+    "rig": "anims/puddle.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.12,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "sx": 1.02,
+            "sy": 0.96
+          },
+          "ring": {
+            "sx": 0.2,
+            "sy": 0.2
+          }
+        },
+        "slots": {
+          "ring": "ring",
+          "water": "glint"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "ring": {
+            "sx": 0.5,
+            "sy": 0.5
+          },
+          "ring2": {
+            "sx": 0.12,
+            "sy": 0.12
+          }
+        },
+        "slots": {
+          "ring": "ring",
+          "ring2": "ring",
+          "water": "glint"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "ring": {
+            "sx": 0.8,
+            "sy": 0.8
+          },
+          "ring2": {
+            "sx": 0.45,
+            "sy": 0.45
+          }
+        },
+        "slots": {
+          "ring": "faint",
+          "ring2": "ring"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "ring": {
+            "sx": 0.95,
+            "sy": 0.95
+          },
+          "ring2": {
+            "sx": 0.78,
+            "sy": 0.78
+          }
+        },
+        "slots": {
+          "ring2": "faint"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "ring2": {
+            "sx": 0.95,
+            "sy": 0.95
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

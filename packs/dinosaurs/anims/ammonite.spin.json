@@ -1,0 +1,115 @@
+{
+  "id": "spin",
+  "sticker": "ammonite",
+  "kind": "action",
+  "description": "the ammonite twirls right round in the water and bobs to a stop with a happy smile.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.25781,
+    "width": 0.5,
+    "height": 0.48307
+  },
+  "on": [
+    "lagoon"
+  ],
+  "puppet": {
+    "rig": "anims/ammonite.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sy": 0.96
+          },
+          "root": {
+            "y": 4
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "ease": "inOut",
+        "bones": {
+          "root": {
+            "y": -14,
+            "sx": -1
+          },
+          "t1": {
+            "r": 10
+          },
+          "t2": {
+            "r": -10
+          },
+          "t3": {
+            "r": 10
+          },
+          "t4": {
+            "r": -10
+          },
+          "t5": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.5,
+        "ease": "inOut",
+        "bones": {
+          "root": {
+            "sx": 1
+          },
+          "t1": {
+            "r": -8
+          },
+          "t2": {
+            "r": 8
+          },
+          "t3": {
+            "r": -8
+          },
+          "t4": {
+            "r": 8
+          },
+          "t5": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.97
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}
