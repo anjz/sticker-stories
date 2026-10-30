@@ -1,0 +1,865 @@
+{
+  "sticker": "puddle",
+  "called": "the mud puddle",
+  "skeleton": "a flat, wide, shallow mud puddle on the ground seen from a low angle: root at the middle of its near rim; body (the whole puddle) on it, which only squashes flat and spreads; the water's surface on a water bone at the middle of the water, carrying the shine (a second shine swaps in when the surface glints), the ripple rings (grown and swapped for a fainter ring, then gone, as they spread) and a mud bubble that swells and pops. The puddle never hops or moves by itself: only rain, a splash, wind or a stomp moves its water.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a flat, wide, shallow mud puddle seen from a low angle. Draw it as a cut-out paper puppet: its separate pieces laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every piece at the size it has in image 1 (if they do not all fit, draw them all a little smaller, at the same scale as each other).\n\nDraw each piece on its own, spread out over the sheet with wide empty gaps between them, no piece touching or overlapping another:\n1. the whole puddle exactly as in image 1: its rounded bumpy rim of darker mud, the soft brown mud inside with the little clear water shining on top, and the small pebbles at its edge.\n2. the shining water alone: only the smooth, glossy, flat oval of clear brownish water inside the rim, as in image 1, with its white shine highlights, its edge soft with no outline drawn round it.\n3. the same shining water oval, the same size and shape, but glinting: its white shine highlights in other places, a few more and brighter, little glints as if a breeze ruffled the surface; its edge soft with no outline.\n4. a ripple: one thin ring of pale shining water, a flat oval seen at the same low angle as the puddle, about half as wide as the water; only the ring, one unbroken line, its middle empty.\n5. the same ripple ring, the same size, much thinner and paler, nearly faded away, still one unbroken ring, its middle empty.\n6. a mud bubble: one small round glossy dome of soft brown mud swelling up from the surface, with a tiny white glint on top, its bottom edge soft with no outline.\n\nEvery piece is drawn whole, with its edges clean and smooth. It is an object, not a character: no face, no eyes, no mouth, no animal. No text, no labels, no numbers, no outline around the pieces beyond the drawing's own line, no shadows, no ground, no grass, no splashes, drops or flying mud. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "puddle": {
+      "sheet": "parts",
+      "at": [
+        674,
+        264
+      ]
+    },
+    "water": {
+      "sheet": "parts",
+      "at": [
+        395,
+        640
+      ]
+    },
+    "glint": {
+      "sheet": "parts",
+      "at": [
+        1149,
+        642
+      ]
+    },
+    "ring": {
+      "sheet": "parts",
+      "at": [
+        342,
+        861
+      ]
+    },
+    "faint": {
+      "sheet": "parts",
+      "at": [
+        940,
+        859
+      ]
+    },
+    "bubble": {
+      "sheet": "parts",
+      "at": [
+        1388,
+        893
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 383,
+      "y": 440
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 383,
+      "y": 440
+    },
+    {
+      "id": "water",
+      "parent": "body",
+      "x": 390,
+      "y": 389
+    },
+    {
+      "id": "ring",
+      "parent": "water",
+      "x": 390,
+      "y": 389
+    },
+    {
+      "id": "ring2",
+      "parent": "water",
+      "x": 390,
+      "y": 389
+    },
+    {
+      "id": "bubble",
+      "parent": "water",
+      "x": 452,
+      "y": 405
+    }
+  ],
+  "slots": [
+    {
+      "id": "puddle",
+      "bone": "body",
+      "default": "puddle",
+      "attachments": {
+        "puddle": {
+          "part": "puddle",
+          "x": 383,
+          "y": 383,
+          "scale": 0.42
+        }
+      }
+    },
+    {
+      "id": "water",
+      "bone": "water",
+      "default": "none",
+      "attachments": {
+        "water": {
+          "part": "water",
+          "x": 390,
+          "y": 389,
+          "scale": 0.597,
+          "scaleY": 0.87
+        },
+        "glint": {
+          "part": "glint",
+          "x": 390,
+          "y": 389,
+          "scale": 0.606,
+          "scaleY": 0.87
+        }
+      }
+    },
+    {
+      "id": "ring",
+      "bone": "ring",
+      "default": "none",
+      "attachments": {
+        "ring": {
+          "part": "ring",
+          "x": 390,
+          "y": 389,
+          "scale": 0.62
+        },
+        "faint": {
+          "part": "faint",
+          "x": 390,
+          "y": 389,
+          "scale": 0.718
+        }
+      }
+    },
+    {
+      "id": "ring2",
+      "bone": "ring2",
+      "default": "none",
+      "attachments": {
+        "ring": {
+          "part": "ring",
+          "x": 390,
+          "y": 389,
+          "scale": 0.62
+        },
+        "faint": {
+          "part": "faint",
+          "x": 390,
+          "y": 389,
+          "scale": 0.718
+        }
+      }
+    },
+    {
+      "id": "bubble",
+      "bone": "bubble",
+      "default": "none",
+      "attachments": {
+        "bubble": {
+          "part": "bubble",
+          "x": 452,
+          "y": 393,
+          "scale": 0.32
+        }
+      }
+    }
+  ],
+  "animations": [
+    {
+      "id": "spread",
+      "kind": "move",
+      "description": "the mud puddle spreads out flat on the ground and its water settles with a ripple.",
+      "keys": [
+        {
+          "hold": 0.4,
+          "ease": "out",
+          "bones": {
+            "body": {
+              "sx": 0.55,
+              "sy": 0.6
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "body": {
+              "sx": 1.04,
+              "sy": 1.02
+            },
+            "ring": {
+              "sx": 0.25,
+              "sy": 0.25
+            }
+          },
+          "slots": {
+            "ring": "ring"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "body": {
+              "sx": 0.99
+            },
+            "ring": {
+              "sx": 0.55,
+              "sy": 0.55
+            }
+          },
+          "slots": {
+            "ring": "ring"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "ring": {
+              "sx": 0.8,
+              "sy": 0.8
+            }
+          },
+          "slots": {
+            "ring": "faint"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "ring": {
+              "sx": 0.95,
+              "sy": 0.95
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "ripple",
+      "kind": "action",
+      "description": "rings ripple slowly out across the water of the mud puddle, one after another, and fade away.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "ring": {
+              "sx": 0.18,
+              "sy": 0.18
+            },
+            "ring2": {
+              "sx": 0.1,
+              "sy": 0.1
+            }
+          },
+          "slots": {
+            "ring": "ring"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "ring": {
+              "sx": 0.5,
+              "sy": 0.5
+            },
+            "ring2": {
+              "sx": 0.18,
+              "sy": 0.18
+            }
+          },
+          "slots": {
+            "ring": "ring",
+            "ring2": "ring"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "ring": {
+              "sx": 0.78,
+              "sy": 0.78
+            },
+            "ring2": {
+              "sx": 0.5,
+              "sy": 0.5
+            }
+          },
+          "slots": {
+            "ring": "faint",
+            "ring2": "ring"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "ring": {
+              "sx": 0.95,
+              "sy": 0.95
+            },
+            "ring2": {
+              "sx": 0.78,
+              "sy": 0.78
+            }
+          },
+          "slots": {
+            "ring2": "faint"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "ring2": {
+              "sx": 0.95,
+              "sy": 0.95
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "splash",
+      "kind": "action",
+      "description": "something stomps into the mud puddle: muddy water splashes up in a big spray and ripples spread out across it and fade.",
+      "particles": [
+        {
+          "frame": 1,
+          "effect": "spray",
+          "x": 0.5,
+          "y": 0.49,
+          "intensity": 0.8,
+          "color": "#8A6040"
+        },
+        {
+          "frame": 2,
+          "effect": "spray",
+          "x": 0.46,
+          "y": 0.5,
+          "intensity": 0.4,
+          "color": "#8A6040"
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.12,
+          "ease": "out",
+          "bones": {
+            "body": {
+              "sx": 1.02,
+              "sy": 0.96
+            },
+            "ring": {
+              "sx": 0.2,
+              "sy": 0.2
+            }
+          },
+          "slots": {
+            "ring": "ring",
+            "water": "glint"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "ring": {
+              "sx": 0.5,
+              "sy": 0.5
+            },
+            "ring2": {
+              "sx": 0.12,
+              "sy": 0.12
+            }
+          },
+          "slots": {
+            "ring": "ring",
+            "ring2": "ring",
+            "water": "glint"
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "ring": {
+              "sx": 0.8,
+              "sy": 0.8
+            },
+            "ring2": {
+              "sx": 0.45,
+              "sy": 0.45
+            }
+          },
+          "slots": {
+            "ring": "faint",
+            "ring2": "ring"
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "ring": {
+              "sx": 0.95,
+              "sy": 0.95
+            },
+            "ring2": {
+              "sx": 0.78,
+              "sy": 0.78
+            }
+          },
+          "slots": {
+            "ring2": "faint"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "ring2": {
+              "sx": 0.95,
+              "sy": 0.95
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "plop",
+      "kind": "action",
+      "description": "a raindrop plops into the mud puddle and a little ring ripples out and fades.",
+      "particles": [
+        {
+          "frame": 1,
+          "effect": "spray",
+          "x": 0.44,
+          "y": 0.5,
+          "intensity": 0.12,
+          "color": "#8A6040"
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "ring": {
+              "sx": 0.1,
+              "sy": 0.1,
+              "x": -50,
+              "y": -2
+            }
+          },
+          "slots": {
+            "ring": "ring"
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "ring": {
+              "sx": 0.3,
+              "sy": 0.3,
+              "x": -50,
+              "y": -2
+            }
+          },
+          "slots": {
+            "ring": "ring"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "ring": {
+              "sx": 0.45,
+              "sy": 0.45,
+              "x": -50,
+              "y": -2
+            }
+          },
+          "slots": {
+            "ring": "faint"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "ring": {
+              "sx": 0.5,
+              "sy": 0.5,
+              "x": -50,
+              "y": -2
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "shimmer",
+      "kind": "action",
+      "description": "a breeze ruffles the water of the mud puddle and its shine glints and sparkles, then it lies still.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "water": {
+              "sx": 1.01
+            }
+          },
+          "slots": {
+            "water": "glint"
+          }
+        },
+        {
+          "hold": 0.25
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "water": {
+              "sx": 1.015
+            }
+          },
+          "slots": {
+            "water": "glint"
+          }
+        },
+        {
+          "hold": 0.25
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "water": {
+              "sx": 1.01
+            }
+          },
+          "slots": {
+            "water": "glint"
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "bubble",
+      "kind": "action",
+      "description": "a mud bubble swells up slowly in the mud puddle and pops — blup! — leaving a little ripple.",
+      "particles": [
+        {
+          "frame": 4,
+          "effect": "bubble-puff",
+          "x": 0.59,
+          "y": 0.51,
+          "intensity": 0.3
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "bubble": {
+              "sx": 0.35,
+              "sy": 0.2
+            }
+          },
+          "slots": {
+            "bubble": "bubble"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "bubble": {
+              "sx": 0.8,
+              "sy": 0.8
+            }
+          },
+          "slots": {
+            "bubble": "bubble"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "bubble": {
+              "sx": 1.0,
+              "sy": 1.0
+            }
+          },
+          "slots": {
+            "bubble": "bubble"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "ring2": {
+              "sx": 0.08,
+              "sy": 0.08,
+              "x": 62,
+              "y": 16
+            }
+          },
+          "slots": {
+            "ring2": "ring"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "ring2": {
+              "sx": 0.22,
+              "sy": 0.22,
+              "x": 62,
+              "y": 16
+            }
+          },
+          "slots": {
+            "ring2": "ring"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "ring2": {
+              "sx": 0.32,
+              "sy": 0.32,
+              "x": 62,
+              "y": 16
+            }
+          },
+          "slots": {
+            "ring2": "faint"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "rain",
+      "kind": "action",
+      "description": "raindrops patter into the mud puddle: little rings pop up here and there across its water and fade.",
+      "particles": [
+        {
+          "frame": 1,
+          "effect": "spray",
+          "x": 0.42,
+          "y": 0.5,
+          "intensity": 0.1,
+          "color": "#8A6040"
+        },
+        {
+          "frame": 3,
+          "effect": "spray",
+          "x": 0.6,
+          "y": 0.51,
+          "intensity": 0.1,
+          "color": "#8A6040"
+        },
+        {
+          "frame": 5,
+          "effect": "spray",
+          "x": 0.5,
+          "y": 0.49,
+          "intensity": 0.1,
+          "color": "#8A6040"
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "ring": {
+              "sx": 0.1,
+              "sy": 0.1,
+              "x": -60,
+              "y": 4
+            },
+            "ring2": {
+              "sx": 0.08,
+              "sy": 0.08,
+              "x": 80,
+              "y": 8
+            }
+          },
+          "slots": {
+            "ring": "ring"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "ring": {
+              "sx": 0.3,
+              "sy": 0.3,
+              "x": -60,
+              "y": 4
+            },
+            "ring2": {
+              "sx": 0.08,
+              "sy": 0.08,
+              "x": 80,
+              "y": 8
+            }
+          },
+          "slots": {
+            "ring": "ring"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "ring": {
+              "sx": 0.42,
+              "sy": 0.42,
+              "x": -60,
+              "y": 4
+            },
+            "ring2": {
+              "sx": 0.1,
+              "sy": 0.1,
+              "x": 80,
+              "y": 8
+            }
+          },
+          "slots": {
+            "ring": "faint",
+            "ring2": "ring"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "ring": {
+              "sx": 0.08,
+              "sy": 0.08,
+              "x": 20,
+              "y": -6
+            },
+            "ring2": {
+              "sx": 0.3,
+              "sy": 0.3,
+              "x": 80,
+              "y": 8
+            }
+          },
+          "slots": {
+            "ring2": "ring"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "ring": {
+              "sx": 0.1,
+              "sy": 0.1,
+              "x": 20,
+              "y": -6
+            },
+            "ring2": {
+              "sx": 0.42,
+              "sy": 0.42,
+              "x": 80,
+              "y": 8
+            }
+          },
+          "slots": {
+            "ring": "ring",
+            "ring2": "faint"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "ring": {
+              "sx": 0.3,
+              "sy": 0.3,
+              "x": 20,
+              "y": -6
+            },
+            "ring2": {
+              "sx": 0.48,
+              "sy": 0.48,
+              "x": 80,
+              "y": 8
+            }
+          },
+          "slots": {
+            "ring": "ring"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "ring": {
+              "sx": 0.42,
+              "sy": 0.42,
+              "x": 20,
+              "y": -6
+            }
+          },
+          "slots": {
+            "ring": "faint"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "ring": {
+              "sx": 0.46,
+              "sy": 0.46,
+              "x": 20,
+              "y": -6
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    }
+  ]
+}
