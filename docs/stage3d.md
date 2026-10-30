@@ -322,7 +322,9 @@ front of the canopy line, and steps back under it only as its next action
 — cued within a second of its getting there (Lola crouching) — takes it
 down, that action playing as it steps; with none, it stays in front. A
 small one that fits under them whole
-stands in front, as before; both keep their sizes. The staging test fails
+stands in front, as before; both keep their sizes. The row moves along
+off a plane's footprint where it can (the beetle under the leaf by the
+rock ledge). The staging test fails
 one sheltering so that neither its face nor its middle shows past its
 host's painted shape; being partly behind its own host is no fault there.
 
