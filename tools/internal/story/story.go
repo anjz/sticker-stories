@@ -2191,22 +2191,42 @@ func validatePlaceMentions(is *Issues, lang string, nar Narration, m Manifest, i
 				}
 			}
 		}
+		// Japanese and Chinese place words sit inside the words: the longest
+		// first, so a shorter one inside it (波 in 波打ち際) is not named too.
+		type placeWord struct{ place, word string }
+		var cjkWords []placeWord
 		for place, byLang := range m.PlaceWords {
-			named := false
-			for i, word := range words {
-				if inName[i] {
-					continue
+			for _, pw := range byLang[lang] {
+				if cjkName(pw) {
+					cjkWords = append(cjkWords, placeWord{place, pw})
 				}
-				if slices.ContainsFunc(byLang[lang], func(pw string) bool { return sameWord(lang, mentionWord(word), pw) }) {
-					named = true
+			}
+		}
+		slices.SortFunc(cjkWords, func(a, b placeWord) int { return cmp.Compare(len(b.word), len(a.word)) })
+		cjkNamed := map[string]bool{}
+		for i, word := range words {
+			if inName[i] || len(cjkWords) == 0 {
+				continue
+			}
+			bare := word
+			for _, name := range names {
+				bare = strings.ReplaceAll(bare, name, "\x00")
+			}
+			for _, pw := range cjkWords {
+				if strings.Contains(bare, pw.word) {
+					cjkNamed[pw.place] = true
+					bare = strings.ReplaceAll(bare, pw.word, "\x00")
+				}
+			}
+		}
+		for place, byLang := range m.PlaceWords {
+			named := cjkNamed[place]
+			for i, word := range words {
+				if named {
 					break
 				}
-				bare := word
-				for _, name := range names {
-					bare = strings.ReplaceAll(bare, name, "")
-				}
-				for _, pw := range byLang[lang] {
-					named = named || cjkName(pw) && strings.Contains(bare, pw)
+				if !inName[i] && slices.ContainsFunc(byLang[lang], func(pw string) bool { return sameWord(lang, mentionWord(word), pw) }) {
+					named = true
 				}
 			}
 			if !named {
