@@ -1088,8 +1088,12 @@ func TestJapaneseAndChineseRunOnWithoutSpaces(t *testing.T) {
 }
 
 func TestCountWordsByNarrationTime(t *testing.T) {
-	if n := CountWords("de-DE", "Der Fuchs springt hoch."); n != 4 {
-		t.Errorf("German: %d words, want 4", n)
+	if n := CountWords("en-US", "The fox jumps up high."); n != 5 {
+		t.Errorf("English: %d words, want 5", n)
+	}
+	// German words go by a little faster than English ones.
+	if n := CountWords("de-DE", "Der Fuchs springt ganz hoch in die Luft, juhu!"); n != 8 {
+		t.Errorf("German: %d, want 8 (9 words × 0.92)", n)
 	}
 	// Twelve kana read about as long as five English words.
 	if n := CountWords("ja-JP", "キツネはジャンプしました。"); n != 5 {

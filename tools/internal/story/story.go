@@ -545,6 +545,12 @@ func joinSep(prev, next string) string {
 // Cantonese about 3.6.
 var cjkCharsPerWord = map[string]float64{"ja": 2.2, "zh": 1.75}
 
+// wordTime is how long a word of a spaced language takes to narrate
+// against an English word, measured on Eleven v4 (German 149 words in
+// 64.8 s, French 145 in 58.0 s, English 127 in 60.2 s); Italian is
+// assumed between them. Missing languages count 1.
+var wordTime = map[string]float64{"de": 0.92, "fr": 0.85, "it": 0.88}
+
 // MaxDrift is how far a transcreation's narration may run from the
 // English story's, as a share of it, before a warning.
 const MaxDrift = 0.25
@@ -570,7 +576,14 @@ func CountWords(lang, plain string) int {
 			words++
 		}
 	}
-	return words + int(math.Round(float64(chars)/per))
+	n := float64(words)
+	if t := wordTime[primarySubtag(lang)]; t > 0 {
+		n *= t
+	}
+	if per > 0 {
+		n += float64(chars) / per
+	}
+	return int(math.Round(n))
 }
 
 // Segment is a run of words the narrator reads in one go. A solo sound

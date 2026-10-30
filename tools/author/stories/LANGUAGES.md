@@ -55,9 +55,9 @@ it to see how freely a beat can be retold.
   `art.json`, `scene.features`), and keep the move cue that takes it there.
 - **Length by narration time**: within 25 % of the English (the checker
   warns past it: words, or for Japanese and Chinese, characters converted
-  by measured speaking speed). German and French run 10–20 % more words
-  for the same story, which is fine — no need to cut flourishes for a
-  fixed band; Japanese runs long — cut, do not pad.
+  by measured speaking speed — a German, French or Italian word counts a
+  little less than an English one, since it is said faster). Japanese runs
+  long — cut, do not pad.
 - **Audio tags** (`[excited]`, `[whispers]`, …) stay in English, as in
   FORMAT.md; place them where your sentences need them, at most six.
 - **Character names** of people stay: Lola is Lola, Nico is Nico, written
