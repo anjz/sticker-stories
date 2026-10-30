@@ -804,7 +804,7 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 	if n := len([]rune(take)); n > maxTakeChars || turns != nil && n > story.MaxVoicedChars {
 		return false, fmt.Errorf("narration is %d characters; one take holds %d (%d with character voices)", n, maxTakeChars, story.MaxVoicedChars)
 	}
-	if turns != nil && joinTurns(turns) != take {
+	if _, ok := turnJoins(turns, take); turns != nil && !ok {
 		return false, errors.New("character lines do not add up to the narration (a bug: tell the tool's author)")
 	}
 	cacheText := take
@@ -1159,11 +1159,31 @@ func (r *renderer) turns(nar story.Narration, lang string, narrator voiceChoice)
 		return nil, nil
 	}
 	var out []elevenlabs.DialogueInput
+	segments := nar.Segments()
 	add := func(from, to int, voiceID string) {
-		// An empty range adds nothing, except at the very end, where
-		// Spoken carries the trailing tags.
-		if text, _ := nar.Spoken(from, to); text != "" {
-			out = append(out, elevenlabs.DialogueInput{Text: text, VoiceID: voiceID})
+		// A turn is read as the take reads it: its stretches between solo
+		// sounds joined by a space (takeText), which Spoken alone leaves
+		// out where Japanese or Chinese words run on. An empty range adds
+		// nothing, except at the very end, where Spoken carries the
+		// trailing tags.
+		cuts := []int{from}
+		for _, seg := range segments[1:] {
+			if seg.From > from && seg.From < to {
+				cuts = append(cuts, seg.From)
+			}
+		}
+		var parts []string
+		for i, a := range cuts {
+			b := to
+			if i+1 < len(cuts) {
+				b = cuts[i+1]
+			}
+			if text, _ := nar.Spoken(a, b); text != "" {
+				parts = append(parts, text)
+			}
+		}
+		if len(parts) > 0 {
+			out = append(out, elevenlabs.DialogueInput{Text: strings.Join(parts, " "), VoiceID: voiceID})
 		}
 	}
 	at := 0
@@ -1183,14 +1203,26 @@ func (r *renderer) turns(nar story.Narration, lang string, narrator voiceChoice)
 	return out, nil
 }
 
-// joinTurns is the take text the turns make: their texts joined by a
-// space, as takeText joins the stretches between solo sounds.
-func joinTurns(turns []elevenlabs.DialogueInput) string {
-	parts := make([]string, len(turns))
+// turnJoins is what joins each turn to the next in the take text: a space,
+// or nothing where Japanese or Chinese words run on (Spoken's joins). Not
+// ok when the turns do not make the take.
+func turnJoins(turns []elevenlabs.DialogueInput, take string) (joins []string, ok bool) {
+	rest := take
 	for i, t := range turns {
-		parts[i] = t.Text
+		if i > 0 {
+			sep := ""
+			if strings.HasPrefix(rest, " ") {
+				sep = " "
+			}
+			joins = append(joins, sep)
+			rest = rest[len(sep):]
+		}
+		if !strings.HasPrefix(rest, t.Text) {
+			return nil, false
+		}
+		rest = rest[len(t.Text):]
 	}
-	return strings.Join(parts, " ")
+	return joins, rest == ""
 }
 
 // turnVoices is who reads each turn, for fingerprints and cache keys.
@@ -1216,9 +1248,13 @@ func (r *renderer) lineVoices(nar story.Narration, lang string) map[string]strin
 }
 
 // spaceTurns turns a dialogue alignment (the turns' texts end to end) into
-// one over joinTurns' text, adding each joining space as a zero-length
-// character where the turn before it ends.
-func spaceTurns(turns []elevenlabs.DialogueInput, al *elevenlabs.Alignment) (*elevenlabs.Alignment, error) {
+// one over the take text, adding each joining space (turnJoins) as a
+// zero-length character where the turn before it ends.
+func spaceTurns(turns []elevenlabs.DialogueInput, take string, al *elevenlabs.Alignment) (*elevenlabs.Alignment, error) {
+	joins, ok := turnJoins(turns, take)
+	if !ok {
+		return nil, errors.New("character lines do not add up to the narration")
+	}
 	out := &elevenlabs.Alignment{}
 	at := 0
 	for i, t := range turns {
@@ -1226,7 +1262,7 @@ func spaceTurns(turns []elevenlabs.DialogueInput, al *elevenlabs.Alignment) (*el
 		if at+n > len(al.Characters) || len(al.Starts) != len(al.Characters) || len(al.Ends) != len(al.Characters) {
 			return nil, fmt.Errorf("dialogue alignment has %d characters for turns of %d and more", len(al.Characters), at+n)
 		}
-		if i > 0 {
+		if i > 0 && joins[i-1] != "" {
 			end := out.Ends[len(out.Ends)-1]
 			out.Characters = append(out.Characters, " ")
 			out.Starts = append(out.Starts, end)
@@ -1281,7 +1317,7 @@ func (r *renderer) speak(text, cacheText string, turns []elevenlabs.DialogueInpu
 		return nil, errors.New("no alignment returned")
 	}
 	if turns != nil {
-		if sp.Alignment, err = spaceTurns(turns, sp.Alignment); err != nil {
+		if sp.Alignment, err = spaceTurns(turns, text, sp.Alignment); err != nil {
 			return nil, err
 		}
 	}
