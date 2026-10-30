@@ -2170,15 +2170,43 @@ func validatePlaceMentions(is *Issues, lang string, nar Narration, m Manifest, i
 			ids = append(ids, id)
 		}
 		sort.Strings(ids)
+		// Words of a sticker's name are not its place (Étoile de mer is not
+		// at the sea, nor 海龜 or 海星).
+		inName := map[int]bool{}
+		var names []string
+		for _, byID := range m.Names {
+			name := byID[lang]
+			if cjkName(name) {
+				names = append(names, name)
+				continue
+			}
+			tokens := strings.Fields(name)
+			for i := 0; len(tokens) > 1 && i+len(tokens) <= len(words); i++ {
+				match := true
+				for k, t := range tokens {
+					match = match && sameWord(lang, mentionWord(words[i+k]), mentionWord(t))
+				}
+				for k := range tokens {
+					inName[i+k] = inName[i+k] || match
+				}
+			}
+		}
 		for place, byLang := range m.PlaceWords {
 			named := false
-			for _, word := range words {
+			for i, word := range words {
+				if inName[i] {
+					continue
+				}
 				if slices.ContainsFunc(byLang[lang], func(pw string) bool { return sameWord(lang, mentionWord(word), pw) }) {
 					named = true
 					break
 				}
+				bare := word
+				for _, name := range names {
+					bare = strings.ReplaceAll(bare, name, "")
+				}
 				for _, pw := range byLang[lang] {
-					named = named || cjkName(pw) && strings.Contains(word, pw)
+					named = named || cjkName(pw) && strings.Contains(bare, pw)
 				}
 			}
 			if !named {
