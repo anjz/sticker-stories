@@ -1060,3 +1060,66 @@ func TestGoToAProp(t *testing.T) {
 		t.Fatalf("a walker cannot go up to the kite: %v", is.Errors)
 	}
 }
+
+func TestJapaneseAndChineseRunOnWithoutSpaces(t *testing.T) {
+	nar, errs := Parse("キツネは{fox:live jump}ジャンプしました。 [excited] {fox:says} 「やった！」 とキツネ。")
+	if len(errs) > 0 {
+		t.Fatal(errs)
+	}
+	if got, want := nar.Plain(), "キツネはジャンプしました。「やった！」とキツネ。"; got != want {
+		t.Errorf("plain %q, want %q", got, want)
+	}
+	spoken, starts := nar.Spoken(0, len(nar.Words))
+	if want := "キツネはジャンプしました。 [excited] 「やった！」とキツネ。"; spoken != want {
+		t.Errorf("spoken %q, want %q", spoken, want)
+	}
+	for i, at := range starts {
+		if !strings.HasPrefix(spoken[at:], nar.Words[i]) {
+			t.Errorf("word %d %q starts at %d, which reads %q", i, nar.Words[i], at, spoken[at:])
+		}
+	}
+	if len(nar.Lines) != 1 || nar.Words[nar.Lines[0].From] != "「やった！」" || nar.Lines[0].To != nar.Lines[0].From+1 {
+		t.Errorf("lines %+v over %q", nar.Lines, nar.Words)
+	}
+	// Latin stays spaced.
+	if got := (Narration{Words: []string{"Der", "Fuchs", "springt."}}).Plain(); got != "Der Fuchs springt." {
+		t.Errorf("plain %q", got)
+	}
+}
+
+func TestCountWordsByNarrationTime(t *testing.T) {
+	if n := CountWords("de-DE", "Der Fuchs springt hoch."); n != 4 {
+		t.Errorf("German: %d words, want 4", n)
+	}
+	// Twelve kana read about as long as five English words.
+	if n := CountWords("ja-JP", "キツネはジャンプしました。"); n != 5 {
+		t.Errorf("Japanese: %d, want 5", n)
+	}
+	if n := CountWords("zh-TW", "狐狸跳得好高。"); n != 3 {
+		t.Errorf("Chinese: %d, want 3", n)
+	}
+}
+
+func TestGermanQuotesAndCJKForbiddenWords(t *testing.T) {
+	nar, errs := Parse(`Da rief er: {fox:says} „Hallo, Welt!“ und lachte.`)
+	if len(errs) > 0 || len(nar.Lines) != 1 || nar.Lines[0].To-nar.Lines[0].From != 2 {
+		t.Errorf("German line: %v %+v", errs, nar.Lines)
+	}
+	if bad := ForbiddenWords("zh-HK", "小熊做了一個鬼臉，大家笑了。"); len(bad) != 0 {
+		t.Errorf("a funny face is not forbidden: %v", bad)
+	}
+	if bad := ForbiddenWords("ja-JP", "おばけが出た。"); len(bad) != 1 {
+		t.Errorf("want おばけ forbidden, got %v", bad)
+	}
+}
+
+func TestFirstMentionInsideJapaneseWords(t *testing.T) {
+	m := Manifest{Names: map[string]map[string]string{"fox": {"ja-JP": "キツネ"}, "bird": {"ja-JP": "トリ"}}}
+	words := []string{"ある日、", "森で", "キツネは", "あそびました。"}
+	if i := firstMention(words, "fox", "ja-JP", m); i != 2 {
+		t.Errorf("first mention at %d, want 2", i)
+	}
+	if i := firstMention(words, "bird", "ja-JP", m); i != -1 {
+		t.Errorf("bird found at %d", i)
+	}
+}

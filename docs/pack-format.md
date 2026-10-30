@@ -758,6 +758,13 @@ languages (`Locale.preferredLanguages`) against the pack's `languages`:
 2. else primary-subtag match (`es-MX` device → `es-ES` pack);
 3. else the pack's **first declared language**.
 
+Chinese goes by script and region, never by its primary subtag alone:
+Traditional Chinese in Hong Kong or Macau, or Cantonese (`zh-Hant-HK`,
+`zh-HK`, `yue-Hant-HK`), takes the pack's `zh-HK` (Hong Kong wording,
+Cantonese narration); any other Traditional Chinese (`zh-Hant-TW`,
+`zh-Hant`) takes `zh-TW` (Taiwan wording, Mandarin narration); Simplified
+Chinese takes neither and goes on to the device's next language.
+
 The resolved language selects `displayName`, sticker names, and each story's
 `localizations` block (title, text, audio) — one language per pack per launch.
 App UI strings localize independently via the String Catalog; both follow the

@@ -147,3 +147,11 @@ func TestTurnsAndSpacedAlignment(t *testing.T) {
 		t.Error("want an error when the character has no voice in the language")
 	}
 }
+
+func TestHongKongIsNarratedInCantonese(t *testing.T) {
+	for lang, want := range map[string]string{"zh-HK": "yue", "zh-TW": "zh", "ja-JP": "ja", "de-DE": "de", "es-ES": "es"} {
+		if got := primary(lang); got != want {
+			t.Errorf("primary(%q) = %q, want %q", lang, got, want)
+		}
+	}
+}

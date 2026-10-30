@@ -20,8 +20,10 @@ falling, the lights going low). Stories are:
   take by an Eleven v4 voice that takes stage directions, with real sound
   effects mixed in — you write those in too (see "Voice performance" and "Sound
   effects");
-- **bilingual from day one** (currently en-US and es-ES), each language
-  written natively;
+- **written in English first**: a new pack is English only until it is
+  approved; then each of its languages (es-ES, de-DE, fr-FR, it-IT, ja-JP,
+  zh-TW with Mandarin narration, zh-HK with Cantonese narration) is
+  written natively from the English — transcreated, not translated;
 - **self-contained**: no series, no cliffhangers, no "next time";
 - **played many times**: the same child will hear a story dozens of times,
   so it must reward repetition (rhythm, a callback, a line the child will

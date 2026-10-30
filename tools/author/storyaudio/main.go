@@ -228,8 +228,14 @@ func planParallel(ctx context.Context, el *elevenlabs.Client, fallback int) int 
 	return n
 }
 
+// primary is the ElevenLabs language of a pack language: its primary
+// subtag, and Cantonese (yue) for Hong Kong Chinese, which the zh-HK
+// stories are narrated in (zh is Mandarin, for zh-TW).
 func primary(lang string) string {
-	l, _, _ := strings.Cut(lang, "-")
+	l, region, _ := strings.Cut(lang, "-")
+	if strings.EqualFold(l, "zh") && strings.EqualFold(region, "HK") {
+		return "yue"
+	}
 	return strings.ToLower(l)
 }
 
