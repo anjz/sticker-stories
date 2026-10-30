@@ -306,6 +306,14 @@ func saveVoices(c *ctxt, v voiceSet) error {
 
 func candidates(ctx context.Context, el *elevenlabs.Client, lang string) ([]elevenlabs.SharedVoice, error) {
 	q := elevenlabs.SharedVoicesQuery{Language: primary(lang), Locale: lang, UseCases: []string{"narrative_story"}, Sort: "usage_character_count_1y", PageSize: 30}
+	switch lang {
+	case "zh-TW": // the library's locale for Taiwan Mandarin
+		q.Locale = "cmn-TW"
+	case "zh-HK":
+		// Cantonese voices are filed as Chinese with a Hong Kong Cantonese
+		// accent, and few are tagged for stories: any use.
+		q = elevenlabs.SharedVoicesQuery{Search: "cantonese", Sort: "usage_character_count_1y", PageSize: 30}
+	}
 	vs, err := el.SharedVoices(ctx, q)
 	if err != nil {
 		return nil, err

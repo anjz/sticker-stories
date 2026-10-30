@@ -346,6 +346,7 @@ type SharedVoicesQuery struct {
 	UseCases []string
 	Sort     string // created_date | usage_character_count_1y | trending | cloned_by_count
 	PageSize int
+	Search   string // free text over names, descriptions and accents
 }
 
 // SharedVoices lists public library voices.
@@ -365,6 +366,9 @@ func (c *Client) SharedVoices(ctx context.Context, sq SharedVoicesQuery) ([]Shar
 	}
 	if sq.PageSize > 0 {
 		q.Set("page_size", fmt.Sprint(sq.PageSize))
+	}
+	if sq.Search != "" {
+		q.Set("search", sq.Search)
 	}
 	data, err := c.do(ctx, http.MethodGet, "/v1/shared-voices", q, nil, "application/json")
 	if err != nil {
