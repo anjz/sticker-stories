@@ -2052,7 +2052,7 @@ func runInstall(args []string) error {
 			c.pack.Stickers[i].Image = rel
 			c.pack.Stickers[i].Expressions = expressions
 			if len(s.Name) > 0 {
-				c.pack.Stickers[i].Name = s.Name
+				c.pack.Stickers[i].Name = declared(s.Name, c.pack.Languages)
 			}
 			if s.Stage != nil {
 				c.pack.Stickers[i].Stage = s.Stage
@@ -2060,7 +2060,7 @@ func runInstall(args []string) error {
 			c.pack.Stickers[i].Size = s.Size
 			c.pack.Stickers[i].Door = s.Door
 		} else {
-			c.pack.Stickers = append(c.pack.Stickers, manifest.Sticker{ID: s.ID, Name: s.Name, Image: rel, Expressions: expressions, Stage: s.Stage, Size: s.Size, Door: s.Door})
+			c.pack.Stickers = append(c.pack.Stickers, manifest.Sticker{ID: s.ID, Name: declared(s.Name, c.pack.Languages), Image: rel, Expressions: expressions, Stage: s.Stage, Size: s.Size, Door: s.Door})
 			i = len(c.pack.Stickers) - 1
 		}
 		c.pack.Stickers[i].Content = nil
@@ -2074,7 +2074,13 @@ func runInstall(args []string) error {
 		installed++
 	}
 	if len(c.cfg.Scene.Features) > 0 {
-		c.pack.Features = c.cfg.Scene.Features
+		c.pack.Features = map[string]manifest.Feature{}
+		for id, f := range c.cfg.Scene.Features {
+			if f.Words != nil {
+				f.Words = declared(f.Words, c.pack.Languages)
+			}
+			c.pack.Features[id] = f
+		}
 	}
 	if c.cfg.Scene.Staging != nil {
 		c.pack.Staging = c.cfg.Scene.Staging
@@ -2215,4 +2221,17 @@ func downscale(data []byte, maxEdge int) ([]byte, error) {
 		h = maxEdge
 	}
 	return stickerimg.Encode(stickerimg.Resize(img, w, h))
+}
+
+// declared keeps a per-language map's entries for the pack's declared
+// languages: names and place words for a language still being written
+// (its stories not recorded yet) wait in art.json until it is added.
+func declared[V any](byLang map[string]V, languages []string) map[string]V {
+	out := make(map[string]V, len(languages))
+	for _, lang := range languages {
+		if v, ok := byLang[lang]; ok {
+			out[lang] = v
+		}
+	}
+	return out
 }
