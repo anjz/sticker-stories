@@ -12,6 +12,8 @@
 package main
 
 import (
+	"encoding/json"
+	"errors"
 	"flag"
 	"fmt"
 	"os"
@@ -30,6 +32,7 @@ func main() {
 	effectsPath := flag.String("effects", "../docs/effects/effects.json", "effects catalogue")
 	count := flag.Int("count", story.DefaultCount, "expected number of stories in the set (0 = don't check)")
 	planOnly := flag.Bool("plan", false, "only report coverage of what exists (roster check); no per-story output")
+	drafts := flag.String("lang", "", "comma-separated languages still being written (not in the pack yet): checked as if they were, their sticker names and place words from author/art/<pack>/art.json and each story's text from <story>/i18n/<lang>.json")
 	flag.Parse()
 	if *packDir == "" {
 		fmt.Fprintln(os.Stderr, "usage: storycheck -pack <pack-dir> [-stories <dir>] [-effects <effects.json>] [-count N] [-plan]")
@@ -56,6 +59,9 @@ func main() {
 		dir = filepath.Join("author", "stories", m.ID)
 	}
 	stories, loadErrs := story.LoadDir(dir)
+	if *drafts != "" {
+		loadErrs = append(loadErrs, addDrafts(&pack, stories, dir, filepath.Join("author", "art", m.ID, "art.json"), strings.Split(*drafts, ","))...)
+	}
 	failed := false
 	for _, e := range loadErrs {
 		fmt.Printf("✗ %v\n", e)
@@ -324,4 +330,69 @@ func printStages(pack story.Manifest) {
 			fmt.Printf("    %-9s %s\n", "", note)
 		}
 	}
+}
+
+// addDrafts checks languages still being written as if the pack had them:
+// their sticker names and place words from art.json, each story's text
+// from its i18n/<lang>.json draft ({"title", "text"}). A story without a
+// draft fails as missing that language.
+func addDrafts(pack *story.Manifest, stories []*story.Story, dir, artPath string, langs []string) []error {
+	var errs []error
+	var art struct {
+		Stickers []struct {
+			ID   string            `json:"id"`
+			Name map[string]string `json:"name"`
+		} `json:"stickers"`
+		Scene struct {
+			Features map[string]struct {
+				Words map[string][]string `json:"words"`
+			} `json:"features"`
+		} `json:"scene"`
+	}
+	if data, err := os.ReadFile(artPath); err != nil {
+		errs = append(errs, err)
+	} else if err := json.Unmarshal(data, &art); err != nil {
+		errs = append(errs, fmt.Errorf("%s: %w", artPath, err))
+	}
+	for _, lang := range langs {
+		lang = strings.TrimSpace(lang)
+		if lang == "" || slices.Contains(pack.Languages, lang) {
+			continue
+		}
+		pack.Languages = append(pack.Languages, lang)
+		for _, st := range art.Stickers {
+			if name, ok := st.Name[lang]; ok {
+				if pack.Names[st.ID] == nil {
+					pack.Names[st.ID] = map[string]string{}
+				}
+				pack.Names[st.ID][lang] = name
+			} else {
+				errs = append(errs, fmt.Errorf("%s: sticker %s has no %s name in art.json", artPath, st.ID, lang))
+			}
+		}
+		for id, f := range art.Scene.Features {
+			if words, ok := f.Words[lang]; ok {
+				if pack.PlaceWords[id] == nil {
+					pack.PlaceWords[id] = map[string][]string{}
+				}
+				pack.PlaceWords[id][lang] = words
+			}
+		}
+		for _, s := range stories {
+			data, err := os.ReadFile(filepath.Join(dir, s.ID, "i18n", lang+".json"))
+			if errors.Is(err, os.ErrNotExist) {
+				continue
+			}
+			var loc story.Localization
+			if err == nil {
+				err = json.Unmarshal(data, &loc)
+			}
+			if err != nil {
+				errs = append(errs, fmt.Errorf("%s %s draft: %w", s.ID, lang, err))
+				continue
+			}
+			s.Languages[lang] = loc
+		}
+	}
+	return errs
 }
