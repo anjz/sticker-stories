@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ペリカンくんが、水ぎわにたっていました。大きな、オレンジいろのくちばし。カモメさんが、ぱたぱたとんできました",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "ペリカンくんが、水ぎわにたっていました。大きな、オレンジいろのくちばし。カモメさんが、ぱたぱたとんできました",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 6.52,
+      "cue": "大きな、オレンジいろのくちばし。カモメさんが、ぱたぱたとんできました",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 9.64,
+      "cue": "カモメさんが、ぱたぱたとんできました",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 9.64,
+      "cue": "カモメさんが、ぱたぱたとんできました",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "pelican"
+    },
+    {
+      "at": 16.36,
+      "cue": "た",
+      "sticker": "pelican",
+      "effect": "pulse"
+    },
+    {
+      "at": 24.36,
+      "cue": "くちばしを水にいれて、ふくろいっぱいに、ざぶっとすくいました。それから、くいっと首をかたむけると、水が、りょうがわから、じゃーっ。ぴちゃ、ぱちゃ",
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 29.4,
+      "cue": "それから、くいっと首をかたむけると、水が、りょうがわから、じゃーっ。ぴちゃ、ぱちゃ",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 37.11,
+      "cue": "ちょうどそこへ、しましまのうきわが、ぷかぷか、ながれてきました。ペリカンくんは、もういちど、ざぶっ",
+      "sticker": "pelican",
+      "effect": "spray"
+    },
+    {
+      "at": 37.88,
+      "cue": "しましまのうきわが、ぷかぷか、ながれてきました。ペリカンくんは、もういちど、ざぶっ",
+      "sticker": "ring",
+      "enter": true
+    },
+    {
+      "at": 39.32,
+      "cue": "ぷかぷか、ながれてきました。ペリカンくんは、もういちど、ざぶっ",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "ring",
+      "by": "float"
+    },
+    {
+      "at": 41.64,
+      "cue": "ペリカンくんは、もういちど、ざぶっ",
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 46.32,
+      "cue": "うきわも！くちばしの上に、ぼうしみたいにのっかって、くるくる、くるくる",
+      "sticker": "ring",
+      "go": "on",
+      "target": "pelican"
+    },
+    {
+      "at": 50.36,
+      "cue": "くるくる、くるくる",
+      "sticker": "ring",
+      "animation": "spin"
+    },
+    {
+      "at": 52.68,
+      "cue": "カモメさんは、わらいすぎて、おもわず「クワーッ！」ペリカンくんも、わっはっは",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 52.68,
+      "cue": "カモメさんは、わらいすぎて、おもわず「クワーッ！」ペリカンくんも、わっはっは",
+      "sticker": "seagull",
+      "animation": "laugh"
+    },
+    {
+      "at": 56.68,
+      "cue": "ペリカンくんも、わっはっは",
+      "sticker": "pelican",
+      "animation": "laugh"
+    },
+    {
+      "at": 59.21,
+      "cue": "水は、いつもながれていっちゃうけど…うきわは、のこるみたい",
+      "sticker": "pelican",
+      "effect": "hearts"
+    }
+  ]
+}

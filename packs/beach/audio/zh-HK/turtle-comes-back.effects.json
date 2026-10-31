@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 6.44,
+      "cue": "海龜沿着沙灘爬上來。啪",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 6.44,
+      "cue": "海龜沿着沙灘爬上來。啪",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 11.48,
+      "cue": "濱鷸跑過來看看",
+      "sticker": "sandpiper",
+      "enter": true,
+      "by": "run"
+    },
+    {
+      "at": 11.48,
+      "cue": "濱鷸跑過來看看",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "turtle",
+      "by": "run"
+    },
+    {
+      "at": 13.22,
+      "sticker": "sandpiper",
+      "expression": "surprised"
+    },
+    {
+      "at": 16.12,
+      "cue": "海龜說：「我以前嚟過㗎。好耐好耐以前，我就喺呢度，喺暖暖",
+      "sticker": "turtle",
+      "expression": "happy"
+    },
+    {
+      "at": 16.12,
+      "cue": "海龜說：「我以前嚟過㗎。好耐好耐以前，我就喺呢度，喺暖暖",
+      "sticker": "turtle",
+      "animation": "talk"
+    },
+    {
+      "at": 24.76,
+      "cue": "之後，我爬落水，游咗出去。游過好闊好闊",
+      "sticker": "sandpiper",
+      "effect": "wobble"
+    },
+    {
+      "at": 31.16,
+      "sticker": "turtle",
+      "effect": "glow",
+      "intensity": 0.4
+    },
+    {
+      "at": 36.68,
+      "cue": "濱鷸低",
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 41.72,
+      "cue": "海星在石",
+      "sticker": "starfish",
+      "enter": true
+    },
+    {
+      "at": 41.72,
+      "cue": "海星在石",
+      "sticker": "starfish",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 44.36,
+      "cue": "興奮得不得了。海龜害羞地把",
+      "sticker": "starfish",
+      "animation": "wave"
+    },
+    {
+      "at": 45.88,
+      "cue": "海龜害羞地把",
+      "sticker": "turtle",
+      "animation": "peek"
+    },
+    {
+      "at": 53.48,
+      "cue": "然後，海龜轉過身，游走了，游到很",
+      "sticker": "turtle",
+      "effect": "hearts"
+    },
+    {
+      "at": 53.48,
+      "cue": "然後，海龜轉過身，游走了，游到很",
+      "sticker": "sandpiper",
+      "effect": "hearts"
+    },
+    {
+      "at": 55.64,
+      "cue": "游走了，游到很",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "sea",
+      "by": "swim"
+    },
+    {
+      "at": 59.48,
+      "cue": "下次見",
+      "sticker": "sandpiper",
+      "animation": "wave"
+    }
+  ]
+}

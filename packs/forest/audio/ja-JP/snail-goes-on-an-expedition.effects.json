@@ -1,0 +1,141 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "あるはれたあさ、カタツ",
+      "effect": "sunshine",
+      "intensity": 0.6
+    },
+    {
+      "at": 4.6,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 5.88,
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 11.64,
+      "cue": "ことりが、さっとおりてきて、「そんなの、あっというま",
+      "sticker": "bird",
+      "enter": true
+    },
+    {
+      "at": 13.8,
+      "cue": "そんなの、あっというま",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 16.68,
+      "cue": "び",
+      "sticker": "bird",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 18.84,
+      "cue": "び",
+      "sticker": "bird",
+      "go": "back"
+    },
+    {
+      "at": 21.48,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "animation": "hide"
+    },
+    {
+      "at": 26.8,
+      "cue": "えーと…くさ",
+      "sticker": "bird",
+      "expression": "surprised"
+    },
+    {
+      "at": 36.28,
+      "cue": "まんなかがお日さまいろの、ひなぎくを見ました。ビー",
+      "sticker": "snail",
+      "effect": "pulse"
+    },
+    {
+      "at": 46.2,
+      "cue": "ミツバチさんにも、あいました。ミツバチさんがうたってくれたのは、ゆっくりのカタツ",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 46.2,
+      "cue": "ミツバチさんにも、あいました。ミツバチさんがうたってくれたのは、ゆっくりのカタツ",
+      "sticker": "bee",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 48.76,
+      "cue": "ミツバチさんがうたってくれたのは、ゆっくりのカタツ",
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 49.48,
+      "cue": "うたってくれたのは、ゆっくりのカタツ",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 56.84,
+      "cue": "お日さまがしずむころ、カタツ",
+      "effect": "sunset",
+      "duration": 26.34,
+      "intensity": 0.7
+    },
+    {
+      "at": 58.64,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 62.2,
+      "cue": "ことりがとんできて、「で、なにが見えた？」カタツ",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 62.2,
+      "cue": "ことりがとんできて、「で、なにが見えた？」カタツ",
+      "sticker": "bird",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 65.64,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "animation": "talk"
+    },
+    {
+      "at": 69.6,
+      "cue": "ぼく、なんにも見てなかった",
+      "sticker": "bird",
+      "expression": "surprised"
+    },
+    {
+      "at": 76.3,
+      "cue": "もちろん。まずは、ひなぎくからね",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 76.3,
+      "cue": "もちろん。まずは、ひなぎくからね",
+      "sticker": "snail",
+      "animation": "nod"
+    }
+  ]
+}

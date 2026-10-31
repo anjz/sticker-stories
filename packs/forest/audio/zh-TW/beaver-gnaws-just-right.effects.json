@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.24,
+      "cue": "河狸又在啃東西了",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 7.32,
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 11.88,
+      "cue": "刺蝟身上",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 11.88,
+      "cue": "刺蝟身上",
+      "sticker": "hedgehog",
+      "go": "to",
+      "target": "beaver"
+    },
+    {
+      "at": 14.72,
+      "cue": "哼！」刺蝟氣呼呼地縮成一顆刺球",
+      "sticker": "hedgehog",
+      "expression": "sad"
+    },
+    {
+      "at": 15.8,
+      "cue": "刺蝟氣呼呼地縮成一顆刺球",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    },
+    {
+      "at": 20.4,
+      "sticker": "beaver",
+      "expression": "surprised"
+    },
+    {
+      "at": 20.4,
+      "sticker": "beaver",
+      "effect": "wobble"
+    },
+    {
+      "at": 30.72,
+      "cue": "小鳥飛了下來",
+      "sticker": "bird",
+      "enter": true
+    },
+    {
+      "at": 30.72,
+      "cue": "小鳥飛了下來",
+      "sticker": "bird",
+      "go": "to",
+      "target": "beaver"
+    },
+    {
+      "at": 32.44,
+      "cue": "我要用細枝條蓋鳥巢，可是我找到的都太長了",
+      "sticker": "bird",
+      "expression": "sad"
+    },
+    {
+      "at": 37.55,
+      "cue": "交給我吧！」喀滋、喀滋、喀滋，枝條長短剛剛好。「太完美了！」小鳥叼著枝條，飛上高高的樹枝，唱歌謝謝河狸。樹下的喀滋聲停了，刺蝟探出",
+      "sticker": "beaver",
+      "expression": "happy"
+    },
+    {
+      "at": 38.76,
+      "cue": "喀滋、喀滋、喀滋，枝條長短剛剛好。「太完美了！」小鳥叼著枝條，飛上高高的樹枝，唱歌謝謝河狸。樹下的喀滋聲停了，刺蝟探出",
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 42.44,
+      "cue": "太完美了！」小鳥叼著枝條，飛上高高的樹枝，唱歌謝謝河狸。樹下的喀滋聲停了，刺蝟探出",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 42.44,
+      "cue": "太完美了！」小鳥叼著枝條，飛上高高的樹枝，唱歌謝謝河狸。樹下的喀滋聲停了，刺蝟探出",
+      "sticker": "bird",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 44.04,
+      "cue": "小鳥叼著枝條，飛上高高的樹枝，唱歌謝謝河狸。樹下的喀滋聲停了，刺蝟探出",
+      "sticker": "bird",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 47.2,
+      "cue": "唱歌謝謝河狸。樹下的喀滋聲停了，刺蝟探出",
+      "sticker": "bird",
+      "animation": "sing"
+    },
+    {
+      "at": 51.24,
+      "cue": "刺蝟探出",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "resume"
+    },
+    {
+      "at": 58.16,
+      "cue": "嗯",
+      "sticker": "hedgehog",
+      "expression": "happy"
+    },
+    {
+      "at": 67,
+      "sticker": "hedgehog",
+      "expression": "sleeping"
+    },
+    {
+      "at": 67.16,
+      "cue": "窩進木屑裡，睡了一",
+      "sticker": "hedgehog",
+      "animation": "sleep",
+      "mode": "hold"
+    }
+  ]
+}

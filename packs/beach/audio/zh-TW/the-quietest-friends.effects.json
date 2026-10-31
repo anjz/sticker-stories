@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "太陽",
+      "sticker": "clam",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "太陽",
+      "sticker": "seaweed",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "太陽",
+      "effect": "sunset",
+      "duration": 34.86,
+      "intensity": 0.8
+    },
+    {
+      "at": 8.76,
+      "cue": "海膽打了一個小小的、紫紫的呵",
+      "sticker": "urchin",
+      "enter": true
+    },
+    {
+      "at": 8.76,
+      "cue": "海膽打了一個小小的、紫紫的呵",
+      "sticker": "urchin",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 12.36,
+      "sticker": "urchin",
+      "expression": "happy"
+    },
+    {
+      "at": 12.36,
+      "sticker": "urchin",
+      "animation": "wiggle"
+    },
+    {
+      "at": 18.92,
+      "sticker": "clam",
+      "expression": "happy"
+    },
+    {
+      "at": 18.92,
+      "sticker": "clam",
+      "animation": "peek"
+    },
+    {
+      "at": 32.36,
+      "cue": "夜晚輕輕地來了。月亮低",
+      "sticker": "seaweed",
+      "expression": "sleeping"
+    },
+    {
+      "at": 32.36,
+      "cue": "夜晚輕輕地來了。月亮低",
+      "effect": "night",
+      "duration": 40,
+      "intensity": 0.8
+    },
+    {
+      "at": 36.84,
+      "cue": "海星揮揮一隻想睡的手。「大家晚安。」海膽閉上眼睛。蛤蜊也閉上了。海草彎下身子，輕輕蓋著她安安靜靜的小朋友們，像一條軟軟的被子",
+      "sticker": "starfish",
+      "enter": true
+    },
+    {
+      "at": 36.84,
+      "cue": "海星揮揮一隻想睡的手。「大家晚安。」海膽閉上眼睛。蛤蜊也閉上了。海草彎下身子，輕輕蓋著她安安靜靜的小朋友們，像一條軟軟的被子",
+      "sticker": "starfish",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 39.12,
+      "cue": "大家晚安。」海膽閉上眼睛。蛤蜊也閉上了。海草彎下身子，輕輕蓋著她安安靜靜的小朋友們，像一條軟軟的被子",
+      "sticker": "starfish",
+      "animation": "wave"
+    },
+    {
+      "at": 40.84,
+      "cue": "海膽閉上眼睛。蛤蜊也閉上了。海草彎下身子，輕輕蓋著她安安靜靜的小朋友們，像一條軟軟的被子",
+      "sticker": "urchin",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 42.68,
+      "cue": "蛤蜊也閉上了。海草彎下身子，輕輕蓋著她安安靜靜的小朋友們，像一條軟軟的被子",
+      "sticker": "clam",
+      "expression": "sleeping"
+    },
+    {
+      "at": 44.52,
+      "cue": "海草彎下身子，輕輕蓋著她安安靜靜的小朋友們，像一條軟軟的被子",
+      "sticker": "seaweed",
+      "animation": "sway",
+      "mode": "hold"
+    },
+    {
+      "at": 52.73,
+      "cue": "噓——潮",
+      "sticker": "starfish",
+      "expression": "sleeping"
+    }
+  ]
+}

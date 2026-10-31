@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "coccinella",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 10.28,
+      "cue": "facilissimo",
+      "sticker": "ladybug",
+      "expression": "happy"
+    },
+    {
+      "at": 10.28,
+      "cue": "facilissimo",
+      "sticker": "ladybug",
+      "effect": "hop"
+    },
+    {
+      "at": 12.6,
+      "cue": "cerbiatto",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 15.24,
+      "cue": "coccinella",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "deer"
+    },
+    {
+      "at": 19.6,
+      "cue": "si",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 21.53,
+      "cue": "oh",
+      "sticker": "ladybug",
+      "expression": "surprised"
+    },
+    {
+      "at": 25.12,
+      "cue": "rana",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 25.12,
+      "cue": "rana",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 26.92,
+      "cue": "coccinella",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "frog",
+      "by": "fly"
+    },
+    {
+      "at": 30.6,
+      "cue": "rana",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "hold"
+    },
+    {
+      "at": 34.44,
+      "cue": "zac",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "resume"
+    },
+    {
+      "at": 41.16,
+      "cue": "fungo",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 41.16,
+      "cue": "fungo",
+      "sticker": "ladybug",
+      "go": "on",
+      "target": "mushroom",
+      "by": "fly"
+    },
+    {
+      "at": 46.76,
+      "cue": "si",
+      "sticker": "mushroom",
+      "animation": "laugh"
+    },
+    {
+      "at": 48.04,
+      "cue": "tre",
+      "sticker": "ladybug",
+      "expression": "sad"
+    },
+    {
+      "at": 51.48,
+      "cue": "anatroccolo",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 51.48,
+      "cue": "anatroccolo",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "mushroom"
+    },
+    {
+      "at": 59.16,
+      "cue": "neanche",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 65.16,
+      "cue": "e",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 65.16,
+      "cue": "e",
+      "sticker": "duckling",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 65.16,
+      "cue": "e",
+      "sticker": "ladybug",
+      "expression": "happy"
+    },
+    {
+      "at": 75.16,
+      "cue": "coccinella",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 75.16,
+      "cue": "coccinella",
+      "sticker": "ladybug",
+      "animation": "wings"
+    }
+  ]
+}

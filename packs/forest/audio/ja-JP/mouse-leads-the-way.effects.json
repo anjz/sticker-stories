@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "お月さまのあかりのなか、アナグマくんとアライグマくんと、小さなネズミくんが、のはらをかえっていきます。ところが、大きなくもがお月さまをかくして、まっくら。「なんにも見えない！」とアナグマくん",
+      "effect": "night",
+      "duration": 75.08,
+      "intensity": 0.7
+    },
+    {
+      "at": 5.24,
+      "cue": "アナグマくんとアライグマくんと、小さなネズミくんが、のはらをかえっていきます。ところが、大きなくもがお月さまをかくして、まっくら。「なんにも見えない！」とアナグマくん",
+      "sticker": "badger",
+      "enter": true
+    },
+    {
+      "at": 6.36,
+      "cue": "アライグマくんと、小さなネズミくんが、のはらをかえっていきます。ところが、大きなくもがお月さまをかくして、まっくら。「なんにも見えない！」とアナグマくん",
+      "sticker": "raccoon",
+      "enter": true
+    },
+    {
+      "at": 6.36,
+      "cue": "アライグマくんと、小さなネズミくんが、のはらをかえっていきます。ところが、大きなくもがお月さまをかくして、まっくら。「なんにも見えない！」とアナグマくん",
+      "sticker": "raccoon",
+      "go": "to",
+      "target": "badger"
+    },
+    {
+      "at": 8.28,
+      "cue": "ネズミくんが、のはらをかえっていきます。ところが、大きなくもがお月さまをかくして、まっくら。「なんにも見えない！」とアナグマくん",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 8.28,
+      "cue": "ネズミくんが、のはらをかえっていきます。ところが、大きなくもがお月さまをかくして、まっくら。「なんにも見えない！」とアナグマくん",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "badger"
+    },
+    {
+      "at": 11.8,
+      "cue": "ところが、大きなくもがお月さまをかくして、まっくら。「なんにも見えない！」とアナグマくん",
+      "effect": "clouds",
+      "duration": 48.5,
+      "intensity": 0.8
+    },
+    {
+      "at": 16.48,
+      "cue": "なんにも見えない！」とアナグマくん",
+      "sticker": "badger",
+      "expression": "surprised"
+    },
+    {
+      "at": 20.4,
+      "cue": "ぼくも！いないいない…」とアライグマくんは、目をかくします。「おうちはどっち",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "hold"
+    },
+    {
+      "at": 25.16,
+      "cue": "おうちはどっち",
+      "sticker": "badger",
+      "animation": "scratch-head"
+    },
+    {
+      "at": 32.12,
+      "cue": "ネズミくんのひげが、ぴくぴくっ",
+      "sticker": "mouse",
+      "animation": "twitch-whiskers"
+    },
+    {
+      "at": 34.51,
+      "cue": "ついてきて。ひげで、みちがわかるん",
+      "sticker": "mouse",
+      "expression": "happy"
+    },
+    {
+      "at": 38.2,
+      "cue": "ぴくぴく、そろりそろり。アナグマくんが、のそのそつづきます。「…ばあ！」アライグマくんもあとからのそのそ。とつぜん、ネズミくんがつまさき",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 40.84,
+      "cue": "アナグマくんが、のそのそつづきます。「…ばあ！」アライグマくんもあとからのそのそ。とつぜん、ネズミくんがつまさき",
+      "sticker": "badger",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 43.44,
+      "cue": "ばあ！」アライグマくんもあとからのそのそ。とつぜん、ネズミくんがつまさき",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "resume"
+    },
+    {
+      "at": 45.88,
+      "cue": "あとからのそのそ。とつぜん、ネズミくんがつまさき",
+      "sticker": "raccoon",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 47.72,
+      "cue": "とつぜん、ネズミくんがつまさき",
+      "sticker": "mouse",
+      "animation": "sniff",
+      "mode": "hold"
+    },
+    {
+      "at": 53.96,
+      "cue": "みんなで、はなとしっぽをくっつけて、ぐるっと。やがて、くもがお月さまからはなれると",
+      "sticker": "mouse",
+      "animation": "sniff",
+      "mode": "resume"
+    },
+    {
+      "at": 62.04,
+      "sticker": "badger",
+      "expression": "happy"
+    },
+    {
+      "at": 62.04,
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 66.12,
+      "cue": "アナグマくんは、じぶんのひげをぴくぴく。「こんどは、ぼくもためしてみよう",
+      "sticker": "mouse",
+      "effect": "hearts"
+    },
+    {
+      "at": 67.16,
+      "cue": "じぶんのひげをぴくぴく。「こんどは、ぼくもためしてみよう",
+      "sticker": "badger",
+      "animation": "twitch-whiskers"
+    }
+  ]
+}

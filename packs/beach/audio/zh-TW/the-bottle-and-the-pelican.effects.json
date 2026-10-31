@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "鵜鶘站在岸邊，想找點東西吃。海鷗停在高高的地方，在一旁看著",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "鵜鶘站在岸邊，想找點東西吃。海鷗停在高高的地方，在一旁看著",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 6.44,
+      "cue": "海鷗停在高高的地方，在一旁看著",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 6.44,
+      "cue": "海鷗停在高高的地方，在一旁看著",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 6.44,
+      "cue": "海鷗停在高高的地方，在一旁看著",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 11.64,
+      "cue": "有個",
+      "sticker": "bottle",
+      "enter": true
+    },
+    {
+      "at": 11.64,
+      "cue": "有個",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "pelican"
+    },
+    {
+      "at": 15.08,
+      "cue": "嘩啦！鵜鶘的大嘴袋一撈。水流",
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 17.96,
+      "cue": "水流",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 23,
+      "cue": "海鷗笑得大叫：「那又不是魚！」鵜鶘把瓶子轉過來、轉過去。啵！軟木塞跳開了，裡面露出一張捲起來的紙條。鵜鶘用嘴巴把紙條打開。是一張圖畫……畫著一隻白白的大鳥，有個橘色的大嘴巴",
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 26.36,
+      "cue": "鵜鶘把瓶子轉過來、轉過去。啵！軟木塞跳開了，裡面露出一張捲起來的紙條。鵜鶘用嘴巴把紙條打開。是一張圖畫……畫著一隻白白的大鳥，有個橘色的大嘴巴",
+      "sticker": "pelican",
+      "expression": "surprised"
+    },
+    {
+      "at": 29.32,
+      "cue": "啵！軟木塞跳開了，裡面露出一張捲起來的紙條。鵜鶘用嘴巴把紙條打開。是一張圖畫……畫著一隻白白的大鳥，有個橘色的大嘴巴",
+      "sticker": "bottle",
+      "animation": "pop"
+    },
+    {
+      "at": 34.52,
+      "cue": "鵜鶘用嘴巴把紙條打開。是一張圖畫……畫著一隻白白的大鳥，有個橘色的大嘴巴",
+      "sticker": "pelican",
+      "effect": "pulse"
+    },
+    {
+      "at": 45.4,
+      "cue": "好",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 45.4,
+      "cue": "好",
+      "sticker": "pelican",
+      "effect": "sparkle"
+    },
+    {
+      "at": 49,
+      "cue": "那",
+      "sticker": "seagull",
+      "animation": "talk"
+    },
+    {
+      "at": 51.8,
+      "cue": "挺起胸膛，站得直直的，好神氣喔",
+      "sticker": "pelican",
+      "animation": "flap",
+      "mode": "hold"
+    },
+    {
+      "at": 51.8,
+      "cue": "挺起胸膛，站得直直的，好神氣喔",
+      "sticker": "pelican",
+      "effect": "hearts"
+    }
+  ]
+}

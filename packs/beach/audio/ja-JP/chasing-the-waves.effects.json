@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "シギくんが、波打ち際をはしっています。水のほうへ、ちょこちょこ…またもどって。いって…もどって！イヌくんは、くびをかしげて見ていました",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "シギくんが、波打ち際をはしっています。水のほうへ、ちょこちょこ…またもどって。いって…もどって！イヌくんは、くびをかしげて見ていました",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 6.44,
+      "cue": "水のほうへ、ちょこちょこ…またもどって。いって…もどって！イヌくんは、くびをかしげて見ていました",
+      "sticker": "sandpiper",
+      "effect": "pulse"
+    },
+    {
+      "at": 9.08,
+      "cue": "またもどって。いって…もどって！イヌくんは、くびをかしげて見ていました",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore",
+      "another": true
+    },
+    {
+      "at": 12.36,
+      "cue": "イヌくんは、くびをかしげて見ていました",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 13.4,
+      "cue": "くびをかしげて見ていました",
+      "sticker": "dog",
+      "expression": "surprised"
+    },
+    {
+      "at": 18.2,
+      "cue": "イヌくんも、かけおりていきます。水のほうへ…ざぶーん！波が、あしにざばっとかかりました。イヌくんは、ぶるぶるぶるっと水をはらいます",
+      "sticker": "dog",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 27,
+      "cue": "イヌくんは、ぶるぶるぶるっと水をはらいます",
+      "sticker": "dog",
+      "expression": "surprised"
+    },
+    {
+      "at": 27,
+      "cue": "イヌくんは、ぶるぶるぶるっと水をはらいます",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 31.13,
+      "cue": "あそびじゃないよ」とシギくん。「水がひいたところには、小さなごはんがのこるん",
+      "sticker": "sandpiper",
+      "animation": "shake-head"
+    },
+    {
+      "at": 33.6,
+      "cue": "水がひいたところには、小さなごはんがのこるん",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 37.48,
+      "sticker": "sandpiper",
+      "animation": "peck",
+      "mode": "hold"
+    },
+    {
+      "at": 43.16,
+      "cue": "へえ！」とイヌくん。「それが、きみのおやつなん",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 45.16,
+      "cue": "それが、きみのおやつなん",
+      "sticker": "dog",
+      "animation": "nod"
+    },
+    {
+      "at": 50.76,
+      "cue": "ビーチボールをとってきました",
+      "sticker": "ball",
+      "enter": true
+    },
+    {
+      "at": 53.21,
+      "cue": "で、ぼくの",
+      "sticker": "dog",
+      "go": "to",
+      "target": "ball"
+    },
+    {
+      "at": 53.21,
+      "cue": "で、ぼくの",
+      "sticker": "dog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 55.72,
+      "cue": "ボールがくるくるまわります。あか、きいろ、あお、しろ",
+      "sticker": "ball",
+      "animation": "spin"
+    },
+    {
+      "at": 55.72,
+      "cue": "ボールがくるくるまわります。あか、きいろ、あお、しろ",
+      "sticker": "dog",
+      "effect": "hearts"
+    }
+  ]
+}

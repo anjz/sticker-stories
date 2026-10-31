@@ -1,0 +1,178 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "もうすぐ朝です。え",
+      "effect": "night",
+      "duration": 30.2,
+      "intensity": 0.7
+    },
+    {
+      "at": 6.48,
+      "cue": "ことりは、じしんまんまん。おひさまをおこすのは、ぼくの歌なん",
+      "sticker": "bird",
+      "enter": true
+    },
+    {
+      "at": 6.48,
+      "cue": "ことりは、じしんまんまん。おひさまをおこすのは、ぼくの歌なん",
+      "sticker": "bird",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 8.68,
+      "cue": "おひさまをおこすのは、ぼくの歌なん",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 15.48,
+      "cue": "お花がき",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 16.04,
+      "cue": "き",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 18.52,
+      "cue": "フクロウくんが、え",
+      "sticker": "owl",
+      "enter": true
+    },
+    {
+      "at": 18.52,
+      "cue": "フクロウくんが、え",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 22.16,
+      "cue": "もちろん」とことり。「ちょっと",
+      "sticker": "bird",
+      "animation": "nod"
+    },
+    {
+      "at": 26.2,
+      "cue": "そのままぐっすり。それでも、おひさまはのぼります。お花が、ぱあっとひらきます。ウサギくんが、ぴょんととび出して…ぴたり。「歌は？歌がないと、一日がはじまらないよ",
+      "sticker": "bird",
+      "expression": "sleeping"
+    },
+    {
+      "at": 26.84,
+      "cue": "ぐっすり。それでも、おひさまはのぼります。お花が、ぱあっとひらきます。ウサギくんが、ぴょんととび出して…ぴたり。「歌は？歌がないと、一日がはじまらないよ",
+      "sticker": "bird",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 28.2,
+      "cue": "それでも、おひさまはのぼります。お花が、ぱあっとひらきます。ウサギくんが、ぴょんととび出して…ぴたり。「歌は？歌がないと、一日がはじまらないよ",
+      "effect": "sunshine",
+      "duration": 24,
+      "intensity": 0.8
+    },
+    {
+      "at": 30.76,
+      "cue": "お花が、ぱあっとひらきます。ウサギくんが、ぴょんととび出して…ぴたり。「歌は？歌がないと、一日がはじまらないよ",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 33.32,
+      "cue": "ウサギくんが、ぴょんととび出して…ぴたり。「歌は？歌がないと、一日がはじまらないよ",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 36.4,
+      "cue": "歌は？歌がないと、一日がはじまらないよ",
+      "sticker": "rabbit",
+      "expression": "sad"
+    },
+    {
+      "at": 40.96,
+      "cue": "ぼくも、ねむれないよ」とフクロウくん",
+      "sticker": "owl",
+      "expression": "sad"
+    },
+    {
+      "at": 44.52,
+      "cue": "ことりは、とびおきました。おひさまが、もうのぼってる",
+      "sticker": "bird",
+      "animation": "sleep",
+      "mode": "resume"
+    },
+    {
+      "at": 44.52,
+      "cue": "ことりは、とびおきました。おひさまが、もうのぼってる",
+      "sticker": "bird",
+      "expression": "surprised"
+    },
+    {
+      "at": 48.77,
+      "cue": "じゃあ、ぼくの歌は、なんのため？」「ぼくたちのため！」とウサギくん。ことりはむねをふくらませて、うたいました。ウサギくんは、あそびにぴょーん。お花は、おひさまににっこり。フクロウくんは、やっと、ぐっすり",
+      "sticker": "bird",
+      "expression": "sad"
+    },
+    {
+      "at": 51.42,
+      "cue": "ぼくたちのため！」とウサギくん。ことりはむねをふくらませて、うたいました。ウサギくんは、あそびにぴょーん。お花は、おひさまににっこり。フクロウくんは、やっと、ぐっすり",
+      "sticker": "rabbit",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 54.04,
+      "cue": "ことりはむねをふくらませて、うたいました。ウサギくんは、あそびにぴょーん。お花は、おひさまににっこり。フクロウくんは、やっと、ぐっすり",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 54.6,
+      "cue": "むねをふくらませて、うたいました。ウサギくんは、あそびにぴょーん。お花は、おひさまににっこり。フクロウくんは、やっと、ぐっすり",
+      "sticker": "bird",
+      "animation": "sing"
+    },
+    {
+      "at": 57.08,
+      "cue": "ウサギくんは、あそびにぴょーん。お花は、おひさまににっこり。フクロウくんは、やっと、ぐっすり",
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 57.08,
+      "cue": "ウサギくんは、あそびにぴょーん。お花は、おひさまににっこり。フクロウくんは、やっと、ぐっすり",
+      "sticker": "rabbit",
+      "effect": "hop",
+      "repeat": 3
+    },
+    {
+      "at": 59.56,
+      "cue": "お花は、おひさまににっこり。フクロウくんは、やっと、ぐっすり",
+      "sticker": "flower",
+      "effect": "glow"
+    },
+    {
+      "at": 62.04,
+      "cue": "フクロウくんは、やっと、ぐっすり",
+      "sticker": "owl",
+      "expression": "sleeping"
+    },
+    {
+      "at": 62.04,
+      "cue": "フクロウくんは、やっと、ぐっすり",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "hold"
+    }
+  ]
+}

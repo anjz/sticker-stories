@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "蘿拉坐在遮陽傘下，乾乾爽爽的。小狗可一點也不乾",
+      "sticker": "umbrella",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "蘿拉坐在遮陽傘下，乾乾爽爽的。小狗可一點也不乾",
+      "sticker": "girl",
+      "enter": true
+    },
+    {
+      "at": 4.76,
+      "cue": "乾乾爽爽的。小狗可一點也不乾",
+      "sticker": "girl",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 4.76,
+      "cue": "乾乾爽爽的。小狗可一點也不乾",
+      "sticker": "girl",
+      "animation": "crouch",
+      "mode": "hold"
+    },
+    {
+      "at": 6.36,
+      "cue": "小狗可一點也不乾",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 6.36,
+      "cue": "小狗可一點也不乾",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 8.36,
+      "sticker": "dog",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 9.53,
+      "cue": "嘩啦！又跑回來，用力一甩",
+      "sticker": "dog",
+      "go": "to",
+      "target": "girl"
+    },
+    {
+      "at": 11.48,
+      "cue": "用力一甩",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 13.24,
+      "cue": "狗狗！我",
+      "sticker": "girl",
+      "expression": "surprised"
+    },
+    {
+      "at": 18.76,
+      "cue": "嘩啦……跑回來，甩——甩——甩",
+      "sticker": "dog",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 19.56,
+      "cue": "跑回來，甩——甩——甩",
+      "sticker": "dog",
+      "go": "to",
+      "target": "girl"
+    },
+    {
+      "at": 20.44,
+      "cue": "甩——甩——甩",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 22.76,
+      "cue": "怎麼又來了啦",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 29.8,
+      "cue": "她把遮陽傘轉過去對著",
+      "sticker": "umbrella",
+      "animation": "spin"
+    },
+    {
+      "at": 35.08,
+      "cue": "甩、甩、甩！水",
+      "sticker": "dog",
+      "effect": "shake"
+    },
+    {
+      "at": 35.08,
+      "cue": "甩、甩、甩！水",
+      "sticker": "umbrella",
+      "effect": "spray"
+    },
+    {
+      "at": 38.59,
+      "cue": "哈哈！我還是乾的！」小狗搖搖尾巴，繞過遮陽傘……伸出舌",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 40.84,
+      "cue": "小狗搖搖尾巴，繞過遮陽傘……伸出舌",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 42.36,
+      "cue": "繞過遮陽傘……伸出舌",
+      "sticker": "dog",
+      "go": "to",
+      "target": "girl"
+    },
+    {
+      "at": 49.16,
+      "cue": "哎喲，狗狗",
+      "sticker": "dog",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 8.04,
+      "sticker": "rabbit",
+      "expression": "surprised"
+    },
+    {
+      "at": 8.04,
+      "sticker": "rabbit",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 26.84,
+      "sticker": "rabbit",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 32.6,
+      "cue": "松",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 32.6,
+      "cue": "松",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 34.76,
+      "cue": "把東西藏在背後，一副沒事的樣子。蜜蜂嗡嗡嗡地飛過來，一看到",
+      "sticker": "squirrel",
+      "animation": "hide-nut",
+      "mode": "hold"
+    },
+    {
+      "at": 38.52,
+      "cue": "蜜蜂嗡嗡嗡地飛過來，一看到",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 38.52,
+      "cue": "蜜蜂嗡嗡嗡地飛過來，一看到",
+      "sticker": "bee",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 40.76,
+      "cue": "一看到",
+      "sticker": "bee",
+      "expression": "surprised"
+    },
+    {
+      "at": 40.76,
+      "cue": "一看到",
+      "sticker": "bee",
+      "effect": "shake"
+    },
+    {
+      "at": 42.28,
+      "cue": "咻地飛走，咯咯偷笑",
+      "sticker": "bee",
+      "go": "away"
+    },
+    {
+      "at": 45.88,
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 49.56,
+      "cue": "浣熊躡手躡",
+      "sticker": "raccoon",
+      "enter": true
+    },
+    {
+      "at": 49.56,
+      "cue": "浣熊躡手躡",
+      "sticker": "raccoon",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 51.96,
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 51.96,
+      "sticker": "raccoon",
+      "animation": "peekaboo"
+    },
+    {
+      "at": 55.48,
+      "cue": "驚喜",
+      "effect": "confetti"
+    },
+    {
+      "at": 56.81,
+      "cue": "給我的",
+      "sticker": "bee",
+      "go": "back"
+    },
+    {
+      "at": 56.81,
+      "cue": "給我的",
+      "sticker": "rabbit",
+      "expression": "surprised"
+    },
+    {
+      "at": 56.81,
+      "cue": "給我的",
+      "sticker": "rabbit",
+      "effect": "hop",
+      "repeat": 3
+    },
+    {
+      "at": 62.44,
+      "cue": "松",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 62.44,
+      "cue": "松",
+      "sticker": "bee",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 62.44,
+      "cue": "松",
+      "sticker": "squirrel",
+      "animation": "hide-nut",
+      "mode": "resume"
+    },
+    {
+      "at": 67,
+      "cue": "蜜蜂也哼起生日快樂歌",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 69.56,
+      "sticker": "rabbit",
+      "effect": "tint",
+      "color": "#FFC0D0"
+    }
+  ]
+}

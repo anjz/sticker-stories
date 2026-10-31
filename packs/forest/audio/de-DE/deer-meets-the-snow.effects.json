@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "eines",
+      "effect": "snow",
+      "duration": 68.7,
+      "intensity": 0.5
+    },
+    {
+      "at": 6.52,
+      "cue": "das",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 8.36,
+      "cue": "was",
+      "sticker": "deer",
+      "expression": "surprised"
+    },
+    {
+      "at": 13.32,
+      "cue": "kalt",
+      "sticker": "deer",
+      "animation": "shiver"
+    },
+    {
+      "at": 17.88,
+      "cue": "was",
+      "sticker": "deer",
+      "effect": "hop"
+    },
+    {
+      "at": 20.84,
+      "cue": "der",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 20.84,
+      "cue": "der",
+      "sticker": "rabbit",
+      "go": "to",
+      "target": "deer"
+    },
+    {
+      "at": 20.84,
+      "cue": "der",
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 23.32,
+      "cue": "knabberte",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 29.4,
+      "cue": "der",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 29.4,
+      "cue": "der",
+      "sticker": "fox",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 29.4,
+      "cue": "der",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 32.44,
+      "cue": "schnappte",
+      "sticker": "fox",
+      "animation": "snap"
+    },
+    {
+      "at": 38.52,
+      "cue": "er",
+      "sticker": "rabbit",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 41.48,
+      "cue": "der",
+      "sticker": "fox",
+      "expression": "normal"
+    },
+    {
+      "at": 42.76,
+      "cue": "auch",
+      "sticker": "fox",
+      "animation": "listen"
+    },
+    {
+      "at": 51.72,
+      "cue": "der",
+      "sticker": "rabbit",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 58.58,
+      "cue": "und",
+      "sticker": "deer",
+      "expression": "happy"
+    },
+    {
+      "at": 58.58,
+      "cue": "und",
+      "sticker": "deer",
+      "effect": "hearts"
+    }
+  ]
+}

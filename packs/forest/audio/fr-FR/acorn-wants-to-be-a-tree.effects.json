@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "gland",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 5.21,
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 5.21,
+      "sticker": "acorn",
+      "animation": "talk"
+    },
+    {
+      "at": 7.83,
+      "cue": "écureuil",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 14.39,
+      "cue": "avant",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "acorn"
+    },
+    {
+      "at": 16.16,
+      "cue": "a",
+      "sticker": "squirrel",
+      "animation": "bury"
+    },
+    {
+      "at": 19.4,
+      "cue": "tout",
+      "sticker": "squirrel",
+      "effect": "hearts"
+    },
+    {
+      "at": 20.2,
+      "cue": "fleur",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 20.2,
+      "cue": "fleur",
+      "sticker": "acorn",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 20.52,
+      "cue": "frissonnait",
+      "sticker": "flower",
+      "effect": "tint",
+      "color": "#BFE3FF"
+    },
+    {
+      "at": 23.48,
+      "cue": "elle",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 25.32,
+      "cue": "puis",
+      "effect": "snow",
+      "duration": 15.46,
+      "intensity": 0.6
+    },
+    {
+      "at": 27.16,
+      "cue": "les",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "hold"
+    },
+    {
+      "at": 38.28,
+      "cue": "un",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.9
+    },
+    {
+      "at": 41.56,
+      "cue": "fleur",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 45.58,
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "resume"
+    },
+    {
+      "at": 46.9,
+      "sticker": "acorn",
+      "expression": "surprised"
+    },
+    {
+      "at": 46.9,
+      "sticker": "squirrel",
+      "expression": "happy"
+    },
+    {
+      "at": 46.9,
+      "sticker": "squirrel",
+      "animation": "shake-head"
+    },
+    {
+      "at": 52.52,
+      "cue": "d’abord",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 52.52,
+      "cue": "d’abord",
+      "sticker": "acorn",
+      "effect": "glow"
+    }
+  ]
+}

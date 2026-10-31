@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "chenille",
+      "effect": "night",
+      "duration": 65.4,
+      "intensity": 0.7
+    },
+    {
+      "at": 0,
+      "cue": "chenille",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 8.72,
+      "cue": "de",
+      "sticker": "caterpillar",
+      "expression": "sad"
+    },
+    {
+      "at": 12.81,
+      "cue": "champignon",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 14.1,
+      "sticker": "mushroom",
+      "expression": "happy"
+    },
+    {
+      "at": 15.56,
+      "cue": "chenille",
+      "sticker": "caterpillar",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 16.44,
+      "cue": "sur",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 17.6,
+      "cue": "s’est",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "hold"
+    },
+    {
+      "at": 24.89,
+      "cue": "papillon",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 27.6,
+      "cue": "il",
+      "sticker": "butterfly",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 29.08,
+      "cue": "a",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 30.84,
+      "cue": "luciole",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 30.84,
+      "cue": "luciole",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "caterpillar"
+    },
+    {
+      "at": 34.24,
+      "cue": "elle",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 36.32,
+      "cue": "et",
+      "effect": "fireflies",
+      "duration": 26.84,
+      "intensity": 0.6
+    },
+    {
+      "at": 46.31,
+      "cue": "alors",
+      "sticker": "mushroom",
+      "animation": "sneeze"
+    },
+    {
+      "at": 53.11,
+      "cue": "chenille",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "resume"
+    },
+    {
+      "at": 55.32,
+      "cue": "s’est",
+      "sticker": "caterpillar",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 57.88,
+      "cue": "luciole",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 57.88,
+      "cue": "luciole",
+      "sticker": "firefly",
+      "animation": "wave"
+    }
+  ]
+}

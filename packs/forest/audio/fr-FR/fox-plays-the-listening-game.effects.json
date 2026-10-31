@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.64,
+      "cue": "lapin",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 5.32,
+      "sticker": "rabbit",
+      "effect": "hop"
+    },
+    {
+      "at": 9.61,
+      "cue": "souris",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 9.61,
+      "cue": "souris",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 11.44,
+      "cue": "renard",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 11.44,
+      "cue": "renard",
+      "sticker": "fox",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 13.08,
+      "sticker": "fox",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 14.6,
+      "cue": "lapin",
+      "sticker": "rabbit",
+      "animation": "listen"
+    },
+    {
+      "at": 17.48,
+      "cue": "abeille",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 19.72,
+      "cue": "en",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 21.44,
+      "cue": "souris",
+      "sticker": "mouse",
+      "animation": "sniff"
+    },
+    {
+      "at": 25.68,
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 25.68,
+      "sticker": "fox",
+      "effect": "wobble"
+    },
+    {
+      "at": 28.56,
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 31.96,
+      "cue": "renard",
+      "sticker": "fox",
+      "animation": "scratch"
+    },
+    {
+      "at": 35.12,
+      "sticker": "fox",
+      "expression": "sad"
+    },
+    {
+      "at": 39.52,
+      "cue": "a",
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 46.92,
+      "cue": "escargot",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 46.92,
+      "cue": "escargot",
+      "sticker": "snail",
+      "go": "to",
+      "target": "fox"
+    },
+    {
+      "at": 49.24,
+      "cue": "renard",
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 50.6,
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 52.33,
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 52.33,
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 54.66,
+      "sticker": "fox",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ニコは",
+      "sticker": "bucket",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "ニコは",
+      "sticker": "surfer",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "ニコは",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 7.56,
+      "cue": "バケツに、さらさらのかわいた",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 7.56,
+      "cue": "バケツに、さらさらのかわいた",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "bucket"
+    },
+    {
+      "at": 8.64,
+      "cue": "さらさらのかわいた",
+      "sticker": "bucket",
+      "animation": "wobble"
+    },
+    {
+      "at": 19.7,
+      "cue": "あーあ」もういちど。ぽろぽろ。もういちど。ぽろぽろっ",
+      "sticker": "surfer",
+      "expression": "sad"
+    },
+    {
+      "at": 23.8,
+      "cue": "もういちど。ぽろぽろっ",
+      "sticker": "surfer",
+      "animation": "shake-head"
+    },
+    {
+      "at": 26.44,
+      "cue": "ニコは、波打ち際へいって、かんがえました。小さな波が、ざざっとあしをぬらして、ひいたあとは、色がこくなって、かちっとかたまっています",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 33.56,
+      "cue": "ひいたあとは、色がこくなって、かちっとかたまっています",
+      "sticker": "surfer",
+      "expression": "surprised"
+    },
+    {
+      "at": 39.72,
+      "cue": "これ",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 42.2,
+      "cue": "バケツのところまで、はこびました。ぺた、ぺた、ぺた。ひっくりかえすと",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "bucket"
+    },
+    {
+      "at": 44.6,
+      "cue": "ぺた、ぺた、ぺた。ひっくりかえすと",
+      "sticker": "bucket",
+      "effect": "pulse"
+    },
+    {
+      "at": 48.52,
+      "cue": "くずれない！とうが、ひとつ。ふたつ。みっつ",
+      "sticker": "surfer",
+      "expression": "surprised"
+    },
+    {
+      "at": 53.72,
+      "sticker": "castle",
+      "enter": true
+    },
+    {
+      "at": 53.72,
+      "sticker": "surfer",
+      "go": "to",
+      "target": "castle"
+    },
+    {
+      "at": 56.2,
+      "cue": "てっぺんには、小さな赤いはた。はたが、ぱたぱた、はためきます",
+      "sticker": "castle",
+      "effect": "sparkle"
+    },
+    {
+      "at": 59.16,
+      "cue": "はたが、ぱたぱた、はためきます",
+      "sticker": "castle",
+      "animation": "flag"
+    },
+    {
+      "at": 61.79,
+      "cue": "せかいいちの",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 61.79,
+      "cue": "せかいいちの",
+      "sticker": "surfer",
+      "animation": "jump"
+    }
+  ]
+}

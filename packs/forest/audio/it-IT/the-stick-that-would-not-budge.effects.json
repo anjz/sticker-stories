@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "castoro",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 9.15,
+      "cue": "proprio",
+      "sticker": "beaver",
+      "expression": "happy"
+    },
+    {
+      "at": 10.84,
+      "cue": "ha",
+      "sticker": "beaver",
+      "animation": "pull"
+    },
+    {
+      "at": 17.08,
+      "cue": "orsetto",
+      "sticker": "bear",
+      "enter": true
+    },
+    {
+      "at": 17.88,
+      "cue": "ti",
+      "sticker": "bear",
+      "go": "to",
+      "target": "beaver"
+    },
+    {
+      "at": 20.84,
+      "cue": "oh",
+      "sticker": "bear",
+      "effect": "shake"
+    },
+    {
+      "at": 23.56,
+      "cue": "coniglio",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 25.72,
+      "cue": "adesso",
+      "sticker": "rabbit",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 27.56,
+      "cue": "oh",
+      "sticker": "rabbit",
+      "effect": "shake"
+    },
+    {
+      "at": 33.08,
+      "cue": "poi",
+      "sticker": "beaver",
+      "expression": "sad"
+    },
+    {
+      "at": 33.96,
+      "cue": "topolino",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 36.76,
+      "cue": "posso",
+      "sticker": "mouse",
+      "animation": "sniff"
+    },
+    {
+      "at": 37.96,
+      "cue": "tu",
+      "sticker": "bear",
+      "expression": "surprised"
+    },
+    {
+      "at": 41.48,
+      "cue": "ma",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 49.72,
+      "cue": "adesso",
+      "sticker": "mouse",
+      "animation": "pull"
+    },
+    {
+      "at": 53.96,
+      "cue": "fuori",
+      "sticker": "beaver",
+      "effect": "spin"
+    },
+    {
+      "at": 53.96,
+      "cue": "fuori",
+      "sticker": "bear",
+      "effect": "spin"
+    },
+    {
+      "at": 53.96,
+      "cue": "fuori",
+      "sticker": "rabbit",
+      "effect": "spin"
+    },
+    {
+      "at": 53.96,
+      "cue": "fuori",
+      "sticker": "mouse",
+      "effect": "spin"
+    },
+    {
+      "at": 59.32,
+      "cue": "castoro",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 59.32,
+      "cue": "castoro",
+      "sticker": "beaver",
+      "animation": "gnaw",
+      "mode": "hold"
+    },
+    {
+      "at": 64.35,
+      "cue": "tutti",
+      "sticker": "mouse",
+      "animation": "talk"
+    },
+    {
+      "at": 66.8,
+      "cue": "io",
+      "sticker": "mouse",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

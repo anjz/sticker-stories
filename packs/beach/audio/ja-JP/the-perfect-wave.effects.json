@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ニコは、さいこうの波に、のりたいとおもっていました。海へこぎ",
+      "effect": "sunshine",
+      "duration": 40,
+      "intensity": 0.6
+    },
+    {
+      "at": 0,
+      "cue": "ニコは、さいこうの波に、のりたいとおもっていました。海へこぎ",
+      "sticker": "surfer",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "ニコは、さいこうの波に、のりたいとおもっていました。海へこぎ",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 7.72,
+      "cue": "海へこぎ",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 7.72,
+      "cue": "海へこぎ",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sea",
+      "by": "paddle"
+    },
+    {
+      "at": 17.79,
+      "cue": "ちっちゃすぎ」また、きました。「でこぼこすぎ",
+      "sticker": "surfer",
+      "animation": "shake-head"
+    },
+    {
+      "at": 20.68,
+      "cue": "でこぼこすぎ",
+      "sticker": "surfer",
+      "animation": "shake-head"
+    },
+    {
+      "at": 22.36,
+      "cue": "ヨットが、すいーっととおりすぎます。帆は、まあるく、ふっくら。漁船が、ポンポンポンととおって、あみを引きあげました",
+      "sticker": "sailboat",
+      "enter": true
+    },
+    {
+      "at": 25.8,
+      "cue": "帆は、まあるく、ふっくら。漁船が、ポンポンポンととおって、あみを引きあげました",
+      "sticker": "sailboat",
+      "animation": "sails"
+    },
+    {
+      "at": 28.92,
+      "cue": "漁船が、ポンポンポンととおって、あみを引きあげました",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 31.64,
+      "cue": "あみを引きあげました",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 33.3,
+      "cue": "ぼくの波は、どこなのー？」とおくの",
+      "sticker": "surfer",
+      "expression": "sad"
+    },
+    {
+      "at": 36.2,
+      "cue": "とおくの",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 36.2,
+      "cue": "とおくの",
+      "sticker": "dog",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 39.24,
+      "cue": "まるで、「あせらない、あせらない」といっているみたい",
+      "sticker": "dog",
+      "effect": "hop"
+    },
+    {
+      "at": 49.24,
+      "cue": "すると、ずっとむこうで、波がもりあがってきました。なめらかで、青くて、ちょうどいい波です",
+      "sticker": "surfer",
+      "expression": "surprised"
+    },
+    {
+      "at": 57.88,
+      "cue": "ニコは、すっくと立ちあがりました。ざざざーっ",
+      "sticker": "surfer",
+      "effect": "glow",
+      "intensity": 0.5
+    },
+    {
+      "at": 60.68,
+      "cue": "ざざざーっ",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand",
+      "by": "surf"
+    },
+    {
+      "at": 65.8,
+      "cue": "ニコは、ふねたちに、ボードをふりました",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 65.8,
+      "cue": "ニコは、ふねたちに、ボードをふりました",
+      "sticker": "surfer",
+      "animation": "wave"
+    },
+    {
+      "at": 68.73,
+      "cue": "これこれ！これが、さいこうの波",
+      "sticker": "dog",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

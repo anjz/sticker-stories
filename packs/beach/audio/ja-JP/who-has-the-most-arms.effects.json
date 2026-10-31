@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ローラが、潮",
+      "sticker": "girl",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "ローラが、潮",
+      "sticker": "girl",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 6.9,
+      "cue": "きょうは",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 10.12,
+      "cue": "ぬうっと出てきたのは、オレンジいろで、くるくるの、タコくん。それから、ヒトデさんも、にっこり",
+      "sticker": "octopus",
+      "enter": true
+    },
+    {
+      "at": 10.12,
+      "cue": "ぬうっと出てきたのは、オレンジいろで、くるくるの、タコくん。それから、ヒトデさんも、にっこり",
+      "sticker": "octopus",
+      "go": "to",
+      "target": "girl"
+    },
+    {
+      "at": 15.16,
+      "cue": "それから、ヒトデさんも、にっこり",
+      "sticker": "starfish",
+      "enter": true
+    },
+    {
+      "at": 15.16,
+      "cue": "それから、ヒトデさんも、にっこり",
+      "sticker": "starfish",
+      "go": "to",
+      "target": "octopus"
+    },
+    {
+      "at": 16.84,
+      "cue": "にっこり",
+      "sticker": "starfish",
+      "expression": "happy"
+    },
+    {
+      "at": 21.88,
+      "cue": "まずは、ローラ。いーち、にーい。二本！ヒトデさんは、ぐーんとのびました。いち、に、さん、し、ご。五本",
+      "sticker": "girl",
+      "animation": "wave"
+    },
+    {
+      "at": 26.52,
+      "cue": "ヒトデさんは、ぐーんとのびました。いち、に、さん、し、ご。五本",
+      "sticker": "starfish",
+      "animation": "stretch"
+    },
+    {
+      "at": 32.92,
+      "cue": "五本",
+      "sticker": "girl",
+      "expression": "surprised"
+    },
+    {
+      "at": 35.8,
+      "cue": "うでをぜんぶ、くねくね",
+      "sticker": "octopus",
+      "animation": "dance"
+    },
+    {
+      "at": 43.08,
+      "sticker": "octopus",
+      "expression": "happy"
+    },
+    {
+      "at": 53.8,
+      "cue": "ローラは、ぱちぱち。ヒトデさんは、ばんざい。タコくんは",
+      "sticker": "girl",
+      "animation": "clap"
+    },
+    {
+      "at": 57.64,
+      "cue": "タコくんは",
+      "sticker": "octopus",
+      "animation": "twirl"
+    }
+  ]
+}

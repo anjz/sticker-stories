@@ -1,0 +1,163 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "まあるいお月さまが、ぴかぴか。もうねるじかんなのに、アライグマくんは、目がぱっちり。「こんばんは、お月さま！」そこへ、小さなくもがふわり",
+      "effect": "night",
+      "duration": 75.4,
+      "intensity": 0.8
+    },
+    {
+      "at": 8.12,
+      "cue": "アライグマくんは、目がぱっちり。「こんばんは、お月さま！」そこへ、小さなくもがふわり",
+      "sticker": "raccoon",
+      "enter": true
+    },
+    {
+      "at": 10.44,
+      "cue": "こんばんは、お月さま！」そこへ、小さなくもがふわり",
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 10.44,
+      "cue": "こんばんは、お月さま！」そこへ、小さなくもがふわり",
+      "sticker": "raccoon",
+      "effect": "hop"
+    },
+    {
+      "at": 12.84,
+      "cue": "そこへ、小さなくもがふわり",
+      "effect": "clouds",
+      "duration": 9.14,
+      "intensity": 0.6
+    },
+    {
+      "at": 15.96,
+      "cue": "お月さまが、きえちゃった！「どこいったの？」くもがながれていくと…ほら、また見えた。ばあ",
+      "sticker": "raccoon",
+      "expression": "surprised"
+    },
+    {
+      "at": 17.8,
+      "cue": "どこいったの？」くもがながれていくと…ほら、また見えた。ばあ",
+      "sticker": "raccoon",
+      "animation": "look-around"
+    },
+    {
+      "at": 24.6,
+      "cue": "お月さまが、いないいないばあをしているん",
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 29.44,
+      "cue": "りょうてで目をかくして、「いないいない…」「ばあ！」そのわらいごえに、ハリネズミくんが、ふんふんやってきて、けらけらけら。それからホタルさんも、ふわふわおりてきました",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "hold"
+    },
+    {
+      "at": 32.2,
+      "cue": "ばあ！」そのわらいごえに、ハリネズミくんが、ふんふんやってきて、けらけらけら。それからホタルさんも、ふわふわおりてきました",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "resume"
+    },
+    {
+      "at": 34.36,
+      "cue": "ハリネズミくんが、ふんふんやってきて、けらけらけら。それからホタルさんも、ふわふわおりてきました",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 34.36,
+      "cue": "ハリネズミくんが、ふんふんやってきて、けらけらけら。それからホタルさんも、ふわふわおりてきました",
+      "sticker": "hedgehog",
+      "go": "to",
+      "target": "raccoon"
+    },
+    {
+      "at": 36.76,
+      "cue": "けらけらけら。それからホタルさんも、ふわふわおりてきました",
+      "sticker": "hedgehog",
+      "expression": "happy"
+    },
+    {
+      "at": 36.76,
+      "cue": "けらけらけら。それからホタルさんも、ふわふわおりてきました",
+      "sticker": "hedgehog",
+      "animation": "laugh"
+    },
+    {
+      "at": 38.6,
+      "cue": "ホタルさんも、ふわふわおりてきました",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 38.6,
+      "cue": "ホタルさんも、ふわふわおりてきました",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "raccoon"
+    },
+    {
+      "at": 41.8,
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 2,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 45.72,
+      "cue": "ぴかっ、ぴかっ！いないいないばあ！みんな、くすくす。やがて、ハリネズミくんがあくびをひとつ。にこにこしたまま、まあるくなりました",
+      "sticker": "firefly",
+      "effect": "glow",
+      "repeat": 2,
+      "duration": 0.4,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 48.28,
+      "cue": "みんな、くすくす。やがて、ハリネズミくんがあくびをひとつ。にこにこしたまま、まあるくなりました",
+      "sticker": "raccoon",
+      "effect": "hop"
+    },
+    {
+      "at": 48.28,
+      "cue": "みんな、くすくす。やがて、ハリネズミくんがあくびをひとつ。にこにこしたまま、まあるくなりました",
+      "sticker": "hedgehog",
+      "effect": "wobble"
+    },
+    {
+      "at": 53.32,
+      "cue": "にこにこしたまま、まあるくなりました",
+      "sticker": "hedgehog",
+      "expression": "sleeping"
+    },
+    {
+      "at": 53.32,
+      "cue": "にこにこしたまま、まあるくなりました",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    },
+    {
+      "at": 57.96,
+      "cue": "ねむそうなアライグマくん。目をかくして…こんどは「ばあ」がありません。ぐっすりねむってしまったのです。そしてお月さまは",
+      "sticker": "raccoon",
+      "expression": "sleeping"
+    },
+    {
+      "at": 60.04,
+      "cue": "目をかくして…こんどは「ばあ」がありません。ぐっすりねむってしまったのです。そしてお月さまは",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "hold"
+    }
+  ]
+}

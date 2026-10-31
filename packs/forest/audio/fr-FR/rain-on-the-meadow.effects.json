@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "plic",
+      "effect": "rain",
+      "duration": 45.46,
+      "intensity": 0.6
+    },
+    {
+      "at": 9,
+      "cue": "sur",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 12.44,
+      "cue": "grenouille",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 12.44,
+      "cue": "grenouille",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 14.25,
+      "cue": "toute",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 15.48,
+      "cue": "sur",
+      "sticker": "all",
+      "effect": "pulse",
+      "intensity": 0.4
+    },
+    {
+      "at": 20.04,
+      "cue": "dans",
+      "sticker": "all",
+      "effect": "wobble",
+      "intensity": 0.4
+    },
+    {
+      "at": 24.08,
+      "cue": "escargot",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 29.4,
+      "cue": "hop",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 32.04,
+      "cue": "caneton",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 34.44,
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 34.44,
+      "sticker": "duckling",
+      "animation": "quack"
+    },
+    {
+      "at": 38.59,
+      "cue": "quelle",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 38.59,
+      "cue": "quelle",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 43.96,
+      "cue": "le",
+      "effect": "sunshine"
+    },
+    {
+      "at": 45.36,
+      "cue": "escargot",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 47.23,
+      "cue": "et",
+      "effect": "rainbow"
+    },
+    {
+      "at": 53.36,
+      "cue": "grenouille",
+      "sticker": "frog",
+      "animation": "catch-fly"
+    },
+    {
+      "at": 54.8,
+      "cue": "et",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "hold"
+    }
+  ]
+}

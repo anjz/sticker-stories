@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "es",
+      "sticker": "seaweed",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "es",
+      "effect": "clouds",
+      "duration": 30,
+      "intensity": 0.6
+    },
+    {
+      "at": 8.4,
+      "cue": "tuck",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 8.4,
+      "cue": "tuck",
+      "sticker": "fishing-boat",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 12.28,
+      "cue": "die",
+      "sticker": "fishing-boat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 12.28,
+      "cue": "die",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 14.03,
+      "cue": "denn",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 16.52,
+      "cue": "das",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 17.92,
+      "cue": "hoch",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 21.16,
+      "cue": "die",
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 24.52,
+      "cue": "tang",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 30.28,
+      "cue": "nicht",
+      "sticker": "seagull",
+      "expression": "sad"
+    },
+    {
+      "at": 31.08,
+      "cue": "kicherte",
+      "sticker": "seaweed",
+      "expression": "happy"
+    },
+    {
+      "at": 35.24,
+      "cue": "er",
+      "sticker": "seaweed",
+      "animation": "sway"
+    },
+    {
+      "at": 37.76,
+      "cue": "die",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 37.76,
+      "cue": "die",
+      "sticker": "seagull",
+      "animation": "laugh"
+    },
+    {
+      "at": 41.4,
+      "cue": "das",
+      "sticker": "fishing-boat",
+      "effect": "pulse"
+    },
+    {
+      "at": 44.92,
+      "cue": "und",
+      "sticker": "seaweed",
+      "animation": "wave"
+    }
+  ]
+}

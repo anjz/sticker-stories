@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ぽかぽか、のんびりした、はらっぱのごご。子ジカが、くさのなかでおひるごはんをもぐもぐ。すると…ぶーん。ハエです！子ジカの耳のまわりを、ぶんぶん。ぴくっ、ぴくっ。「あっちいって！」ハエはカタツ",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.6
+    },
+    {
+      "at": 7.48,
+      "cue": "子ジカが、くさのなかでおひるごはんをもぐもぐ。すると…ぶーん。ハエです！子ジカの耳のまわりを、ぶんぶん。ぴくっ、ぴくっ。「あっちいって！」ハエはカタツ",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 9.2,
+      "cue": "おひるごはんをもぐもぐ。すると…ぶーん。ハエです！子ジカの耳のまわりを、ぶんぶん。ぴくっ、ぴくっ。「あっちいって！」ハエはカタツ",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 18.12,
+      "cue": "ぴくっ、ぴくっ。「あっちいって！」ハエはカタツ",
+      "sticker": "deer",
+      "expression": "surprised"
+    },
+    {
+      "at": 18.12,
+      "cue": "ぴくっ、ぴくっ。「あっちいって！」ハエはカタツ",
+      "sticker": "deer",
+      "animation": "ear-flick"
+    },
+    {
+      "at": 21.08,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 25.12,
+      "cue": "くすぐったい！」すぽっと、からのなかへ。ぶーん。また子ジカのところへ。子ジカは、どん！と足ぶみ",
+      "sticker": "snail",
+      "expression": "surprised"
+    },
+    {
+      "at": 26.44,
+      "cue": "すぽっと、からのなかへ。ぶーん。また子ジカのところへ。子ジカは、どん！と足ぶみ",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 31.8,
+      "cue": "子ジカは、どん！と足ぶみ",
+      "sticker": "deer",
+      "animation": "stamp"
+    },
+    {
+      "at": 35.32,
+      "cue": "なにをしても",
+      "sticker": "deer",
+      "expression": "sad"
+    },
+    {
+      "at": 40.52,
+      "cue": "カエルさんは",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 40.52,
+      "cue": "カエルさんは",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 43.32,
+      "cue": "まかせて。」そして、じっと。じーっと、じーっと",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 46.92,
+      "cue": "じーっと、じーっと",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "hold"
+    },
+    {
+      "at": 53.72,
+      "cue": "子ジカは、いきをとめました",
+      "sticker": "deer",
+      "expression": "surprised"
+    },
+    {
+      "at": 56.4,
+      "cue": "ぱくっ！ごっくん。はらっぱが、しーん。カタツ",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "resume"
+    },
+    {
+      "at": 60.52,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 64.42,
+      "cue": "ハエって、なんのこと？」とカエルさんは、にんまり",
+      "sticker": "frog",
+      "effect": "pulse"
+    },
+    {
+      "at": 69.08,
+      "cue": "はらっぱじ",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 69.08,
+      "cue": "はらっぱじ",
+      "sticker": "all",
+      "effect": "wobble"
+    }
+  ]
+}

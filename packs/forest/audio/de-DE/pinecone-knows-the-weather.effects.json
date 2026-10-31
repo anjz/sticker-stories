@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5.6,
+      "cue": "der",
+      "sticker": "pinecone",
+      "enter": true
+    },
+    {
+      "at": 7.96,
+      "cue": "die",
+      "sticker": "pinecone",
+      "animation": "open",
+      "mode": "hold"
+    },
+    {
+      "at": 9.96,
+      "cue": "das",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 9.96,
+      "cue": "das",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "pinecone"
+    },
+    {
+      "at": 12.26,
+      "cue": "komm",
+      "sticker": "squirrel",
+      "effect": "hop"
+    },
+    {
+      "at": 15.08,
+      "cue": "der",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 15.08,
+      "cue": "der",
+      "sticker": "rabbit",
+      "go": "to",
+      "target": "pinecone"
+    },
+    {
+      "at": 17.16,
+      "cue": "den",
+      "sticker": "rabbit",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 24.84,
+      "cue": "und",
+      "sticker": "pinecone",
+      "animation": "open",
+      "mode": "resume"
+    },
+    {
+      "at": 27.78,
+      "cue": "schuppen",
+      "sticker": "pinecone",
+      "animation": "talk"
+    },
+    {
+      "at": 31.32,
+      "cue": "regen",
+      "sticker": "squirrel",
+      "expression": "surprised"
+    },
+    {
+      "at": 34.28,
+      "cue": "aber",
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 34.28,
+      "cue": "aber",
+      "sticker": "rabbit",
+      "effect": "wobble"
+    },
+    {
+      "at": 36.36,
+      "cue": "da",
+      "effect": "clouds",
+      "duration": 37.06,
+      "intensity": 0.7
+    },
+    {
+      "at": 39.8,
+      "cue": "der",
+      "sticker": "rabbit",
+      "animation": "listen"
+    },
+    {
+      "at": 45.48,
+      "cue": "da",
+      "effect": "rain",
+      "duration": 19.42,
+      "intensity": 0.8
+    },
+    {
+      "at": 47.32,
+      "cue": "der",
+      "sticker": "rabbit",
+      "expression": "surprised"
+    },
+    {
+      "at": 47.32,
+      "cue": "der",
+      "sticker": "rabbit",
+      "go": "to",
+      "target": "squirrel"
+    },
+    {
+      "at": 47.32,
+      "cue": "der",
+      "sticker": "pinecone",
+      "go": "to",
+      "target": "squirrel"
+    },
+    {
+      "at": 51.56,
+      "cue": "und",
+      "sticker": "squirrel",
+      "animation": "wrap-tail",
+      "mode": "hold"
+    },
+    {
+      "at": 59.64,
+      "cue": "das",
+      "sticker": "pinecone",
+      "effect": "pulse"
+    },
+    {
+      "at": 67.8,
+      "cue": "der",
+      "sticker": "pinecone",
+      "animation": "open",
+      "mode": "hold"
+    },
+    {
+      "at": 70.92,
+      "cue": "und",
+      "effect": "sunshine"
+    },
+    {
+      "at": 72.91,
+      "cue": "schuppen",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 72.91,
+      "cue": "schuppen",
+      "sticker": "all",
+      "effect": "hop"
+    }
+  ]
+}

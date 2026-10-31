@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "尼可想衝一道最完美的浪。他划呀划，划到海上，坐在衝浪板上等著。上上下下。上上下下。一道小浪來了",
+      "effect": "sunshine",
+      "duration": 40,
+      "intensity": 0.6
+    },
+    {
+      "at": 0,
+      "cue": "尼可想衝一道最完美的浪。他划呀划，划到海上，坐在衝浪板上等著。上上下下。上上下下。一道小浪來了",
+      "sticker": "surfer",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "尼可想衝一道最完美的浪。他划呀划，划到海上，坐在衝浪板上等著。上上下下。上上下下。一道小浪來了",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 5.88,
+      "cue": "他划呀划，划到海上，坐在衝浪板上等著。上上下下。上上下下。一道小浪來了",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 5.88,
+      "cue": "他划呀划，划到海上，坐在衝浪板上等著。上上下下。上上下下。一道小浪來了",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sea",
+      "by": "paddle"
+    },
+    {
+      "at": 15.08,
+      "cue": "太小了。」又一道來了。「歪七扭",
+      "sticker": "surfer",
+      "animation": "shake-head"
+    },
+    {
+      "at": 17.48,
+      "cue": "歪七扭",
+      "sticker": "surfer",
+      "animation": "shake-head"
+    },
+    {
+      "at": 19.24,
+      "cue": "帆船輕輕滑過去，帆鼓得圓圓的、飽飽的。漁船噗噗噗地開過來，拉起了網子",
+      "sticker": "sailboat",
+      "enter": true
+    },
+    {
+      "at": 21.64,
+      "cue": "帆鼓得圓圓的、飽飽的。漁船噗噗噗地開過來，拉起了網子",
+      "sticker": "sailboat",
+      "animation": "sails"
+    },
+    {
+      "at": 24.44,
+      "cue": "漁船噗噗噗地開過來，拉起了網子",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 26.52,
+      "cue": "拉起了網子",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 27.69,
+      "cue": "我的浪呢？我的浪到底在哪裡？」小狗在沙灘上",
+      "sticker": "surfer",
+      "expression": "sad"
+    },
+    {
+      "at": 31.24,
+      "cue": "小狗在沙灘上",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 31.24,
+      "cue": "小狗在沙灘上",
+      "sticker": "dog",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 34.04,
+      "cue": "好像在說：要有耐心喔。於是尼可等呀等。看呀看。又等呀等",
+      "sticker": "dog",
+      "effect": "hop"
+    },
+    {
+      "at": 43.04,
+      "cue": "這時候",
+      "sticker": "surfer",
+      "expression": "surprised"
+    },
+    {
+      "at": 50.76,
+      "cue": "尼可站起來了！唰——！他乘著浪一路滑回來",
+      "sticker": "surfer",
+      "effect": "glow",
+      "intensity": 0.5
+    },
+    {
+      "at": 52.44,
+      "cue": "唰——！他乘著浪一路滑回來",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand",
+      "by": "surf"
+    },
+    {
+      "at": 56.92,
+      "cue": "他舉起衝浪板，向",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 56.92,
+      "cue": "他舉起衝浪板，向",
+      "sticker": "surfer",
+      "animation": "wave"
+    },
+    {
+      "at": 59.85,
+      "cue": "這個，才是最完美的浪",
+      "sticker": "dog",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

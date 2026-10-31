@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "una",
+      "effect": "snow",
+      "duration": 72.3,
+      "intensity": 0.5
+    },
+    {
+      "at": 7.64,
+      "cue": "cerbiatto",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 9.72,
+      "cue": "che",
+      "sticker": "deer",
+      "expression": "surprised"
+    },
+    {
+      "at": 13.48,
+      "cue": "che",
+      "sticker": "deer",
+      "animation": "shiver"
+    },
+    {
+      "at": 18.28,
+      "cue": "e",
+      "sticker": "deer",
+      "effect": "hop"
+    },
+    {
+      "at": 21.88,
+      "cue": "coniglio",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 21.88,
+      "cue": "coniglio",
+      "sticker": "rabbit",
+      "go": "to",
+      "target": "deer"
+    },
+    {
+      "at": 21.88,
+      "cue": "coniglio",
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 25.04,
+      "cue": "ha",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 30.04,
+      "cue": "volpe",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 30.04,
+      "cue": "volpe",
+      "sticker": "fox",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 30.04,
+      "cue": "volpe",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 32.52,
+      "cue": "acchiappando",
+      "sticker": "fox",
+      "animation": "snap"
+    },
+    {
+      "at": 39.32,
+      "cue": "ha",
+      "sticker": "rabbit",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 42.2,
+      "cue": "volpe",
+      "sticker": "fox",
+      "expression": "normal"
+    },
+    {
+      "at": 43.64,
+      "cue": "anche",
+      "sticker": "fox",
+      "animation": "listen"
+    },
+    {
+      "at": 53.32,
+      "cue": "coniglio",
+      "sticker": "rabbit",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 60.76,
+      "cue": "così",
+      "sticker": "deer",
+      "expression": "happy"
+    },
+    {
+      "at": 60.76,
+      "cue": "così",
+      "sticker": "deer",
+      "effect": "hearts"
+    }
+  ]
+}

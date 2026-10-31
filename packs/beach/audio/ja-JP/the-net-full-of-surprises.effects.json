@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "はいいろの、くもり空の朝です。やわらかな雲が、海の上を、ゆっくりながれていきます。ポン、ポン…漁船が、海へ出ていきました。カモメさんが、あとをおいかけます",
+      "sticker": "seaweed",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "はいいろの、くもり空の朝です。やわらかな雲が、海の上を、ゆっくりながれていきます。ポン、ポン…漁船が、海へ出ていきました。カモメさんが、あとをおいかけます",
+      "effect": "clouds",
+      "duration": 30,
+      "intensity": 0.6
+    },
+    {
+      "at": 11.32,
+      "cue": "ポン、ポン…漁船が、海へ出ていきました。カモメさんが、あとをおいかけます",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 11.32,
+      "cue": "ポン、ポン…漁船が、海へ出ていきました。カモメさんが、あとをおいかけます",
+      "sticker": "fishing-boat",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 16.12,
+      "cue": "カモメさんが、あとをおいかけます",
+      "sticker": "fishing-boat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 16.12,
+      "cue": "カモメさんが、あとをおいかけます",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 18.52,
+      "cue": "おいしいもの、もらえるかな？ふねが、とまりました。ぽたぽたしずくをたらして、おもたいあみが、あがってきます。「クワーッ！なにかな？なにかな",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 20.76,
+      "cue": "ふねが、とまりました。ぽたぽたしずくをたらして、おもたいあみが、あがってきます。「クワーッ！なにかな？なにかな",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 22.68,
+      "cue": "ぽたぽたしずくをたらして、おもたいあみが、あがってきます。「クワーッ！なにかな？なにかな",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 26.6,
+      "cue": "クワーッ！なにかな？なにかな",
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 30.33,
+      "cue": "わかめ。ぬれて、もじゃもじゃの、みどりのわかめ",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 36.28,
+      "cue": "がっかり…すこしはなれたところで、海藻がくすくすわらいました",
+      "sticker": "seagull",
+      "expression": "sad"
+    },
+    {
+      "at": 40.04,
+      "cue": "くすくすわらいました",
+      "sticker": "seaweed",
+      "expression": "happy"
+    },
+    {
+      "at": 44.44,
+      "cue": "ゆらゆらゆれて、こんにちは",
+      "sticker": "seaweed",
+      "animation": "sway"
+    },
+    {
+      "at": 47.32,
+      "cue": "カモメさんは、おなかがすいていたのもわすれて、大わらい。漁船は、わかめを、そうっと水にかえしてあげました…海藻は、見えなくなるまで、手をふっていました",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 47.32,
+      "cue": "カモメさんは、おなかがすいていたのもわすれて、大わらい。漁船は、わかめを、そうっと水にかえしてあげました…海藻は、見えなくなるまで、手をふっていました",
+      "sticker": "seagull",
+      "animation": "laugh"
+    },
+    {
+      "at": 51.48,
+      "cue": "漁船は、わかめを、そうっと水にかえしてあげました…海藻は、見えなくなるまで、手をふっていました",
+      "sticker": "fishing-boat",
+      "effect": "pulse"
+    },
+    {
+      "at": 55.72,
+      "cue": "海藻は、見えなくなるまで、手をふっていました",
+      "sticker": "seaweed",
+      "animation": "wave"
+    }
+  ]
+}

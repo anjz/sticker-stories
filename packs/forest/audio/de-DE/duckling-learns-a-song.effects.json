@@ -1,0 +1,152 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "der",
+      "sticker": "bee",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.4
+    },
+    {
+      "at": 0,
+      "cue": "der",
+      "sticker": "bird",
+      "enter": true,
+      "by": "hop"
+    },
+    {
+      "at": 7.4,
+      "cue": "das",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 7.4,
+      "cue": "das",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "bird"
+    },
+    {
+      "at": 9.56,
+      "cue": "zeig’s",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 13.72,
+      "cue": "quak",
+      "sticker": "duckling",
+      "animation": "quack"
+    },
+    {
+      "at": 14.76,
+      "cue": "nein",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 17.96,
+      "cue": "noch",
+      "sticker": "bird",
+      "effect": "hop"
+    },
+    {
+      "at": 27.08,
+      "cue": "die",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 27.08,
+      "cue": "die",
+      "sticker": "bee",
+      "go": "to",
+      "target": "bird"
+    },
+    {
+      "at": 29.72,
+      "cue": "und",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 32.4,
+      "cue": "der",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 32.4,
+      "cue": "der",
+      "sticker": "frog",
+      "go": "to",
+      "target": "duckling"
+    },
+    {
+      "at": 36.2,
+      "cue": "alle",
+      "sticker": "frog",
+      "effect": "hop"
+    },
+    {
+      "at": 40.06,
+      "cue": "dann",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 43.88,
+      "cue": "summ",
+      "sticker": "bee",
+      "effect": "wobble"
+    },
+    {
+      "at": 44.6,
+      "cue": "koax",
+      "sticker": "frog",
+      "animation": "croak"
+    },
+    {
+      "at": 45.48,
+      "cue": "der",
+      "sticker": "bird",
+      "animation": "sing",
+      "mode": "hold"
+    },
+    {
+      "at": 50.52,
+      "cue": "dem",
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 54.92,
+      "cue": "und",
+      "sticker": "duckling",
+      "animation": "nap"
+    },
+    {
+      "at": 61,
+      "cue": "genau",
+      "sticker": "bird",
+      "animation": "sing",
+      "mode": "resume"
+    },
+    {
+      "at": 64.04,
+      "cue": "alle",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 64.04,
+      "cue": "alle",
+      "sticker": "all",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "秋天到了",
+      "effect": "leaves",
+      "duration": 78.08,
+      "intensity": 0.6
+    },
+    {
+      "at": 10.28,
+      "cue": "刺蝟需要一張乾樹葉鋪的床，才能睡一整個冬天。一片葉子",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 15.08,
+      "cue": "一片葉子",
+      "sticker": "hedgehog",
+      "expression": "happy"
+    },
+    {
+      "at": 20.84,
+      "cue": "可是，風呼呼地吹呀吹——咻！床飛走了",
+      "effect": "wind",
+      "duration": 47.42,
+      "intensity": 0.8
+    },
+    {
+      "at": 24.84,
+      "cue": "床飛走了",
+      "sticker": "hedgehog",
+      "expression": "surprised"
+    },
+    {
+      "at": 24.84,
+      "cue": "床飛走了",
+      "sticker": "hedgehog",
+      "effect": "spin"
+    },
+    {
+      "at": 31.96,
+      "cue": "又不見了。葉子飄呀飄，落在松",
+      "sticker": "hedgehog",
+      "expression": "sad"
+    },
+    {
+      "at": 35.4,
+      "cue": "松",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 36.04,
+      "cue": "獾的身上",
+      "sticker": "badger",
+      "enter": true
+    },
+    {
+      "at": 37.16,
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "hedgehog"
+    },
+    {
+      "at": 37.16,
+      "sticker": "badger",
+      "go": "to",
+      "target": "hedgehog"
+    },
+    {
+      "at": 38.68,
+      "cue": "風一直把我的床吹走。」刺蝟嘆了一口氣。獾想了想：「那就做在風吹不到的地方吧",
+      "sticker": "hedgehog",
+      "animation": "talk"
+    },
+    {
+      "at": 43.32,
+      "cue": "獾想了想：「那就做在風吹不到的地方吧",
+      "sticker": "badger",
+      "animation": "scratch-head"
+    },
+    {
+      "at": 47.56,
+      "cue": "往下挖呀挖，挖出一個低低的、舒服的小窩。大家一起放進脆脆的葉子，松",
+      "sticker": "badger",
+      "animation": "dig"
+    },
+    {
+      "at": 55.16,
+      "cue": "把葉子拍一拍、壓一壓。喀啦，喀啦。刺蝟鑽了進去。風呼呼地吹，呼呼地吹，可是這張床，怎麼吹也吹不走。風只好到別的地方去吹了。刺蝟縮成一顆暖呼呼的刺刺球",
+      "sticker": "squirrel",
+      "animation": "bury"
+    },
+    {
+      "at": 59,
+      "cue": "刺蝟鑽了進去。風呼呼地吹，呼呼地吹，可是這張床，怎麼吹也吹不走。風只好到別的地方去吹了。刺蝟縮成一顆暖呼呼的刺刺球",
+      "sticker": "hedgehog",
+      "expression": "happy"
+    },
+    {
+      "at": 69.48,
+      "cue": "刺蝟縮成一顆暖呼呼的刺刺球",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    },
+    {
+      "at": 76.08,
+      "cue": "春天見喔",
+      "sticker": "squirrel",
+      "expression": "happy"
+    },
+    {
+      "at": 76.08,
+      "cue": "春天見喔",
+      "sticker": "badger",
+      "expression": "happy"
+    },
+    {
+      "at": 76.08,
+      "cue": "春天見喔",
+      "sticker": "badger",
+      "effect": "hearts"
+    },
+    {
+      "at": 76.08,
+      "cue": "春天見喔",
+      "sticker": "squirrel",
+      "effect": "hearts"
+    }
+  ]
+}

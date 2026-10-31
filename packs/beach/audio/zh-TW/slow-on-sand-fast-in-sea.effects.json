@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "海龜在沙灘上",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "海龜在沙灘上",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 10.36,
+      "cue": "尼可抱著黃色衝浪板走過來",
+      "sticker": "surfer",
+      "enter": true
+    },
+    {
+      "at": 13.29,
+      "cue": "海龜",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 15.8,
+      "cue": "海龜把",
+      "sticker": "turtle",
+      "animation": "peek"
+    },
+    {
+      "at": 19.77,
+      "cue": "在陸地上，我是很",
+      "sticker": "turtle",
+      "animation": "talk"
+    },
+    {
+      "at": 25.79,
+      "cue": "好啊，比就比！」鵜鶘飛到岩石上，等著看",
+      "sticker": "surfer",
+      "expression": "surprised"
+    },
+    {
+      "at": 27.56,
+      "cue": "鵜鶘飛到岩石上，等著看",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 27.56,
+      "cue": "鵜鶘飛到岩石上，等著看",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 30.28,
+      "sticker": "pelican",
+      "effect": "pulse"
+    },
+    {
+      "at": 32.04,
+      "cue": "尼可用最快的速度往外划。海龜滑進水裡，咻",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sea",
+      "by": "paddle"
+    },
+    {
+      "at": 34.84,
+      "cue": "海龜滑進水裡，咻",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "sea",
+      "by": "swim"
+    },
+    {
+      "at": 41.88,
+      "cue": "鵜鶘看得目瞪口呆，一不小心，舀了滿滿一嘴的水",
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 47.88,
+      "cue": "等尼可乘著一道浪滑回來，海龜早就在那裡等他了",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 49.48,
+      "cue": "滑回來，海龜早就在那裡等他了",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand",
+      "by": "surf"
+    },
+    {
+      "at": 53.48,
+      "cue": "好啦好啦，海龜",
+      "sticker": "turtle",
+      "effect": "hearts"
+    },
+    {
+      "at": 53.48,
+      "cue": "好啦好啦，海龜",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 53.48,
+      "cue": "好啦好啦，海龜",
+      "sticker": "surfer",
+      "animation": "laugh"
+    },
+    {
+      "at": 53.48,
+      "cue": "好啦好啦，海龜",
+      "sticker": "surfer",
+      "effect": "hop"
+    }
+  ]
+}

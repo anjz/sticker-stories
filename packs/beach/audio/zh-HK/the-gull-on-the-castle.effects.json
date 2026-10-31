@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "這是一座沙",
+      "sticker": "bucket",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "這是一座沙",
+      "sticker": "castle",
+      "enter": true
+    },
+    {
+      "at": 8.12,
+      "cue": "小旗在風中飄呀飄。海鷗在天上看見了",
+      "sticker": "castle",
+      "animation": "flag"
+    },
+    {
+      "at": 10.68,
+      "cue": "海鷗在天上看見了",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 13.18,
+      "cue": "嘩！坐喺上面一定好正",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 15.4,
+      "sticker": "seagull",
+      "go": "on",
+      "target": "castle"
+    },
+    {
+      "at": 18.92,
+      "cue": "搖呀搖，晃呀晃",
+      "sticker": "castle",
+      "effect": "wobble"
+    },
+    {
+      "at": 21.35,
+      "cue": "弊喇……」塔開始塌下來了。海鷗呀呀大叫",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 22.52,
+      "cue": "塔開始塌下來了。海鷗呀呀大叫",
+      "sticker": "castle",
+      "effect": "shake"
+    },
+    {
+      "at": 24.28,
+      "cue": "海鷗呀呀大叫",
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 30.52,
+      "cue": "留下了濕濕的沙。海鷗知道該怎麼做。啄啄！拍拍！啄啄！拍拍！用濕沙補好塔，拍得又實又穩。塔又站得直直的，穩穩的。海鷗把羽毛抖得蓬蓬鬆鬆。站在最高的塔",
+      "sticker": "bucket",
+      "animation": "wash"
+    },
+    {
+      "at": 34.28,
+      "cue": "啄啄！拍拍！啄啄！拍拍！用濕沙補好塔，拍得又實又穩。塔又站得直直的，穩穩的。海鷗把羽毛抖得蓬蓬鬆鬆。站在最高的塔",
+      "sticker": "seagull",
+      "animation": "peck"
+    },
+    {
+      "at": 40.28,
+      "cue": "塔又站得直直的，穩穩的。海鷗把羽毛抖得蓬蓬鬆鬆。站在最高的塔",
+      "sticker": "castle",
+      "effect": "pulse"
+    },
+    {
+      "at": 43.16,
+      "cue": "海鷗把羽毛抖得蓬蓬鬆鬆。站在最高的塔",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 43.16,
+      "cue": "海鷗把羽毛抖得蓬蓬鬆鬆。站在最高的塔",
+      "sticker": "seagull",
+      "animation": "preen"
+    },
+    {
+      "at": 54.2,
+      "cue": "最好的守衛。也是最大聲的守衛",
+      "sticker": "castle",
+      "effect": "sparkle"
+    }
+  ]
+}

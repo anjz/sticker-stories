@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ヤドカリくんが",
+      "sticker": "bucket",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "ヤドカリくんが",
+      "sticker": "castle",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "ヤドカリくんが",
+      "sticker": "hermit-crab",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "ヤドカリくんが",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 6.76,
+      "cue": "ふうっと、ためいき。しましまのかいがらが、ちょっぴりき",
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 23.72,
+      "cue": "もっと大きなおうちに、おひっこし",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    },
+    {
+      "at": 26.76,
+      "cue": "ヤドカリくんは、おうちさがしに出かけました。まずは、赤いバケツ。なかを、のぞいてみると…ひろーい",
+      "sticker": "hermit-crab",
+      "animation": "look-around"
+    },
+    {
+      "at": 33.08,
+      "cue": "なかを、のぞいてみると…ひろーい",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "bucket"
+    },
+    {
+      "at": 35.32,
+      "cue": "ひろーい",
+      "sticker": "bucket",
+      "effect": "wobble"
+    },
+    {
+      "at": 42.92,
+      "cue": "これじゃ、大きすぎ。つぎは、赤いはたの立った",
+      "sticker": "hermit-crab",
+      "expression": "surprised"
+    },
+    {
+      "at": 49.08,
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "castle"
+    },
+    {
+      "at": 51.32,
+      "cue": "さらさら、ぽろぽろ。これじゃ、くずれちゃう",
+      "sticker": "castle",
+      "animation": "wobble"
+    },
+    {
+      "at": 53.64,
+      "cue": "これじゃ、くずれちゃう",
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 60.44,
+      "cue": "ざぶん！バケツのまわりは、水びたしです。ヤドカリくんは、びっくりして、じぶんのかいがらに、すっぽり",
+      "sticker": "bucket",
+      "animation": "wash"
+    },
+    {
+      "at": 64.84,
+      "cue": "ヤドカリくんは、びっくりして、じぶんのかいがらに、すっぽり",
+      "sticker": "hermit-crab",
+      "expression": "surprised"
+    },
+    {
+      "at": 66.76,
+      "cue": "じぶんのかいがらに、すっぽり",
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 75.08,
+      "cue": "ひょっこり顔を出して、にっこり。大きなおうちは、もっと大きくなってからね",
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 76.8,
+      "cue": "にっこり。大きなおうちは、もっと大きくなってからね",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    }
+  ]
+}

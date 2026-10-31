@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "海藻がゆれる潮",
+      "sticker": "seaweed",
+      "enter": true
+    },
+    {
+      "at": 5.32,
+      "cue": "おさかなくんがすんでいました。きいろに、青いしまが二本。海藻は、ゆーらり、ゆーらり。いごこちのいい、おうちです。でも、おさかなくんは、いつもおもっていました",
+      "sticker": "fish",
+      "enter": true
+    },
+    {
+      "at": 5.32,
+      "cue": "おさかなくんがすんでいました。きいろに、青いしまが二本。海藻は、ゆーらり、ゆーらり。いごこちのいい、おうちです。でも、おさかなくんは、いつもおもっていました",
+      "sticker": "fish",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 11,
+      "cue": "海藻は、ゆーらり、ゆーらり。いごこちのいい、おうちです。でも、おさかなくんは、いつもおもっていました",
+      "sticker": "seaweed",
+      "animation": "sway"
+    },
+    {
+      "at": 15.08,
+      "cue": "いごこちのいい、おうちです。でも、おさかなくんは、いつもおもっていました",
+      "sticker": "fish",
+      "expression": "happy"
+    },
+    {
+      "at": 25.64,
+      "cue": "波が、岩をこえて、ざぶーん",
+      "sticker": "fish",
+      "effect": "wash",
+      "duration": 9
+    },
+    {
+      "at": 33.74,
+      "cue": "おさかなくんも、いっしょにながされてしまいました",
+      "sticker": "fish",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 37.6,
+      "cue": "海は、とーっても大きい！どっちを見ても、青、青、青。はしっこなんて、ありません。じぶんが、ちっちゃく、ちっちゃく、かんじます",
+      "sticker": "fish",
+      "expression": "surprised"
+    },
+    {
+      "at": 40.38,
+      "cue": "どっちを見ても、青、青、青。はしっこなんて、ありません。じぶんが、ちっちゃく、ちっちゃく、かんじます",
+      "sticker": "fish",
+      "animation": "look-around"
+    },
+    {
+      "at": 46.94,
+      "cue": "じぶんが、ちっちゃく、ちっちゃく、かんじます",
+      "sticker": "fish",
+      "animation": "shiver"
+    },
+    {
+      "at": 51.34,
+      "cue": "そのとき、やさしい顔が、すうっとちかづいてきました。ウミガメさんです",
+      "sticker": "fish",
+      "expression": "sad"
+    },
+    {
+      "at": 56.22,
+      "cue": "ウミガメさんです",
+      "sticker": "turtle",
+      "enter": true,
+      "by": "swim"
+    },
+    {
+      "at": 56.22,
+      "cue": "ウミガメさんです",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "fish",
+      "by": "swim"
+    },
+    {
+      "at": 62.42,
+      "cue": "となりを、ゆっくり、ゆっくり、およいでくれます。岩が見えてくるまで。おさかなくんは、潮",
+      "sticker": "turtle",
+      "effect": "hearts"
+    },
+    {
+      "at": 69.82,
+      "cue": "おさかなくんは、潮",
+      "sticker": "fish",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 73.74,
+      "cue": "海藻が、ゆらゆら手をふります。「おかえり！」おさかなくんは、しっぽをぴちぴち、ひれをひらひら",
+      "sticker": "seaweed",
+      "animation": "wave"
+    },
+    {
+      "at": 78.06,
+      "cue": "おさかなくんは、しっぽをぴちぴち、ひれをひらひら",
+      "sticker": "fish",
+      "expression": "happy"
+    },
+    {
+      "at": 78.06,
+      "cue": "おさかなくんは、しっぽをぴちぴち、ひれをひらひら",
+      "sticker": "fish",
+      "animation": "wiggle"
+    }
+  ]
+}

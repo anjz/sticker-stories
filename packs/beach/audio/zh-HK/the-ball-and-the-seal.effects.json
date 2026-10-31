@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "小狗有一個沙灘波",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 3.8,
+      "cue": "沙灘波",
+      "sticker": "ball",
+      "enter": true
+    },
+    {
+      "at": 3.8,
+      "cue": "沙灘波",
+      "sticker": "ball",
+      "go": "to",
+      "target": "dog"
+    },
+    {
+      "at": 10.36,
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 13.32,
+      "cue": "沙灘波一彈一彈，滾到了岸邊",
+      "sticker": "ball",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 16.49,
+      "cue": "返嚟呀，波波！」小狗追了過去。嘩啦！一個浪撲過來，把",
+      "sticker": "dog",
+      "expression": "surprised"
+    },
+    {
+      "at": 18.12,
+      "cue": "小狗追了過去。嘩啦！一個浪撲過來，把",
+      "sticker": "dog",
+      "go": "to",
+      "target": "ball"
+    },
+    {
+      "at": 24.44,
+      "cue": "小狗用力抖，抖、抖、抖",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 27.72,
+      "cue": "沙灘波在白色的泡沫裏一浮一浮。這時，水裏冒出一個灰色的",
+      "sticker": "ball",
+      "animation": "rock"
+    },
+    {
+      "at": 31.4,
+      "cue": "這時，水裏冒出一個灰色的",
+      "sticker": "seal",
+      "enter": true,
+      "by": "swim"
+    },
+    {
+      "at": 34.36,
+      "cue": "原來是海豹",
+      "sticker": "seal",
+      "go": "to",
+      "target": "ball",
+      "by": "swim"
+    },
+    {
+      "at": 35.96,
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 37.96,
+      "cue": "沙灘波就一直滾回小狗那邊。它轉呀轉，停在小狗的",
+      "sticker": "ball",
+      "go": "to",
+      "target": "dog"
+    },
+    {
+      "at": 40.76,
+      "cue": "它轉呀轉，停在小狗的",
+      "sticker": "ball",
+      "animation": "spin"
+    },
+    {
+      "at": 43.8,
+      "cue": "小狗用鼻子",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 43.8,
+      "cue": "小狗用鼻子",
+      "sticker": "dog",
+      "animation": "play-bow"
+    },
+    {
+      "at": 44.76,
+      "sticker": "ball",
+      "go": "to",
+      "target": "seal"
+    },
+    {
+      "at": 46.36,
+      "cue": "推回來",
+      "sticker": "ball",
+      "go": "to",
+      "target": "dog"
+    },
+    {
+      "at": 47.24,
+      "sticker": "seal",
+      "animation": "clap"
+    }
+  ]
+}

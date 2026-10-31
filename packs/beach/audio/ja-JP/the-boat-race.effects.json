@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ニコが、ボードをかかえて",
+      "sticker": "surfer",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "ニコが、ボードをかかえて",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 7.24,
+      "cue": "水のむこうを見ていると…ヨットがやってきました。漁船も、やってきました",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 9.72,
+      "cue": "ヨットがやってきました。漁船も、やってきました",
+      "sticker": "sailboat",
+      "enter": true
+    },
+    {
+      "at": 11.64,
+      "cue": "漁船も、やってきました",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 19.72,
+      "cue": "ポン、ポン、ポン！漁船は、ゆっくり、こつこつ、すすみ",
+      "sticker": "fishing-boat",
+      "go": "to",
+      "target": "sea",
+      "toward": "right"
+    },
+    {
+      "at": 26.52,
+      "cue": "ところが、ヨットは、ぴくりともうごきません。風がないのです。帆は",
+      "sticker": "sailboat",
+      "effect": "pulse"
+    },
+    {
+      "at": 33.56,
+      "cue": "がんばれ、ヨット",
+      "sticker": "surfer",
+      "expression": "sad"
+    },
+    {
+      "at": 36.2,
+      "cue": "そのとき、び",
+      "effect": "wind",
+      "duration": 20,
+      "intensity": 0.8
+    },
+    {
+      "at": 40.52,
+      "cue": "帆が、まあるく、ぱんぱんにふくらんで、ヨットは、すいーっと、水の上をかけていきます！ポンポン…すいすい…ならんで、ならんで…漁船は、あみを引きあげて、スピードをおとし、おとも",
+      "sticker": "sailboat",
+      "animation": "sails"
+    },
+    {
+      "at": 43.4,
+      "cue": "ヨットは、すいーっと、水の上をかけていきます！ポンポン…すいすい…ならんで、ならんで…漁船は、あみを引きあげて、スピードをおとし、おとも",
+      "sticker": "sailboat",
+      "go": "to",
+      "target": "fishing-boat",
+      "toward": "right"
+    },
+    {
+      "at": 47.4,
+      "cue": "ポンポン…すいすい…ならんで、ならんで…漁船は、あみを引きあげて、スピードをおとし、おとも",
+      "sticker": "surfer",
+      "expression": "surprised"
+    },
+    {
+      "at": 51.96,
+      "cue": "漁船は、あみを引きあげて、スピードをおとし、おとも",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 57.32,
+      "cue": "そして、むこうがわに…ぴったりいっしょに、とうちゃく",
+      "sticker": "surfer",
+      "animation": "point"
+    },
+    {
+      "at": 62.01,
+      "cue": "ひきわけ",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 62.01,
+      "cue": "ひきわけ",
+      "sticker": "surfer",
+      "animation": "laugh"
+    },
+    {
+      "at": 64.6,
+      "cue": "ニコは、ボードを空に高くあげて、ふりました",
+      "sticker": "surfer",
+      "animation": "wave"
+    }
+  ]
+}

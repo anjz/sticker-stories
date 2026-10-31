@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.84,
+      "cue": "毛毛蟲。左邊是草，右邊也是草。草、草、草，到處都是草。蝴蝶在高高的上面飛",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 12.36,
+      "cue": "蝴蝶在高高的上面飛",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 17.4,
+      "cue": "有天空！」於是毛毛蟲伸呀伸，伸得好長好長。看到的還是草。這時，小鹿邁著細細長長的",
+      "sticker": "butterfly",
+      "animation": "talk"
+    },
+    {
+      "at": 19,
+      "cue": "於是毛毛蟲伸呀伸，伸得好長好長。看到的還是草。這時，小鹿邁著細細長長的",
+      "sticker": "caterpillar",
+      "expression": "sad"
+    },
+    {
+      "at": 20.36,
+      "cue": "伸呀伸，伸得好長好長。看到的還是草。這時，小鹿邁著細細長長的",
+      "sticker": "caterpillar",
+      "animation": "reach-up"
+    },
+    {
+      "at": 27,
+      "cue": "小鹿邁著細細長長的",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 27,
+      "cue": "小鹿邁著細細長長的",
+      "sticker": "deer",
+      "go": "to",
+      "target": "caterpillar"
+    },
+    {
+      "at": 34.44,
+      "cue": "小鹿把",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 40.68,
+      "cue": "毛毛蟲爬了上去，小鹿的",
+      "sticker": "caterpillar",
+      "go": "on",
+      "target": "deer"
+    },
+    {
+      "at": 47.24,
+      "cue": "就在那裡。是天空！又大又藍，白白的雲",
+      "effect": "clouds",
+      "duration": 35.94,
+      "intensity": 0.4
+    },
+    {
+      "at": 47.24,
+      "cue": "就在那裡。是天空！又大又藍，白白的雲",
+      "sticker": "caterpillar",
+      "expression": "surprised"
+    },
+    {
+      "at": 54.04,
+      "cue": "毛毛蟲把身體抬得高高的，看呀看。蝴蝶輕輕飛下來，停在",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "hold"
+    },
+    {
+      "at": 58.12,
+      "cue": "蝴蝶輕輕飛下來，停在",
+      "sticker": "butterfly",
+      "expression": "happy"
+    },
+    {
+      "at": 58.12,
+      "cue": "蝴蝶輕輕飛下來，停在",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "deer"
+    },
+    {
+      "at": 61.4,
+      "sticker": "butterfly",
+      "animation": "rest"
+    },
+    {
+      "at": 74.92,
+      "cue": "毛毛蟲高興得",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "resume"
+    },
+    {
+      "at": 78.03,
+      "cue": "天空，我們很快會再見喔",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 78.03,
+      "cue": "天空，我們很快會再見喔",
+      "sticker": "deer",
+      "expression": "happy"
+    },
+    {
+      "at": 78.03,
+      "cue": "天空，我們很快會再見喔",
+      "sticker": "deer",
+      "effect": "hearts"
+    }
+  ]
+}

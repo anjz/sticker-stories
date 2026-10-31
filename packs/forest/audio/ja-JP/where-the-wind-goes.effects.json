@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "あるあさ、のはらは、きりにすっぽりかくれていました。そのとき——び",
+      "effect": "fog",
+      "duration": 13.02,
+      "intensity": 0.6
+    },
+    {
+      "at": 8.92,
+      "cue": "び",
+      "effect": "wind",
+      "duration": 42.22,
+      "intensity": 0.6
+    },
+    {
+      "at": 13.22,
+      "cue": "かぜさん、どこへいくの？」とのはら。でも、かぜはいそがしくて、とまれません。くさを、こちょこちょ",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 19.72,
+      "cue": "くさを、こちょこちょ",
+      "sticker": "all",
+      "effect": "wobble",
+      "intensity": 0.5
+    },
+    {
+      "at": 23.64,
+      "cue": "木のはっぱを、くるくるまわします。まつぼっくりがころがってくると、かぜはころころ、ころころ、おしていきました",
+      "effect": "leaves",
+      "duration": 28,
+      "intensity": 0.6
+    },
+    {
+      "at": 26.52,
+      "cue": "まつぼっくりがころがってくると、かぜはころころ、ころころ、おしていきました",
+      "sticker": "pinecone",
+      "enter": true
+    },
+    {
+      "at": 29.32,
+      "cue": "ころころ、ころころ、おしていきました",
+      "sticker": "pinecone",
+      "go": "to",
+      "target": "meadow",
+      "toward": "right"
+    },
+    {
+      "at": 29.32,
+      "cue": "ころころ、ころころ、おしていきました",
+      "sticker": "pinecone",
+      "effect": "spin"
+    },
+    {
+      "at": 32.68,
+      "cue": "わーい！」チョウチョさんは、かぜにのってえ",
+      "sticker": "pinecone",
+      "expression": "happy"
+    },
+    {
+      "at": 33.8,
+      "cue": "チョウチョさんは、かぜにのってえ",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 33.8,
+      "cue": "チョウチョさんは、かぜにのってえ",
+      "sticker": "butterfly",
+      "expression": "happy"
+    },
+    {
+      "at": 35.64,
+      "cue": "え",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "branches",
+      "toward": "right"
+    },
+    {
+      "at": 37.08,
+      "cue": "はねをとじて、しっかりつかまりました。どんぐりは、てくてくやってきて、ぼうしをぎ",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 40.12,
+      "cue": "どんぐりは、てくてくやってきて、ぼうしをぎ",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 42.12,
+      "cue": "ぼうしをぎ",
+      "sticker": "acorn",
+      "expression": "surprised"
+    },
+    {
+      "at": 42.12,
+      "cue": "ぼうしをぎ",
+      "sticker": "acorn",
+      "animation": "hold-cap"
+    },
+    {
+      "at": 54.92,
+      "cue": "チョウチョさんが、はねをひらきます。どんぐりは、おねがい。「どこへいくのか、おしえてくれますように",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "resume"
+    },
+    {
+      "at": 57.64,
+      "cue": "どんぐりは、おねがい。「どこへいくのか、おしえてくれますように",
+      "sticker": "acorn",
+      "animation": "wish"
+    },
+    {
+      "at": 67.32,
+      "cue": "なんていったと思う？「どこへでも…そして、あしたもまたここへ",
+      "sticker": "all",
+      "expression": "happy"
+    }
+  ]
+}

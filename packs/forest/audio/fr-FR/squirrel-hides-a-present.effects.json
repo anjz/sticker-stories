@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "c’était",
+      "effect": "leaves",
+      "intensity": 0.6
+    },
+    {
+      "at": 6.44,
+      "cue": "écureuil",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 10.4,
+      "cue": "gland",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 10.4,
+      "cue": "gland",
+      "sticker": "acorn",
+      "go": "to",
+      "target": "squirrel"
+    },
+    {
+      "at": 12.2,
+      "cue": "écureuil",
+      "sticker": "squirrel",
+      "expression": "surprised"
+    },
+    {
+      "at": 12.2,
+      "cue": "écureuil",
+      "sticker": "squirrel",
+      "animation": "hide-nut",
+      "mode": "hold"
+    },
+    {
+      "at": 15.28,
+      "sticker": "acorn",
+      "effect": "pulse"
+    },
+    {
+      "at": 19.96,
+      "cue": "alors",
+      "sticker": "acorn",
+      "animation": "wish"
+    },
+    {
+      "at": 25.1,
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 25.1,
+      "sticker": "acorn",
+      "effect": "hop"
+    },
+    {
+      "at": 27.8,
+      "cue": "puis",
+      "effect": "sunset",
+      "duration": 33.86,
+      "intensity": 0.7
+    },
+    {
+      "at": 29.6,
+      "cue": "ourson",
+      "sticker": "bear",
+      "enter": true
+    },
+    {
+      "at": 32.84,
+      "sticker": "bear",
+      "animation": "talk"
+    },
+    {
+      "at": 36.71,
+      "cue": "écureuil",
+      "sticker": "squirrel",
+      "animation": "hide-nut",
+      "mode": "resume"
+    },
+    {
+      "at": 40.08,
+      "cue": "a",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 42.71,
+      "cue": "l’enterrer",
+      "sticker": "squirrel",
+      "animation": "bury"
+    },
+    {
+      "at": 47.24,
+      "cue": "ourson",
+      "sticker": "bear",
+      "expression": "happy"
+    },
+    {
+      "at": 47.24,
+      "cue": "ourson",
+      "sticker": "bear",
+      "effect": "hearts"
+    },
+    {
+      "at": 48.28,
+      "cue": "a",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 50.86,
+      "sticker": "acorn",
+      "expression": "surprised"
+    },
+    {
+      "at": 53.72,
+      "sticker": "squirrel",
+      "expression": "happy"
+    },
+    {
+      "at": 53.72,
+      "sticker": "squirrel",
+      "effect": "hearts"
+    }
+  ]
+}

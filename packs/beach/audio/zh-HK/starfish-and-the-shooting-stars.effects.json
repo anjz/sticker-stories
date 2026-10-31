@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "夜晚的沙灘靜悄悄，月",
+      "effect": "night",
+      "duration": 56.76,
+      "intensity": 0.8
+    },
+    {
+      "at": 8.2,
+      "cue": "海星睡不着",
+      "sticker": "starfish",
+      "enter": true
+    },
+    {
+      "at": 8.2,
+      "cue": "海星睡不着",
+      "sticker": "starfish",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 9.88,
+      "sticker": "starfish",
+      "expression": "happy"
+    },
+    {
+      "at": 12.04,
+      "cue": "一顆流星咻地劃過天空！又一顆！「睇！係我",
+      "effect": "shootingstars",
+      "duration": 20,
+      "intensity": 0.7
+    },
+    {
+      "at": 15.04,
+      "cue": "睇！係我",
+      "sticker": "starfish",
+      "expression": "surprised"
+    },
+    {
+      "at": 15.04,
+      "cue": "睇！係我",
+      "sticker": "starfish",
+      "animation": "jump"
+    },
+    {
+      "at": 19,
+      "cue": "海龜",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 19,
+      "cue": "海龜",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "starfish"
+    },
+    {
+      "at": 20.99,
+      "cue": "嗰啲係天上",
+      "sticker": "starfish",
+      "go": "to",
+      "target": "turtle"
+    },
+    {
+      "at": 20.99,
+      "cue": "嗰啲係天上",
+      "sticker": "turtle",
+      "expression": "happy"
+    },
+    {
+      "at": 23.76,
+      "cue": "佢哋喺好",
+      "sticker": "turtle",
+      "animation": "stretch-neck"
+    },
+    {
+      "at": 30.52,
+      "cue": "海星向着天空，揮動五隻手。「表姐妹，早唞！」海豹在岩石上抬起",
+      "sticker": "starfish",
+      "effect": "sparkle"
+    },
+    {
+      "at": 30.52,
+      "cue": "海星向着天空，揮動五隻手。「表姐妹，早唞！」海豹在岩石上抬起",
+      "sticker": "starfish",
+      "animation": "wave"
+    },
+    {
+      "at": 35.08,
+      "cue": "海豹在岩石上抬起",
+      "sticker": "seal",
+      "enter": true
+    },
+    {
+      "at": 35.08,
+      "cue": "海豹在岩石上抬起",
+      "sticker": "seal",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 37.52,
+      "cue": "許個願啦，」海豹說。於是",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 42.76,
+      "cue": "海龜把",
+      "sticker": "seal",
+      "effect": "glow",
+      "intensity": 0.3
+    },
+    {
+      "at": 42.76,
+      "cue": "海龜把",
+      "sticker": "turtle",
+      "animation": "peek",
+      "mode": "hold"
+    },
+    {
+      "at": 44.92,
+      "cue": "海豹閉上了眼睛",
+      "sticker": "seal",
+      "expression": "sleeping"
+    },
+    {
+      "at": 50.04,
+      "cue": "就在滿天星星下，睡着了",
+      "sticker": "starfish",
+      "animation": "sleep",
+      "mode": "hold"
+    }
+  ]
+}

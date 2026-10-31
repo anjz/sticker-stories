@@ -1,0 +1,183 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "schneeflocken",
+      "effect": "snow",
+      "duration": 74.54,
+      "intensity": 0.5
+    },
+    {
+      "at": 5.4,
+      "cue": "der",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 6.08,
+      "cue": "wedelte",
+      "sticker": "fox",
+      "effect": "pulse"
+    },
+    {
+      "at": 11.4,
+      "cue": "das",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 11.4,
+      "cue": "das",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "fox"
+    },
+    {
+      "at": 13.48,
+      "cue": "und",
+      "sticker": "squirrel",
+      "expression": "happy"
+    },
+    {
+      "at": 15.96,
+      "cue": "versteckte",
+      "sticker": "squirrel",
+      "animation": "hide-nut"
+    },
+    {
+      "at": 22,
+      "cue": "der",
+      "sticker": "squirrel",
+      "effect": "hop"
+    },
+    {
+      "at": 23.4,
+      "cue": "grösste",
+      "sticker": "fox",
+      "effect": "hop"
+    },
+    {
+      "at": 24.44,
+      "cue": "flauschigste",
+      "sticker": "squirrel",
+      "effect": "wobble"
+    },
+    {
+      "at": 25.68,
+      "cue": "maus",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 25.68,
+      "cue": "maus",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "fox"
+    },
+    {
+      "at": 28.6,
+      "cue": "die",
+      "sticker": "mouse",
+      "effect": "pulse"
+    },
+    {
+      "at": 33.72,
+      "cue": "spitzte",
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 39.8,
+      "cue": "raupe",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 40.28,
+      "cue": "die",
+      "sticker": "caterpillar",
+      "effect": "shake"
+    },
+    {
+      "at": 41.91,
+      "cue": "so",
+      "sticker": "caterpillar",
+      "effect": "tint",
+      "color": "#A8D8FF"
+    },
+    {
+      "at": 41.91,
+      "cue": "so",
+      "sticker": "caterpillar",
+      "expression": "sad"
+    },
+    {
+      "at": 44.12,
+      "cue": "der",
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 44.12,
+      "cue": "der",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 46.2,
+      "cue": "er",
+      "sticker": "fox",
+      "go": "to",
+      "target": "caterpillar"
+    },
+    {
+      "at": 48.32,
+      "cue": "legte",
+      "sticker": "fox",
+      "animation": "wrap-tail",
+      "mode": "hold"
+    },
+    {
+      "at": 53,
+      "cue": "das",
+      "sticker": "squirrel",
+      "expression": "happy"
+    },
+    {
+      "at": 53,
+      "cue": "das",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "caterpillar"
+    },
+    {
+      "at": 54.84,
+      "cue": "legte",
+      "sticker": "squirrel",
+      "animation": "wrap-tail",
+      "mode": "hold"
+    },
+    {
+      "at": 56.68,
+      "cue": "jetzt",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 56.68,
+      "cue": "jetzt",
+      "sticker": "caterpillar",
+      "effect": "hearts"
+    },
+    {
+      "at": 59.24,
+      "cue": "schaute",
+      "sticker": "caterpillar",
+      "animation": "look-up"
+    }
+  ]
+}

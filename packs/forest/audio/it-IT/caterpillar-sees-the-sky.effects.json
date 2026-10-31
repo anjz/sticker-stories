@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.44,
+      "cue": "bruco",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 10.44,
+      "cue": "farfalla",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 15.96,
+      "cue": "il",
+      "sticker": "butterfly",
+      "animation": "talk"
+    },
+    {
+      "at": 17.32,
+      "cue": "allora",
+      "sticker": "caterpillar",
+      "expression": "sad"
+    },
+    {
+      "at": 18.08,
+      "cue": "si",
+      "sticker": "caterpillar",
+      "animation": "reach-up"
+    },
+    {
+      "at": 23.8,
+      "cue": "cerbiatto",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 23.8,
+      "cue": "cerbiatto",
+      "sticker": "deer",
+      "go": "to",
+      "target": "caterpillar"
+    },
+    {
+      "at": 29.08,
+      "cue": "ha",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 35.32,
+      "cue": "bruco",
+      "sticker": "caterpillar",
+      "go": "on",
+      "target": "deer"
+    },
+    {
+      "at": 42.6,
+      "cue": "eccolo",
+      "effect": "clouds",
+      "duration": 34.42,
+      "intensity": 0.4
+    },
+    {
+      "at": 42.6,
+      "cue": "eccolo",
+      "sticker": "caterpillar",
+      "expression": "surprised"
+    },
+    {
+      "at": 49.56,
+      "cue": "bruco",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "hold"
+    },
+    {
+      "at": 53.36,
+      "cue": "farfalla",
+      "sticker": "butterfly",
+      "expression": "happy"
+    },
+    {
+      "at": 53.36,
+      "cue": "farfalla",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "deer"
+    },
+    {
+      "at": 57.12,
+      "cue": "ha",
+      "sticker": "butterfly",
+      "animation": "rest"
+    },
+    {
+      "at": 69.96,
+      "cue": "bruco",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "resume"
+    },
+    {
+      "at": 72.83,
+      "cue": "a",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 72.83,
+      "cue": "a",
+      "sticker": "deer",
+      "expression": "happy"
+    },
+    {
+      "at": 72.83,
+      "cue": "a",
+      "sticker": "deer",
+      "effect": "hearts"
+    }
+  ]
+}

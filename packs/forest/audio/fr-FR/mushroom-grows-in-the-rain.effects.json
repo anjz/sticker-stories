@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "plic",
+      "effect": "rain",
+      "duration": 50.98,
+      "intensity": 0.7
+    },
+    {
+      "at": 7.24,
+      "cue": "coccinelle",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 8.44,
+      "cue": "champignon",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 9.28,
+      "cue": "et",
+      "sticker": "ladybug",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 11.27,
+      "sticker": "mushroom",
+      "expression": "happy"
+    },
+    {
+      "at": 13.6,
+      "cue": "escargot",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 16.26,
+      "sticker": "mushroom",
+      "animation": "nod"
+    },
+    {
+      "at": 17.06,
+      "cue": "et",
+      "sticker": "snail",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 19.96,
+      "cue": "grenouille",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 19.96,
+      "cue": "grenouille",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 21.28,
+      "cue": "flic",
+      "sticker": "frog",
+      "animation": "jump"
+    },
+    {
+      "at": 27.76,
+      "cue": "grenouille",
+      "sticker": "frog",
+      "expression": "sad"
+    },
+    {
+      "at": 31.48,
+      "cue": "alors",
+      "sticker": "frog",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 33.28,
+      "cue": "serrés",
+      "sticker": "ladybug",
+      "expression": "surprised"
+    },
+    {
+      "at": 35.16,
+      "cue": "escargot",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 41.84,
+      "cue": "et",
+      "sticker": "mushroom",
+      "effect": "glow"
+    },
+    {
+      "at": 41.84,
+      "cue": "et",
+      "sticker": "mushroom",
+      "animation": "grow"
+    },
+    {
+      "at": 47,
+      "cue": "alors",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 47,
+      "cue": "alors",
+      "sticker": "ladybug",
+      "expression": "happy"
+    },
+    {
+      "at": 50.56,
+      "cue": "le",
+      "effect": "sunshine"
+    },
+    {
+      "at": 51.84,
+      "cue": "escargot",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 53.48,
+      "cue": "coccinelle",
+      "sticker": "ladybug",
+      "go": "back"
+    },
+    {
+      "at": 54.64,
+      "cue": "grenouille",
+      "sticker": "frog",
+      "go": "back"
+    }
+  ]
+}

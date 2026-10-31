@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "うみべの夜。お月さまが、水の上をてらしています。ヒトデさんは、ねむれません。空を、見上げていました",
+      "effect": "night",
+      "duration": 69,
+      "intensity": 0.8
+    },
+    {
+      "at": 8.6,
+      "cue": "ヒトデさんは、ねむれません。空を、見上げていました",
+      "sticker": "starfish",
+      "enter": true
+    },
+    {
+      "at": 8.6,
+      "cue": "ヒトデさんは、ねむれません。空を、見上げていました",
+      "sticker": "starfish",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 11.32,
+      "cue": "空を、見上げていました",
+      "sticker": "starfish",
+      "expression": "happy"
+    },
+    {
+      "at": 13.96,
+      "cue": "ほしが、すーっと空をはしった！ほら、もうひとつ！「見て！わたしのいとこたち！みんな、ほしのかたち",
+      "effect": "shootingstars",
+      "duration": 20,
+      "intensity": 0.7
+    },
+    {
+      "at": 17.72,
+      "cue": "見て！わたしのいとこたち！みんな、ほしのかたち",
+      "sticker": "starfish",
+      "expression": "surprised"
+    },
+    {
+      "at": 17.72,
+      "cue": "見て！わたしのいとこたち！みんな、ほしのかたち",
+      "sticker": "starfish",
+      "animation": "jump"
+    },
+    {
+      "at": 22.2,
+      "cue": "ウミガメさんが、ゆっくり、はってきました",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 22.2,
+      "cue": "ウミガメさんが、ゆっくり、はってきました",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "starfish"
+    },
+    {
+      "at": 25.64,
+      "cue": "あれは、空のおほしさまよ、おちびさん。ずっと、ずーっと、とおく。そして、あなたは…海のおほしさま」ヒトデさんは、五本のうでを、空にふりふり。「おやすみ、いとこたち！」アザラシさんも、岩の上から見上げました",
+      "sticker": "starfish",
+      "go": "to",
+      "target": "turtle"
+    },
+    {
+      "at": 25.64,
+      "cue": "あれは、空のおほしさまよ、おちびさん。ずっと、ずーっと、とおく。そして、あなたは…海のおほしさま」ヒトデさんは、五本のうでを、空にふりふり。「おやすみ、いとこたち！」アザラシさんも、岩の上から見上げました",
+      "sticker": "turtle",
+      "expression": "happy"
+    },
+    {
+      "at": 29.24,
+      "cue": "ずっと、ずーっと、とおく。そして、あなたは…海のおほしさま」ヒトデさんは、五本のうでを、空にふりふり。「おやすみ、いとこたち！」アザラシさんも、岩の上から見上げました",
+      "sticker": "turtle",
+      "animation": "stretch-neck"
+    },
+    {
+      "at": 35.8,
+      "cue": "ヒトデさんは、五本のうでを、空にふりふり。「おやすみ、いとこたち！」アザラシさんも、岩の上から見上げました",
+      "sticker": "starfish",
+      "effect": "sparkle"
+    },
+    {
+      "at": 35.8,
+      "cue": "ヒトデさんは、五本のうでを、空にふりふり。「おやすみ、いとこたち！」アザラシさんも、岩の上から見上げました",
+      "sticker": "starfish",
+      "animation": "wave"
+    },
+    {
+      "at": 41.56,
+      "cue": "アザラシさんも、岩の上から見上げました",
+      "sticker": "seal",
+      "enter": true
+    },
+    {
+      "at": 41.56,
+      "cue": "アザラシさんも、岩の上から見上げました",
+      "sticker": "seal",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 44.97,
+      "cue": "おねがいごと、しよう」とアザラシさん。三人は、そっとおねがいしました",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 51.85,
+      "cue": "ウミガメさんは、くびをひっこめました。アザラシさんは、目をとじました",
+      "sticker": "seal",
+      "effect": "glow",
+      "intensity": 0.3
+    },
+    {
+      "at": 51.85,
+      "cue": "ウミガメさんは、くびをひっこめました。アザラシさんは、目をとじました",
+      "sticker": "turtle",
+      "animation": "peek",
+      "mode": "hold"
+    },
+    {
+      "at": 54.84,
+      "cue": "アザラシさんは、目をとじました",
+      "sticker": "seal",
+      "expression": "sleeping"
+    },
+    {
+      "at": 61.72,
+      "cue": "空のおほしさまの下で、すやすやねむりました",
+      "sticker": "starfish",
+      "animation": "sleep",
+      "mode": "hold"
+    }
+  ]
+}

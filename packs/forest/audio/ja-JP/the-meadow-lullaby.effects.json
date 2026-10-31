@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "お日さまがしずんで、のはらがおやすみのしたくをはじめました。二本の大きな木が、さわさわ。しーっ、とはっぱ。しーっ。のはらのみんなも、ゆらゆら。くさのなかでは、お花が、お花らしいおやすみなさい。はなびらを、そっととじました",
+      "effect": "sunset",
+      "duration": 38.22,
+      "intensity": 0.7
+    },
+    {
+      "at": 0,
+      "cue": "お日さまがしずんで、のはらがおやすみのしたくをはじめました。二本の大きな木が、さわさわ。しーっ、とはっぱ。しーっ。のはらのみんなも、ゆらゆら。くさのなかでは、お花が、お花らしいおやすみなさい。はなびらを、そっととじました",
+      "sticker": "firefly",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 5.96,
+      "cue": "おやすみのしたくをはじめました。二本の大きな木が、さわさわ。しーっ、とはっぱ。しーっ。のはらのみんなも、ゆらゆら。くさのなかでは、お花が、お花らしいおやすみなさい。はなびらを、そっととじました",
+      "sticker": "all",
+      "effect": "glow",
+      "intensity": 0.4,
+      "color": "#FFD9A0"
+    },
+    {
+      "at": 16.04,
+      "cue": "のはらのみんなも、ゆらゆら。くさのなかでは、お花が、お花らしいおやすみなさい。はなびらを、そっととじました",
+      "sticker": "all",
+      "effect": "wobble",
+      "intensity": 0.4
+    },
+    {
+      "at": 20.12,
+      "cue": "お花が、お花らしいおやすみなさい。はなびらを、そっととじました",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 23.64,
+      "cue": "はなびらを、そっととじました",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 30.68,
+      "cue": "ひるまずっとねむっていたフクロウくん。ま",
+      "sticker": "owl",
+      "enter": true
+    },
+    {
+      "at": 30.68,
+      "cue": "ひるまずっとねむっていたフクロウくん。ま",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 33.48,
+      "cue": "ま",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "hold"
+    },
+    {
+      "at": 35.72,
+      "cue": "空がこいあおになって、まあるいお月さまがのぼりました。フクロウくんは、目をひとつ、ふたつ、ぱちり。「ホウ」としずかに。「こんどは、ぼくのばん」くさのなかに、小さな",
+      "effect": "night",
+      "duration": 38.16,
+      "intensity": 0.8
+    },
+    {
+      "at": 40.04,
+      "cue": "フクロウくんは、目をひとつ、ふたつ、ぱちり。「ホウ」としずかに。「こんどは、ぼくのばん」くさのなかに、小さな",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "resume"
+    },
+    {
+      "at": 45.96,
+      "cue": "こんどは、ぼくのばん」くさのなかに、小さな",
+      "sticker": "owl",
+      "expression": "happy"
+    },
+    {
+      "at": 48.52,
+      "cue": "くさのなかに、小さな",
+      "effect": "fireflies",
+      "duration": 19.76,
+      "intensity": 0.5
+    },
+    {
+      "at": 53,
+      "cue": "ホタルさんもふわりとやってきて、ちょうちんに、あかりをともしました",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 55.16,
+      "cue": "ちょうちんに、あかりをともしました",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A",
+      "hold": true
+    },
+    {
+      "at": 61.24,
+      "cue": "そこにいたみんなは、目をとじて…フクロウくんとホタルさん",
+      "sticker": "all",
+      "expression": "sleeping"
+    },
+    {
+      "at": 64.28,
+      "cue": "フクロウくんとホタルさん",
+      "sticker": "owl",
+      "expression": "happy"
+    },
+    {
+      "at": 64.28,
+      "cue": "フクロウくんとホタルさん",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 66.28,
+      "cue": "お月さまに手をふって、あさまで、みまもっていました",
+      "sticker": "firefly",
+      "animation": "wave"
+    }
+  ]
+}

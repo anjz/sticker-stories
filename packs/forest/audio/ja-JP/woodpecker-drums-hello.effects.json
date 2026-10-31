@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "キツツキくんが、大きな木のみきにつかまって、たいこをたたきます。タタタタ、タン！そこへ小さなどんぐりがてくてく。まつぼっくりも、ころころ",
+      "sticker": "woodpecker",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "キツツキくんが、大きな木のみきにつかまって、たいこをたたきます。タタタタ、タン！そこへ小さなどんぐりがてくてく。まつぼっくりも、ころころ",
+      "sticker": "woodpecker",
+      "go": "to",
+      "target": "trunks"
+    },
+    {
+      "at": 6.12,
+      "cue": "たいこをたたきます。タタタタ、タン！そこへ小さなどんぐりがてくてく。まつぼっくりも、ころころ",
+      "sticker": "woodpecker",
+      "animation": "drum"
+    },
+    {
+      "at": 10.16,
+      "cue": "どんぐりがてくてく。まつぼっくりも、ころころ",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 11.8,
+      "cue": "まつぼっくりも、ころころ",
+      "sticker": "pinecone",
+      "enter": true
+    },
+    {
+      "at": 11.8,
+      "cue": "まつぼっくりも、ころころ",
+      "sticker": "pinecone",
+      "go": "to",
+      "target": "acorn"
+    },
+    {
+      "at": 14.07,
+      "sticker": "acorn",
+      "expression": "surprised"
+    },
+    {
+      "at": 16.56,
+      "cue": "ま",
+      "sticker": "woodpecker",
+      "expression": "sad"
+    },
+    {
+      "at": 22.76,
+      "cue": "またたたいて、耳をすませました",
+      "sticker": "woodpecker",
+      "animation": "tap",
+      "mode": "hold"
+    },
+    {
+      "at": 27.43,
+      "cue": "なんにも、きこえません。どんぐりは、てつ",
+      "sticker": "pinecone",
+      "expression": "sad"
+    },
+    {
+      "at": 29.64,
+      "cue": "どんぐりは、てつ",
+      "sticker": "acorn",
+      "expression": "sad"
+    },
+    {
+      "at": 33.16,
+      "cue": "目をぎ",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "hold"
+    },
+    {
+      "at": 36.68,
+      "cue": "かさをぜんぶひらきました。ひとつひとつが、耳みたいに。キツツキくんは、もういっかい",
+      "sticker": "pinecone",
+      "animation": "open"
+    },
+    {
+      "at": 41.16,
+      "cue": "キツツキくんは、もういっかい",
+      "sticker": "woodpecker",
+      "animation": "tap",
+      "mode": "resume"
+    },
+    {
+      "at": 49.34,
+      "cue": "どんぐりの目が、ぱちっ",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "resume"
+    },
+    {
+      "at": 51.31,
+      "cue": "きこえた？」「タタタ、こんにちは！」とキツツキくん。「タタタ、こんにちは、こんにちは！」と、とおくのおとも",
+      "sticker": "pinecone",
+      "expression": "surprised"
+    },
+    {
+      "at": 52.06,
+      "cue": "タタタ、こんにちは！」とキツツキくん。「タタタ、こんにちは、こんにちは！」と、とおくのおとも",
+      "sticker": "woodpecker",
+      "expression": "happy"
+    },
+    {
+      "at": 58.94,
+      "cue": "ふたりは、ぴょんぴょんおおよろこび",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 58.94,
+      "cue": "ふたりは、ぴょんぴょんおおよろこび",
+      "sticker": "acorn",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 58.94,
+      "cue": "ふたりは、ぴょんぴょんおおよろこび",
+      "sticker": "pinecone",
+      "expression": "happy"
+    },
+    {
+      "at": 58.94,
+      "cue": "ふたりは、ぴょんぴょんおおよろこび",
+      "sticker": "pinecone",
+      "animation": "bounce"
+    }
+  ]
+}

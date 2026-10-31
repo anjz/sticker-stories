@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "piovanello",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "piovanello",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 7.21,
+      "cue": "e",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 9,
+      "cue": "una",
+      "sticker": "bottle",
+      "enter": true
+    },
+    {
+      "at": 9,
+      "cue": "una",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 12.52,
+      "cue": "è",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "bottle",
+      "by": "run"
+    },
+    {
+      "at": 16.36,
+      "cue": "pop",
+      "sticker": "bottle",
+      "animation": "pop"
+    },
+    {
+      "at": 19,
+      "cue": "piovanello",
+      "sticker": "sandpiper",
+      "expression": "surprised"
+    },
+    {
+      "at": 19,
+      "cue": "piovanello",
+      "sticker": "sandpiper",
+      "animation": "jump"
+    },
+    {
+      "at": 23.96,
+      "cue": "una",
+      "sticker": "ball",
+      "enter": true
+    },
+    {
+      "at": 26.04,
+      "cue": "rossa",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "ball",
+      "by": "run"
+    },
+    {
+      "at": 30.28,
+      "cue": "toc",
+      "sticker": "sandpiper",
+      "effect": "pulse"
+    },
+    {
+      "at": 31.16,
+      "cue": "e",
+      "sticker": "ball",
+      "go": "to",
+      "target": "sand",
+      "another": true
+    },
+    {
+      "at": 33.64,
+      "cue": "piovanello",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "ball",
+      "by": "run"
+    },
+    {
+      "at": 37.08,
+      "cue": "finché",
+      "sticker": "ball",
+      "animation": "spin"
+    },
+    {
+      "at": 39.96,
+      "cue": "piovanello",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 39.96,
+      "cue": "piovanello",
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 44.89,
+      "cue": "bene",
+      "sticker": "sandpiper",
+      "animation": "nod"
+    },
+    {
+      "at": 48.52,
+      "cue": "e",
+      "sticker": "ball",
+      "effect": "pulse"
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "es",
+      "sticker": "umbrella",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "es",
+      "effect": "sunshine",
+      "duration": 30,
+      "intensity": 0.9
+    },
+    {
+      "at": 6.6,
+      "cue": "dem",
+      "sticker": "hermit-crab",
+      "enter": true
+    },
+    {
+      "at": 8.88,
+      "cue": "dass",
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 15.4,
+      "cue": "und",
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 21.64,
+      "cue": "aaah",
+      "sticker": "hermit-crab",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 21.64,
+      "cue": "aaah",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    },
+    {
+      "at": 24.92,
+      "cue": "der",
+      "sticker": "sandpiper",
+      "enter": true,
+      "by": "run"
+    },
+    {
+      "at": 26.56,
+      "cue": "ganz",
+      "sticker": "sandpiper",
+      "expression": "sad"
+    },
+    {
+      "at": 37.32,
+      "cue": "dann",
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 39.67,
+      "cue": "hier",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    },
+    {
+      "at": 42.28,
+      "cue": "gleich",
+      "sticker": "sandpiper",
+      "go": "under",
+      "target": "umbrella",
+      "by": "run"
+    },
+    {
+      "at": 42.28,
+      "cue": "gleich",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 43.32,
+      "cue": "die",
+      "sticker": "crab",
+      "enter": true
+    },
+    {
+      "at": 46.76,
+      "cue": "platz",
+      "sticker": "hermit-crab",
+      "animation": "wave"
+    },
+    {
+      "at": 49.61,
+      "cue": "ein",
+      "sticker": "crab",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 49.61,
+      "cue": "ein",
+      "sticker": "umbrella",
+      "animation": "spin"
+    },
+    {
+      "at": 55.93,
+      "cue": "und",
+      "sticker": "hermit-crab",
+      "effect": "hearts"
+    },
+    {
+      "at": 55.93,
+      "cue": "und",
+      "sticker": "sandpiper",
+      "effect": "hearts"
+    }
+  ]
+}

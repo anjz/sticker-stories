@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "一天早上，整片草地都躲在大霧裏。忽然——呼——！風把霧吹走了",
+      "effect": "fog",
+      "duration": 11.82,
+      "intensity": 0.6
+    },
+    {
+      "at": 8.28,
+      "cue": "呼——！風把霧吹走了",
+      "effect": "wind",
+      "duration": 38.46,
+      "intensity": 0.6
+    },
+    {
+      "at": 11.13,
+      "cue": "風呀",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 16.84,
+      "cue": "它搔搔小草，弄得小草好癢。它吹皺了",
+      "sticker": "all",
+      "effect": "wobble",
+      "intensity": 0.5
+    },
+    {
+      "at": 21.64,
+      "cue": "它把樹上的葉子吹得團團轉。松果剛好滾過來，風就推着她，碌呀碌，碌呀碌",
+      "effect": "leaves",
+      "duration": 25.6,
+      "intensity": 0.6
+    },
+    {
+      "at": 24.6,
+      "cue": "松果剛好滾過來，風就推着她，碌呀碌，碌呀碌",
+      "sticker": "pinecone",
+      "enter": true
+    },
+    {
+      "at": 26.84,
+      "cue": "推着她，碌呀碌，碌呀碌",
+      "sticker": "pinecone",
+      "go": "to",
+      "target": "meadow",
+      "toward": "right"
+    },
+    {
+      "at": 26.84,
+      "cue": "推着她，碌呀碌，碌呀碌",
+      "sticker": "pinecone",
+      "effect": "spin"
+    },
+    {
+      "at": 30.08,
+      "cue": "嘩——好好玩呀！」蝴蝶讓風帶着",
+      "sticker": "pinecone",
+      "expression": "happy"
+    },
+    {
+      "at": 32.04,
+      "cue": "蝴蝶讓風帶着",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 32.04,
+      "cue": "蝴蝶讓風帶着",
+      "sticker": "butterfly",
+      "expression": "happy"
+    },
+    {
+      "at": 33.72,
+      "cue": "飛上了樹枝，合起",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "branches",
+      "toward": "right"
+    },
+    {
+      "at": 35.08,
+      "cue": "合起",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 37.56,
+      "cue": "橡實走過來，連忙按住她的帽子。最後，風終於累了。呼……沙……它躺在草地上休息，四周一下子靜了下來。蝴蝶張開",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 38.84,
+      "cue": "連忙按住她的帽子。最後，風終於累了。呼……沙……它躺在草地上休息，四周一下子靜了下來。蝴蝶張開",
+      "sticker": "acorn",
+      "expression": "surprised"
+    },
+    {
+      "at": 38.84,
+      "cue": "連忙按住她的帽子。最後，風終於累了。呼……沙……它躺在草地上休息，四周一下子靜了下來。蝴蝶張開",
+      "sticker": "acorn",
+      "animation": "hold-cap"
+    },
+    {
+      "at": 49.8,
+      "cue": "蝴蝶張開",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "resume"
+    },
+    {
+      "at": 51.48,
+      "cue": "橡實許了一個願：「而家話畀我哋知",
+      "sticker": "acorn",
+      "animation": "wish"
+    },
+    {
+      "at": 59.8,
+      "cue": "它說了甚麼呢？「周圍去……聽日，再返嚟呢度",
+      "sticker": "all",
+      "expression": "happy"
+    }
+  ]
+}

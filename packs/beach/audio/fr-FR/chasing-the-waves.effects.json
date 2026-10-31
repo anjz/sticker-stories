@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "bécasseau",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "bécasseau",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 5.24,
+      "cue": "il",
+      "sticker": "sandpiper",
+      "effect": "pulse"
+    },
+    {
+      "at": 6.72,
+      "cue": "et",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore",
+      "another": true
+    },
+    {
+      "at": 9.72,
+      "cue": "chien",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 10.96,
+      "cue": "la",
+      "sticker": "dog",
+      "expression": "surprised"
+    },
+    {
+      "at": 13.13,
+      "cue": "il",
+      "sticker": "dog",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 19.56,
+      "cue": "chien",
+      "sticker": "dog",
+      "expression": "surprised"
+    },
+    {
+      "at": 19.56,
+      "cue": "chien",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 24.54,
+      "sticker": "sandpiper",
+      "animation": "shake-head"
+    },
+    {
+      "at": 27,
+      "cue": "chaque",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 31.32,
+      "cue": "alors",
+      "sticker": "sandpiper",
+      "animation": "peck",
+      "mode": "hold"
+    },
+    {
+      "at": 35.45,
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 37.16,
+      "cue": "alors",
+      "sticker": "dog",
+      "animation": "nod"
+    },
+    {
+      "at": 42.28,
+      "cue": "son",
+      "sticker": "ball",
+      "enter": true
+    },
+    {
+      "at": 43.24,
+      "sticker": "dog",
+      "go": "to",
+      "target": "ball"
+    },
+    {
+      "at": 43.24,
+      "sticker": "dog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 46.76,
+      "cue": "le",
+      "sticker": "ball",
+      "animation": "spin"
+    },
+    {
+      "at": 50.68,
+      "cue": "blanc",
+      "sticker": "dog",
+      "effect": "hearts"
+    }
+  ]
+}

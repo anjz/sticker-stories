@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "潮",
+      "sticker": "clam",
+      "enter": true
+    },
+    {
+      "at": 5.48,
+      "cue": "おさかなくんが、かぞえます。カニくんとタコくんは、かくれにいきました。カニくんは、石のうしろにかくれたけれど、大きな赤いはさみが、にょきっ",
+      "sticker": "fish",
+      "enter": true
+    },
+    {
+      "at": 7.72,
+      "cue": "カニくんとタコくんは、かくれにいきました。カニくんは、石のうしろにかくれたけれど、大きな赤いはさみが、にょきっ",
+      "sticker": "crab",
+      "enter": true
+    },
+    {
+      "at": 8.36,
+      "cue": "タコくんは、かくれにいきました。カニくんは、石のうしろにかくれたけれど、大きな赤いはさみが、にょきっ",
+      "sticker": "octopus",
+      "enter": true
+    },
+    {
+      "at": 8.36,
+      "cue": "タコくんは、かくれにいきました。カニくんは、石のうしろにかくれたけれど、大きな赤いはさみが、にょきっ",
+      "sticker": "octopus",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 8.36,
+      "cue": "タコくんは、かくれにいきました。カニくんは、石のうしろにかくれたけれど、大きな赤いはさみが、にょきっ",
+      "sticker": "crab",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 11,
+      "cue": "カニくんは、石のうしろにかくれたけれど、大きな赤いはさみが、にょきっ",
+      "sticker": "crab",
+      "expression": "happy"
+    },
+    {
+      "at": 19.64,
+      "cue": "さて、タコくんは、どこかな",
+      "sticker": "crab",
+      "effect": "wobble"
+    },
+    {
+      "at": 26.04,
+      "cue": "石の下。大きな岩のうしろ。貝さんもぱかっとひらいて、のぞいてみます。タコくんは、どこにもいません。そのとき、はいいろの石が…ぱちっと、まばたき",
+      "sticker": "fish",
+      "go": "to",
+      "target": "pool",
+      "another": true
+    },
+    {
+      "at": 29.72,
+      "cue": "ぱかっとひらいて、のぞいてみます。タコくんは、どこにもいません。そのとき、はいいろの石が…ぱちっと、まばたき",
+      "sticker": "clam",
+      "animation": "peek"
+    },
+    {
+      "at": 32.44,
+      "cue": "タコくんは、どこにもいません。そのとき、はいいろの石が…ぱちっと、まばたき",
+      "sticker": "octopus",
+      "effect": "tint",
+      "duration": 7,
+      "intensity": 1,
+      "color": "#9C948C"
+    },
+    {
+      "at": 32.44,
+      "cue": "タコくんは、どこにもいません。そのとき、はいいろの石が…ぱちっと、まばたき",
+      "sticker": "fish",
+      "expression": "sad"
+    },
+    {
+      "at": 32.44,
+      "cue": "タコくんは、どこにもいません。そのとき、はいいろの石が…ぱちっと、まばたき",
+      "sticker": "fish",
+      "animation": "look-around"
+    },
+    {
+      "at": 39.8,
+      "cue": "あの石、目があるよ！」はいいろが、ふわっとピンクがかったオレンジいろにかわって、タコくんが、けらけらわらっていました",
+      "sticker": "fish",
+      "expression": "surprised"
+    },
+    {
+      "at": 45.96,
+      "cue": "タコくんが、けらけらわらっていました",
+      "sticker": "octopus",
+      "expression": "happy"
+    },
+    {
+      "at": 46.68,
+      "cue": "けらけらわらっていました",
+      "sticker": "octopus",
+      "animation": "laugh"
+    },
+    {
+      "at": 53.4,
+      "sticker": "octopus",
+      "animation": "wave"
+    },
+    {
+      "at": 55.32,
+      "cue": "カニくんは、はさみをカチカチ",
+      "sticker": "crab",
+      "animation": "clap"
+    },
+    {
+      "at": 58.44,
+      "cue": "こんどは、ぼくがかくれるばん。石になるやりかた、おしえて！」とおさかなくん",
+      "sticker": "fish",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 6.04,
+      "cue": "こぐまがよちよちやってきて、ふわあーっと大あくび。そのまま、こっくり。え",
+      "sticker": "bear",
+      "enter": true
+    },
+    {
+      "at": 8.2,
+      "cue": "ふわあーっと大あくび。そのまま、こっくり。え",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 14.68,
+      "cue": "ひとばんじ",
+      "sticker": "owl",
+      "enter": true
+    },
+    {
+      "at": 14.68,
+      "cue": "ひとばんじ",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 17.08,
+      "cue": "すやすや",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "hold"
+    },
+    {
+      "at": 22.52,
+      "cue": "キノコのはなにのっかりました。むずむず！くしゃみがでそう",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 24.92,
+      "cue": "むずむず！くしゃみがでそう",
+      "sticker": "mushroom",
+      "expression": "surprised"
+    },
+    {
+      "at": 29.64,
+      "cue": "は…は…がまん。がまん。かさが、ぷるぷる",
+      "sticker": "mushroom",
+      "animation": "sneeze",
+      "mode": "hold"
+    },
+    {
+      "at": 32.92,
+      "cue": "かさが、ぷるぷる",
+      "sticker": "mushroom",
+      "effect": "shake",
+      "intensity": 0.4
+    },
+    {
+      "at": 36.76,
+      "cue": "はーっくしょん！キラキラのこなが、ふわあっとまいあがりました。こぐまは、はっ！フクロウくんは、かたほうの目をあけて、それからもうかたほうも",
+      "sticker": "mushroom",
+      "animation": "sneeze",
+      "mode": "resume"
+    },
+    {
+      "at": 42.12,
+      "cue": "こぐまは、はっ！フクロウくんは、かたほうの目をあけて、それからもうかたほうも",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "resume"
+    },
+    {
+      "at": 43.88,
+      "cue": "フクロウくんは、かたほうの目をあけて、それからもうかたほうも",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "resume"
+    },
+    {
+      "at": 48.52,
+      "cue": "ごめんね」とキノコは小さなこえ。でも、こぐまはにこにこ",
+      "sticker": "mushroom",
+      "expression": "sad"
+    },
+    {
+      "at": 48.52,
+      "cue": "ごめんね」とキノコは小さなこえ。でも、こぐまはにこにこ",
+      "sticker": "mushroom",
+      "animation": "talk"
+    },
+    {
+      "at": 53.16,
+      "cue": "にこにこ",
+      "sticker": "bear",
+      "expression": "happy"
+    },
+    {
+      "at": 56.04,
+      "cue": "ホウ」とフクロウくん。「こんなにきれいなくしゃみ、はじめて見たよ」「お",
+      "sticker": "owl",
+      "expression": "happy"
+    },
+    {
+      "at": 56.04,
+      "cue": "ホウ」とフクロウくん。「こんなにきれいなくしゃみ、はじめて見たよ」「お",
+      "sticker": "owl",
+      "animation": "hoot"
+    },
+    {
+      "at": 60.8,
+      "cue": "お",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 60.8,
+      "cue": "お",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 68.92,
+      "cue": "みんなで、キラキラをまっているのです",
+      "sticker": "mushroom",
+      "effect": "glow"
+    }
+  ]
+}

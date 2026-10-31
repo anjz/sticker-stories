@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "這裡有一座沙",
+      "sticker": "bucket",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "這裡有一座沙",
+      "sticker": "castle",
+      "enter": true
+    },
+    {
+      "at": 7.96,
+      "cue": "小",
+      "sticker": "castle",
+      "animation": "flag"
+    },
+    {
+      "at": 11.56,
+      "cue": "海鷗從天上看見了它",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 14.12,
+      "cue": "哇，坐在那上面，一定",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 17.08,
+      "sticker": "seagull",
+      "go": "on",
+      "target": "castle"
+    },
+    {
+      "at": 20.68,
+      "cue": "搖呀搖，晃呀晃",
+      "sticker": "castle",
+      "effect": "wobble"
+    },
+    {
+      "at": 22.92,
+      "cue": "哎呀，糟糕……」高塔開始沙沙沙地垮下來了。海鷗大叫一聲",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 24.92,
+      "cue": "高塔開始沙沙沙地垮下來了。海鷗大叫一聲",
+      "sticker": "castle",
+      "effect": "shake"
+    },
+    {
+      "at": 27.8,
+      "cue": "海鷗大叫一聲",
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 33.48,
+      "cue": "留下了濕濕的沙。海鷗知道該怎麼做了。啄一啄！拍一拍！啄一啄！拍一拍！濕濕的沙補上去，拍得緊緊的。高塔又站得直直的、穩穩的了。海鷗把羽毛蓬得鬆鬆的。從最高的塔",
+      "sticker": "bucket",
+      "animation": "wash"
+    },
+    {
+      "at": 37.4,
+      "cue": "啄一啄！拍一拍！啄一啄！拍一拍！濕濕的沙補上去，拍得緊緊的。高塔又站得直直的、穩穩的了。海鷗把羽毛蓬得鬆鬆的。從最高的塔",
+      "sticker": "seagull",
+      "animation": "peck"
+    },
+    {
+      "at": 44.04,
+      "cue": "高塔又站得直直的、穩穩的了。海鷗把羽毛蓬得鬆鬆的。從最高的塔",
+      "sticker": "castle",
+      "effect": "pulse"
+    },
+    {
+      "at": 47.16,
+      "cue": "海鷗把羽毛蓬得鬆鬆的。從最高的塔",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 47.16,
+      "cue": "海鷗把羽毛蓬得鬆鬆的。從最高的塔",
+      "sticker": "seagull",
+      "animation": "preen"
+    },
+    {
+      "at": 58.12,
+      "cue": "最棒的守衛。也是最大聲的守衛",
+      "sticker": "castle",
+      "effect": "sparkle"
+    }
+  ]
+}

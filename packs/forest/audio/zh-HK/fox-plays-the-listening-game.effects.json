@@ -1,0 +1,153 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.84,
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 6.12,
+      "cue": "坐定定，閉埋眼，聽到乜就講出嚟。」小老",
+      "sticker": "rabbit",
+      "effect": "hop"
+    },
+    {
+      "at": 9.72,
+      "cue": "小老",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 9.72,
+      "cue": "小老",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 11.56,
+      "cue": "狐狸蹦蹦跳跳地跑過來。「我都要！我都要",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 11.56,
+      "cue": "狐狸蹦蹦跳跳地跑過來。「我都要！我都要",
+      "sticker": "fox",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 13.48,
+      "cue": "我都要！我都要",
+      "sticker": "fox",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 15.64,
+      "sticker": "rabbit",
+      "animation": "listen"
+    },
+    {
+      "at": 18.92,
+      "cue": "蜜蜂！」真的有一隻蜜蜂嗡嗡地飛來，哼着一首小曲。小老",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 22.52,
+      "cue": "哼着一首小曲。小老",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 24.12,
+      "cue": "小老",
+      "sticker": "mouse",
+      "animation": "sniff"
+    },
+    {
+      "at": 28.56,
+      "cue": "我聽到……狐狸！」狐狸大叫。「嗰個係",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 28.56,
+      "cue": "我聽到……狐狸！」狐狸大叫。「嗰個係",
+      "sticker": "fox",
+      "effect": "wobble"
+    },
+    {
+      "at": 31.44,
+      "cue": "嗰個係",
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 36.52,
+      "cue": "狐狸抓一抓。狐狸動來動去，怎樣也坐不定",
+      "sticker": "fox",
+      "animation": "scratch"
+    },
+    {
+      "at": 41.6,
+      "cue": "我乜都聽唔到！」「好似石",
+      "sticker": "fox",
+      "expression": "sad"
+    },
+    {
+      "at": 48.44,
+      "cue": "豎起耳朵，閉上眼睛。靜悄悄。靜悄悄",
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 59.24,
+      "cue": "蝸牛輕輕地說。原來",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 59.24,
+      "cue": "蝸牛輕輕地說。原來",
+      "sticker": "snail",
+      "go": "to",
+      "target": "fox"
+    },
+    {
+      "at": 64.12,
+      "cue": "狐狸張開眼睛。「我聽到蝸牛呀！」「狐狸贏咗",
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 65.44,
+      "cue": "我聽到蝸牛呀！」「狐狸贏咗",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 67.2,
+      "cue": "狐狸贏咗",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 67.2,
+      "cue": "狐狸贏咗",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 70.52,
+      "cue": "噓——」狐狸笑着說，「我仲聽緊㗎",
+      "sticker": "fox",
+      "effect": "hearts"
+    }
+  ]
+}

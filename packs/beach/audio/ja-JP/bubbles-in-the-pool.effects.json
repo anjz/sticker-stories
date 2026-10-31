@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ぽこっ。ぽこっ。ぽこっ。潮",
+      "sticker": "clam",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "ぽこっ。ぽこっ。ぽこっ。潮",
+      "sticker": "seaweed",
+      "enter": true
+    },
+    {
+      "at": 9.56,
+      "cue": "おさかなくんは、ぐるぐるおよいで、「あわを出すのは",
+      "sticker": "fish",
+      "enter": true
+    },
+    {
+      "at": 9.56,
+      "cue": "おさかなくんは、ぐるぐるおよいで、「あわを出すのは",
+      "sticker": "fish",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 10.68,
+      "cue": "ぐるぐるおよいで、「あわを出すのは",
+      "sticker": "fish",
+      "expression": "surprised"
+    },
+    {
+      "at": 14.52,
+      "cue": "ウニくんかな？ウニくんは、とげをゆらゆら。「ぼくじゃないよ！」海藻かな？海藻は、ゆーらゆら。「わたしじゃないよ",
+      "sticker": "urchin",
+      "enter": true
+    },
+    {
+      "at": 16.04,
+      "cue": "ウニくんは、とげをゆらゆら。「ぼくじゃないよ！」海藻かな？海藻は、ゆーらゆら。「わたしじゃないよ",
+      "sticker": "urchin",
+      "animation": "wiggle"
+    },
+    {
+      "at": 21.24,
+      "cue": "海藻は、ゆーらゆら。「わたしじゃないよ",
+      "sticker": "seaweed",
+      "animation": "sway"
+    },
+    {
+      "at": 25.4,
+      "cue": "そのとき、水のそこで、ちいさく、くすくす。貝さんがぱかっとひらいて…ぱちんととじると、あわがつながって、のぼっていきました。ぽこぽこっ",
+      "sticker": "fish",
+      "expression": "sad"
+    },
+    {
+      "at": 29.64,
+      "cue": "貝さんがぱかっとひらいて…ぱちんととじると、あわがつながって、のぼっていきました。ぽこぽこっ",
+      "sticker": "clam",
+      "animation": "peek"
+    },
+    {
+      "at": 33.24,
+      "cue": "あわがつながって、のぼっていきました。ぽこぽこっ",
+      "sticker": "clam",
+      "effect": "bubble-puff"
+    },
+    {
+      "at": 37.76,
+      "cue": "貝さん",
+      "sticker": "fish",
+      "expression": "happy"
+    },
+    {
+      "at": 39.48,
+      "cue": "貝さんがまたくすくすわらうと、またまたあわがぽこぽこ。おさかなくんは、ひれをぴちぴちふって、あわをおいかけます",
+      "sticker": "clam",
+      "expression": "happy"
+    },
+    {
+      "at": 39.48,
+      "cue": "貝さんがまたくすくすわらうと、またまたあわがぽこぽこ。おさかなくんは、ひれをぴちぴちふって、あわをおいかけます",
+      "sticker": "clam",
+      "animation": "snap"
+    },
+    {
+      "at": 41.56,
+      "cue": "またまたあわがぽこぽこ。おさかなくんは、ひれをぴちぴちふって、あわをおいかけます",
+      "sticker": "clam",
+      "effect": "bubble-puff"
+    },
+    {
+      "at": 43.88,
+      "cue": "おさかなくんは、ひれをぴちぴちふって、あわをおいかけます",
+      "sticker": "fish",
+      "animation": "wiggle"
+    },
+    {
+      "at": 48.12,
+      "cue": "みんな、わらって、わらって、あたりはあわでいっぱい",
+      "sticker": "urchin",
+      "expression": "happy"
+    },
+    {
+      "at": 48.12,
+      "cue": "みんな、わらって、わらって、あたりはあわでいっぱい",
+      "sticker": "seaweed",
+      "expression": "happy"
+    },
+    {
+      "at": 48.12,
+      "cue": "みんな、わらって、わらって、あたりはあわでいっぱい",
+      "effect": "bubbles",
+      "duration": 10,
+      "intensity": 0.8
+    },
+    {
+      "at": 48.12,
+      "cue": "みんな、わらって、わらって、あたりはあわでいっぱい",
+      "sticker": "clam",
+      "effect": "pulse"
+    }
+  ]
+}

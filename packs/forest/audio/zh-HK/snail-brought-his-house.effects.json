@@ -1,0 +1,212 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "灰色的雲一團團湧過來。快要下雨了！大家都趕着回家。海狸經過蝸牛身邊，停了下來。「蝸牛",
+      "effect": "clouds",
+      "duration": 55.18,
+      "intensity": 0.7
+    },
+    {
+      "at": 8.84,
+      "cue": "海狸經過蝸牛身邊，停了下來。「蝸牛",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 9.72,
+      "cue": "蝸牛身邊，停了下來。「蝸牛",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 10.76,
+      "cue": "停了下來。「蝸牛",
+      "sticker": "beaver",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 10.76,
+      "cue": "停了下來。「蝸牛",
+      "sticker": "beaver",
+      "expression": "surprised"
+    },
+    {
+      "at": 13.66,
+      "cue": "就喺度呀。」蝸牛說。可是海狸還是替",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 13.66,
+      "cue": "就喺度呀。」蝸牛說。可是海狸還是替",
+      "sticker": "snail",
+      "animation": "talk"
+    },
+    {
+      "at": 17.56,
+      "cue": "替",
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 22.04,
+      "cue": "趕回自己的窩去了。獾經過，也停了下來。「蝸牛",
+      "sticker": "beaver",
+      "go": "away"
+    },
+    {
+      "at": 24.04,
+      "cue": "獾經過，也停了下來。「蝸牛",
+      "sticker": "badger",
+      "enter": true
+    },
+    {
+      "at": 24.04,
+      "cue": "獾經過，也停了下來。「蝸牛",
+      "sticker": "badger",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 26.12,
+      "cue": "蝸牛",
+      "sticker": "badger",
+      "expression": "surprised"
+    },
+    {
+      "at": 30.36,
+      "cue": "替",
+      "sticker": "badger",
+      "animation": "dig"
+    },
+    {
+      "at": 34.2,
+      "cue": "趕回自己的地洞去了。小鳥飛了下來。「蝸牛",
+      "sticker": "badger",
+      "go": "away"
+    },
+    {
+      "at": 36.2,
+      "cue": "小鳥飛了下來。「蝸牛",
+      "sticker": "bird",
+      "enter": true
+    },
+    {
+      "at": 36.2,
+      "cue": "小鳥飛了下來。「蝸牛",
+      "sticker": "bird",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 37.68,
+      "cue": "蝸牛",
+      "sticker": "bird",
+      "expression": "surprised"
+    },
+    {
+      "at": 40.12,
+      "cue": "喺呢度呀！喺呢度！」蝸牛說。小鳥飛回雀竇去了。滴滴答答，下雨了。蝸牛縮進殼裏。卜卜，卜卜，雨點敲着",
+      "sticker": "snail",
+      "animation": "laugh"
+    },
+    {
+      "at": 42.76,
+      "cue": "小鳥飛回雀竇去了。滴滴答答，下雨了。蝸牛縮進殼裏。卜卜，卜卜，雨點敲着",
+      "sticker": "bird",
+      "go": "away"
+    },
+    {
+      "at": 44.92,
+      "cue": "滴滴答答，下雨了。蝸牛縮進殼裏。卜卜，卜卜，雨點敲着",
+      "effect": "rain",
+      "duration": 9.26,
+      "intensity": 0.8
+    },
+    {
+      "at": 47.24,
+      "cue": "蝸牛縮進殼裏。卜卜，卜卜，雨點敲着",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 52.68,
+      "cue": "雨停了，太陽出來了，朋友們都回來了",
+      "effect": "sunshine"
+    },
+    {
+      "at": 54.92,
+      "cue": "朋友們都回來了",
+      "sticker": "beaver",
+      "go": "back"
+    },
+    {
+      "at": 54.92,
+      "cue": "朋友們都回來了",
+      "sticker": "badger",
+      "go": "back"
+    },
+    {
+      "at": 54.92,
+      "cue": "朋友們都回來了",
+      "sticker": "bird",
+      "go": "back"
+    },
+    {
+      "at": 54.92,
+      "cue": "朋友們都回來了",
+      "sticker": "beaver",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 54.92,
+      "cue": "朋友們都回來了",
+      "sticker": "badger",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 54.92,
+      "cue": "朋友們都回來了",
+      "sticker": "bird",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 56.6,
+      "cue": "蝸牛",
+      "sticker": "badger",
+      "expression": "sad"
+    },
+    {
+      "at": 59.24,
+      "cue": "蝸牛探出",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 62.6,
+      "cue": "我都話咗㗎啦",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 64.44,
+      "cue": "我行到邊，間屋就跟到邊",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 64.44,
+      "cue": "我行到邊，間屋就跟到邊",
+      "sticker": "all",
+      "effect": "wobble"
+    }
+  ]
+}

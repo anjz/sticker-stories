@@ -1,0 +1,144 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "アナグマくんは、たからさがし",
+      "sticker": "badger",
+      "enter": true
+    },
+    {
+      "at": 7.64,
+      "cue": "ほって、ほって、出てきたのは…ぴかぴかの小石！アライグマくんが、かけてきました",
+      "sticker": "badger",
+      "expression": "happy"
+    },
+    {
+      "at": 7.64,
+      "cue": "ほって、ほって、出てきたのは…ぴかぴかの小石！アライグマくんが、かけてきました",
+      "sticker": "badger",
+      "animation": "dig"
+    },
+    {
+      "at": 10.36,
+      "cue": "ぴかぴかの小石！アライグマくんが、かけてきました",
+      "sticker": "badger",
+      "expression": "surprised"
+    },
+    {
+      "at": 12.2,
+      "cue": "アライグマくんが、かけてきました",
+      "sticker": "raccoon",
+      "enter": true
+    },
+    {
+      "at": 12.2,
+      "cue": "アライグマくんが、かけてきました",
+      "sticker": "raccoon",
+      "go": "to",
+      "target": "badger"
+    },
+    {
+      "at": 16.6,
+      "cue": "アナグマくんは、小石を見て、アライグマくんを見て",
+      "sticker": "raccoon",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 20.58,
+      "cue": "はい、あげる。」もういちどほると、出てきたのは…あまいクローバー。ウサギくんが、ぴょんぴょん。耳がぴーん！「クローバー",
+      "sticker": "badger",
+      "expression": "happy"
+    },
+    {
+      "at": 22.28,
+      "cue": "もういちどほると、出てきたのは…あまいクローバー。ウサギくんが、ぴょんぴょん。耳がぴーん！「クローバー",
+      "sticker": "raccoon",
+      "effect": "hearts"
+    },
+    {
+      "at": 26.44,
+      "cue": "ウサギくんが、ぴょんぴょん。耳がぴーん！「クローバー",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 26.44,
+      "cue": "ウサギくんが、ぴょんぴょん。耳がぴーん！「クローバー",
+      "sticker": "rabbit",
+      "go": "to",
+      "target": "badger"
+    },
+    {
+      "at": 28.36,
+      "cue": "耳がぴーん！「クローバー",
+      "sticker": "rabbit",
+      "animation": "listen"
+    },
+    {
+      "at": 32.92,
+      "cue": "これで、おたからはひとつもなし",
+      "sticker": "badger",
+      "expression": "sad"
+    },
+    {
+      "at": 38.6,
+      "cue": "見ないでおくね！」とアライグマくん。ざっくざっく、ふかく、ふかく…ぽこっとかおを出すと、はなが土",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "hold"
+    },
+    {
+      "at": 41.72,
+      "cue": "ざっくざっく、ふかく、ふかく…ぽこっとかおを出すと、はなが土",
+      "sticker": "badger",
+      "animation": "dig"
+    },
+    {
+      "at": 48.52,
+      "cue": "アライグマくんがのぞいて",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "resume"
+    },
+    {
+      "at": 51.08,
+      "cue": "ウサギくんが、くすくす。アライグマくんも、けらけら。アナグマくんは、いちばんの大わらい",
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 51.08,
+      "cue": "ウサギくんが、くすくす。アライグマくんも、けらけら。アナグマくんは、いちばんの大わらい",
+      "sticker": "rabbit",
+      "effect": "wobble",
+      "repeat": 2
+    },
+    {
+      "at": 53.08,
+      "cue": "アライグマくんも、けらけら。アナグマくんは、いちばんの大わらい",
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 55.16,
+      "cue": "アナグマくんは、いちばんの大わらい",
+      "sticker": "badger",
+      "expression": "happy"
+    },
+    {
+      "at": 55.16,
+      "cue": "アナグマくんは、いちばんの大わらい",
+      "sticker": "badger",
+      "effect": "wobble",
+      "repeat": 2
+    },
+    {
+      "at": 61.8,
+      "cue": "はなをごしごしふいて、にっこり。「どっさりね",
+      "sticker": "badger",
+      "animation": "wipe-nose"
+    }
+  ]
+}

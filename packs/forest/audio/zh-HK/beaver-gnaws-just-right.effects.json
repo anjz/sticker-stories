@@ -1,0 +1,133 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.16,
+      "cue": "海狸又在咬木",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 6.2,
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 10.92,
+      "cue": "刺蝟身上",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 10.92,
+      "cue": "刺蝟身上",
+      "sticker": "hedgehog",
+      "go": "to",
+      "target": "beaver"
+    },
+    {
+      "at": 13.72,
+      "cue": "哼！」刺蝟氣鼓鼓地縮成一個刺球",
+      "sticker": "hedgehog",
+      "expression": "sad"
+    },
+    {
+      "at": 14.68,
+      "cue": "刺蝟氣鼓鼓地縮成一個刺球",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    },
+    {
+      "at": 19.42,
+      "sticker": "beaver",
+      "expression": "surprised"
+    },
+    {
+      "at": 19.42,
+      "sticker": "beaver",
+      "effect": "wobble"
+    },
+    {
+      "at": 28.52,
+      "cue": "小鳥飛了下來",
+      "sticker": "bird",
+      "enter": true
+    },
+    {
+      "at": 28.52,
+      "cue": "小鳥飛了下來",
+      "sticker": "bird",
+      "go": "to",
+      "target": "beaver"
+    },
+    {
+      "at": 30.09,
+      "cue": "我想搵啲細枝嚟起竇，但係我搵到",
+      "sticker": "bird",
+      "expression": "sad"
+    },
+    {
+      "at": 35.22,
+      "sticker": "beaver",
+      "expression": "happy"
+    },
+    {
+      "at": 36.52,
+      "cue": "咔嚓、咔嚓、咔嚓，細枝長短啱啱好。「啱晒！」小鳥銜着細枝，飛上高高的樹枝，唱歌多謝海狸。樹下的咔嚓聲停了，刺蝟探出",
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 40.12,
+      "cue": "啱晒！」小鳥銜着細枝，飛上高高的樹枝，唱歌多謝海狸。樹下的咔嚓聲停了，刺蝟探出",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 40.12,
+      "cue": "啱晒！」小鳥銜着細枝，飛上高高的樹枝，唱歌多謝海狸。樹下的咔嚓聲停了，刺蝟探出",
+      "sticker": "bird",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 41.24,
+      "cue": "小鳥銜着細枝，飛上高高的樹枝，唱歌多謝海狸。樹下的咔嚓聲停了，刺蝟探出",
+      "sticker": "bird",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 44.52,
+      "cue": "唱歌多謝海狸。樹下的咔嚓聲停了，刺蝟探出",
+      "sticker": "bird",
+      "animation": "sing"
+    },
+    {
+      "at": 48.12,
+      "cue": "刺蝟探出",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "resume"
+    },
+    {
+      "at": 54.64,
+      "cue": "嗯",
+      "sticker": "hedgehog",
+      "expression": "happy"
+    },
+    {
+      "at": 61.96,
+      "sticker": "hedgehog",
+      "expression": "sleeping"
+    },
+    {
+      "at": 62.28,
+      "cue": "鑽進木屑裏，睡了一個最軟綿綿的午覺",
+      "sticker": "hedgehog",
+      "animation": "sleep",
+      "mode": "hold"
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "海狸想組一個樂隊。一個真真正正的草地樂隊！「邊個識玩音樂呀",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 7.16,
+      "cue": "邊個識玩音樂呀",
+      "sticker": "beaver",
+      "expression": "happy"
+    },
+    {
+      "at": 7.16,
+      "cue": "邊個識玩音樂呀",
+      "sticker": "beaver",
+      "effect": "hop"
+    },
+    {
+      "at": 10.28,
+      "cue": "啄木鳥飛到樹幹上。「我識打鼓！」篤篤篤篤——篤！松果滾了過來。「我可以做沙槌！」她的鱗片沙沙作響。蜜蜂嗡嗡嗡地飛過來。「我識哼歌！」嗯——嗯——。青蛙在",
+      "sticker": "woodpecker",
+      "enter": true
+    },
+    {
+      "at": 10.28,
+      "cue": "啄木鳥飛到樹幹上。「我識打鼓！」篤篤篤篤——篤！松果滾了過來。「我可以做沙槌！」她的鱗片沙沙作響。蜜蜂嗡嗡嗡地飛過來。「我識哼歌！」嗯——嗯——。青蛙在",
+      "sticker": "woodpecker",
+      "go": "to",
+      "target": "trunks"
+    },
+    {
+      "at": 13.48,
+      "cue": "篤篤篤篤——篤！松果滾了過來。「我可以做沙槌！」她的鱗片沙沙作響。蜜蜂嗡嗡嗡地飛過來。「我識哼歌！」嗯——嗯——。青蛙在",
+      "sticker": "woodpecker",
+      "animation": "drum"
+    },
+    {
+      "at": 15.4,
+      "cue": "松果滾了過來。「我可以做沙槌！」她的鱗片沙沙作響。蜜蜂嗡嗡嗡地飛過來。「我識哼歌！」嗯——嗯——。青蛙在",
+      "sticker": "pinecone",
+      "enter": true
+    },
+    {
+      "at": 15.4,
+      "cue": "松果滾了過來。「我可以做沙槌！」她的鱗片沙沙作響。蜜蜂嗡嗡嗡地飛過來。「我識哼歌！」嗯——嗯——。青蛙在",
+      "sticker": "pinecone",
+      "go": "to",
+      "target": "beaver"
+    },
+    {
+      "at": 18.44,
+      "cue": "她的鱗片沙沙作響。蜜蜂嗡嗡嗡地飛過來。「我識哼歌！」嗯——嗯——。青蛙在",
+      "sticker": "pinecone",
+      "animation": "rattle"
+    },
+    {
+      "at": 20.76,
+      "cue": "蜜蜂嗡嗡嗡地飛過來。「我識哼歌！」嗯——嗯——。青蛙在",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 20.76,
+      "cue": "蜜蜂嗡嗡嗡地飛過來。「我識哼歌！」嗯——嗯——。青蛙在",
+      "sticker": "bee",
+      "go": "to",
+      "target": "beaver"
+    },
+    {
+      "at": 24.12,
+      "cue": "嗯——嗯——。青蛙在",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 26.52,
+      "cue": "青蛙在",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 26.52,
+      "cue": "青蛙在",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 31.88,
+      "cue": "海狸看看手上的木棍。「我淨係識咬嘢",
+      "sticker": "beaver",
+      "expression": "sad"
+    },
+    {
+      "at": 42.12,
+      "cue": "大家同時開始，卻有快有",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 42.12,
+      "cue": "大家同時開始，卻有快有",
+      "sticker": "all",
+      "effect": "wobble"
+    },
+    {
+      "at": 50.68,
+      "cue": "咬起木棍來。咔嚓，咔嚓。咔嚓，咔嚓",
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 56.44,
+      "cue": "啄木鳥跟着打鼓。松果跟着搖。青蛙跟着呱呱叫，蜜蜂也跟着哼",
+      "sticker": "woodpecker",
+      "animation": "drum"
+    },
+    {
+      "at": 58.28,
+      "cue": "松果跟着搖。青蛙跟着呱呱叫，蜜蜂也跟着哼",
+      "sticker": "pinecone",
+      "effect": "pulse"
+    },
+    {
+      "at": 59.8,
+      "cue": "青蛙跟着呱呱叫，蜜蜂也跟着哼",
+      "sticker": "frog",
+      "effect": "hop"
+    },
+    {
+      "at": 63.24,
+      "cue": "變成音樂了！「樂隊，好嘢",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 64.28,
+      "cue": "樂隊，好嘢",
+      "effect": "confetti"
+    },
+    {
+      "at": 64.28,
+      "cue": "樂隊，好嘢",
+      "sticker": "all",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

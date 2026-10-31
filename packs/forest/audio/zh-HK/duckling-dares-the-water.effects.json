@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "這是一個暖洋洋、陽",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.7
+    },
+    {
+      "at": 7,
+      "cue": "青蛙坐在",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 7,
+      "cue": "青蛙坐在",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 8.8,
+      "cue": "捉蒼",
+      "sticker": "frog",
+      "animation": "catch-fly"
+    },
+    {
+      "at": 11,
+      "cue": "快啲落嚟玩啦，小鴨！」小鴨一搖一擺地走到",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 12.44,
+      "cue": "小鴨！」小鴨一搖一擺地走到",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 13.4,
+      "cue": "小鴨一搖一擺地走到",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 16.44,
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 24.2,
+      "cue": "就把",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 29.05,
+      "cue": "蝸牛爬了過來",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 29.05,
+      "cue": "蝸牛爬了過來",
+      "sticker": "snail",
+      "go": "to",
+      "target": "duckling"
+    },
+    {
+      "at": 36.44,
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 39,
+      "cue": "偷偷探出一點點",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 41.4,
+      "cue": "小鴨也探出",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "resume"
+    },
+    {
+      "at": 43.48,
+      "cue": "一隻橙色的",
+      "sticker": "duckling",
+      "animation": "dip-foot"
+    },
+    {
+      "at": 49.56,
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond",
+      "by": "swim",
+      "another": true
+    },
+    {
+      "at": 56.97,
+      "cue": "我識游水喇！」嘎嘎",
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 58.36,
+      "cue": "嘎嘎",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 58.36,
+      "cue": "嘎嘎",
+      "sticker": "duckling",
+      "animation": "quack"
+    },
+    {
+      "at": 58.36,
+      "cue": "嘎嘎",
+      "sticker": "frog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 59.26,
+      "cue": "蝸牛笑了",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 59.26,
+      "cue": "蝸牛笑了",
+      "sticker": "snail",
+      "effect": "hearts"
+    }
+  ]
+}

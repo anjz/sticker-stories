@@ -42,7 +42,10 @@ pass review, it is a product constraint.
   them, digits 2–9 only) to type on a digit pad. A reading adult needs a
   few seconds and no arithmetic; a pre-reader can't read the words; a random
   tap sequence passes one time in a thousand. A wrong answer poses a fresh
-  challenge. Product decision (2026-09-23, replacing single-digit
+  challenge. Below, smaller and grey, the same digits spelled in the
+  device's language (English when that is the app's language already), so
+  a parent whose child picked an unfamiliar language in Settings can still
+  get back in; no line when both are English. Product decision (2026-09-23, replacing single-digit
   addition, which random tapping could pass about one time in 25): keep it
   friction-light for parents.
 - **Three wrong answers in a row pause the gate for 20 seconds** (keypad

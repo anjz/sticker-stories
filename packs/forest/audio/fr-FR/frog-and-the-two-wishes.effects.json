@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.52,
+      "cue": "grenouille",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 5.66,
+      "sticker": "frog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 9.12,
+      "cue": "escargot",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 9.12,
+      "cue": "escargot",
+      "sticker": "snail",
+      "go": "to",
+      "target": "frog"
+    },
+    {
+      "at": 13.08,
+      "cue": "il",
+      "sticker": "snail",
+      "animation": "hide"
+    },
+    {
+      "at": 14.62,
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 16.01,
+      "cue": "papillon",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 17.58,
+      "sticker": "butterfly",
+      "animation": "shake-head"
+    },
+    {
+      "at": 25.43,
+      "cue": "plic",
+      "effect": "rain",
+      "duration": 22.8,
+      "intensity": 0.7
+    },
+    {
+      "at": 28.76,
+      "cue": "grenouille",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 28.76,
+      "cue": "grenouille",
+      "sticker": "frog",
+      "animation": "jump"
+    },
+    {
+      "at": 30.48,
+      "cue": "escargot",
+      "sticker": "snail",
+      "animation": "stretch-eyes"
+    },
+    {
+      "at": 35,
+      "cue": "champignon",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 36,
+      "cue": "s’est",
+      "sticker": "butterfly",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 37.12,
+      "cue": "et",
+      "sticker": "butterfly",
+      "expression": "sad"
+    },
+    {
+      "at": 37.12,
+      "cue": "et",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 41.36,
+      "cue": "escargot",
+      "sticker": "snail",
+      "expression": "sad"
+    },
+    {
+      "at": 46.73,
+      "cue": "la",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.8
+    },
+    {
+      "at": 49.29,
+      "cue": "papillon",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "resume"
+    },
+    {
+      "at": 51.04,
+      "cue": "et",
+      "sticker": "butterfly",
+      "expression": "happy"
+    },
+    {
+      "at": 51.04,
+      "cue": "et",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "sky"
+    },
+    {
+      "at": 52.52,
+      "cue": "regardez",
+      "effect": "rainbow",
+      "duration": 14,
+      "intensity": 0.8
+    },
+    {
+      "at": 55.88,
+      "cue": "tous",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 55.88,
+      "cue": "tous",
+      "sticker": "all",
+      "effect": "hearts"
+    }
+  ]
+}

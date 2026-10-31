@@ -1,0 +1,162 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "今天早上，天氣好得不得了，最適合衝浪了。尼可抱著他的黃色衝浪板，往水邊走來",
+      "sticker": "sailboat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "今天早上，天氣好得不得了，最適合衝浪了。尼可抱著他的黃色衝浪板，往水邊走來",
+      "effect": "sunshine",
+      "duration": 30,
+      "intensity": 0.6
+    },
+    {
+      "at": 7.48,
+      "cue": "尼可抱著他的黃色衝浪板，往水邊走來",
+      "sticker": "surfer",
+      "enter": true
+    },
+    {
+      "at": 7.48,
+      "cue": "尼可抱著他的黃色衝浪板，往水邊走來",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 10.75,
+      "cue": "今天，我要衝最大、最大的浪！」海灣上，帆船輕輕搖呀搖，風把帆吹得鼓鼓的。接著，一道浪高高湧起，又高又白，滿滿都是泡沫",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 15.24,
+      "cue": "帆船輕輕搖呀搖，風把帆吹得鼓鼓的。接著，一道浪高高湧起，又高又白，滿滿都是泡沫",
+      "sticker": "sailboat",
+      "enter": true
+    },
+    {
+      "at": 15.24,
+      "cue": "帆船輕輕搖呀搖，風把帆吹得鼓鼓的。接著，一道浪高高湧起，又高又白，滿滿都是泡沫",
+      "sticker": "sailboat",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 17.56,
+      "cue": "風把帆吹得鼓鼓的。接著，一道浪高高湧起，又高又白，滿滿都是泡沫",
+      "sticker": "sailboat",
+      "animation": "sails"
+    },
+    {
+      "at": 29.2,
+      "cue": "尼可停下",
+      "sticker": "surfer",
+      "expression": "surprised"
+    },
+    {
+      "at": 33.12,
+      "cue": "他的膝蓋抖呀抖",
+      "sticker": "surfer",
+      "effect": "shake"
+    },
+    {
+      "at": 35.78,
+      "cue": "海豹一扭一扭，爬上岩石。啪、啪",
+      "sticker": "seal",
+      "enter": true
+    },
+    {
+      "at": 35.78,
+      "cue": "海豹一扭一扭，爬上岩石。啪、啪",
+      "sticker": "seal",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 38.72,
+      "cue": "啪、啪",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 38.72,
+      "cue": "啪、啪",
+      "sticker": "seal",
+      "animation": "clap"
+    },
+    {
+      "at": 43.86,
+      "cue": "好像在說",
+      "sticker": "seal",
+      "animation": "nod"
+    },
+    {
+      "at": 43.86,
+      "cue": "好像在說",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sea",
+      "by": "paddle"
+    },
+    {
+      "at": 50.5,
+      "cue": "唰——他站起來了！海龜游在他旁邊，開心地笑著。尼可乘著小浪，一路滑回沙灘上。接著又一道。再一道。尼可向海豹揮揮手，把衝浪板舉得高高的",
+      "sticker": "surfer",
+      "animation": "ride-wave"
+    },
+    {
+      "at": 52.9,
+      "cue": "海龜游在他旁邊，開心地笑著。尼可乘著小浪，一路滑回沙灘上。接著又一道。再一道。尼可向海豹揮揮手，把衝浪板舉得高高的",
+      "sticker": "turtle",
+      "enter": true,
+      "by": "swim"
+    },
+    {
+      "at": 52.9,
+      "cue": "海龜游在他旁邊，開心地笑著。尼可乘著小浪，一路滑回沙灘上。接著又一道。再一道。尼可向海豹揮揮手，把衝浪板舉得高高的",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "surfer",
+      "by": "swim"
+    },
+    {
+      "at": 54.5,
+      "cue": "開心地笑著。尼可乘著小浪，一路滑回沙灘上。接著又一道。再一道。尼可向海豹揮揮手，把衝浪板舉得高高的",
+      "sticker": "turtle",
+      "effect": "hearts"
+    },
+    {
+      "at": 57.7,
+      "cue": "一路滑回沙灘上。接著又一道。再一道。尼可向海豹揮揮手，把衝浪板舉得高高的",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand",
+      "by": "surf"
+    },
+    {
+      "at": 59.62,
+      "cue": "接著又一道。再一道。尼可向海豹揮揮手，把衝浪板舉得高高的",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 64.34,
+      "cue": "把衝浪板舉得高高的",
+      "sticker": "surfer",
+      "animation": "wave"
+    },
+    {
+      "at": 66.34,
+      "cue": "謝謝",
+      "sticker": "seal",
+      "effect": "hearts"
+    }
+  ]
+}

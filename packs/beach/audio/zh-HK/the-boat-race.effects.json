@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "尼可抱着滑浪板，站在沙灘上，望着前面的水面。帆船來了。漁船也來了",
+      "sticker": "surfer",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "尼可抱着滑浪板，站在沙灘上，望着前面的水面。帆船來了。漁船也來了",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 5.88,
+      "cue": "望着前面的水面。帆船來了。漁船也來了",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 7.72,
+      "cue": "帆船來了。漁船也來了",
+      "sticker": "sailboat",
+      "enter": true
+    },
+    {
+      "at": 9.08,
+      "cue": "漁船也來了",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 15.88,
+      "cue": "噗、噗、噗！漁船出發了",
+      "sticker": "fishing-boat",
+      "go": "to",
+      "target": "sea",
+      "toward": "right"
+    },
+    {
+      "at": 20.68,
+      "cue": "可是帆船停在那裏，一動也不動。沒有風，帆軟軟地垂了下來",
+      "sticker": "sailboat",
+      "effect": "pulse"
+    },
+    {
+      "at": 27.32,
+      "cue": "帆船，快啲郁吓啦",
+      "sticker": "surfer",
+      "expression": "sad"
+    },
+    {
+      "at": 30.36,
+      "cue": "忽然，呼——！風來了。帆一下子鼓了起來，又圓又飽，帆船在水上飛快地衝了出去！噗、噗……呼、呼",
+      "effect": "wind",
+      "duration": 20,
+      "intensity": 0.8
+    },
+    {
+      "at": 33.32,
+      "cue": "帆一下子鼓了起來，又圓又飽，帆船在水上飛快地衝了出去！噗、噗……呼、呼",
+      "sticker": "sailboat",
+      "animation": "sails"
+    },
+    {
+      "at": 36.52,
+      "cue": "帆船在水上飛快地衝了出去！噗、噗……呼、呼",
+      "sticker": "sailboat",
+      "go": "to",
+      "target": "fishing-boat",
+      "toward": "right"
+    },
+    {
+      "at": 39.32,
+      "cue": "噗、噗……呼、呼",
+      "sticker": "surfer",
+      "expression": "surprised"
+    },
+    {
+      "at": 43.8,
+      "cue": "漁船把網拉起來",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 47.96,
+      "cue": "最後，它們到了對面……剛剛好同時到達",
+      "sticker": "surfer",
+      "animation": "point"
+    },
+    {
+      "at": 52.44,
+      "cue": "打和",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 52.44,
+      "cue": "打和",
+      "sticker": "surfer",
+      "animation": "laugh"
+    },
+    {
+      "at": 54.68,
+      "cue": "尼可把滑浪板舉得高高的，揮呀揮",
+      "sticker": "surfer",
+      "animation": "wave"
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.2,
+      "cue": "小花張開了",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 7.24,
+      "cue": "毛毛蟲爬過來，看得",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 7.24,
+      "cue": "毛毛蟲爬過來，看得",
+      "sticker": "caterpillar",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 9.84,
+      "cue": "好靚呀！」旁邊坐着松果，一身啡色，安安靜靜",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 9.84,
+      "cue": "好靚呀！」旁邊坐着松果，一身啡色，安安靜靜",
+      "sticker": "caterpillar",
+      "effect": "pulse"
+    },
+    {
+      "at": 12.6,
+      "cue": "松果，一身啡色，安安靜靜",
+      "sticker": "pinecone",
+      "enter": true
+    },
+    {
+      "at": 12.6,
+      "cue": "松果，一身啡色，安安靜靜",
+      "sticker": "pinecone",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 17,
+      "cue": "小花有花瓣，」她說，「毛毛蟲有點點。我就淨係得鱗片",
+      "sticker": "pinecone",
+      "expression": "sad"
+    },
+    {
+      "at": 17,
+      "cue": "小花有花瓣，」她說，「毛毛蟲有點點。我就淨係得鱗片",
+      "sticker": "pinecone",
+      "animation": "talk"
+    },
+    {
+      "at": 23.47,
+      "cue": "等太陽伯伯出嚟啦。」小花說。太陽出來了，又暖又亮。松果覺得鱗片",
+      "sticker": "flower",
+      "animation": "talk"
+    },
+    {
+      "at": 26.36,
+      "cue": "太陽出來了，又暖又亮。松果覺得鱗片",
+      "effect": "sunshine",
+      "intensity": 0.8
+    },
+    {
+      "at": 29.32,
+      "cue": "松果覺得鱗片",
+      "sticker": "pinecone",
+      "effect": "shake",
+      "intensity": 0.3
+    },
+    {
+      "at": 32.2,
+      "cue": "她把鱗片張得大大的，好像一朵花",
+      "sticker": "pinecone",
+      "expression": "happy"
+    },
+    {
+      "at": 32.2,
+      "cue": "她把鱗片張得大大的，好像一朵花",
+      "sticker": "pinecone",
+      "animation": "open",
+      "mode": "hold"
+    },
+    {
+      "at": 36.16,
+      "cue": "嘩！」這時——呼！吹來一陣風。一粒粒小種子從鱗片裏飛出來，每粒都有一片小",
+      "sticker": "caterpillar",
+      "expression": "surprised"
+    },
+    {
+      "at": 37.08,
+      "cue": "這時——呼！吹來一陣風。一粒粒小種子從鱗片裏飛出來，每粒都有一片小",
+      "effect": "wind",
+      "duration": 14.54,
+      "intensity": 0.7
+    },
+    {
+      "at": 37.08,
+      "cue": "這時——呼！吹來一陣風。一粒粒小種子從鱗片裏飛出來，每粒都有一片小",
+      "sticker": "all",
+      "effect": "wobble"
+    },
+    {
+      "at": 40.12,
+      "cue": "一粒粒小種子從鱗片裏飛出來，每粒都有一片小",
+      "sticker": "pinecone",
+      "effect": "sparkle"
+    },
+    {
+      "at": 50.12,
+      "cue": "毛毛蟲挺起身子，看着種子飛走",
+      "sticker": "caterpillar",
+      "animation": "look-up"
+    },
+    {
+      "at": 54.82,
+      "cue": "係松樹，」小花說，「仲未長大",
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 54.82,
+      "cue": "係松樹，」小花說，「仲未長大",
+      "sticker": "flower",
+      "effect": "glow"
+    },
+    {
+      "at": 58.76,
+      "cue": "原來松果不只有鱗片。她身體裏，裝滿了一棵一棵的樹呢",
+      "sticker": "pinecone",
+      "effect": "glow"
+    }
+  ]
+}

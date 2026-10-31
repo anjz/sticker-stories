@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "螃蟹坐在高高的岩石上。下面的潮",
+      "sticker": "crab",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "螃蟹坐在高高的岩石上。下面的潮",
+      "sticker": "crab",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 7.16,
+      "cue": "海星正用",
+      "sticker": "starfish",
+      "enter": true
+    },
+    {
+      "at": 7.16,
+      "cue": "海星正用",
+      "sticker": "starfish",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 12.6,
+      "cue": "揮揮手，打招呼。螃蟹想過去找",
+      "sticker": "starfish",
+      "animation": "wave"
+    },
+    {
+      "at": 14.76,
+      "cue": "螃蟹想過去找",
+      "sticker": "crab",
+      "expression": "happy"
+    },
+    {
+      "at": 21,
+      "cue": "搖搖晃晃！往前",
+      "sticker": "crab",
+      "effect": "wobble"
+    },
+    {
+      "at": 23.56,
+      "cue": "哎呀",
+      "sticker": "crab",
+      "effect": "spin"
+    },
+    {
+      "at": 31.34,
+      "cue": "這時候，寄",
+      "sticker": "crab",
+      "expression": "surprised"
+    },
+    {
+      "at": 32.22,
+      "cue": "寄",
+      "sticker": "hermit-crab",
+      "enter": true
+    },
+    {
+      "at": 32.22,
+      "cue": "寄",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "crab"
+    },
+    {
+      "at": 35.32,
+      "sticker": "hermit-crab",
+      "expression": "surprised"
+    },
+    {
+      "at": 37.92,
+      "cue": "螃蟹的",
+      "sticker": "hermit-crab",
+      "animation": "talk"
+    },
+    {
+      "at": 42.38,
+      "cue": "螃蟹就試試看。喀、喀，往旁邊走……咻！一下子就到了。螃蟹喀喀地夾著鉗子，開開心心地橫著跳起舞來",
+      "sticker": "crab",
+      "expression": "happy"
+    },
+    {
+      "at": 42.38,
+      "cue": "螃蟹就試試看。喀、喀，往旁邊走……咻！一下子就到了。螃蟹喀喀地夾著鉗子，開開心心地橫著跳起舞來",
+      "sticker": "crab",
+      "animation": "nod"
+    },
+    {
+      "at": 46.54,
+      "cue": "咻！一下子就到了。螃蟹喀喀地夾著鉗子，開開心心地橫著跳起舞來",
+      "sticker": "crab",
+      "go": "to",
+      "target": "starfish"
+    },
+    {
+      "at": 48.94,
+      "cue": "螃蟹喀喀地夾著鉗子，開開心心地橫著跳起舞來",
+      "sticker": "starfish",
+      "animation": "jump"
+    },
+    {
+      "at": 48.94,
+      "cue": "螃蟹喀喀地夾著鉗子，開開心心地橫著跳起舞來",
+      "sticker": "crab",
+      "animation": "dance"
+    },
+    {
+      "at": 53.74,
+      "cue": "從此以後，螃蟹都橫著走",
+      "sticker": "hermit-crab",
+      "effect": "hearts"
+    }
+  ]
+}

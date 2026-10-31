@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "どんぐりは、二本の大きな木を見上げました",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 6.8,
+      "cue": "あんなに大きくなりたい。いますぐ！」そこへリスさんが、ぴょんぴょん",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 6.8,
+      "cue": "あんなに大きくなりたい。いますぐ！」そこへリスさんが、ぴょんぴょん",
+      "sticker": "acorn",
+      "animation": "talk"
+    },
+    {
+      "at": 10.44,
+      "cue": "リスさんが、ぴょんぴょん",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 18.52,
+      "cue": "雪がふるまえに、リスさんはどんぐりを、やわらかい土にねかせました。ぽん、ぽん、ぽん。すぐそばで、お花がぶるるっ。「いっしょにまってるね」と、き",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "acorn"
+    },
+    {
+      "at": 20.44,
+      "cue": "どんぐりを、やわらかい土にねかせました。ぽん、ぽん、ぽん。すぐそばで、お花がぶるるっ。「いっしょにまってるね」と、き",
+      "sticker": "squirrel",
+      "animation": "bury"
+    },
+    {
+      "at": 26.6,
+      "cue": "すぐそばで、お花がぶるるっ。「いっしょにまってるね」と、き",
+      "sticker": "squirrel",
+      "effect": "hearts"
+    },
+    {
+      "at": 27.56,
+      "cue": "お花がぶるるっ。「いっしょにまってるね」と、き",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 27.56,
+      "cue": "お花がぶるるっ。「いっしょにまってるね」と、き",
+      "sticker": "acorn",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 28.12,
+      "cue": "ぶるるっ。「いっしょにまってるね」と、き",
+      "sticker": "flower",
+      "effect": "tint",
+      "color": "#BFE3FF"
+    },
+    {
+      "at": 31.08,
+      "cue": "き",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 33.56,
+      "cue": "やがて、雪がちらちら。目をぎ",
+      "effect": "snow",
+      "duration": 18.74,
+      "intensity": 0.6
+    },
+    {
+      "at": 36.36,
+      "cue": "目をぎ",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "hold"
+    },
+    {
+      "at": 49.8,
+      "cue": "ある朝、おひさまがもどって、雪をとかしました。お花が、ぱあっとひらきます。すると、どんぐりの足が、むずむず",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.9
+    },
+    {
+      "at": 53.88,
+      "cue": "お花が、ぱあっとひらきます。すると、どんぐりの足が、むずむず",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 60.32,
+      "cue": "わたし、木になった？」「ま",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "resume"
+    },
+    {
+      "at": 62.34,
+      "cue": "ま",
+      "sticker": "acorn",
+      "expression": "surprised"
+    },
+    {
+      "at": 62.34,
+      "cue": "ま",
+      "sticker": "squirrel",
+      "expression": "happy"
+    },
+    {
+      "at": 62.34,
+      "cue": "ま",
+      "sticker": "squirrel",
+      "animation": "shake-head"
+    },
+    {
+      "at": 69.72,
+      "cue": "さきに下、それから上",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 69.72,
+      "cue": "さきに下、それから上",
+      "sticker": "acorn",
+      "effect": "glow"
+    }
+  ]
+}

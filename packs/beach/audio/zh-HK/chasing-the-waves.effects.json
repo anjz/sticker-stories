@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "濱鷸在岸邊跑來跑去。浪退了",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "濱鷸在岸邊跑來跑去。浪退了",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 5.64,
+      "cue": "浪退了",
+      "sticker": "sandpiper",
+      "effect": "pulse"
+    },
+    {
+      "at": 9.04,
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore",
+      "another": true
+    },
+    {
+      "at": 13.8,
+      "cue": "小狗在一旁看着，歪起了",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 15.4,
+      "cue": "歪起了",
+      "sticker": "dog",
+      "expression": "surprised"
+    },
+    {
+      "at": 18.36,
+      "sticker": "dog",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 28.52,
+      "cue": "小狗用力抖，抖、抖、抖，把水都抖掉",
+      "sticker": "dog",
+      "expression": "surprised"
+    },
+    {
+      "at": 28.52,
+      "cue": "小狗用力抖，抖、抖、抖，把水都抖掉",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 33.48,
+      "cue": "唔係遊戲呀，」濱鷸說。「每次浪退咗，啱啱浸過水",
+      "sticker": "sandpiper",
+      "animation": "shake-head"
+    },
+    {
+      "at": 35.76,
+      "cue": "每次浪退咗，啱啱浸過水",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 41,
+      "cue": "所以我跑落去，啄、啄、啄，趁下一個浪未嚟，又跑返上嚟！」「哦——」小狗說。「原來係",
+      "sticker": "sandpiper",
+      "animation": "peck",
+      "mode": "hold"
+    },
+    {
+      "at": 46.36,
+      "cue": "哦——」小狗說。「原來係",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 48.4,
+      "cue": "原來係",
+      "sticker": "dog",
+      "animation": "nod"
+    },
+    {
+      "at": 53.16,
+      "cue": "自己的沙灘波",
+      "sticker": "ball",
+      "enter": true
+    },
+    {
+      "at": 54.87,
+      "cue": "我最鍾意",
+      "sticker": "dog",
+      "go": "to",
+      "target": "ball"
+    },
+    {
+      "at": 54.87,
+      "cue": "我最鍾意",
+      "sticker": "dog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 58.12,
+      "cue": "沙灘波轉呀轉",
+      "sticker": "ball",
+      "animation": "spin"
+    },
+    {
+      "at": 58.12,
+      "cue": "沙灘波轉呀轉",
+      "sticker": "dog",
+      "effect": "hearts"
+    }
+  ]
+}

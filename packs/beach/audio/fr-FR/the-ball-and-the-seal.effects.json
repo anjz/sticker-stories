@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "chien",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 3.88,
+      "cue": "ballon",
+      "sticker": "ball",
+      "enter": true
+    },
+    {
+      "at": 3.88,
+      "cue": "ballon",
+      "sticker": "ball",
+      "go": "to",
+      "target": "dog"
+    },
+    {
+      "at": 9.6,
+      "cue": "il",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 12.41,
+      "cue": "et",
+      "sticker": "ball",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 15.58,
+      "sticker": "dog",
+      "expression": "surprised"
+    },
+    {
+      "at": 16.84,
+      "cue": "chien",
+      "sticker": "dog",
+      "go": "to",
+      "target": "ball"
+    },
+    {
+      "at": 22.84,
+      "cue": "chien",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 25.86,
+      "cue": "le",
+      "sticker": "ball",
+      "animation": "rock"
+    },
+    {
+      "at": 27.76,
+      "cue": "puis",
+      "sticker": "seal",
+      "enter": true,
+      "by": "swim"
+    },
+    {
+      "at": 29.68,
+      "cue": "c’était",
+      "sticker": "seal",
+      "go": "to",
+      "target": "ball",
+      "by": "swim"
+    },
+    {
+      "at": 30.64,
+      "cue": "il",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 32.4,
+      "cue": "et",
+      "sticker": "ball",
+      "go": "to",
+      "target": "dog"
+    },
+    {
+      "at": 34.4,
+      "cue": "il",
+      "sticker": "ball",
+      "animation": "spin"
+    },
+    {
+      "at": 38.56,
+      "cue": "chien",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 38.56,
+      "cue": "chien",
+      "sticker": "dog",
+      "animation": "play-bow"
+    },
+    {
+      "at": 40.12,
+      "cue": "coup",
+      "sticker": "ball",
+      "go": "to",
+      "target": "seal"
+    },
+    {
+      "at": 41.2,
+      "cue": "le",
+      "sticker": "ball",
+      "go": "to",
+      "target": "dog"
+    },
+    {
+      "at": 42.32,
+      "cue": "il",
+      "sticker": "seal",
+      "animation": "clap"
+    }
+  ]
+}

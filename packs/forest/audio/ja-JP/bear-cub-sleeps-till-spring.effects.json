@@ -1,0 +1,154 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "あきです。木の葉がくるくる、ひらひら。こぐまが、ふわあっと大あくび",
+      "effect": "leaves",
+      "duration": 38.12,
+      "intensity": 0.6
+    },
+    {
+      "at": 7.24,
+      "cue": "こぐまが、ふわあっと大あくび",
+      "sticker": "bear",
+      "enter": true
+    },
+    {
+      "at": 11.22,
+      "cue": "ふゆじ",
+      "sticker": "bear",
+      "expression": "sad"
+    },
+    {
+      "at": 15.96,
+      "cue": "アナグマくんが、とことこ",
+      "sticker": "badger",
+      "enter": true
+    },
+    {
+      "at": 15.96,
+      "cue": "アナグマくんが、とことこ",
+      "sticker": "badger",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 21.88,
+      "cue": "こぐまにぴったりの、ぬくぬくのくぼみをほりました。そばではお花がぶるるっ。花びらをとじて",
+      "sticker": "badger",
+      "animation": "dig"
+    },
+    {
+      "at": 25.96,
+      "cue": "そばではお花がぶるるっ。花びらをとじて",
+      "sticker": "badger",
+      "expression": "happy"
+    },
+    {
+      "at": 26.76,
+      "cue": "お花がぶるるっ。花びらをとじて",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 27.32,
+      "cue": "ぶるるっ。花びらをとじて",
+      "sticker": "flower",
+      "effect": "tint",
+      "color": "#BFE3FF"
+    },
+    {
+      "at": 28.52,
+      "cue": "花びらをとじて",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 31.72,
+      "cue": "こぐまはくぼみにすわって、さいごのあくびをひとつ。やがて雪がふり",
+      "sticker": "bear",
+      "expression": "happy"
+    },
+    {
+      "at": 32.36,
+      "cue": "くぼみにすわって、さいごのあくびをひとつ。やがて雪がふり",
+      "sticker": "bear",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 33.72,
+      "cue": "さいごのあくびをひとつ。やがて雪がふり",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 36.12,
+      "cue": "やがて雪がふり",
+      "effect": "snow",
+      "duration": 16.58,
+      "intensity": 0.7
+    },
+    {
+      "at": 50.2,
+      "cue": "ある朝、おひさまがもどって、雪がとけました。アナグマくんが、そーっと",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.9
+    },
+    {
+      "at": 54.04,
+      "cue": "アナグマくんが、そーっと",
+      "sticker": "badger",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 59.08,
+      "cue": "こぐまは、ぱちっと目をさましました。お花も、ぱあっとひらきます",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "resume"
+    },
+    {
+      "at": 61.96,
+      "cue": "お花も、ぱあっとひらきます",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 64.81,
+      "cue": "ぼく、見のがしちゃった？」「ううん」とアナグマくんはわらいました。「いちばんいいのは、いま",
+      "sticker": "bear",
+      "expression": "surprised"
+    },
+    {
+      "at": 64.81,
+      "cue": "ぼく、見のがしちゃった？」「ううん」とアナグマくんはわらいました。「いちばんいいのは、いま",
+      "sticker": "bear",
+      "animation": "talk"
+    },
+    {
+      "at": 66.66,
+      "cue": "ううん」とアナグマくんはわらいました。「いちばんいいのは、いま",
+      "sticker": "badger",
+      "animation": "laugh"
+    },
+    {
+      "at": 71.85,
+      "cue": "おはよう、はる",
+      "sticker": "bear",
+      "expression": "happy"
+    },
+    {
+      "at": 71.85,
+      "cue": "おはよう、はる",
+      "sticker": "bear",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "呼——！風吹得剛剛好。蘿拉一蹦一跳地走過來",
+      "sticker": "umbrella",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "呼——！風吹得剛剛好。蘿拉一蹦一跳地走過來",
+      "effect": "wind",
+      "duration": 26,
+      "intensity": 0.6
+    },
+    {
+      "at": 5.72,
+      "cue": "蘿拉一蹦一跳地走過來",
+      "sticker": "girl",
+      "enter": true
+    },
+    {
+      "at": 7.87,
+      "cue": "飛起嚟啦！」風箏飛上了天",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 9.24,
+      "cue": "風箏飛上了天",
+      "sticker": "girl",
+      "animation": "kite",
+      "mode": "hold"
+    },
+    {
+      "at": 19,
+      "cue": "轉呀轉，轉個不停",
+      "sticker": "umbrella",
+      "animation": "spin"
+    },
+    {
+      "at": 22.36,
+      "cue": "海鷗飛下來，落在岩石上",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 22.36,
+      "cue": "海鷗飛下來，落在岩石上",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 25,
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 33.8,
+      "cue": "呀呀叫，打個招呼。風箏沒有回答",
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 40.44,
+      "cue": "海鷗跳一跳，拍拍",
+      "sticker": "seagull",
+      "animation": "flap"
+    },
+    {
+      "at": 48.28,
+      "cue": "於是，海鷗飛上去，飛到風箏旁邊，在風中跳起舞來。小狗汪汪叫，搖着尾巴。蘿拉把線舉得高高的",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "girl",
+      "prop": "kite"
+    },
+    {
+      "at": 52,
+      "cue": "在風中跳起舞來。小狗汪汪叫，搖着尾巴。蘿拉把線舉得高高的",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 53.88,
+      "cue": "小狗汪汪叫，搖着尾巴。蘿拉把線舉得高高的",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 53.88,
+      "cue": "小狗汪汪叫，搖着尾巴。蘿拉把線舉得高高的",
+      "sticker": "dog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 53.88,
+      "cue": "小狗汪汪叫，搖着尾巴。蘿拉把線舉得高高的",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 58.84,
+      "cue": "就這樣，海鷗和風箏做了好朋友",
+      "sticker": "seagull",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "濱鷸沿着岸邊跑呀跑，想找點新鮮的東西",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "濱鷸沿着岸邊跑呀跑，想找點新鮮的東西",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 7.08,
+      "cue": "咦，這是甚麼？原來是一個",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 8.68,
+      "cue": "原來是一個",
+      "sticker": "bottle",
+      "enter": true
+    },
+    {
+      "at": 8.68,
+      "cue": "原來是一個",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 13.64,
+      "cue": "濱鷸跑過去，用嘴篤、篤。啵！瓶塞彈了出來",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "bottle",
+      "by": "run"
+    },
+    {
+      "at": 16.28,
+      "cue": "啵！瓶塞彈了出來",
+      "sticker": "bottle",
+      "animation": "pop"
+    },
+    {
+      "at": 19.24,
+      "cue": "濱鷸一下子跳到半空",
+      "sticker": "sandpiper",
+      "expression": "surprised"
+    },
+    {
+      "at": 19.24,
+      "cue": "濱鷸一下子跳到半空",
+      "sticker": "sandpiper",
+      "animation": "jump"
+    },
+    {
+      "at": 24.6,
+      "cue": "一個又大又圓的東西",
+      "sticker": "ball",
+      "enter": true
+    },
+    {
+      "at": 26.92,
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "ball",
+      "by": "run"
+    },
+    {
+      "at": 30.92,
+      "cue": "篤、篤。它滾走了！濱鷸追呀追，跑、跑、跑，追到它轉了幾個圈，停了下來",
+      "sticker": "sandpiper",
+      "effect": "pulse"
+    },
+    {
+      "at": 31.64,
+      "cue": "它滾走了！濱鷸追呀追，跑、跑、跑，追到它轉了幾個圈，停了下來",
+      "sticker": "ball",
+      "go": "to",
+      "target": "sand",
+      "another": true
+    },
+    {
+      "at": 33.08,
+      "cue": "濱鷸追呀追，跑、跑、跑，追到它轉了幾個圈，停了下來",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "ball",
+      "by": "run"
+    },
+    {
+      "at": 35.48,
+      "cue": "追到它轉了幾個圈，停了下來",
+      "sticker": "ball",
+      "animation": "spin"
+    },
+    {
+      "at": 38.28,
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 38.28,
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 42.04,
+      "cue": "濱鷸說：「好喇！終於有樣嘢肯定定企。」然後",
+      "sticker": "sandpiper",
+      "animation": "nod"
+    },
+    {
+      "at": 45.88,
+      "cue": "然後",
+      "sticker": "ball",
+      "effect": "pulse"
+    }
+  ]
+}

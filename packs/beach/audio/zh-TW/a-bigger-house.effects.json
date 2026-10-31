@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "寄",
+      "sticker": "bucket",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "寄",
+      "sticker": "castle",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "寄",
+      "sticker": "hermit-crab",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "寄",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 7.24,
+      "cue": "唉——嘆了一口氣",
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 24.36,
+      "cue": "該換個大一點的家囉",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    },
+    {
+      "at": 26.84,
+      "cue": "寄",
+      "sticker": "hermit-crab",
+      "animation": "look-around"
+    },
+    {
+      "at": 34.28,
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "bucket"
+    },
+    {
+      "at": 36.28,
+      "cue": "哇，好大好大",
+      "sticker": "bucket",
+      "effect": "wobble"
+    },
+    {
+      "at": 45,
+      "cue": "太大了，太大了。下一間：插著小",
+      "sticker": "hermit-crab",
+      "expression": "surprised"
+    },
+    {
+      "at": 50.68,
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "castle"
+    },
+    {
+      "at": 52.2,
+      "cue": "沙沙沙，沙子嘩啦啦往下掉。太鬆了，一碰就垮",
+      "sticker": "castle",
+      "animation": "wobble"
+    },
+    {
+      "at": 55.32,
+      "cue": "太鬆了，一碰就垮",
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 61,
+      "cue": "嘩啦！把小桶團團圍住。寄",
+      "sticker": "bucket",
+      "animation": "wash"
+    },
+    {
+      "at": 64.12,
+      "cue": "寄",
+      "sticker": "hermit-crab",
+      "expression": "surprised"
+    },
+    {
+      "at": 65.56,
+      "cue": "咻地縮進自己的殼裡",
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 74.76,
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 75.96,
+      "cue": "笑了。大房子嘛，等長大一點再說吧",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    }
+  ]
+}

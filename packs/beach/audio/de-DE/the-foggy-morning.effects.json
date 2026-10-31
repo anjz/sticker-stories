@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "eines",
+      "effect": "fog",
+      "duration": 44.66,
+      "intensity": 0.8
+    },
+    {
+      "at": 9.08,
+      "cue": "der",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 11.24,
+      "cue": "er",
+      "sticker": "sandpiper",
+      "expression": "surprised"
+    },
+    {
+      "at": 13.16,
+      "cue": "er",
+      "sticker": "sandpiper",
+      "animation": "look-around"
+    },
+    {
+      "at": 21.48,
+      "cue": "ein",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 24.84,
+      "cue": "das",
+      "sticker": "fishing-boat",
+      "effect": "pulse"
+    },
+    {
+      "at": 28.68,
+      "cue": "eine",
+      "sticker": "bottle",
+      "enter": true
+    },
+    {
+      "at": 28.68,
+      "cue": "eine",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 31.32,
+      "cue": "eine",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 33.96,
+      "cue": "der",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "bottle",
+      "by": "run"
+    },
+    {
+      "at": 36.76,
+      "cue": "plopp",
+      "sticker": "bottle",
+      "animation": "pop"
+    },
+    {
+      "at": 39.48,
+      "cue": "dann",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 39.48,
+      "cue": "dann",
+      "sticker": "sandpiper",
+      "animation": "laugh"
+    },
+    {
+      "at": 39.8,
+      "cue": "kam",
+      "effect": "sunshine",
+      "duration": 25,
+      "intensity": 0.8
+    },
+    {
+      "at": 44.28,
+      "cue": "das",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 46.36,
+      "cue": "und",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 46.36,
+      "cue": "und",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 49.96,
+      "cue": "der",
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 55.8,
+      "cue": "war",
+      "sticker": "sandpiper",
+      "effect": "hop"
+    }
+  ]
+}

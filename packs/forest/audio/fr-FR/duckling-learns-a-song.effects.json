@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "oiseau",
+      "sticker": "bee",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.4
+    },
+    {
+      "at": 0,
+      "cue": "oiseau",
+      "sticker": "bird",
+      "enter": true,
+      "by": "hop"
+    },
+    {
+      "at": 6.92,
+      "cue": "caneton",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 6.92,
+      "cue": "caneton",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "bird"
+    },
+    {
+      "at": 8.98,
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 13,
+      "cue": "coin",
+      "sticker": "duckling",
+      "animation": "quack"
+    },
+    {
+      "at": 13.85,
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 15.96,
+      "sticker": "bird",
+      "effect": "hop"
+    },
+    {
+      "at": 24.52,
+      "cue": "abeille",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 24.52,
+      "cue": "abeille",
+      "sticker": "bee",
+      "go": "to",
+      "target": "bird"
+    },
+    {
+      "at": 26.56,
+      "cue": "et",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 29.24,
+      "cue": "grenouille",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 29.24,
+      "cue": "grenouille",
+      "sticker": "frog",
+      "go": "to",
+      "target": "duckling"
+    },
+    {
+      "at": 33.08,
+      "sticker": "frog",
+      "effect": "hop"
+    },
+    {
+      "at": 36.3,
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 39.8,
+      "cue": "mmm",
+      "sticker": "bee",
+      "effect": "wobble"
+    },
+    {
+      "at": 40.52,
+      "cue": "croâ",
+      "sticker": "frog",
+      "animation": "croak"
+    },
+    {
+      "at": 41.32,
+      "cue": "et",
+      "sticker": "bird",
+      "animation": "sing",
+      "mode": "hold"
+    },
+    {
+      "at": 46.16,
+      "cue": "la",
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 49.99,
+      "cue": "il",
+      "sticker": "duckling",
+      "animation": "nap"
+    },
+    {
+      "at": 54.63,
+      "sticker": "bird",
+      "animation": "sing",
+      "mode": "resume"
+    },
+    {
+      "at": 56.47,
+      "cue": "tout",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 56.47,
+      "cue": "tout",
+      "sticker": "all",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

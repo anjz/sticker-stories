@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "le",
+      "effect": "sunset",
+      "duration": 22.26,
+      "intensity": 0.7
+    },
+    {
+      "at": 4.76,
+      "cue": "fleur",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 7.12,
+      "cue": "escargot",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 7.12,
+      "cue": "escargot",
+      "sticker": "snail",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 10.8,
+      "cue": "a",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 13.61,
+      "sticker": "snail",
+      "expression": "surprised"
+    },
+    {
+      "at": 16.47,
+      "sticker": "snail",
+      "expression": "sad"
+    },
+    {
+      "at": 16.47,
+      "sticker": "snail",
+      "animation": "talk"
+    },
+    {
+      "at": 19.76,
+      "cue": "la",
+      "effect": "night",
+      "duration": 17.6,
+      "intensity": 0.7
+    },
+    {
+      "at": 21.24,
+      "cue": "luciole",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 21.24,
+      "cue": "luciole",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 22.06,
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 23.92,
+      "cue": "elle",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 26.2,
+      "cue": "alors",
+      "sticker": "snail",
+      "expression": "normal"
+    },
+    {
+      "at": 27.12,
+      "cue": "a",
+      "sticker": "snail",
+      "animation": "talk"
+    },
+    {
+      "at": 32.6,
+      "cue": "il",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 35.36,
+      "cue": "au",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.8
+    },
+    {
+      "at": 37.28,
+      "cue": "fleur",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 38.94,
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 40.31,
+      "cue": "escargot",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 43.3,
+      "sticker": "flower",
+      "animation": "talk"
+    },
+    {
+      "at": 47.06,
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 47.06,
+      "sticker": "snail",
+      "effect": "hearts"
+    }
+  ]
+}

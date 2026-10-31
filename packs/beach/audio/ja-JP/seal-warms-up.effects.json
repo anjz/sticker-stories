@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "アザラシさんが、つめたくて青い海を、すいすいすい。たくさんおよい",
+      "sticker": "seal",
+      "enter": true,
+      "by": "swim"
+    },
+    {
+      "at": 0,
+      "cue": "アザラシさんが、つめたくて青い海を、すいすいすい。たくさんおよい",
+      "sticker": "seal",
+      "go": "to",
+      "target": "sea",
+      "by": "swim"
+    },
+    {
+      "at": 8.36,
+      "cue": "たくさんおよい",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 9.8,
+      "cue": "岩の上へ、よいしょっと、べたーん。おひさまの、ど真ん中です",
+      "sticker": "seal",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 13.88,
+      "cue": "おひさまの、ど真ん中です",
+      "effect": "sunshine",
+      "duration": 35,
+      "intensity": 0.7
+    },
+    {
+      "at": 16.81,
+      "cue": "ふうー",
+      "sticker": "seal",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 18.66,
+      "cue": "カモメさんが、そのとなりにまいおりてきました。クワッ、クワッ",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 18.66,
+      "cue": "カモメさんが、そのとなりにまいおりてきました。クワッ、クワッ",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 22.2,
+      "cue": "クワッ、クワッ",
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 29.71,
+      "cue": "およぐと、から",
+      "sticker": "seal",
+      "animation": "sleep",
+      "mode": "resume"
+    },
+    {
+      "at": 33.48,
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 41.96,
+      "cue": "カモメさんも、やってみました。あら！ほんとうに、ぽかぽか！ペリカンくんも、すーっとまいおりて、大きな白いはねを、ひろげました",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 41.96,
+      "cue": "カモメさんも、やってみました。あら！ほんとうに、ぽかぽか！ペリカンくんも、すーっとまいおりて、大きな白いはねを、ひろげました",
+      "sticker": "seagull",
+      "effect": "wobble"
+    },
+    {
+      "at": 47.96,
+      "cue": "ペリカンくんも、すーっとまいおりて、大きな白いはねを、ひろげました",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 47.96,
+      "cue": "ペリカンくんも、すーっとまいおりて、大きな白いはねを、ひろげました",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 51.08,
+      "cue": "大きな白いはねを、ひろげました",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 54.02,
+      "cue": "アザラシさんは、うれしくて、ぱちぱち",
+      "sticker": "seal",
+      "animation": "clap"
+    },
+    {
+      "at": 57.48,
+      "cue": "しばらくのあい",
+      "sticker": "seagull",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 57.48,
+      "cue": "しばらくのあい",
+      "sticker": "pelican",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 57.48,
+      "cue": "しばらくのあい",
+      "sticker": "seal",
+      "effect": "hearts"
+    }
+  ]
+}

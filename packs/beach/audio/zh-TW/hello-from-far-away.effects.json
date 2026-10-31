@@ -1,0 +1,132 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "海鷗最",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "海鷗最",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 9.72,
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 12.6,
+      "cue": "是一個瓶子！一道浪把它推呀推，一直推到岸邊。蘿拉跑過來了，尼可也來了",
+      "sticker": "bottle",
+      "enter": true
+    },
+    {
+      "at": 12.6,
+      "cue": "是一個瓶子！一道浪把它推呀推，一直推到岸邊。蘿拉跑過來了，尼可也來了",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 18.12,
+      "cue": "蘿拉跑過來了，尼可也來了",
+      "sticker": "girl",
+      "enter": true
+    },
+    {
+      "at": 19.68,
+      "cue": "尼可也來了",
+      "sticker": "surfer",
+      "enter": true
+    },
+    {
+      "at": 20.84,
+      "cue": "裡面有一張紙條！」啵！軟木塞跳出來，紙條探出了",
+      "sticker": "girl",
+      "go": "to",
+      "target": "bottle"
+    },
+    {
+      "at": 20.84,
+      "cue": "裡面有一張紙條！」啵！軟木塞跳出來，紙條探出了",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "bottle"
+    },
+    {
+      "at": 20.84,
+      "cue": "裡面有一張紙條！」啵！軟木塞跳出來，紙條探出了",
+      "sticker": "girl",
+      "expression": "surprised"
+    },
+    {
+      "at": 22.52,
+      "cue": "啵！軟木塞跳出來，紙條探出了",
+      "sticker": "bottle",
+      "animation": "pop",
+      "mode": "hold"
+    },
+    {
+      "at": 26.6,
+      "cue": "蘿拉把紙條攤開：上面畫了一條笑咪咪的魚，還寫了一句話",
+      "sticker": "surfer",
+      "expression": "surprised"
+    },
+    {
+      "at": 35,
+      "cue": "原來，這封瓶中信在水上漂呀漂，漂了好",
+      "sticker": "bottle",
+      "effect": "glow",
+      "intensity": 0.5
+    },
+    {
+      "at": 45.98,
+      "cue": "我們也來回信吧！」於是，他們畫了自己的海灘，有沙",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 45.98,
+      "cue": "我們也來回信吧！」於是，他們畫了自己的海灘，有沙",
+      "sticker": "surfer",
+      "animation": "clap"
+    },
+    {
+      "at": 52.44,
+      "cue": "畫好捲起來，放進瓶子，塞好軟木塞。尼可輕輕推了瓶子一把，瓶子就一搖一晃地漂走了",
+      "sticker": "bottle",
+      "animation": "pop",
+      "mode": "resume"
+    },
+    {
+      "at": 58.92,
+      "cue": "瓶子就一搖一晃地漂走了",
+      "sticker": "bottle",
+      "go": "away",
+      "toward": "left"
+    },
+    {
+      "at": 58.92,
+      "cue": "瓶子就一搖一晃地漂走了",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 58.92,
+      "cue": "瓶子就一搖一晃地漂走了",
+      "sticker": "girl",
+      "animation": "wave"
+    },
+    {
+      "at": 62.04,
+      "cue": "在很",
+      "sticker": "seagull",
+      "effect": "hop"
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.04,
+      "cue": "お花が、きいろい",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 8.04,
+      "cue": "あおむしさんが、もぞもぞ見にきて、「きれい！」そのとなりには、ちゃいろくて、しずかなまつぼっくり",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 8.04,
+      "cue": "あおむしさんが、もぞもぞ見にきて、「きれい！」そのとなりには、ちゃいろくて、しずかなまつぼっくり",
+      "sticker": "caterpillar",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 10.64,
+      "cue": "きれい！」そのとなりには、ちゃいろくて、しずかなまつぼっくり",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 10.64,
+      "cue": "きれい！」そのとなりには、ちゃいろくて、しずかなまつぼっくり",
+      "sticker": "caterpillar",
+      "effect": "pulse"
+    },
+    {
+      "at": 13.48,
+      "cue": "ちゃいろくて、しずかなまつぼっくり",
+      "sticker": "pinecone",
+      "enter": true
+    },
+    {
+      "at": 13.48,
+      "cue": "ちゃいろくて、しずかなまつぼっくり",
+      "sticker": "pinecone",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 17.08,
+      "cue": "お花には、はなびら。あおむしさんには、てんてん。わたしには、かさ",
+      "sticker": "pinecone",
+      "expression": "sad"
+    },
+    {
+      "at": 17.08,
+      "cue": "お花には、はなびら。あおむしさんには、てんてん。わたしには、かさ",
+      "sticker": "pinecone",
+      "animation": "talk"
+    },
+    {
+      "at": 24.72,
+      "cue": "お日さまを、まっててごらん」とお花。ぽかぽかのお日さまが、でてきました。まつぼっくりのかさが、ゆるんで…お花みたいに、ぱあっとひらきました",
+      "sticker": "flower",
+      "animation": "talk"
+    },
+    {
+      "at": 28.44,
+      "cue": "ぽかぽかのお日さまが、でてきました。まつぼっくりのかさが、ゆるんで…お花みたいに、ぱあっとひらきました",
+      "effect": "sunshine",
+      "intensity": 0.8
+    },
+    {
+      "at": 31.4,
+      "cue": "まつぼっくりのかさが、ゆるんで…お花みたいに、ぱあっとひらきました",
+      "sticker": "pinecone",
+      "effect": "shake",
+      "intensity": 0.3
+    },
+    {
+      "at": 33.64,
+      "cue": "お花みたいに、ぱあっとひらきました",
+      "sticker": "pinecone",
+      "expression": "happy"
+    },
+    {
+      "at": 33.64,
+      "cue": "お花みたいに、ぱあっとひらきました",
+      "sticker": "pinecone",
+      "animation": "open",
+      "mode": "hold"
+    },
+    {
+      "at": 36.96,
+      "cue": "わあ！」そこへ、ひ",
+      "sticker": "caterpillar",
+      "expression": "surprised"
+    },
+    {
+      "at": 38.2,
+      "cue": "そこへ、ひ",
+      "effect": "wind",
+      "duration": 15.18,
+      "intensity": 0.7
+    },
+    {
+      "at": 38.2,
+      "cue": "そこへ、ひ",
+      "sticker": "all",
+      "effect": "wobble"
+    },
+    {
+      "at": 41.88,
+      "cue": "かさのあい",
+      "sticker": "pinecone",
+      "effect": "sparkle"
+    },
+    {
+      "at": 51.88,
+      "cue": "あおむしさんは、せのびして見おくりました",
+      "sticker": "caterpillar",
+      "animation": "look-up"
+    },
+    {
+      "at": 57.08,
+      "cue": "ま",
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 57.08,
+      "cue": "ま",
+      "sticker": "flower",
+      "effect": "glow"
+    },
+    {
+      "at": 60.92,
+      "cue": "まつぼっくりにあるのは、かさ",
+      "sticker": "pinecone",
+      "effect": "glow"
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "蝴蝶在草地上飛呀飛，小小的橡實一直望著",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 6.36,
+      "cue": "橡實一直望著",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 10.01,
+      "cue": "要是我也會飛，那該有多好。」蝴蝶輕輕落進草叢裡。「那就爬到高高的地方試試看",
+      "sticker": "acorn",
+      "expression": "sad"
+    },
+    {
+      "at": 13.16,
+      "cue": "蝴蝶輕輕落進草叢裡。「那就爬到高高的地方試試看",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "meadow"
+    },
+    {
+      "at": 19.24,
+      "cue": "合起",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 22.04,
+      "cue": "蘑菇冒了出來",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 25.56,
+      "cue": "橡實爬呀爬，爬上了",
+      "sticker": "acorn",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 29.16,
+      "cue": "她揮動小手臂，拍拍拍、拍拍拍！什麼也沒發生。於是她緊緊閉上眼睛，許了一個願",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 29.16,
+      "cue": "她揮動小手臂，拍拍拍、拍拍拍！什麼也沒發生。於是她緊緊閉上眼睛，許了一個願",
+      "sticker": "acorn",
+      "animation": "flap-arms"
+    },
+    {
+      "at": 34.36,
+      "cue": "於是她緊緊閉上眼睛，許了一個願",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "hold"
+    },
+    {
+      "at": 41.88,
+      "cue": "這時候，一陣微風吹過來，搔得蘑菇好癢。哈……哈……哈啾！橡實從菇傘上飛了出去，往上飛，轉呀轉，再落進軟綿綿的草地裡。咚！她睜開眼睛",
+      "effect": "wind",
+      "duration": 8,
+      "intensity": 0.6
+    },
+    {
+      "at": 46.04,
+      "cue": "哈……哈……哈啾！橡實從菇傘上飛了出去，往上飛，轉呀轉，再落進軟綿綿的草地裡。咚！她睜開眼睛",
+      "sticker": "mushroom",
+      "animation": "sneeze"
+    },
+    {
+      "at": 48.36,
+      "cue": "橡實從菇傘上飛了出去，往上飛，轉呀轉，再落進軟綿綿的草地裡。咚！她睜開眼睛",
+      "sticker": "acorn",
+      "go": "to",
+      "target": "meadow",
+      "toward": "right"
+    },
+    {
+      "at": 48.36,
+      "cue": "橡實從菇傘上飛了出去，往上飛，轉呀轉，再落進軟綿綿的草地裡。咚！她睜開眼睛",
+      "sticker": "acorn",
+      "effect": "spin"
+    },
+    {
+      "at": 55.96,
+      "cue": "她睜開眼睛",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "resume"
+    },
+    {
+      "at": 59.24,
+      "cue": "嗯……」蘑菇說，「算是吧。」蝴蝶張開",
+      "sticker": "mushroom",
+      "expression": "surprised"
+    },
+    {
+      "at": 63.48,
+      "cue": "蝴蝶張開",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "resume"
+    },
+    {
+      "at": 66.59,
+      "sticker": "butterfly",
+      "animation": "talk"
+    },
+    {
+      "at": 70.12,
+      "cue": "再一次！」橡實大叫。蘑菇答應她，下一個噴嚏也留給她",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 70.12,
+      "cue": "再一次！」橡實大叫。蘑菇答應她，下一個噴嚏也留給她",
+      "sticker": "acorn",
+      "effect": "hop",
+      "repeat": 3
+    }
+  ]
+}

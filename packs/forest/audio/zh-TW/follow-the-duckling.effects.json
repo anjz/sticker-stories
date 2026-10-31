@@ -1,0 +1,176 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5.08,
+      "cue": "小鴨來了。「我們來玩『跟我學』！我做什麼",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 6.08,
+      "cue": "我們來玩『跟我學』！我做什麼",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 10.52,
+      "cue": "狐狸小跑步跟在",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 10.92,
+      "cue": "小跑步跟在",
+      "sticker": "fox",
+      "go": "to",
+      "target": "duckling"
+    },
+    {
+      "at": 13,
+      "cue": "河狸搖搖擺擺地跟在狐狸後面。小鴨搖一搖。狐狸搖一搖。河狸也搖一搖。小鴨說：「嘎！」狐狸說：「嘎。」河狸說：「嘎",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 13.48,
+      "cue": "搖搖擺擺地跟在狐狸後面。小鴨搖一搖。狐狸搖一搖。河狸也搖一搖。小鴨說：「嘎！」狐狸說：「嘎。」河狸說：「嘎",
+      "sticker": "beaver",
+      "go": "to",
+      "target": "fox"
+    },
+    {
+      "at": 17.72,
+      "cue": "狐狸搖一搖。河狸也搖一搖。小鴨說：「嘎！」狐狸說：「嘎。」河狸說：「嘎",
+      "sticker": "fox",
+      "effect": "wobble"
+    },
+    {
+      "at": 19.16,
+      "cue": "河狸也搖一搖。小鴨說：「嘎！」狐狸說：「嘎。」河狸說：「嘎",
+      "sticker": "beaver",
+      "effect": "wobble"
+    },
+    {
+      "at": 22.52,
+      "cue": "狐狸說：「嘎。」河狸說：「嘎",
+      "sticker": "fox",
+      "effect": "hop"
+    },
+    {
+      "at": 24.12,
+      "cue": "河狸說：「嘎",
+      "sticker": "beaver",
+      "effect": "hop"
+    },
+    {
+      "at": 27.72,
+      "cue": "把",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 29.88,
+      "cue": "狐狸就把鼻子藏進尾巴裡，河狸躲到木棍後面",
+      "sticker": "fox",
+      "expression": "sleeping"
+    },
+    {
+      "at": 29.88,
+      "cue": "狐狸就把鼻子藏進尾巴裡，河狸躲到木棍後面",
+      "sticker": "fox",
+      "animation": "tuck-tail",
+      "mode": "hold"
+    },
+    {
+      "at": 32.44,
+      "cue": "河狸躲到木棍後面",
+      "sticker": "beaver",
+      "animation": "hide-behind-stick"
+    },
+    {
+      "at": 35.4,
+      "cue": "啵！小鴨冒出",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "resume"
+    },
+    {
+      "at": 38.28,
+      "cue": "大家都嚇了一跳",
+      "sticker": "fox",
+      "animation": "tuck-tail",
+      "mode": "resume"
+    },
+    {
+      "at": 38.28,
+      "cue": "大家都嚇了一跳",
+      "sticker": "fox",
+      "expression": "surprised"
+    },
+    {
+      "at": 38.28,
+      "cue": "大家都嚇了一跳",
+      "sticker": "beaver",
+      "expression": "surprised"
+    },
+    {
+      "at": 42.28,
+      "cue": "喀滋喀滋地啃起木棍。小鴨就啃了一片小草。狐狸呢，竟然啃起自己的尾巴！這時，蝸牛",
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 46.52,
+      "cue": "狐狸呢，竟然啃起自己的尾巴！這時，蝸牛",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 46.52,
+      "cue": "狐狸呢，竟然啃起自己的尾巴！這時，蝸牛",
+      "sticker": "fox",
+      "animation": "chase-tail"
+    },
+    {
+      "at": 50.52,
+      "cue": "蝸牛",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 54.6,
+      "cue": "我可以一起玩嗎",
+      "sticker": "snail",
+      "expression": "sad"
+    },
+    {
+      "at": 58.68,
+      "cue": "於是，大家排成一隊，跟在蝸牛後面出發了",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 58.68,
+      "cue": "於是，大家排成一隊，跟在蝸牛後面出發了",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 58.68,
+      "cue": "於是，大家排成一隊，跟在蝸牛後面出發了",
+      "sticker": "fox",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 58.68,
+      "cue": "於是，大家排成一隊，跟在蝸牛後面出發了",
+      "sticker": "beaver",
+      "go": "to",
+      "target": "snail"
+    }
+  ]
+}

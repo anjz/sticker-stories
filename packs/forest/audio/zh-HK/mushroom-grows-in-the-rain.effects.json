@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "滴答、滴答，滴滴答答。草地上下起雨來了。瓢蟲連忙跑到",
+      "effect": "rain",
+      "duration": 62.9,
+      "intensity": 0.7
+    },
+    {
+      "at": 8.36,
+      "cue": "瓢蟲連忙跑到",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 10.12,
+      "cue": "蘑菇那裏，鑽到她的蘑菇帽下面",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 11.08,
+      "cue": "鑽到她的蘑菇帽下面",
+      "sticker": "ladybug",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 13.13,
+      "sticker": "mushroom",
+      "expression": "happy"
+    },
+    {
+      "at": 17.4,
+      "cue": "蝸牛爬過來了。「仲有冇位畀我呀？」「梗係有啦！」蝸牛也",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 20.36,
+      "cue": "梗係有啦！」蝸牛也",
+      "sticker": "mushroom",
+      "animation": "nod"
+    },
+    {
+      "at": 21.8,
+      "cue": "蝸牛也",
+      "sticker": "snail",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 24.76,
+      "cue": "青蛙正在玩水。撲通！嘩啦！嘩啦",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 24.76,
+      "cue": "青蛙正在玩水。撲通！嘩啦！嘩啦",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 26.28,
+      "cue": "撲通！嘩啦！嘩啦",
+      "sticker": "frog",
+      "animation": "jump"
+    },
+    {
+      "at": 35.48,
+      "cue": "青蛙停了下來",
+      "sticker": "frog",
+      "expression": "sad"
+    },
+    {
+      "at": 40.68,
+      "cue": "於是",
+      "sticker": "frog",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 42.84,
+      "cue": "哎喲，好",
+      "sticker": "ladybug",
+      "expression": "surprised"
+    },
+    {
+      "at": 44.92,
+      "cue": "蝸牛把身子縮進殼裏，讓出一點位置。「迫唔落喇！」瓢蟲說。可是蘑菇吸飽了雨水……長大了，大了一點點。「大家都有位喇！」蘑菇說",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 53.16,
+      "cue": "長大了，大了一點點。「大家都有位喇！」蘑菇說",
+      "sticker": "mushroom",
+      "effect": "glow"
+    },
+    {
+      "at": 53.16,
+      "cue": "長大了，大了一點點。「大家都有位喇！」蘑菇說",
+      "sticker": "mushroom",
+      "animation": "grow"
+    },
+    {
+      "at": 58.44,
+      "cue": "大家",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 58.44,
+      "cue": "大家",
+      "sticker": "ladybug",
+      "expression": "happy"
+    },
+    {
+      "at": 62.44,
+      "cue": "太陽出來了。蝸牛探出",
+      "effect": "sunshine"
+    },
+    {
+      "at": 63.8,
+      "cue": "蝸牛探出",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 65.4,
+      "cue": "瓢蟲爬出來。青蛙跳出來",
+      "sticker": "ladybug",
+      "go": "back"
+    },
+    {
+      "at": 66.76,
+      "cue": "青蛙跳出來",
+      "sticker": "frog",
+      "go": "back"
+    }
+  ]
+}

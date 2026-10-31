@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "おひさまが、しずんでいきます。お花は、金いろのひかりのなかで、きらきら。カタツ",
+      "effect": "sunset",
+      "duration": 29.42,
+      "intensity": 0.7
+    },
+    {
+      "at": 6.2,
+      "cue": "お花は、金いろのひかりのなかで、きらきら。カタツ",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 10.36,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 10.36,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 16.6,
+      "cue": "花びらをき",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 19.86,
+      "cue": "ねえ、かなしいの？」へんじがありません",
+      "sticker": "snail",
+      "expression": "surprised"
+    },
+    {
+      "at": 23.59,
+      "cue": "じゃあ、ぼくがそばにいるよ。ひとばんじ",
+      "sticker": "snail",
+      "expression": "sad"
+    },
+    {
+      "at": 23.59,
+      "cue": "じゃあ、ぼくがそばにいるよ。ひとばんじ",
+      "sticker": "snail",
+      "animation": "talk"
+    },
+    {
+      "at": 26.92,
+      "cue": "おつきさまがのぼりました。そこへホタルさん。「わたしもいる」と、小さなちょうちんみたいに、ぽうっ。カタツ",
+      "effect": "night",
+      "duration": 20.8,
+      "intensity": 0.7
+    },
+    {
+      "at": 29.32,
+      "cue": "ホタルさん。「わたしもいる」と、小さなちょうちんみたいに、ぽうっ。カタツ",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 29.32,
+      "cue": "ホタルさん。「わたしもいる」と、小さなちょうちんみたいに、ぽうっ。カタツ",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 30.2,
+      "cue": "わたしもいる」と、小さなちょうちんみたいに、ぽうっ。カタツ",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 32.04,
+      "cue": "小さなちょうちんみたいに、ぽうっ。カタツ",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 34.92,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "expression": "normal"
+    },
+    {
+      "at": 36.16,
+      "cue": "きょうのことを、ゆっくり、ゆーっくりはなしました",
+      "sticker": "snail",
+      "animation": "talk"
+    },
+    {
+      "at": 42.28,
+      "cue": "お花のすぐそばで、からにもぐりました。朝になって、おひさまがのぼると、お花がぱあっとひらきました。「おはよう、カタツ",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 45.72,
+      "cue": "朝になって、おひさまがのぼると、お花がぱあっとひらきました。「おはよう、カタツ",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.8
+    },
+    {
+      "at": 47.96,
+      "cue": "お花がぱあっとひらきました。「おはよう、カタツ",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 50,
+      "cue": "おはよう、カタツ",
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 52.12,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 56.16,
+      "cue": "わたしみたいなお花はね、よるはとじて、おひさまがでたらひらくの",
+      "sticker": "flower",
+      "animation": "talk"
+    },
+    {
+      "at": 60.84,
+      "cue": "じゃあ、まいばん、とじるまえに、ぼくの一日をはなすね",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 60.84,
+      "cue": "じゃあ、まいばん、とじるまえに、ぼくの一日をはなすね",
+      "sticker": "snail",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "お日さまが、しずんでいきます。え",
+      "effect": "sunset",
+      "duration": 29.5,
+      "intensity": 0.7
+    },
+    {
+      "at": 7.48,
+      "cue": "フクロウくんがま",
+      "sticker": "owl",
+      "enter": true
+    },
+    {
+      "at": 7.48,
+      "cue": "フクロウくんがま",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 8.28,
+      "cue": "ま",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "hold"
+    },
+    {
+      "at": 10.44,
+      "cue": "アライグマくん",
+      "sticker": "raccoon",
+      "enter": true
+    },
+    {
+      "at": 11.59,
+      "cue": "フクロウくん！かくれんぼしよう！」フクロウくんは、目をひとつ、ふたつ、ぱちり。「ホウ。ぼくがさがそう」アライグマくんは、いつものかくれかた。目をかくして、「見えない、見えない",
+      "sticker": "raccoon",
+      "effect": "hop"
+    },
+    {
+      "at": 13.8,
+      "cue": "フクロウくんは、目をひとつ、ふたつ、ぱちり。「ホウ。ぼくがさがそう」アライグマくんは、いつものかくれかた。目をかくして、「見えない、見えない",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "resume"
+    },
+    {
+      "at": 19.72,
+      "cue": "アライグマくんは、いつものかくれかた。目をかくして、「見えない、見えない",
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 22.6,
+      "cue": "目をかくして、「見えない、見えない",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "hold"
+    },
+    {
+      "at": 27,
+      "cue": "空がくらくなりました。ホタルさんは、くさのなかへ。フクロウくんが、すうっとおりてきます。ばさっとも、ひ",
+      "effect": "night",
+      "duration": 51.44,
+      "intensity": 0.8
+    },
+    {
+      "at": 29.08,
+      "cue": "ホタルさんは、くさのなかへ。フクロウくんが、すうっとおりてきます。ばさっとも、ひ",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 29.08,
+      "cue": "ホタルさんは、くさのなかへ。フクロウくんが、すうっとおりてきます。ばさっとも、ひ",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "meadow"
+    },
+    {
+      "at": 31.56,
+      "cue": "フクロウくんが、すうっとおりてきます。ばさっとも、ひ",
+      "sticker": "firefly",
+      "animation": "tuck-in"
+    },
+    {
+      "at": 32.76,
+      "cue": "すうっとおりてきます。ばさっとも、ひ",
+      "sticker": "owl",
+      "go": "to",
+      "target": "raccoon"
+    },
+    {
+      "at": 43.2,
+      "cue": "ぜんぜん、きこえなかった！」ホタルさんは？おしりが、ぴか…ぴか",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "resume"
+    },
+    {
+      "at": 46.36,
+      "cue": "おしりが、ぴか…ぴか",
+      "sticker": "firefly",
+      "effect": "glow",
+      "repeat": 2,
+      "duration": 0.5,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 48.98,
+      "cue": "わたし、かくれるの、へたなの」「じゃあ、こんどはきみがさがして！」そこでフクロウくんは、音もなく、かくれにいきました。アライグマくんが耳をすませても、しーん。でもホタルさんは、木から木へとんで、ぴかーっと、いちばん明るく",
+      "sticker": "firefly",
+      "expression": "sad"
+    },
+    {
+      "at": 51.36,
+      "cue": "じゃあ、こんどはきみがさがして！」そこでフクロウくんは、音もなく、かくれにいきました。アライグマくんが耳をすませても、しーん。でもホタルさんは、木から木へとんで、ぴかーっと、いちばん明るく",
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 51.36,
+      "cue": "じゃあ、こんどはきみがさがして！」そこでフクロウくんは、音もなく、かくれにいきました。アライグマくんが耳をすませても、しーん。でもホタルさんは、木から木へとんで、ぴかーっと、いちばん明るく",
+      "sticker": "raccoon",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 55.32,
+      "cue": "音もなく、かくれにいきました。アライグマくんが耳をすませても、しーん。でもホタルさんは、木から木へとんで、ぴかーっと、いちばん明るく",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches",
+      "another": true
+    },
+    {
+      "at": 61.4,
+      "cue": "でもホタルさんは、木から木へとんで、ぴかーっと、いちばん明るく",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 62.76,
+      "cue": "木から木へとんで、ぴかーっと、いちばん明るく",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "owl"
+    },
+    {
+      "at": 64.12,
+      "cue": "ぴかーっと、いちばん明るく",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 2.5,
+      "intensity": 1,
+      "color": "#FFE27A",
+      "hold": true
+    },
+    {
+      "at": 68.96,
+      "cue": "みーつけた！」「ホウ！どうして",
+      "sticker": "firefly",
+      "animation": "wave"
+    },
+    {
+      "at": 70.16,
+      "cue": "ホウ！どうして",
+      "sticker": "owl",
+      "expression": "surprised"
+    },
+    {
+      "at": 70.16,
+      "cue": "ホウ！どうして",
+      "sticker": "owl",
+      "animation": "hoot"
+    }
+  ]
+}

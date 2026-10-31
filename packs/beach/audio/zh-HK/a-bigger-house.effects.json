@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "寄",
+      "sticker": "bucket",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "寄",
+      "sticker": "castle",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "寄",
+      "sticker": "hermit-crab",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "寄",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 6.36,
+      "cue": "唉，歎了一口氣",
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 20.76,
+      "cue": "是時候換一間大一點的屋了",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    },
+    {
+      "at": 23.96,
+      "cue": "於是，寄",
+      "sticker": "hermit-crab",
+      "animation": "look-around"
+    },
+    {
+      "at": 28.84,
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "bucket"
+    },
+    {
+      "at": 30.92,
+      "cue": "嘩，大得不得了",
+      "sticker": "bucket",
+      "effect": "wobble"
+    },
+    {
+      "at": 38.76,
+      "cue": "太大了，住不得！第二間：插着小",
+      "sticker": "hermit-crab",
+      "expression": "surprised"
+    },
+    {
+      "at": 44.12,
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "castle"
+    },
+    {
+      "at": 45.4,
+      "cue": "沙沙沙……門塌了一角。太鬆了，住不得",
+      "sticker": "castle",
+      "animation": "wobble"
+    },
+    {
+      "at": 48.2,
+      "cue": "太鬆了，住不得",
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 52.92,
+      "cue": "嘩啦！把水桶潑得濕透。寄",
+      "sticker": "bucket",
+      "animation": "wash"
+    },
+    {
+      "at": 55.8,
+      "cue": "寄",
+      "sticker": "hermit-crab",
+      "expression": "surprised"
+    },
+    {
+      "at": 57,
+      "cue": "嗖的一聲縮進了自己的殼裏",
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 66.2,
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 67.56,
+      "cue": "笑了。大屋嘛，等長大了再說吧",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    }
+  ]
+}

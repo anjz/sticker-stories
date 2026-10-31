@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "c’était",
+      "effect": "leaves",
+      "duration": 31.84,
+      "intensity": 0.6
+    },
+    {
+      "at": 6.52,
+      "cue": "ourson",
+      "sticker": "bear",
+      "enter": true
+    },
+    {
+      "at": 9.53,
+      "sticker": "bear",
+      "expression": "sad"
+    },
+    {
+      "at": 13,
+      "cue": "blaireau",
+      "sticker": "badger",
+      "enter": true
+    },
+    {
+      "at": 13,
+      "cue": "blaireau",
+      "sticker": "badger",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 17.3,
+      "cue": "il",
+      "sticker": "badger",
+      "animation": "dig"
+    },
+    {
+      "at": 20.04,
+      "cue": "à",
+      "sticker": "badger",
+      "expression": "happy"
+    },
+    {
+      "at": 20.84,
+      "cue": "fleur",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 21.12,
+      "cue": "a",
+      "sticker": "flower",
+      "effect": "tint",
+      "color": "#BFE3FF"
+    },
+    {
+      "at": 22.04,
+      "cue": "a",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 26.12,
+      "cue": "alors",
+      "sticker": "bear",
+      "expression": "happy"
+    },
+    {
+      "at": 27,
+      "cue": "s’est",
+      "sticker": "bear",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 28.2,
+      "cue": "a",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 29.84,
+      "cue": "puis",
+      "effect": "snow",
+      "duration": 11.7,
+      "intensity": 0.7
+    },
+    {
+      "at": 39.04,
+      "cue": "un",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.9
+    },
+    {
+      "at": 42.08,
+      "cue": "blaireau",
+      "sticker": "badger",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 46.46,
+      "cue": "ourson",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "resume"
+    },
+    {
+      "at": 48.12,
+      "cue": "fleur",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 49.91,
+      "sticker": "bear",
+      "expression": "surprised"
+    },
+    {
+      "at": 49.91,
+      "sticker": "bear",
+      "animation": "talk"
+    },
+    {
+      "at": 51,
+      "sticker": "badger",
+      "animation": "laugh"
+    },
+    {
+      "at": 54.65,
+      "sticker": "bear",
+      "expression": "happy"
+    },
+    {
+      "at": 54.65,
+      "sticker": "bear",
+      "effect": "hearts"
+    }
+  ]
+}

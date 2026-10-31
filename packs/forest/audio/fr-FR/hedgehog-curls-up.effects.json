@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "hérisson",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 7.08,
+      "sticker": "hedgehog",
+      "expression": "happy"
+    },
+    {
+      "at": 7.08,
+      "sticker": "hedgehog",
+      "animation": "talk"
+    },
+    {
+      "at": 10.12,
+      "cue": "champignon",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 10.12,
+      "cue": "champignon",
+      "sticker": "hedgehog",
+      "go": "to",
+      "target": "mushroom"
+    },
+    {
+      "at": 10.84,
+      "sticker": "mushroom",
+      "expression": "happy"
+    },
+    {
+      "at": 13.96,
+      "cue": "ah",
+      "sticker": "mushroom",
+      "animation": "sneeze"
+    },
+    {
+      "at": 16.28,
+      "sticker": "hedgehog",
+      "expression": "surprised"
+    },
+    {
+      "at": 17.03,
+      "cue": "en",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    },
+    {
+      "at": 22.31,
+      "sticker": "mushroom",
+      "expression": "sad"
+    },
+    {
+      "at": 27.48,
+      "cue": "hérisson",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "resume"
+    },
+    {
+      "at": 30.44,
+      "cue": "pic-vert",
+      "sticker": "woodpecker",
+      "enter": true
+    },
+    {
+      "at": 30.44,
+      "cue": "pic-vert",
+      "sticker": "woodpecker",
+      "go": "to",
+      "target": "trunks"
+    },
+    {
+      "at": 34.26,
+      "cue": "toc-toc-toc",
+      "sticker": "woodpecker",
+      "animation": "tap"
+    },
+    {
+      "at": 35.16,
+      "cue": "encore",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    },
+    {
+      "at": 36.82,
+      "sticker": "woodpecker",
+      "expression": "sad"
+    },
+    {
+      "at": 38.84,
+      "cue": "champignon",
+      "sticker": "mushroom",
+      "effect": "sparkle"
+    },
+    {
+      "at": 40.67,
+      "sticker": "woodpecker",
+      "go": "to",
+      "target": "hedgehog"
+    },
+    {
+      "at": 45.54,
+      "sticker": "mushroom",
+      "expression": "happy"
+    },
+    {
+      "at": 45.54,
+      "sticker": "woodpecker",
+      "expression": "happy"
+    },
+    {
+      "at": 47.72,
+      "cue": "son",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "resume"
+    },
+    {
+      "at": 50.2,
+      "sticker": "hedgehog",
+      "expression": "happy"
+    },
+    {
+      "at": 50.2,
+      "sticker": "hedgehog",
+      "effect": "hearts"
+    }
+  ]
+}

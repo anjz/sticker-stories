@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "c’était",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.7
+    },
+    {
+      "at": 5.32,
+      "cue": "grenouille",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 5.32,
+      "cue": "grenouille",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 7.48,
+      "cue": "attrapait",
+      "sticker": "frog",
+      "animation": "catch-fly"
+    },
+    {
+      "at": 10.15,
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 10.76,
+      "cue": "caneton",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 11.72,
+      "cue": "caneton",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 14.08,
+      "cue": "l’eau",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 19.68,
+      "cue": "il",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 24.44,
+      "cue": "escargot",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 24.44,
+      "cue": "escargot",
+      "sticker": "snail",
+      "go": "to",
+      "target": "duckling"
+    },
+    {
+      "at": 30.57,
+      "cue": "et",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 33.36,
+      "cue": "il",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 36.52,
+      "cue": "alors",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "resume"
+    },
+    {
+      "at": 39,
+      "cue": "une",
+      "sticker": "duckling",
+      "animation": "dip-foot"
+    },
+    {
+      "at": 44.24,
+      "cue": "ses",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond",
+      "by": "swim",
+      "another": true
+    },
+    {
+      "at": 50,
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 51.06,
+      "cue": "coin-coin",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 51.06,
+      "cue": "coin-coin",
+      "sticker": "duckling",
+      "animation": "quack"
+    },
+    {
+      "at": 51.06,
+      "cue": "coin-coin",
+      "sticker": "frog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 52.04,
+      "cue": "escargot",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 52.04,
+      "cue": "escargot",
+      "sticker": "snail",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "蘿拉和小狗在沙灘上野餐。忽然……滴。答。滴滴答答！下西北雨了",
+      "sticker": "umbrella",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "蘿拉和小狗在沙灘上野餐。忽然……滴。答。滴滴答答！下西北雨了",
+      "sticker": "girl",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "蘿拉和小狗在沙灘上野餐。忽然……滴。答。滴滴答答！下西北雨了",
+      "sticker": "girl",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 3.56,
+      "cue": "小狗在沙灘上野餐。忽然……滴。答。滴滴答答！下西北雨了",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 3.56,
+      "cue": "小狗在沙灘上野餐。忽然……滴。答。滴滴答答！下西北雨了",
+      "sticker": "dog",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 5.8,
+      "cue": "忽然……滴。答。滴滴答答！下西北雨了",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 5.8,
+      "cue": "忽然……滴。答。滴滴答答！下西北雨了",
+      "sticker": "dog",
+      "animation": "wag-tail"
+    },
+    {
+      "at": 8.44,
+      "cue": "滴滴答答！下西北雨了",
+      "effect": "rain",
+      "duration": 33.1,
+      "intensity": 0.8
+    },
+    {
+      "at": 10.76,
+      "cue": "狗狗，快！躲到遮陽傘下面！」他們一起",
+      "sticker": "girl",
+      "expression": "surprised"
+    },
+    {
+      "at": 13.32,
+      "cue": "他們一起",
+      "sticker": "girl",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 13.32,
+      "cue": "他們一起",
+      "sticker": "dog",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 13.32,
+      "cue": "他們一起",
+      "sticker": "girl",
+      "animation": "crouch",
+      "mode": "hold"
+    },
+    {
+      "at": 17.16,
+      "cue": "雨點打在傘",
+      "sticker": "umbrella",
+      "effect": "pulse"
+    },
+    {
+      "at": 21.16,
+      "cue": "好舒服喔！可是小狗坐不住",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 22.68,
+      "cue": "可是小狗坐不住",
+      "sticker": "dog",
+      "animation": "play-bow"
+    },
+    {
+      "at": 24.92,
+      "sticker": "dog",
+      "go": "to",
+      "target": "girl",
+      "toward": "right"
+    },
+    {
+      "at": 26.76,
+      "cue": "繞呀繞、轉圈圈。然後",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 30.68,
+      "sticker": "dog",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 32.2,
+      "cue": "就在蘿拉旁邊，用力甩、甩、甩",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 36.28,
+      "cue": "狗狗！我現在比雨還要濕啦",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 41.72,
+      "cue": "遮陽傘輕輕轉了一圈，把最後幾滴雨甩掉",
+      "sticker": "umbrella",
+      "animation": "spin"
+    },
+    {
+      "at": 46.32,
+      "effect": "rainbow",
+      "duration": 14
+    },
+    {
+      "at": 49.04,
+      "cue": "淋濕也值得了",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 49.04,
+      "cue": "淋濕也值得了",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 49.04,
+      "cue": "淋濕也值得了",
+      "sticker": "dog",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ウミガメさんが",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "ウミガメさんが",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 12.2,
+      "cue": "ニコが、きいろいボードをもって、とおりかかりました",
+      "sticker": "surfer",
+      "enter": true
+    },
+    {
+      "at": 15.72,
+      "cue": "ウミガメさん、すっごくおそいね！」ウミガメさんは、くびをひっこめて…また出して、にっこり",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 18.68,
+      "cue": "ウミガメさんは、くびをひっこめて…また出して、にっこり",
+      "sticker": "turtle",
+      "animation": "peek"
+    },
+    {
+      "at": 23.55,
+      "cue": "りくでは、おそいの。でも、水のなかなら？きょうそうしましょ",
+      "sticker": "turtle",
+      "animation": "talk"
+    },
+    {
+      "at": 28.11,
+      "cue": "よーし、しょうぶ",
+      "sticker": "surfer",
+      "expression": "surprised"
+    },
+    {
+      "at": 29.72,
+      "cue": "ペリカンくんが、岩にとまって見物です。よーい…ドン！ニコは、ちからいっぱいこいでいきます。ウミガメさんは、するりと水に",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 29.72,
+      "cue": "ペリカンくんが、岩にとまって見物です。よーい…ドン！ニコは、ちからいっぱいこいでいきます。ウミガメさんは、するりと水に",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 33.08,
+      "cue": "よーい…ドン！ニコは、ちからいっぱいこいでいきます。ウミガメさんは、するりと水に",
+      "sticker": "pelican",
+      "effect": "pulse"
+    },
+    {
+      "at": 35,
+      "cue": "ニコは、ちからいっぱいこいでいきます。ウミガメさんは、するりと水に",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sea",
+      "by": "paddle"
+    },
+    {
+      "at": 38.12,
+      "cue": "ウミガメさんは、するりと水に",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "sea",
+      "by": "swim"
+    },
+    {
+      "at": 47.16,
+      "cue": "ペリカンくんは、びっくりして、おもわず水をすくっちゃった",
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 52.12,
+      "cue": "ニコが、ボードですいーっともどってきたときには、ウミガメさんは、もうまっていました",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 53.44,
+      "cue": "すいーっともどってきたときには、ウミガメさんは、もうまっていました",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand",
+      "by": "surf"
+    },
+    {
+      "at": 58.72,
+      "cue": "まいった！およぐのは、ウミガメさんがいちばん",
+      "sticker": "turtle",
+      "effect": "hearts"
+    },
+    {
+      "at": 58.72,
+      "cue": "まいった！およぐのは、ウミガメさんがいちばん",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 58.72,
+      "cue": "まいった！およぐのは、ウミガメさんがいちばん",
+      "sticker": "surfer",
+      "animation": "laugh"
+    },
+    {
+      "at": 58.72,
+      "cue": "まいった！およぐのは、ウミガメさんがいちばん",
+      "sticker": "surfer",
+      "effect": "hop"
+    }
+  ]
+}

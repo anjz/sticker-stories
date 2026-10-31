@@ -1,0 +1,152 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "小鳥在草地上一跳一跳，一邊唱歌：啾哩啾，啾哩啾！小鴨搖搖擺擺地跟在後面",
+      "sticker": "bee",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.4
+    },
+    {
+      "at": 0,
+      "cue": "小鳥在草地上一跳一跳，一邊唱歌：啾哩啾，啾哩啾！小鴨搖搖擺擺地跟在後面",
+      "sticker": "bird",
+      "enter": true,
+      "by": "hop"
+    },
+    {
+      "at": 9,
+      "cue": "小鴨搖搖擺擺地跟在後面",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 9,
+      "cue": "小鴨搖搖擺擺地跟在後面",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "bird"
+    },
+    {
+      "at": 11.95,
+      "cue": "教我唱！」於是小鳥唱，小鴨跟著學。嘎",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 16.28,
+      "cue": "嘎",
+      "sticker": "duckling",
+      "animation": "quack"
+    },
+    {
+      "at": 17.45,
+      "cue": "不是這樣。」小鴨說。「再一次！」小鳥說，然後",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 19.84,
+      "cue": "再一次！」小鳥說，然後",
+      "sticker": "bird",
+      "effect": "hop"
+    },
+    {
+      "at": 30.28,
+      "cue": "蜜蜂嗡嗡嗡地飛過來聽，也跟著哼。嗯——嗯——青蛙跳了過來。呱呱，呱呱",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 30.28,
+      "cue": "蜜蜂嗡嗡嗡地飛過來聽，也跟著哼。嗯——嗯——青蛙跳了過來。呱呱，呱呱",
+      "sticker": "bee",
+      "go": "to",
+      "target": "bird"
+    },
+    {
+      "at": 32.56,
+      "cue": "也跟著哼。嗯——嗯——青蛙跳了過來。呱呱，呱呱",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 36.2,
+      "cue": "青蛙跳了過來。呱呱，呱呱",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 36.2,
+      "cue": "青蛙跳了過來。呱呱，呱呱",
+      "sticker": "frog",
+      "go": "to",
+      "target": "duckling"
+    },
+    {
+      "at": 40.12,
+      "cue": "大家都會唱歌，只有我不會。」小鴨說",
+      "sticker": "frog",
+      "effect": "hop"
+    },
+    {
+      "at": 44.75,
+      "cue": "那我們大家一起唱吧！」小鳥說，「啾哩啾！」嗯——！呱呱！小鳥把最後一個音拉得長長的、高高的……等著。這首歌，還少一個響亮的結尾。可是小鴨好害羞，把",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 49,
+      "cue": "嗯——！呱呱！小鳥把最後一個音拉得長長的、高高的……等著。這首歌，還少一個響亮的結尾。可是小鴨好害羞，把",
+      "sticker": "bee",
+      "effect": "wobble"
+    },
+    {
+      "at": 50.12,
+      "cue": "呱呱！小鳥把最後一個音拉得長長的、高高的……等著。這首歌，還少一個響亮的結尾。可是小鴨好害羞，把",
+      "sticker": "frog",
+      "animation": "croak"
+    },
+    {
+      "at": 51,
+      "cue": "小鳥把最後一個音拉得長長的、高高的……等著。這首歌，還少一個響亮的結尾。可是小鴨好害羞，把",
+      "sticker": "bird",
+      "animation": "sing",
+      "mode": "hold"
+    },
+    {
+      "at": 56.68,
+      "cue": "這首歌，還少一個響亮的結尾。可是小鴨好害羞，把",
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 62.36,
+      "cue": "把",
+      "sticker": "duckling",
+      "animation": "nap"
+    },
+    {
+      "at": 68.23,
+      "cue": "就是這個！」小鳥大叫。大家一起歡呼",
+      "sticker": "bird",
+      "animation": "sing",
+      "mode": "resume"
+    },
+    {
+      "at": 70.6,
+      "cue": "大家一起歡呼",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 70.6,
+      "cue": "大家一起歡呼",
+      "sticker": "all",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "游泳圈在海上漂呀漂",
+      "sticker": "ring",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "游泳圈在海上漂呀漂",
+      "sticker": "ring",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 8.6,
+      "cue": "小魚游到它的下面",
+      "sticker": "ring",
+      "effect": "pulse"
+    },
+    {
+      "at": 8.6,
+      "cue": "小魚游到它的下面",
+      "sticker": "fish",
+      "enter": true
+    },
+    {
+      "at": 8.6,
+      "cue": "小魚游到它的下面",
+      "sticker": "fish",
+      "go": "to",
+      "target": "ring"
+    },
+    {
+      "at": 19.16,
+      "cue": "於是",
+      "sticker": "fish",
+      "expression": "surprised"
+    },
+    {
+      "at": 22.68,
+      "cue": "游泳圈沉下去了……然後，啵！它又彈了上來",
+      "sticker": "ring",
+      "effect": "wobble"
+    },
+    {
+      "at": 28.88,
+      "cue": "海龜",
+      "sticker": "ring",
+      "effect": "hop"
+    },
+    {
+      "at": 28.88,
+      "cue": "海龜",
+      "sticker": "fish",
+      "expression": "happy"
+    },
+    {
+      "at": 28.88,
+      "cue": "海龜",
+      "sticker": "fish",
+      "animation": "laugh"
+    },
+    {
+      "at": 28.88,
+      "cue": "海龜",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 28.88,
+      "cue": "海龜",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 39.28,
+      "cue": "就像水裡的氣球？」小魚說。「沒錯。」游泳圈",
+      "sticker": "fish",
+      "expression": "surprised"
+    },
+    {
+      "at": 42.24,
+      "cue": "沒錯。」游泳圈",
+      "sticker": "turtle",
+      "expression": "happy"
+    },
+    {
+      "at": 42.24,
+      "cue": "沒錯。」游泳圈",
+      "sticker": "turtle",
+      "animation": "nod"
+    },
+    {
+      "at": 43.72,
+      "cue": "游泳圈",
+      "sticker": "ring",
+      "animation": "spin"
+    },
+    {
+      "at": 47.88,
+      "cue": "海龜把",
+      "sticker": "turtle",
+      "animation": "peek"
+    },
+    {
+      "at": 52.28,
+      "cue": "小魚搖搖鰭，繞著游泳圈游了一圈又一圈",
+      "sticker": "fish",
+      "animation": "wiggle"
+    },
+    {
+      "at": 52.28,
+      "cue": "小魚搖搖鰭，繞著游泳圈游了一圈又一圈",
+      "sticker": "fish",
+      "effect": "hearts"
+    }
+  ]
+}

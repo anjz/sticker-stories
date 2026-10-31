@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "il",
+      "effect": "sunset",
+      "duration": 29.02,
+      "intensity": 0.7
+    },
+    {
+      "at": 5.32,
+      "cue": "fiore",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 8.68,
+      "cue": "chiocciola",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 8.68,
+      "cue": "chiocciola",
+      "sticker": "snail",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 14.36,
+      "cue": "ha",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 18.23,
+      "cue": "fiore",
+      "sticker": "snail",
+      "expression": "surprised"
+    },
+    {
+      "at": 22.31,
+      "cue": "allora",
+      "sticker": "snail",
+      "expression": "sad"
+    },
+    {
+      "at": 22.31,
+      "cue": "allora",
+      "sticker": "snail",
+      "animation": "talk"
+    },
+    {
+      "at": 26.52,
+      "cue": "è",
+      "effect": "night",
+      "duration": 21.68,
+      "intensity": 0.7
+    },
+    {
+      "at": 28.68,
+      "cue": "lucciola",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 28.68,
+      "cue": "lucciola",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 29.64,
+      "cue": "resto",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 31.72,
+      "cue": "si",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 34.52,
+      "cue": "così",
+      "sticker": "snail",
+      "expression": "normal"
+    },
+    {
+      "at": 35.6,
+      "cue": "ha",
+      "sticker": "snail",
+      "animation": "talk"
+    },
+    {
+      "at": 42.92,
+      "cue": "si",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 46.2,
+      "cue": "la",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.8
+    },
+    {
+      "at": 48.76,
+      "cue": "fiore",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 50.76,
+      "cue": "buongiorno",
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 52.52,
+      "cue": "chiocciola",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 56.12,
+      "cue": "noi",
+      "sticker": "flower",
+      "animation": "talk"
+    },
+    {
+      "at": 61.19,
+      "cue": "allora",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 61.19,
+      "cue": "allora",
+      "sticker": "snail",
+      "effect": "hearts"
+    }
+  ]
+}

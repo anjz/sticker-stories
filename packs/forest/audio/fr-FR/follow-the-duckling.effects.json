@@ -1,0 +1,174 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.84,
+      "cue": "caneton",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 5.64,
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 7.56,
+      "cue": "renard",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 7.96,
+      "cue": "s’est",
+      "sticker": "fox",
+      "go": "to",
+      "target": "duckling"
+    },
+    {
+      "at": 9.96,
+      "cue": "castor",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 10.36,
+      "cue": "s’est",
+      "sticker": "beaver",
+      "go": "to",
+      "target": "fox"
+    },
+    {
+      "at": 14,
+      "cue": "renard",
+      "sticker": "fox",
+      "effect": "wobble"
+    },
+    {
+      "at": 15.64,
+      "cue": "castor",
+      "sticker": "beaver",
+      "effect": "wobble"
+    },
+    {
+      "at": 19,
+      "cue": "renard",
+      "sticker": "fox",
+      "effect": "hop"
+    },
+    {
+      "at": 20.84,
+      "cue": "castor",
+      "sticker": "beaver",
+      "effect": "hop"
+    },
+    {
+      "at": 23.92,
+      "cue": "a",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 25.4,
+      "cue": "alors",
+      "sticker": "fox",
+      "expression": "sleeping"
+    },
+    {
+      "at": 25.4,
+      "cue": "alors",
+      "sticker": "fox",
+      "animation": "tuck-tail",
+      "mode": "hold"
+    },
+    {
+      "at": 27.72,
+      "cue": "et",
+      "sticker": "beaver",
+      "animation": "hide-behind-stick"
+    },
+    {
+      "at": 31.16,
+      "cue": "hop",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "resume"
+    },
+    {
+      "at": 33.78,
+      "cue": "tout",
+      "sticker": "fox",
+      "animation": "tuck-tail",
+      "mode": "resume"
+    },
+    {
+      "at": 33.78,
+      "cue": "tout",
+      "sticker": "fox",
+      "expression": "surprised"
+    },
+    {
+      "at": 33.78,
+      "cue": "tout",
+      "sticker": "beaver",
+      "expression": "surprised"
+    },
+    {
+      "at": 37.4,
+      "cue": "il",
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 41.32,
+      "cue": "et",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 41.32,
+      "cue": "et",
+      "sticker": "fox",
+      "animation": "chase-tail"
+    },
+    {
+      "at": 46.68,
+      "cue": "escargot",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 49.08,
+      "sticker": "snail",
+      "expression": "sad"
+    },
+    {
+      "at": 52.2,
+      "cue": "et",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 52.2,
+      "cue": "et",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 52.2,
+      "cue": "et",
+      "sticker": "fox",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 52.2,
+      "cue": "et",
+      "sticker": "beaver",
+      "go": "to",
+      "target": "snail"
+    }
+  ]
+}

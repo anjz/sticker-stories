@@ -1,0 +1,175 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "des",
+      "effect": "snow",
+      "duration": 63.42,
+      "intensity": 0.5
+    },
+    {
+      "at": 5.68,
+      "cue": "renard",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 6.2,
+      "cue": "a",
+      "sticker": "fox",
+      "effect": "pulse"
+    },
+    {
+      "at": 9.99,
+      "cue": "écureuil",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 9.99,
+      "cue": "écureuil",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "fox"
+    },
+    {
+      "at": 12.04,
+      "sticker": "squirrel",
+      "expression": "happy"
+    },
+    {
+      "at": 14,
+      "cue": "a",
+      "sticker": "squirrel",
+      "animation": "hide-nut"
+    },
+    {
+      "at": 18.41,
+      "sticker": "squirrel",
+      "effect": "hop"
+    },
+    {
+      "at": 19.65,
+      "sticker": "fox",
+      "effect": "hop"
+    },
+    {
+      "at": 20.49,
+      "sticker": "squirrel",
+      "effect": "wobble"
+    },
+    {
+      "at": 21.37,
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 21.37,
+      "sticker": "mouse",
+      "go": "to",
+      "target": "fox"
+    },
+    {
+      "at": 24.04,
+      "cue": "souris",
+      "sticker": "mouse",
+      "effect": "pulse"
+    },
+    {
+      "at": 28.32,
+      "cue": "renard",
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 34.28,
+      "cue": "chenille",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 34.92,
+      "cue": "qui",
+      "sticker": "caterpillar",
+      "effect": "shake"
+    },
+    {
+      "at": 36.49,
+      "sticker": "caterpillar",
+      "effect": "tint",
+      "color": "#A8D8FF"
+    },
+    {
+      "at": 36.49,
+      "sticker": "caterpillar",
+      "expression": "sad"
+    },
+    {
+      "at": 38.68,
+      "cue": "renard",
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 38.68,
+      "cue": "renard",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 39.96,
+      "cue": "il",
+      "sticker": "fox",
+      "go": "to",
+      "target": "caterpillar"
+    },
+    {
+      "at": 41.44,
+      "cue": "l’a",
+      "sticker": "fox",
+      "animation": "wrap-tail",
+      "mode": "hold"
+    },
+    {
+      "at": 45.48,
+      "cue": "écureuil",
+      "sticker": "squirrel",
+      "expression": "happy"
+    },
+    {
+      "at": 45.48,
+      "cue": "écureuil",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "caterpillar"
+    },
+    {
+      "at": 47.28,
+      "cue": "l’a",
+      "sticker": "squirrel",
+      "animation": "wrap-tail",
+      "mode": "hold"
+    },
+    {
+      "at": 48.96,
+      "cue": "enfin",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 48.96,
+      "cue": "enfin",
+      "sticker": "caterpillar",
+      "effect": "hearts"
+    },
+    {
+      "at": 50.32,
+      "cue": "a",
+      "sticker": "caterpillar",
+      "animation": "look-up"
+    }
+  ]
+}

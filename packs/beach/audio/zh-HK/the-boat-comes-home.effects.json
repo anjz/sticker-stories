@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "太陽",
+      "effect": "sunset",
+      "duration": 52.96,
+      "intensity": 0.8
+    },
+    {
+      "at": 8.76,
+      "cue": "海豹坐在岩石上，望着",
+      "sticker": "seal",
+      "enter": true
+    },
+    {
+      "at": 8.76,
+      "cue": "海豹坐在岩石上，望着",
+      "sticker": "seal",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 10.52,
+      "cue": "望着",
+      "sticker": "seal",
+      "expression": "sad"
+    },
+    {
+      "at": 14.92,
+      "cue": "這時",
+      "sticker": "seal",
+      "animation": "look-around"
+    },
+    {
+      "at": 21.48,
+      "cue": "是海鷗！每次有船出去捕魚，海鷗都會一路跟着船回家，等着分點東西吃。海鷗回來了，那就是說……噗、噗、噗。藍白色的漁船回來了，海鷗就在後面緊緊跟着飛。海豹高興得拍起鰭來",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 22.68,
+      "cue": "每次有船出去捕魚，海鷗都會一路跟着船回家，等着分點東西吃。海鷗回來了，那就是說……噗、噗、噗。藍白色的漁船回來了，海鷗就在後面緊緊跟着飛。海豹高興得拍起鰭來",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 28.28,
+      "cue": "海鷗回來了，那就是說……噗、噗、噗。藍白色的漁船回來了，海鷗就在後面緊緊跟着飛。海豹高興得拍起鰭來",
+      "sticker": "seal",
+      "effect": "hop"
+    },
+    {
+      "at": 28.28,
+      "cue": "海鷗回來了，那就是說……噗、噗、噗。藍白色的漁船回來了，海鷗就在後面緊緊跟着飛。海豹高興得拍起鰭來",
+      "sticker": "seal",
+      "expression": "surprised"
+    },
+    {
+      "at": 32.36,
+      "cue": "藍白色的漁船回來了，海鷗就在後面緊緊跟着飛。海豹高興得拍起鰭來",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 34.28,
+      "cue": "海鷗就在後面緊緊跟着飛。海豹高興得拍起鰭來",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 36.92,
+      "cue": "海豹高興得拍起鰭來",
+      "sticker": "seal",
+      "animation": "clap"
+    },
+    {
+      "at": 41.74,
+      "cue": "漁船把網拉上來，網濕淋淋的，一直滴着水，船身輕輕地搖晃。海鷗飛下來休息",
+      "sticker": "fishing-boat",
+      "animation": "net",
+      "mode": "hold"
+    },
+    {
+      "at": 48.54,
+      "cue": "海鷗飛下來休息",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 50.46,
+      "cue": "天空變成深藍色。月亮出來了。海鷗把",
+      "effect": "night",
+      "duration": 40,
+      "intensity": 0.8
+    },
+    {
+      "at": 54.06,
+      "cue": "海鷗把",
+      "sticker": "seagull",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 56.7,
+      "cue": "海豹閉上了眼睛",
+      "sticker": "seal",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 64.3,
+      "cue": "唰……唰",
+      "sticker": "fishing-boat",
+      "effect": "float",
+      "intensity": 0.3
+    }
+  ]
+}

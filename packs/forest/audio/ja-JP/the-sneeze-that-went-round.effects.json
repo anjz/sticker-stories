@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "キノコが、のはらにしずかに立っていました。ハリネズミくんがきて、となりでうとうと。しーん。そこへキツネくんがとことこ。チョウチョさんがひらひらおりて、あたまにちょこん。こちょこちょ。は…は…はーっくしょん",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 7.24,
+      "cue": "ハリネズミくんがきて、となりでうとうと。しーん。そこへキツネくんがとことこ。チョウチョさんがひらひらおりて、あたまにちょこん。こちょこちょ。は…は…はーっくしょん",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 8.92,
+      "cue": "となりでうとうと。しーん。そこへキツネくんがとことこ。チョウチョさんがひらひらおりて、あたまにちょこん。こちょこちょ。は…は…はーっくしょん",
+      "sticker": "hedgehog",
+      "go": "to",
+      "target": "mushroom"
+    },
+    {
+      "at": 10.92,
+      "cue": "しーん。そこへキツネくんがとことこ。チョウチョさんがひらひらおりて、あたまにちょこん。こちょこちょ。は…は…はーっくしょん",
+      "sticker": "hedgehog",
+      "expression": "sleeping"
+    },
+    {
+      "at": 13.16,
+      "cue": "キツネくんがとことこ。チョウチョさんがひらひらおりて、あたまにちょこん。こちょこちょ。は…は…はーっくしょん",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 15.24,
+      "cue": "チョウチョさんがひらひらおりて、あたまにちょこん。こちょこちょ。は…は…はーっくしょん",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 17.32,
+      "cue": "あたまにちょこん。こちょこちょ。は…は…はーっくしょん",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "fox"
+    },
+    {
+      "at": 19.88,
+      "cue": "は…は…はーっくしょん",
+      "sticker": "fox",
+      "expression": "surprised"
+    },
+    {
+      "at": 19.88,
+      "cue": "は…は…はーっくしょん",
+      "sticker": "fox",
+      "animation": "sneeze"
+    },
+    {
+      "at": 22.44,
+      "cue": "ぴ",
+      "sticker": "fox",
+      "effect": "wobble",
+      "repeat": 2
+    },
+    {
+      "at": 24.6,
+      "cue": "キノコのかさの上へ。はねをとじて、ぱたぱた。こちょこちょ。は…は",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 26.6,
+      "cue": "はねをとじて、ぱたぱた。こちょこちょ。は…は",
+      "sticker": "butterfly",
+      "animation": "rest"
+    },
+    {
+      "at": 29.72,
+      "cue": "は…は",
+      "sticker": "mushroom",
+      "animation": "sneeze",
+      "mode": "hold"
+    },
+    {
+      "at": 31,
+      "cue": "へっくしょん！キラキラのこなが、ぽわん。ふわふわおりて…ハリネズミくんのはなに。ハリネズミくんはくるんとまるくなって…そうっと、ひょっこり。はなが、ひくひく。は…は…くち",
+      "sticker": "mushroom",
+      "animation": "sneeze",
+      "mode": "resume"
+    },
+    {
+      "at": 38.44,
+      "cue": "ハリネズミくんはくるんとまるくなって…そうっと、ひょっこり。はなが、ひくひく。は…は…くち",
+      "sticker": "hedgehog",
+      "expression": "surprised"
+    },
+    {
+      "at": 38.44,
+      "cue": "ハリネズミくんはくるんとまるくなって…そうっと、ひょっこり。はなが、ひくひく。は…は…くち",
+      "sticker": "hedgehog",
+      "animation": "curl"
+    },
+    {
+      "at": 46.04,
+      "cue": "は…くち",
+      "sticker": "hedgehog",
+      "animation": "sneeze"
+    },
+    {
+      "at": 58.04,
+      "cue": "ところがキツネくんは、くしゃみのかわりに…くすくす、わらい",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 61.08,
+      "cue": "くすくす、わらい",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 61.08,
+      "cue": "くすくす、わらい",
+      "sticker": "fox",
+      "effect": "wobble"
+    },
+    {
+      "at": 64.04,
+      "cue": "そのわらいが、のはらをぐるっとひとまわり",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 64.04,
+      "cue": "そのわらいが、のはらをぐるっとひとまわり",
+      "sticker": "all",
+      "effect": "wobble"
+    }
+  ]
+}

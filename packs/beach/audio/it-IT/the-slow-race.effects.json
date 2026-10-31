@@ -1,0 +1,153 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.92,
+      "cue": "piovanello",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 4.92,
+      "cue": "piovanello",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 7.72,
+      "cue": "io",
+      "sticker": "sandpiper",
+      "animation": "jump"
+    },
+    {
+      "at": 9.4,
+      "cue": "paguro",
+      "sticker": "hermit-crab",
+      "enter": true
+    },
+    {
+      "at": 9.4,
+      "cue": "paguro",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "sandpiper"
+    },
+    {
+      "at": 11.16,
+      "cue": "io",
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 13.43,
+      "cue": "e",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 13.43,
+      "cue": "e",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "hermit-crab"
+    },
+    {
+      "at": 18.84,
+      "cue": "pronti",
+      "sticker": "turtle",
+      "expression": "happy"
+    },
+    {
+      "at": 21.48,
+      "cue": "zac",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore",
+      "by": "run",
+      "toward": "right"
+    },
+    {
+      "at": 24.28,
+      "cue": "paguro",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 24.28,
+      "cue": "paguro",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 32.68,
+      "cue": "becca",
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 35.88,
+      "cue": "becca",
+      "sticker": "sandpiper",
+      "effect": "hop"
+    },
+    {
+      "at": 39.92,
+      "cue": "chiacchierando",
+      "sticker": "turtle",
+      "animation": "talk"
+    },
+    {
+      "at": 42.04,
+      "cue": "e",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    },
+    {
+      "at": 46.32,
+      "cue": "insieme",
+      "sticker": "hermit-crab",
+      "expression": "surprised"
+    },
+    {
+      "at": 47.24,
+      "cue": "paguro",
+      "sticker": "hermit-crab",
+      "animation": "hide"
+    },
+    {
+      "at": 52.68,
+      "cue": "tartaruga",
+      "sticker": "turtle",
+      "animation": "peek"
+    },
+    {
+      "at": 59.44,
+      "cue": "è",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "pool",
+      "by": "run"
+    },
+    {
+      "at": 64.24,
+      "cue": "ma",
+      "sticker": "sandpiper",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 65.88,
+      "cue": "tutti",
+      "sticker": "hermit-crab",
+      "effect": "hearts"
+    },
+    {
+      "at": 65.88,
+      "cue": "tutti",
+      "sticker": "turtle",
+      "effect": "hearts"
+    }
+  ]
+}

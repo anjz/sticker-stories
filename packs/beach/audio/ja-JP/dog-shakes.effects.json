@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ローラは、ビーチパラソルの下で、からっと、いいきもち。イヌくんは、びしょびしょ。水へかけていって、ざぶん！もどってくると、ぶるぶるぶるっ",
+      "sticker": "umbrella",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "ローラは、ビーチパラソルの下で、からっと、いいきもち。イヌくんは、びしょびしょ。水へかけていって、ざぶん！もどってくると、ぶるぶるぶるっ",
+      "sticker": "girl",
+      "enter": true
+    },
+    {
+      "at": 5.56,
+      "cue": "からっと、いいきもち。イヌくんは、びしょびしょ。水へかけていって、ざぶん！もどってくると、ぶるぶるぶるっ",
+      "sticker": "girl",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 5.56,
+      "cue": "からっと、いいきもち。イヌくんは、びしょびしょ。水へかけていって、ざぶん！もどってくると、ぶるぶるぶるっ",
+      "sticker": "girl",
+      "animation": "crouch",
+      "mode": "hold"
+    },
+    {
+      "at": 8.04,
+      "cue": "イヌくんは、びしょびしょ。水へかけていって、ざぶん！もどってくると、ぶるぶるぶるっ",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 8.04,
+      "cue": "イヌくんは、びしょびしょ。水へかけていって、ざぶん！もどってくると、ぶるぶるぶるっ",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 10.52,
+      "cue": "水へかけていって、ざぶん！もどってくると、ぶるぶるぶるっ",
+      "sticker": "dog",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 11.88,
+      "cue": "ざぶん！もどってくると、ぶるぶるぶるっ",
+      "sticker": "dog",
+      "go": "to",
+      "target": "girl"
+    },
+    {
+      "at": 13.92,
+      "cue": "ぶるぶるぶるっ",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 15.64,
+      "cue": "イヌくん！ぬれちゃったー",
+      "sticker": "girl",
+      "expression": "surprised"
+    },
+    {
+      "at": 20.68,
+      "cue": "ざぶん…もどってきて、ぶるぶるっ",
+      "sticker": "dog",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 21.64,
+      "cue": "もどってきて、ぶるぶるっ",
+      "sticker": "dog",
+      "go": "to",
+      "target": "girl"
+    },
+    {
+      "at": 22.52,
+      "cue": "ぶるぶるっ",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 24.16,
+      "cue": "もう、またなのー",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 32.44,
+      "cue": "パラソルをくるっとまわして、イヌくんにむけたのです。赤と白の、大きなたてみたいに。ぶるぶる、ぶるぶる、ぶるぶるっ！しずくは、ぜんぶパラソルに",
+      "sticker": "umbrella",
+      "animation": "spin"
+    },
+    {
+      "at": 39.96,
+      "cue": "ぶるぶる、ぶるぶる、ぶるぶるっ！しずくは、ぜんぶパラソルに",
+      "sticker": "dog",
+      "effect": "shake"
+    },
+    {
+      "at": 39.96,
+      "cue": "ぶるぶる、ぶるぶる、ぶるぶるっ！しずくは、ぜんぶパラソルに",
+      "sticker": "umbrella",
+      "effect": "spray"
+    },
+    {
+      "at": 45.08,
+      "cue": "へへん！ぬれてないもん！」イヌくんは、しっぽをふりふり、パラソルのむこうへ、とことこまわって…ローラのはなを、ぺろーん",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 47.4,
+      "cue": "イヌくんは、しっぽをふりふり、パラソルのむこうへ、とことこまわって…ローラのはなを、ぺろーん",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 49.72,
+      "cue": "パラソルのむこうへ、とことこまわって…ローラのはなを、ぺろーん",
+      "sticker": "dog",
+      "go": "to",
+      "target": "girl"
+    },
+    {
+      "at": 55.53,
+      "cue": "もう、イヌくんったら",
+      "sticker": "dog",
+      "effect": "hearts"
+    }
+  ]
+}

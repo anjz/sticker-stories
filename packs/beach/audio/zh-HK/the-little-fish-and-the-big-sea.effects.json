@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.28,
+      "cue": "海草輕輕擺動着長長的葉子，在她旁邊，住着小魚。小魚黃色的身上，有",
+      "sticker": "seaweed",
+      "enter": true
+    },
+    {
+      "at": 8.76,
+      "cue": "小魚。小魚黃色的身上，有",
+      "sticker": "fish",
+      "enter": true
+    },
+    {
+      "at": 8.76,
+      "cue": "小魚。小魚黃色的身上，有",
+      "sticker": "fish",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 13.56,
+      "cue": "海草",
+      "sticker": "seaweed",
+      "animation": "sway"
+    },
+    {
+      "at": 16.68,
+      "cue": "石",
+      "sticker": "fish",
+      "expression": "happy"
+    },
+    {
+      "at": 23.56,
+      "cue": "一個浪越過岩石，嘩啦嘩啦地湧了進來",
+      "sticker": "fish",
+      "effect": "wash",
+      "duration": 9
+    },
+    {
+      "at": 31.42,
+      "cue": "小魚也跟着出去了",
+      "sticker": "fish",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 33.58,
+      "cue": "大海好大好大呀！四面",
+      "sticker": "fish",
+      "expression": "surprised"
+    },
+    {
+      "at": 35.98,
+      "cue": "四面",
+      "sticker": "fish",
+      "animation": "look-around"
+    },
+    {
+      "at": 39.58,
+      "sticker": "fish",
+      "animation": "shiver"
+    },
+    {
+      "at": 42.46,
+      "cue": "這時，一張和善的臉",
+      "sticker": "fish",
+      "expression": "sad"
+    },
+    {
+      "at": 46.22,
+      "cue": "原來是海龜",
+      "sticker": "turtle",
+      "enter": true,
+      "by": "swim"
+    },
+    {
+      "at": 46.22,
+      "cue": "原來是海龜",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "fish",
+      "by": "swim"
+    },
+    {
+      "at": 51.98,
+      "sticker": "turtle",
+      "effect": "hearts"
+    },
+    {
+      "at": 58.46,
+      "cue": "然後，小魚自己游回家了。海草揮揮她的葉子：「歡迎返嚟！」小魚擺擺尾巴，拍拍魚鰭",
+      "sticker": "fish",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 61.5,
+      "cue": "海草揮揮她的葉子：「歡迎返嚟！」小魚擺擺尾巴，拍拍魚鰭",
+      "sticker": "seaweed",
+      "animation": "wave"
+    },
+    {
+      "at": 64.78,
+      "cue": "小魚擺擺尾巴，拍拍魚鰭",
+      "sticker": "fish",
+      "expression": "happy"
+    },
+    {
+      "at": 64.78,
+      "cue": "小魚擺擺尾巴，拍拍魚鰭",
+      "sticker": "fish",
+      "animation": "wiggle"
+    }
+  ]
+}

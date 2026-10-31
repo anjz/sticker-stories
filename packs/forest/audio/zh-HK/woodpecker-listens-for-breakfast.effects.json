@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 6.28,
+      "cue": "狐狸一路小跑過來，小鹿也來了",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 8.12,
+      "cue": "小鹿也來了",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 8.12,
+      "cue": "小鹿也來了",
+      "sticker": "deer",
+      "go": "to",
+      "target": "fox"
+    },
+    {
+      "at": 9.63,
+      "cue": "邊個呀？」狐狸大聲問。樹皮上，原來是啄木鳥",
+      "sticker": "fox",
+      "expression": "surprised"
+    },
+    {
+      "at": 9.63,
+      "cue": "邊個呀？」狐狸大聲問。樹皮上，原來是啄木鳥",
+      "sticker": "fox",
+      "effect": "wobble"
+    },
+    {
+      "at": 13.72,
+      "cue": "啄木鳥",
+      "sticker": "woodpecker",
+      "enter": true
+    },
+    {
+      "at": 13.72,
+      "cue": "啄木鳥",
+      "sticker": "woodpecker",
+      "go": "to",
+      "target": "trunks"
+    },
+    {
+      "at": 15.32,
+      "sticker": "deer",
+      "expression": "happy"
+    },
+    {
+      "at": 18.2,
+      "cue": "都差唔多啦。」啄木鳥說。篤篤篤……然後",
+      "sticker": "woodpecker",
+      "expression": "happy"
+    },
+    {
+      "at": 18.2,
+      "cue": "都差唔多啦。」啄木鳥說。篤篤篤……然後",
+      "sticker": "woodpecker",
+      "effect": "pulse"
+    },
+    {
+      "at": 20.92,
+      "cue": "篤篤篤……然後",
+      "sticker": "woodpecker",
+      "animation": "tap",
+      "mode": "hold"
+    },
+    {
+      "at": 25.4,
+      "cue": "狐狸踮起",
+      "sticker": "fox",
+      "go": "to",
+      "target": "woodpecker"
+    },
+    {
+      "at": 28.6,
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 34.12,
+      "cue": "低",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 43.32,
+      "cue": "狐狸張開眼睛，咧嘴笑了。「篤！」啄木鳥說，「早餐！」「篤篤篤！」小鹿說。「邊個呀？」狐狸說",
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 45.76,
+      "cue": "篤！」啄木鳥說，「早餐！」「篤篤篤！」小鹿說。「邊個呀？」狐狸說",
+      "sticker": "woodpecker",
+      "animation": "tap",
+      "mode": "resume"
+    },
+    {
+      "at": 48.4,
+      "cue": "篤篤篤！」小鹿說。「邊個呀？」狐狸說",
+      "sticker": "deer",
+      "animation": "talk"
+    },
+    {
+      "at": 50.16,
+      "cue": "邊個呀？」狐狸說",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 50.16,
+      "cue": "邊個呀？」狐狸說",
+      "sticker": "fox",
+      "animation": "talk"
+    },
+    {
+      "at": 52.65,
+      "cue": "早餐呀！」大家一起說",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 52.65,
+      "cue": "早餐呀！」大家一起說",
+      "sticker": "all",
+      "effect": "wobble"
+    }
+  ]
+}

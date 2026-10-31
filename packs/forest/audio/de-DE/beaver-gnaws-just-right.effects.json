@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5.24,
+      "cue": "der",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 7.32,
+      "cue": "er",
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 12.36,
+      "cue": "den",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 12.36,
+      "cue": "den",
+      "sticker": "hedgehog",
+      "go": "to",
+      "target": "beaver"
+    },
+    {
+      "at": 15,
+      "cue": "hmpf",
+      "sticker": "hedgehog",
+      "expression": "sad"
+    },
+    {
+      "at": 15.88,
+      "cue": "beleidigt",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    },
+    {
+      "at": 21.08,
+      "cue": "weil",
+      "sticker": "beaver",
+      "expression": "surprised"
+    },
+    {
+      "at": 21.08,
+      "cue": "weil",
+      "sticker": "beaver",
+      "effect": "wobble"
+    },
+    {
+      "at": 28.84,
+      "cue": "der",
+      "sticker": "bird",
+      "enter": true
+    },
+    {
+      "at": 28.84,
+      "cue": "der",
+      "sticker": "bird",
+      "go": "to",
+      "target": "beaver"
+    },
+    {
+      "at": 30.82,
+      "cue": "ich",
+      "sticker": "bird",
+      "expression": "sad"
+    },
+    {
+      "at": 35.22,
+      "cue": "überlass",
+      "sticker": "beaver",
+      "expression": "happy"
+    },
+    {
+      "at": 36.6,
+      "cue": "knabber",
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 40.6,
+      "cue": "perfekt",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 40.6,
+      "cue": "perfekt",
+      "sticker": "bird",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 41.72,
+      "cue": "der",
+      "sticker": "bird",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 45.48,
+      "cue": "sang",
+      "sticker": "bird",
+      "animation": "sing"
+    },
+    {
+      "at": 49.52,
+      "cue": "der",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "resume"
+    },
+    {
+      "at": 55.8,
+      "cue": "hm",
+      "sticker": "hedgehog",
+      "expression": "happy"
+    },
+    {
+      "at": 64.2,
+      "cue": "und",
+      "sticker": "hedgehog",
+      "expression": "sleeping"
+    },
+    {
+      "at": 64.8,
+      "cue": "kuschelte",
+      "sticker": "hedgehog",
+      "animation": "sleep",
+      "mode": "hold"
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ローラとイヌくんは",
+      "sticker": "umbrella",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "ローラとイヌくんは",
+      "sticker": "girl",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "ローラとイヌくんは",
+      "sticker": "girl",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 3.48,
+      "cue": "イヌくんは",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 3.48,
+      "cue": "イヌくんは",
+      "sticker": "dog",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 7.64,
+      "cue": "すると…ぽつん。ぽつん。ぱらぱらぱら！あめです",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 7.64,
+      "cue": "すると…ぽつん。ぽつん。ぱらぱらぱら！あめです",
+      "sticker": "dog",
+      "animation": "wag-tail"
+    },
+    {
+      "at": 10.88,
+      "cue": "ぱらぱらぱら！あめです",
+      "effect": "rain",
+      "duration": 34.74,
+      "intensity": 0.8
+    },
+    {
+      "at": 13.19,
+      "cue": "イヌくん、はやく！パラソルのしたへ！」赤と白の、大きなビーチパラソルのしたに、ぎ",
+      "sticker": "girl",
+      "expression": "surprised"
+    },
+    {
+      "at": 16.2,
+      "cue": "赤と白の、大きなビーチパラソルのしたに、ぎ",
+      "sticker": "girl",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 16.2,
+      "cue": "赤と白の、大きなビーチパラソルのしたに、ぎ",
+      "sticker": "dog",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 16.2,
+      "cue": "赤と白の、大きなビーチパラソルのしたに、ぎ",
+      "sticker": "girl",
+      "animation": "crouch",
+      "mode": "hold"
+    },
+    {
+      "at": 21.96,
+      "cue": "あめが、うえで、とん、とん、とん。ぬくぬく！でも、イヌくんは、じっとしていられません。あめのなかへとび",
+      "sticker": "umbrella",
+      "effect": "pulse"
+    },
+    {
+      "at": 25.96,
+      "cue": "ぬくぬく！でも、イヌくんは、じっとしていられません。あめのなかへとび",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 27.4,
+      "cue": "でも、イヌくんは、じっとしていられません。あめのなかへとび",
+      "sticker": "dog",
+      "animation": "play-bow"
+    },
+    {
+      "at": 31.08,
+      "cue": "あめのなかへとび",
+      "sticker": "dog",
+      "go": "to",
+      "target": "girl",
+      "toward": "right"
+    },
+    {
+      "at": 32.84,
+      "cue": "ぐるぐる、ぐるぐる。それから、びしょぬれでもどってきて、ローラのすぐよこで、ぶるぶるぶるっ",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 35.8,
+      "cue": "びしょぬれでもどってきて、ローラのすぐよこで、ぶるぶるぶるっ",
+      "sticker": "dog",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 37.56,
+      "cue": "ローラのすぐよこで、ぶるぶるぶるっ",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 41.05,
+      "cue": "イヌくんったら！あめより、びっしょびしょ",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 47,
+      "cue": "パラソルが、くるっとまわって、さいごのしずくを、ぴっぴっ",
+      "sticker": "umbrella",
+      "animation": "spin"
+    },
+    {
+      "at": 52.6,
+      "cue": "海のむこうに、にじがかかっています",
+      "effect": "rainbow",
+      "duration": 14
+    },
+    {
+      "at": 55.48,
+      "cue": "ぬれても、よかったね",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 55.48,
+      "cue": "ぬれても、よかったね",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 55.48,
+      "cue": "ぬれても、よかったね",
+      "sticker": "dog",
+      "effect": "hearts"
+    }
+  ]
+}

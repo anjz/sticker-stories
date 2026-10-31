@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "鵜鶘站在岩石上，望着水面",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "鵜鶘站在岩石上，望着水面",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 6.04,
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 9.88,
+      "cue": "海豹從下面的水裏冒出",
+      "sticker": "seal",
+      "enter": true,
+      "by": "swim"
+    },
+    {
+      "at": 13.04,
+      "cue": "鵜鶘",
+      "sticker": "seal",
+      "effect": "wobble"
+    },
+    {
+      "at": 15.32,
+      "cue": "鵜鶘笑了笑。「睇住",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 17.88,
+      "sticker": "pelican",
+      "go": "to",
+      "target": "sea",
+      "by": "float"
+    },
+    {
+      "at": 28.18,
+      "sticker": "seal",
+      "expression": "surprised"
+    },
+    {
+      "at": 28.18,
+      "sticker": "seal",
+      "effect": "hop"
+    },
+    {
+      "at": 30.48,
+      "cue": "我啲羽毛",
+      "sticker": "pelican",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 38.76,
+      "cue": "就在這時，水泡一浮一浮地漂過來。它",
+      "sticker": "ring",
+      "enter": true
+    },
+    {
+      "at": 38.76,
+      "cue": "就在這時，水泡一浮一浮地漂過來。它",
+      "sticker": "ring",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 42.52,
+      "cue": "它",
+      "sticker": "ring",
+      "animation": "spin"
+    },
+    {
+      "at": 45.08,
+      "cue": "睇！」海豹說",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 45.08,
+      "cue": "睇！」海豹說",
+      "sticker": "seal",
+      "animation": "laugh"
+    },
+    {
+      "at": 48.92,
+      "cue": "於是",
+      "sticker": "pelican",
+      "effect": "hearts"
+    },
+    {
+      "at": 48.92,
+      "cue": "於是",
+      "sticker": "ring",
+      "effect": "pulse"
+    },
+    {
+      "at": 48.92,
+      "cue": "於是",
+      "sticker": "ring",
+      "go": "to",
+      "target": "pelican"
+    }
+  ]
+}

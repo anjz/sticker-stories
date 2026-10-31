@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "獾在挖寶藏",
+      "sticker": "badger",
+      "enter": true
+    },
+    {
+      "at": 6.36,
+      "sticker": "badger",
+      "expression": "happy"
+    },
+    {
+      "at": 6.36,
+      "sticker": "badger",
+      "animation": "dig"
+    },
+    {
+      "at": 8.76,
+      "cue": "一顆亮晶晶的小石",
+      "sticker": "badger",
+      "expression": "surprised"
+    },
+    {
+      "at": 11.08,
+      "cue": "浣熊跑了過來",
+      "sticker": "raccoon",
+      "enter": true
+    },
+    {
+      "at": 11.08,
+      "cue": "浣熊跑了過來",
+      "sticker": "raccoon",
+      "go": "to",
+      "target": "badger"
+    },
+    {
+      "at": 15.4,
+      "cue": "獾看看小石",
+      "sticker": "raccoon",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 18.7,
+      "cue": "給",
+      "sticker": "badger",
+      "expression": "happy"
+    },
+    {
+      "at": 21.4,
+      "cue": "獾又挖了一個洞，挖出了……一",
+      "sticker": "raccoon",
+      "effect": "hearts"
+    },
+    {
+      "at": 26.52,
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 26.52,
+      "sticker": "rabbit",
+      "go": "to",
+      "target": "badger"
+    },
+    {
+      "at": 29,
+      "sticker": "rabbit",
+      "animation": "listen"
+    },
+    {
+      "at": 35.64,
+      "cue": "這下子",
+      "sticker": "badger",
+      "expression": "sad"
+    },
+    {
+      "at": 42.2,
+      "cue": "我不偷看喔！」浣熊說，用手掌蒙住眼睛。獾挖呀挖，愈挖愈深……一冒出",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "hold"
+    },
+    {
+      "at": 47,
+      "cue": "獾挖呀挖，愈挖愈深……一冒出",
+      "sticker": "badger",
+      "animation": "dig"
+    },
+    {
+      "at": 53.16,
+      "cue": "浣熊偷偷一看",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "resume"
+    },
+    {
+      "at": 56.04,
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 56.04,
+      "sticker": "rabbit",
+      "effect": "wobble",
+      "repeat": 2
+    },
+    {
+      "at": 57.32,
+      "cue": "浣熊也哈哈笑。笑得最大聲的，就是獾自己",
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 59.08,
+      "cue": "笑得最大聲的，就是獾自己",
+      "sticker": "badger",
+      "expression": "happy"
+    },
+    {
+      "at": 59.08,
+      "cue": "笑得最大聲的，就是獾自己",
+      "sticker": "badger",
+      "effect": "wobble",
+      "repeat": 2
+    },
+    {
+      "at": 65.64,
+      "cue": "擦擦鼻子，笑了：「好多好多呢",
+      "sticker": "badger",
+      "animation": "wipe-nose"
+    }
+  ]
+}

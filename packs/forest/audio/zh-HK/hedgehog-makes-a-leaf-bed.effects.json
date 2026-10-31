@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "秋天來了",
+      "effect": "leaves",
+      "duration": 78.12,
+      "intensity": 0.6
+    },
+    {
+      "at": 10.28,
+      "cue": "刺蝟要用乾樹葉鋪一張床，整個冬天都睡在裏面。一片",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 15.32,
+      "cue": "一片",
+      "sticker": "hedgehog",
+      "expression": "happy"
+    },
+    {
+      "at": 20.68,
+      "cue": "可是風呼呼地吹，吹呀吹——呼！床飛走了",
+      "effect": "wind",
+      "duration": 47.58,
+      "intensity": 0.8
+    },
+    {
+      "at": 25.08,
+      "cue": "床飛走了",
+      "sticker": "hedgehog",
+      "expression": "surprised"
+    },
+    {
+      "at": 25.08,
+      "cue": "床飛走了",
+      "sticker": "hedgehog",
+      "effect": "spin"
+    },
+    {
+      "at": 31.72,
+      "cue": "又不見了。樹葉落在松",
+      "sticker": "hedgehog",
+      "expression": "sad"
+    },
+    {
+      "at": 34.52,
+      "cue": "松",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 35.16,
+      "cue": "獾身上",
+      "sticker": "badger",
+      "enter": true
+    },
+    {
+      "at": 35.96,
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "hedgehog"
+    },
+    {
+      "at": 35.96,
+      "sticker": "badger",
+      "go": "to",
+      "target": "hedgehog"
+    },
+    {
+      "at": 37.76,
+      "cue": "啲風成日吹走我張床呀。」刺蝟歎了一口氣。獾想了想。「噉就整喺風吹唔到",
+      "sticker": "hedgehog",
+      "animation": "talk"
+    },
+    {
+      "at": 43,
+      "cue": "獾想了想。「噉就整喺風吹唔到",
+      "sticker": "badger",
+      "animation": "scratch-head"
+    },
+    {
+      "at": 47.24,
+      "cue": "往下掘呀掘，掘出一個低低的小窩。大家一起把脆卜卜的樹葉放進去，松",
+      "sticker": "badger",
+      "animation": "dig"
+    },
+    {
+      "at": 54.44,
+      "cue": "再輕輕拍實。嚓嚓，嚓嚓。刺蝟鑽了進去。風又來了，呼——呼——，吹完又吹，可是這張床，一片葉也吹不動。風覺得沒趣，只好到別處去吹了。刺蝟縮成一個暖",
+      "sticker": "squirrel",
+      "animation": "bury"
+    },
+    {
+      "at": 57.4,
+      "cue": "刺蝟鑽了進去。風又來了，呼——呼——，吹完又吹，可是這張床，一片葉也吹不動。風覺得沒趣，只好到別處去吹了。刺蝟縮成一個暖",
+      "sticker": "hedgehog",
+      "expression": "happy"
+    },
+    {
+      "at": 70.2,
+      "cue": "刺蝟縮成一個暖",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    },
+    {
+      "at": 76.12,
+      "cue": "春天見喇",
+      "sticker": "squirrel",
+      "expression": "happy"
+    },
+    {
+      "at": 76.12,
+      "cue": "春天見喇",
+      "sticker": "badger",
+      "expression": "happy"
+    },
+    {
+      "at": 76.12,
+      "cue": "春天見喇",
+      "sticker": "badger",
+      "effect": "hearts"
+    },
+    {
+      "at": 76.12,
+      "cue": "春天見喇",
+      "sticker": "squirrel",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "這天，天氣又熱又晴。螃蟹熱得不得了",
+      "sticker": "umbrella",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "這天，天氣又熱又晴。螃蟹熱得不得了",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.8
+    },
+    {
+      "at": 5.72,
+      "cue": "螃蟹熱得不得了",
+      "sticker": "crab",
+      "enter": true
+    },
+    {
+      "at": 6.2,
+      "cue": "熱得不得了",
+      "sticker": "crab",
+      "expression": "sad"
+    },
+    {
+      "at": 15.96,
+      "sticker": "crab",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 18.68,
+      "cue": "啊——好涼快",
+      "sticker": "crab",
+      "expression": "happy"
+    },
+    {
+      "at": 21,
+      "cue": "忽然，呼——！一陣風吹來了。太陽傘轉呀轉，荷葉邊拍個不停。沙灘波彈彈跳跳地經過，被風吹走了",
+      "sticker": "crab",
+      "effect": "shake",
+      "intensity": 0.4
+    },
+    {
+      "at": 21,
+      "cue": "忽然，呼——！一陣風吹來了。太陽傘轉呀轉，荷葉邊拍個不停。沙灘波彈彈跳跳地經過，被風吹走了",
+      "effect": "wind",
+      "duration": 17.26,
+      "intensity": 0.7
+    },
+    {
+      "at": 24.44,
+      "cue": "太陽傘轉呀轉，荷葉邊拍個不停。沙灘波彈彈跳跳地經過，被風吹走了",
+      "sticker": "umbrella",
+      "animation": "spin"
+    },
+    {
+      "at": 28.12,
+      "cue": "沙灘波彈彈跳跳地經過，被風吹走了",
+      "sticker": "crab",
+      "expression": "surprised"
+    },
+    {
+      "at": 28.12,
+      "cue": "沙灘波彈彈跳跳地經過，被風吹走了",
+      "sticker": "ball",
+      "enter": true
+    },
+    {
+      "at": 30.64,
+      "cue": "被風吹走了",
+      "sticker": "ball",
+      "go": "away",
+      "toward": "right"
+    },
+    {
+      "at": 32.36,
+      "cue": "螃蟹打橫追上去，跑得飛快。咔、咔、咔",
+      "sticker": "crab",
+      "go": "away",
+      "toward": "right"
+    },
+    {
+      "at": 38.6,
+      "cue": "沙灘波滾回來了，螃蟹也跟着回來，用鉗子推着它。沙灘波轉了幾個圈，停了下來。螃蟹打橫走回傘下的陰涼裏",
+      "sticker": "ball",
+      "go": "back"
+    },
+    {
+      "at": 40.52,
+      "cue": "螃蟹也跟着回來，用鉗子推着它。沙灘波轉了幾個圈，停了下來。螃蟹打橫走回傘下的陰涼裏",
+      "sticker": "crab",
+      "go": "back"
+    },
+    {
+      "at": 40.92,
+      "cue": "跟着回來，用鉗子推着它。沙灘波轉了幾個圈，停了下來。螃蟹打橫走回傘下的陰涼裏",
+      "sticker": "crab",
+      "go": "to",
+      "target": "ball"
+    },
+    {
+      "at": 43.72,
+      "cue": "沙灘波轉了幾個圈，停了下來。螃蟹打橫走回傘下的陰涼裏",
+      "sticker": "ball",
+      "animation": "spin"
+    },
+    {
+      "at": 46.52,
+      "cue": "螃蟹打橫走回傘下的陰涼裏",
+      "sticker": "crab",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 49.4,
+      "sticker": "crab",
+      "animation": "dance"
+    },
+    {
+      "at": 52.2,
+      "cue": "太陽傘呢，站得定定的，一動也不動",
+      "sticker": "umbrella",
+      "effect": "pulse"
+    }
+  ]
+}

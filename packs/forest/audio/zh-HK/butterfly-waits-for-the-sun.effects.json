@@ -1,0 +1,161 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "這天早上，天灰灰的，雲很多。蝴蝶坐在草地上，想飛起來。拍拍、拍拍……還是飛不起",
+      "effect": "clouds",
+      "duration": 52.86,
+      "intensity": 0.7
+    },
+    {
+      "at": 0,
+      "cue": "這天早上，天灰灰的，雲很多。蝴蝶坐在草地上，想飛起來。拍拍、拍拍……還是飛不起",
+      "sticker": "bee",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 7.64,
+      "cue": "蝴蝶坐在草地上，想飛起來。拍拍、拍拍……還是飛不起",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 7.64,
+      "cue": "蝴蝶坐在草地上，想飛起來。拍拍、拍拍……還是飛不起",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "meadow"
+    },
+    {
+      "at": 10.68,
+      "cue": "拍拍、拍拍……還是飛不起",
+      "sticker": "butterfly",
+      "animation": "flap"
+    },
+    {
+      "at": 13.86,
+      "cue": "我對翼太凍喇",
+      "sticker": "butterfly",
+      "expression": "sad"
+    },
+    {
+      "at": 19.8,
+      "cue": "蜜蜂嗡嗡嗡地飛過來。「等我幫",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 21.64,
+      "cue": "等我幫",
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 21.64,
+      "cue": "等我幫",
+      "sticker": "bee",
+      "go": "to",
+      "target": "butterfly"
+    },
+    {
+      "at": 24.28,
+      "sticker": "bee",
+      "animation": "fan"
+    },
+    {
+      "at": 26,
+      "cue": "嘩，好凍呀！仲凍過",
+      "sticker": "butterfly",
+      "effect": "tint",
+      "color": "#9AD0FF"
+    },
+    {
+      "at": 30.76,
+      "cue": "哼起",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 35.4,
+      "cue": "松果骨碌骨碌地滾了過來",
+      "sticker": "pinecone",
+      "enter": true
+    },
+    {
+      "at": 35.4,
+      "cue": "松果骨碌骨碌地滾了過來",
+      "sticker": "pinecone",
+      "go": "to",
+      "target": "butterfly"
+    },
+    {
+      "at": 43.16,
+      "cue": "蝴蝶合起",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 50.36,
+      "effect": "sunshine",
+      "duration": 22,
+      "intensity": 0.8
+    },
+    {
+      "at": 55.72,
+      "cue": "蝴蝶對着太陽張開",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "resume"
+    },
+    {
+      "at": 58.2,
+      "cue": "松果也張開了她的鱗片。「終於暖返喇！」蝴蝶輕輕飛上天空，蜜蜂也一上一下地陪着",
+      "sticker": "pinecone",
+      "expression": "happy"
+    },
+    {
+      "at": 58.2,
+      "cue": "松果也張開了她的鱗片。「終於暖返喇！」蝴蝶輕輕飛上天空，蜜蜂也一上一下地陪着",
+      "sticker": "pinecone",
+      "animation": "open",
+      "mode": "hold"
+    },
+    {
+      "at": 60.4,
+      "cue": "終於暖返喇！」蝴蝶輕輕飛上天空，蜜蜂也一上一下地陪着",
+      "sticker": "butterfly",
+      "expression": "happy"
+    },
+    {
+      "at": 61.96,
+      "cue": "蝴蝶輕輕飛上天空，蜜蜂也一上一下地陪着",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "sky"
+    },
+    {
+      "at": 61.96,
+      "cue": "蝴蝶輕輕飛上天空，蜜蜂也一上一下地陪着",
+      "sticker": "bee",
+      "go": "to",
+      "target": "butterfly"
+    },
+    {
+      "at": 64.04,
+      "cue": "蜜蜂也一上一下地陪着",
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 64.04,
+      "cue": "蜜蜂也一上一下地陪着",
+      "sticker": "bee",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

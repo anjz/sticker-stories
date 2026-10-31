@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "c’était",
+      "sticker": "seaweed",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "c’était",
+      "effect": "clouds",
+      "duration": 30,
+      "intensity": 0.6
+    },
+    {
+      "at": 8.4,
+      "cue": "teuf",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 8.4,
+      "cue": "teuf",
+      "sticker": "fishing-boat",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 11.75,
+      "cue": "mouette",
+      "sticker": "fishing-boat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 11.75,
+      "cue": "mouette",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 13.24,
+      "cue": "en",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 15.6,
+      "cue": "le",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 16.88,
+      "cue": "le",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 20.08,
+      "cue": "mouette",
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 23.45,
+      "cue": "des",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 28.84,
+      "cue": "pas",
+      "sticker": "seagull",
+      "expression": "sad"
+    },
+    {
+      "at": 30.08,
+      "cue": "a",
+      "sticker": "seaweed",
+      "expression": "happy"
+    },
+    {
+      "at": 33.46,
+      "cue": "elle",
+      "sticker": "seaweed",
+      "animation": "sway"
+    },
+    {
+      "at": 36.12,
+      "cue": "mouette",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 36.12,
+      "cue": "mouette",
+      "sticker": "seagull",
+      "animation": "laugh"
+    },
+    {
+      "at": 38.72,
+      "cue": "le",
+      "sticker": "fishing-boat",
+      "effect": "pulse"
+    },
+    {
+      "at": 42.28,
+      "cue": "et",
+      "sticker": "seaweed",
+      "animation": "wave"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "鵜鶘站在岸邊，長著一張橘色的大嘴巴。海鷗拍著",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "鵜鶘站在岸邊，長著一張橘色的大嘴巴。海鷗拍著",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 4.76,
+      "cue": "長著一張橘色的大嘴巴。海鷗拍著",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 7.32,
+      "cue": "海鷗拍著",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 7.32,
+      "cue": "海鷗拍著",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "pelican"
+    },
+    {
+      "at": 12.84,
+      "cue": "這可不只是嘴巴喔，」鵜鶘說，「下面還有一個袋子，像有彈性的口袋，可以撐得好大",
+      "sticker": "pelican",
+      "effect": "pulse"
+    },
+    {
+      "at": 22.28,
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 26.76,
+      "cue": "接著",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 33.16,
+      "cue": "就在這時候，條紋游泳圈乘著浪，一搖一晃漂過來。鵜鶘又舀了一次",
+      "sticker": "pelican",
+      "effect": "spray"
+    },
+    {
+      "at": 34.52,
+      "cue": "條紋游泳圈乘著浪，一搖一晃漂過來。鵜鶘又舀了一次",
+      "sticker": "ring",
+      "enter": true
+    },
+    {
+      "at": 35.64,
+      "cue": "乘著浪，一搖一晃漂過來。鵜鶘又舀了一次",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "ring",
+      "by": "float"
+    },
+    {
+      "at": 38.68,
+      "cue": "鵜鶘又舀了一次",
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 42.36,
+      "cue": "游泳圈！它掛在鵜鶘的嘴巴上，像戴了一",
+      "sticker": "ring",
+      "go": "on",
+      "target": "pelican"
+    },
+    {
+      "at": 47.24,
+      "cue": "轉呀轉、轉呀轉",
+      "sticker": "ring",
+      "animation": "spin"
+    },
+    {
+      "at": 50.6,
+      "cue": "海鷗笑得太厲害，忍不住大叫一聲。鵜鶘也笑了",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 50.6,
+      "cue": "海鷗笑得太厲害，忍不住大叫一聲。鵜鶘也笑了",
+      "sticker": "seagull",
+      "animation": "laugh"
+    },
+    {
+      "at": 54.2,
+      "cue": "鵜鶘也笑了",
+      "sticker": "pelican",
+      "animation": "laugh"
+    },
+    {
+      "at": 56.36,
+      "cue": "鵜鶘說，「水呢，一定會流掉。可是這個游泳圈，好像不想走了",
+      "sticker": "pelican",
+      "effect": "hearts"
+    }
+  ]
+}

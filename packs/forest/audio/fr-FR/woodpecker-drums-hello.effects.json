@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "pic-vert",
+      "sticker": "woodpecker",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "pic-vert",
+      "sticker": "woodpecker",
+      "go": "to",
+      "target": "trunks"
+    },
+    {
+      "at": 5.52,
+      "cue": "et",
+      "sticker": "woodpecker",
+      "animation": "drum"
+    },
+    {
+      "at": 8.68,
+      "cue": "gland",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 9.91,
+      "cue": "pomme",
+      "sticker": "pinecone",
+      "enter": true
+    },
+    {
+      "at": 9.91,
+      "cue": "pomme",
+      "sticker": "pinecone",
+      "go": "to",
+      "target": "acorn"
+    },
+    {
+      "at": 11.69,
+      "sticker": "acorn",
+      "expression": "surprised"
+    },
+    {
+      "at": 13.74,
+      "sticker": "woodpecker",
+      "expression": "sad"
+    },
+    {
+      "at": 18.4,
+      "cue": "a",
+      "sticker": "woodpecker",
+      "animation": "tap",
+      "mode": "hold"
+    },
+    {
+      "at": 21.32,
+      "cue": "rien",
+      "sticker": "pinecone",
+      "expression": "sad"
+    },
+    {
+      "at": 22.32,
+      "cue": "gland",
+      "sticker": "acorn",
+      "expression": "sad"
+    },
+    {
+      "at": 25.32,
+      "cue": "a",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "hold"
+    },
+    {
+      "at": 28.4,
+      "cue": "a",
+      "sticker": "pinecone",
+      "animation": "open"
+    },
+    {
+      "at": 31.88,
+      "cue": "alors",
+      "sticker": "woodpecker",
+      "animation": "tap",
+      "mode": "resume"
+    },
+    {
+      "at": 40.59,
+      "cue": "gland",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "resume"
+    },
+    {
+      "at": 42.8,
+      "sticker": "pinecone",
+      "expression": "surprised"
+    },
+    {
+      "at": 43.95,
+      "sticker": "woodpecker",
+      "expression": "happy"
+    },
+    {
+      "at": 50.5,
+      "cue": "gland",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 50.5,
+      "cue": "gland",
+      "sticker": "acorn",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 50.5,
+      "cue": "gland",
+      "sticker": "pinecone",
+      "expression": "happy"
+    },
+    {
+      "at": 50.5,
+      "cue": "gland",
+      "sticker": "pinecone",
+      "animation": "bounce"
+    }
+  ]
+}

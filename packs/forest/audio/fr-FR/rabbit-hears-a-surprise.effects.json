@@ -1,0 +1,166 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "lapin",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 6.6,
+      "cue": "elles",
+      "sticker": "rabbit",
+      "expression": "surprised"
+    },
+    {
+      "at": 6.6,
+      "cue": "elles",
+      "sticker": "rabbit",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 21.76,
+      "cue": "il",
+      "sticker": "rabbit",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 27,
+      "cue": "écureuil",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 27,
+      "cue": "écureuil",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 29.08,
+      "cue": "a",
+      "sticker": "squirrel",
+      "animation": "hide-nut",
+      "mode": "hold"
+    },
+    {
+      "at": 32.2,
+      "cue": "abeille",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 32.2,
+      "cue": "abeille",
+      "sticker": "bee",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 34.12,
+      "cue": "a",
+      "sticker": "bee",
+      "expression": "surprised"
+    },
+    {
+      "at": 34.12,
+      "cue": "a",
+      "sticker": "bee",
+      "effect": "shake"
+    },
+    {
+      "at": 35.4,
+      "cue": "a",
+      "sticker": "bee",
+      "go": "away"
+    },
+    {
+      "at": 38.12,
+      "cue": "lapin",
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 40.84,
+      "cue": "raton",
+      "sticker": "raccoon",
+      "enter": true
+    },
+    {
+      "at": 40.84,
+      "cue": "raton",
+      "sticker": "raccoon",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 43.4,
+      "cue": "il",
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 43.4,
+      "cue": "il",
+      "sticker": "raccoon",
+      "animation": "peekaboo"
+    },
+    {
+      "at": 46.82,
+      "effect": "confetti"
+    },
+    {
+      "at": 48.4,
+      "sticker": "bee",
+      "go": "back"
+    },
+    {
+      "at": 48.4,
+      "sticker": "rabbit",
+      "expression": "surprised"
+    },
+    {
+      "at": 48.4,
+      "sticker": "rabbit",
+      "effect": "hop",
+      "repeat": 3
+    },
+    {
+      "at": 53.24,
+      "cue": "écureuil",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 53.24,
+      "cue": "écureuil",
+      "sticker": "bee",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 53.24,
+      "cue": "écureuil",
+      "sticker": "squirrel",
+      "animation": "hide-nut",
+      "mode": "resume"
+    },
+    {
+      "at": 56.92,
+      "cue": "et",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 60.97,
+      "cue": "les",
+      "sticker": "rabbit",
+      "effect": "tint",
+      "color": "#FFC0D0"
+    }
+  ]
+}

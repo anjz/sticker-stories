@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "一個霧濛濛的早上，橡實想玩捉迷藏。「不過，我哋",
+      "effect": "fog",
+      "duration": 64.7,
+      "intensity": 0.6
+    },
+    {
+      "at": 4.92,
+      "cue": "橡實想玩捉迷藏。「不過，我哋",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 6.56,
+      "cue": "不過，我哋",
+      "sticker": "acorn",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 9.88,
+      "cue": "瓢蟲，一。刺蝟，二。小老",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 9.88,
+      "cue": "瓢蟲，一。刺蝟，二。小老",
+      "sticker": "ladybug",
+      "effect": "pulse"
+    },
+    {
+      "at": 11.32,
+      "cue": "刺蝟，二。小老",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 11.32,
+      "cue": "刺蝟，二。小老",
+      "sticker": "hedgehog",
+      "effect": "pulse"
+    },
+    {
+      "at": 12.92,
+      "cue": "小老",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 12.92,
+      "cue": "小老",
+      "sticker": "mouse",
+      "effect": "pulse"
+    },
+    {
+      "at": 15,
+      "cue": "三個？我哋明明有四個㗎！少咗一個呀！」小老",
+      "sticker": "acorn",
+      "expression": "surprised"
+    },
+    {
+      "at": 19.4,
+      "cue": "小老",
+      "sticker": "mouse",
+      "animation": "sniff"
+    },
+    {
+      "at": 23.72,
+      "cue": "刺蝟縮成一個刺球，用心地想呀想。「咦，呢度有粒石仔！」橡實說。「唔係石仔，係我呀！」刺蝟探出",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    },
+    {
+      "at": 27.36,
+      "cue": "咦，呢度有粒石仔！」橡實說。「唔係石仔，係我呀！」刺蝟探出",
+      "sticker": "acorn",
+      "animation": "talk"
+    },
+    {
+      "at": 30.24,
+      "cue": "唔係石仔，係我呀！」刺蝟探出",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "resume"
+    },
+    {
+      "at": 43.56,
+      "cue": "還是三個！她緊緊閉上眼睛，許了一個願：「拜託拜託，等我哋搵返唔見咗嗰個啦。」瓢蟲爬了過來",
+      "sticker": "acorn",
+      "expression": "sad"
+    },
+    {
+      "at": 44.92,
+      "cue": "她緊緊閉上眼睛，許了一個願：「拜託拜託，等我哋搵返唔見咗嗰個啦。」瓢蟲爬了過來",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "hold"
+    },
+    {
+      "at": 51.4,
+      "cue": "瓢蟲爬了過來",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "acorn"
+    },
+    {
+      "at": 54.04,
+      "cue": "刺蝟，一。小老",
+      "sticker": "ladybug",
+      "animation": "talk"
+    },
+    {
+      "at": 59.24,
+      "sticker": "ladybug",
+      "effect": "sparkle"
+    },
+    {
+      "at": 60.52,
+      "cue": "橡實張開眼睛。霧散了，大家都在這裏：一、二、三、四",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "resume"
+    },
+    {
+      "at": 62.2,
+      "cue": "霧散了，大家都在這裏：一、二、三、四",
+      "effect": "sunshine",
+      "duration": 14,
+      "intensity": 0.8
+    },
+    {
+      "at": 67.88,
+      "cue": "原來她數漏了自己！大家笑成一團。從此以後，橡實每次數人",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 69.72,
+      "cue": "大家笑成一團。從此以後，橡實每次數人",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 69.72,
+      "cue": "大家笑成一團。從此以後，橡實每次數人",
+      "sticker": "all",
+      "effect": "wobble",
+      "repeat": 2
+    }
+  ]
+}

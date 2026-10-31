@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "なつのはじめの、あたたかいゆうがた。ホタルさんのおしりが、ぽうっ。ぴか、ぴか。こんばんは",
+      "effect": "sunset",
+      "duration": 17.34,
+      "intensity": 0.6
+    },
+    {
+      "at": 6.84,
+      "cue": "ホタルさんのおしりが、ぽうっ。ぴか、ぴか。こんばんは",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 8.44,
+      "cue": "ぽうっ。ぴか、ぴか。こんばんは",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 2,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 9.32,
+      "cue": "ぴか、ぴか。こんばんは",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 14.84,
+      "cue": "ぴか、ぴか。こんばんは？ネズミくんが、ちょろちょろ",
+      "effect": "night",
+      "duration": 56,
+      "intensity": 0.7
+    },
+    {
+      "at": 14.84,
+      "cue": "ぴか、ぴか。こんばんは？ネズミくんが、ちょろちょろ",
+      "sticker": "firefly",
+      "expression": "sad"
+    },
+    {
+      "at": 17.8,
+      "cue": "ネズミくんが、ちょろちょろ",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 17.8,
+      "cue": "ネズミくんが、ちょろちょろ",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "firefly"
+    },
+    {
+      "at": 21.88,
+      "sticker": "firefly",
+      "animation": "talk"
+    },
+    {
+      "at": 26.28,
+      "cue": "ネズミくんは、つまさき",
+      "sticker": "mouse",
+      "animation": "sniff",
+      "mode": "hold"
+    },
+    {
+      "at": 32.6,
+      "cue": "ハリネズミくんが、くんくんやってきて、「もっと、あかるくひかってみたら？」そこでホタルさんは、目をとじて、せいいっぱい、ぴかーっ",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 32.6,
+      "cue": "ハリネズミくんが、くんくんやってきて、「もっと、あかるくひかってみたら？」そこでホタルさんは、目をとじて、せいいっぱい、ぴかーっ",
+      "sticker": "hedgehog",
+      "go": "to",
+      "target": "firefly"
+    },
+    {
+      "at": 35.24,
+      "cue": "もっと、あかるくひかってみたら？」そこでホタルさんは、目をとじて、せいいっぱい、ぴかーっ",
+      "sticker": "hedgehog",
+      "animation": "talk"
+    },
+    {
+      "at": 40.36,
+      "cue": "せいいっぱい、ぴかーっ",
+      "sticker": "firefly",
+      "effect": "glow",
+      "repeat": 4,
+      "duration": 2,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 45.8,
+      "cue": "すると、はらっぱのずっとむこうで…小さなあかりが、ぴかっ。またひとつ。またひとつ！ネズミくんはおりて、うれしそうにひげをごしごし。ホタルさんも、ぴか、ぴか。「こんばんは、こんばんは",
+      "effect": "fireflies",
+      "duration": 18.4,
+      "intensity": 0.6
+    },
+    {
+      "at": 53.24,
+      "cue": "ネズミくんはおりて、うれしそうにひげをごしごし。ホタルさんも、ぴか、ぴか。「こんばんは、こんばんは",
+      "sticker": "mouse",
+      "animation": "sniff",
+      "mode": "resume"
+    },
+    {
+      "at": 57,
+      "cue": "ホタルさんも、ぴか、ぴか。「こんばんは、こんばんは",
+      "sticker": "firefly",
+      "effect": "glow",
+      "repeat": 2,
+      "duration": 0.4,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 59,
+      "cue": "こんばんは、こんばんは",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 59,
+      "cue": "こんばんは、こんばんは",
+      "sticker": "firefly",
+      "animation": "wave"
+    },
+    {
+      "at": 61,
+      "cue": "ハリネズミくんは、まんまるくなりました。まわりで、小さなあかりが、ちかちか",
+      "sticker": "hedgehog",
+      "expression": "sleeping"
+    },
+    {
+      "at": 62.2,
+      "cue": "まんまるくなりました。まわりで、小さなあかりが、ちかちか",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    }
+  ]
+}

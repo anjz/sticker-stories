@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ニコが、ボードをかかえて、こぎ",
+      "sticker": "surfer",
+      "enter": true,
+      "by": "paddle"
+    },
+    {
+      "at": 6.36,
+      "cue": "ざざーっ！すっくと立って、波のりです。アザラシさんは、岩の上から見ていました。ひれで、ぱちぱち",
+      "sticker": "surfer",
+      "animation": "ride-wave"
+    },
+    {
+      "at": 10.52,
+      "cue": "アザラシさんは、岩の上から見ていました。ひれで、ぱちぱち",
+      "sticker": "seal",
+      "enter": true
+    },
+    {
+      "at": 10.52,
+      "cue": "アザラシさんは、岩の上から見ていました。ひれで、ぱちぱち",
+      "sticker": "seal",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 13.8,
+      "cue": "ひれで、ぱちぱち",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 13.8,
+      "cue": "ひれで、ぱちぱち",
+      "sticker": "seal",
+      "animation": "clap"
+    },
+    {
+      "at": 20.62,
+      "cue": "うきわが、ぷかぷかながれてきました。アザラシさんは、のってみようと、およいでいきます。うきわは、くるくる、くるくる…ざぶーん！アザラシさん、つるーん",
+      "sticker": "ring",
+      "enter": true
+    },
+    {
+      "at": 20.62,
+      "cue": "うきわが、ぷかぷかながれてきました。アザラシさんは、のってみようと、およいでいきます。うきわは、くるくる、くるくる…ざぶーん！アザラシさん、つるーん",
+      "sticker": "ring",
+      "go": "to",
+      "target": "seal"
+    },
+    {
+      "at": 23.66,
+      "cue": "アザラシさんは、のってみようと、およいでいきます。うきわは、くるくる、くるくる…ざぶーん！アザラシさん、つるーん",
+      "sticker": "seal",
+      "go": "to",
+      "target": "ring",
+      "by": "swim"
+    },
+    {
+      "at": 27.34,
+      "cue": "うきわは、くるくる、くるくる…ざぶーん！アザラシさん、つるーん",
+      "sticker": "ring",
+      "animation": "spin"
+    },
+    {
+      "at": 30.62,
+      "cue": "ざぶーん！アザラシさん、つるーん",
+      "sticker": "seal",
+      "effect": "spin"
+    },
+    {
+      "at": 31.82,
+      "cue": "アザラシさん、つるーん",
+      "sticker": "seal",
+      "expression": "surprised"
+    },
+    {
+      "at": 42.62,
+      "cue": "よーし、やってみよう。から",
+      "sticker": "seal",
+      "animation": "nod"
+    },
+    {
+      "at": 50.46,
+      "cue": "すいーっ！まるで、おひげのはえた、はいいろのサーフボード",
+      "sticker": "seal",
+      "effect": "glow",
+      "intensity": 0.4
+    },
+    {
+      "at": 55.98,
+      "cue": "ふたりならんで、波にのって、すーっと、もどってきました。ニコは、ボードを高くあげて、ふりました",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand",
+      "by": "surf"
+    },
+    {
+      "at": 55.98,
+      "cue": "ふたりならんで、波にのって、すーっと、もどってきました。ニコは、ボードを高くあげて、ふりました",
+      "sticker": "seal",
+      "go": "to",
+      "target": "surfer",
+      "by": "swim"
+    },
+    {
+      "at": 60.54,
+      "cue": "ニコは、ボードを高くあげて、ふりました",
+      "sticker": "surfer",
+      "animation": "wave"
+    },
+    {
+      "at": 63.5,
+      "cue": "もういっかい？」オウッ！アザラシさんは、まちきれません",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 63.5,
+      "cue": "もういっかい？」オウッ！アザラシさんは、まちきれません",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 64.54,
+      "cue": "オウッ！アザラシさんは、まちきれません",
+      "sticker": "seal",
+      "effect": "hearts"
+    }
+  ]
+}

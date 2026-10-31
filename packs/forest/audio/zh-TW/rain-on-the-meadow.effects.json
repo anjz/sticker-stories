@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "滴。答。雨來到了草地上，草地就開始玩起音樂來。落在",
+      "effect": "rain",
+      "duration": 53.94,
+      "intensity": 0.6
+    },
+    {
+      "at": 9.8,
+      "cue": "落在",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 14.92,
+      "cue": "青蛙坐在",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 14.92,
+      "cue": "青蛙坐在",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 16.44,
+      "cue": "笑得好開心。落在大樹的葉子上：咚、咚、咚，像小小的鼓。落在草叢裡：沙、沙，像有人在說悄悄話。蝸牛出來聽，一大滴雨落下來——叩！——剛好打在",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 18.2,
+      "cue": "落在大樹的葉子上：咚、咚、咚，像小小的鼓。落在草叢裡：沙、沙，像有人在說悄悄話。蝸牛出來聽，一大滴雨落下來——叩！——剛好打在",
+      "sticker": "all",
+      "effect": "pulse",
+      "intensity": 0.4
+    },
+    {
+      "at": 23.4,
+      "cue": "落在草叢裡：沙、沙，像有人在說悄悄話。蝸牛出來聽，一大滴雨落下來——叩！——剛好打在",
+      "sticker": "all",
+      "effect": "wobble",
+      "intensity": 0.4
+    },
+    {
+      "at": 28.6,
+      "cue": "蝸牛出來聽，一大滴雨落下來——叩！——剛好打在",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 34.44,
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 37.12,
+      "cue": "小鴨來了，搖搖擺擺地走過濕濕的草地。「嘎嘎，嘎嘎",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 40.64,
+      "cue": "嘎嘎，嘎嘎",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 40.64,
+      "cue": "嘎嘎，嘎嘎",
+      "sticker": "duckling",
+      "animation": "quack"
+    },
+    {
+      "at": 45.64,
+      "cue": "好好聽的歌！後來，雨點愈來愈",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 45.64,
+      "cue": "好好聽的歌！後來，雨點愈來愈",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 52.44,
+      "cue": "太陽出來了。蝸牛探出",
+      "effect": "sunshine"
+    },
+    {
+      "at": 53.72,
+      "cue": "蝸牛探出",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 55.48,
+      "cue": "這首歌的最後一個音，一點聲音也沒有。那是一道彩虹，就掛在草地的上空。青蛙一口吃掉一隻蒼",
+      "effect": "rainbow"
+    },
+    {
+      "at": 62.6,
+      "cue": "青蛙一口吃掉一隻蒼",
+      "sticker": "frog",
+      "animation": "catch-fly"
+    },
+    {
+      "at": 64.84,
+      "cue": "小鴨把",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "hold"
+    }
+  ]
+}

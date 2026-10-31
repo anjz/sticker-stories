@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "風が、そよりともふきません。ヨットは、たいらな青い海の上で、じっとしたまま。白い帆も",
+      "sticker": "sailboat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 5.16,
+      "cue": "ヨットは、たいらな青い海の上で、じっとしたまま。白い帆も",
+      "sticker": "sailboat",
+      "enter": true
+    },
+    {
+      "at": 5.16,
+      "cue": "ヨットは、たいらな青い海の上で、じっとしたまま。白い帆も",
+      "sticker": "sailboat",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 13.72,
+      "cue": "ローラは、立ったまま、まっていました",
+      "sticker": "sailboat",
+      "effect": "pulse"
+    },
+    {
+      "at": 13.72,
+      "cue": "ローラは、立ったまま、まっていました",
+      "sticker": "girl",
+      "enter": true
+    },
+    {
+      "at": 16.76,
+      "cue": "風さん、ふいてよ…」カモメさんは",
+      "sticker": "girl",
+      "expression": "sad"
+    },
+    {
+      "at": 19.4,
+      "cue": "カモメさんは",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 19.4,
+      "cue": "カモメさんは",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 22.44,
+      "cue": "とぶ気も、ありません",
+      "sticker": "seagull",
+      "expression": "sleeping"
+    },
+    {
+      "at": 29.48,
+      "cue": "び",
+      "effect": "wind",
+      "duration": 25,
+      "intensity": 0.7
+    },
+    {
+      "at": 32.52,
+      "cue": "帆が、まあるく、ぱんぱんにふくらみました",
+      "sticker": "sailboat",
+      "animation": "sails"
+    },
+    {
+      "at": 35.47,
+      "cue": "見て！風が、帆をおしてる！」ローラが糸をのばすと、たこが、すうっと空へ。カモメさんも目をさまして、たこのそばへ、とんでいきました。そしてヨットは、風におされて、海をすいすい、わたっていきます",
+      "sticker": "girl",
+      "expression": "surprised"
+    },
+    {
+      "at": 35.47,
+      "cue": "見て！風が、帆をおしてる！」ローラが糸をのばすと、たこが、すうっと空へ。カモメさんも目をさまして、たこのそばへ、とんでいきました。そしてヨットは、風におされて、海をすいすい、わたっていきます",
+      "sticker": "girl",
+      "animation": "point"
+    },
+    {
+      "at": 38.2,
+      "cue": "ローラが糸をのばすと、たこが、すうっと空へ。カモメさんも目をさまして、たこのそばへ、とんでいきました。そしてヨットは、風におされて、海をすいすい、わたっていきます",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 38.2,
+      "cue": "ローラが糸をのばすと、たこが、すうっと空へ。カモメさんも目をさまして、たこのそばへ、とんでいきました。そしてヨットは、風におされて、海をすいすい、わたっていきます",
+      "sticker": "girl",
+      "animation": "kite",
+      "mode": "hold"
+    },
+    {
+      "at": 42.6,
+      "cue": "カモメさんも目をさまして、たこのそばへ、とんでいきました。そしてヨットは、風におされて、海をすいすい、わたっていきます",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 42.6,
+      "cue": "カモメさんも目をさまして、たこのそばへ、とんでいきました。そしてヨットは、風におされて、海をすいすい、わたっていきます",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "girl",
+      "prop": "kite"
+    },
+    {
+      "at": 46.92,
+      "cue": "そしてヨットは、風におされて、海をすいすい、わたっていきます",
+      "sticker": "sailboat",
+      "go": "to",
+      "target": "sea",
+      "toward": "right"
+    },
+    {
+      "at": 57.16,
+      "cue": "みんな、おなじものを、まっていたのです",
+      "sticker": "girl",
+      "effect": "hearts"
+    }
+  ]
+}

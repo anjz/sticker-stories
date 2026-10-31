@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "雪花輕輕地飄落在草地上。狐狸甩甩尾巴",
+      "effect": "snow",
+      "duration": 78.3,
+      "intensity": 0.5
+    },
+    {
+      "at": 6.2,
+      "cue": "狐狸甩甩尾巴",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 6.68,
+      "cue": "甩甩尾巴",
+      "sticker": "fox",
+      "effect": "pulse"
+    },
+    {
+      "at": 11,
+      "cue": "松",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 11,
+      "cue": "松",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "fox"
+    },
+    {
+      "at": 12.96,
+      "cue": "我的尾巴才是最蓬的",
+      "sticker": "squirrel",
+      "expression": "happy"
+    },
+    {
+      "at": 15.4,
+      "cue": "把榛果藏到背後，好讓大家看",
+      "sticker": "squirrel",
+      "animation": "hide-nut"
+    },
+    {
+      "at": 20.58,
+      "cue": "最蓬！」「最——大！」「最——蓬！」「小老",
+      "sticker": "squirrel",
+      "effect": "hop"
+    },
+    {
+      "at": 21.46,
+      "cue": "最——大！」「最——蓬！」「小老",
+      "sticker": "fox",
+      "effect": "hop"
+    },
+    {
+      "at": 22.82,
+      "cue": "最——蓬！」「小老",
+      "sticker": "squirrel",
+      "effect": "wobble"
+    },
+    {
+      "at": 24.04,
+      "cue": "小老",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 24.04,
+      "cue": "小老",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "fox"
+    },
+    {
+      "at": 27.32,
+      "cue": "小老",
+      "sticker": "mouse",
+      "effect": "pulse"
+    },
+    {
+      "at": 33.72,
+      "cue": "狐狸的耳朵豎了起來",
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 41.48,
+      "cue": "毛毛蟲，在飄雪裡冷得直發抖",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 42.32,
+      "cue": "在飄雪裡冷得直發抖",
+      "sticker": "caterpillar",
+      "effect": "shake"
+    },
+    {
+      "at": 44.83,
+      "cue": "好冷喔",
+      "sticker": "caterpillar",
+      "effect": "tint",
+      "color": "#A8D8FF"
+    },
+    {
+      "at": 44.83,
+      "cue": "好冷喔",
+      "sticker": "caterpillar",
+      "expression": "sad"
+    },
+    {
+      "at": 47.32,
+      "cue": "狐狸什麼也沒說",
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 47.32,
+      "cue": "狐狸什麼也沒說",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 49.16,
+      "sticker": "fox",
+      "go": "to",
+      "target": "caterpillar"
+    },
+    {
+      "at": 50.68,
+      "cue": "用大尾巴把毛毛蟲圍起來，就像狐狸在冷冷的夜裡那樣。松",
+      "sticker": "fox",
+      "animation": "wrap-tail",
+      "mode": "hold"
+    },
+    {
+      "at": 56.52,
+      "cue": "松",
+      "sticker": "squirrel",
+      "expression": "happy"
+    },
+    {
+      "at": 56.52,
+      "cue": "松",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "caterpillar"
+    },
+    {
+      "at": 57.96,
+      "cue": "用自己的尾巴圍住",
+      "sticker": "squirrel",
+      "animation": "wrap-tail",
+      "mode": "hold"
+    },
+    {
+      "at": 60.44,
+      "cue": "終於暖和了，毛毛蟲抬",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 60.44,
+      "cue": "終於暖和了，毛毛蟲抬",
+      "sticker": "caterpillar",
+      "effect": "hearts"
+    },
+    {
+      "at": 62.68,
+      "cue": "抬",
+      "sticker": "caterpillar",
+      "animation": "look-up"
+    }
+  ]
+}

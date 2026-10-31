@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.92,
+      "cue": "bécasseau",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 4.92,
+      "cue": "bécasseau",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 7.26,
+      "sticker": "sandpiper",
+      "animation": "jump"
+    },
+    {
+      "at": 8.92,
+      "cue": "bernard-l’ermite",
+      "sticker": "hermit-crab",
+      "enter": true
+    },
+    {
+      "at": 8.92,
+      "cue": "bernard-l’ermite",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "sandpiper"
+    },
+    {
+      "at": 10.84,
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 13.19,
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 13.19,
+      "sticker": "turtle",
+      "go": "to",
+      "target": "hermit-crab"
+    },
+    {
+      "at": 18.04,
+      "cue": "à",
+      "sticker": "turtle",
+      "expression": "happy"
+    },
+    {
+      "at": 21.08,
+      "cue": "zou",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore",
+      "by": "run",
+      "toward": "right"
+    },
+    {
+      "at": 23.16,
+      "cue": "bernard-l’ermite",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 23.16,
+      "cue": "bernard-l’ermite",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 30.84,
+      "cue": "pic",
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 33.4,
+      "cue": "pic",
+      "sticker": "sandpiper",
+      "effect": "hop"
+    },
+    {
+      "at": 37.64,
+      "cue": "en",
+      "sticker": "turtle",
+      "animation": "talk"
+    },
+    {
+      "at": 39.64,
+      "cue": "et",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    },
+    {
+      "at": 43.96,
+      "cue": "ensemble",
+      "sticker": "hermit-crab",
+      "expression": "surprised"
+    },
+    {
+      "at": 44.92,
+      "cue": "bernard-l’ermite",
+      "sticker": "hermit-crab",
+      "animation": "hide"
+    },
+    {
+      "at": 50,
+      "cue": "tortue",
+      "sticker": "turtle",
+      "animation": "peek"
+    },
+    {
+      "at": 56,
+      "cue": "bécasseau",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "pool",
+      "by": "run"
+    },
+    {
+      "at": 60.6,
+      "cue": "mais",
+      "sticker": "sandpiper",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 62.7,
+      "sticker": "hermit-crab",
+      "effect": "hearts"
+    },
+    {
+      "at": 62.7,
+      "sticker": "turtle",
+      "effect": "hearts"
+    }
+  ]
+}

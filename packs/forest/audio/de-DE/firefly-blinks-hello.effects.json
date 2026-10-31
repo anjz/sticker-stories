@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "es",
+      "effect": "sunset",
+      "duration": 16.2,
+      "intensity": 0.6
+    },
+    {
+      "at": 5.84,
+      "cue": "beim",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 6.84,
+      "cue": "leuchtete",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 2,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 8.84,
+      "cue": "blink",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 13.7,
+      "cue": "blink",
+      "effect": "night",
+      "duration": 56.5,
+      "intensity": 0.7
+    },
+    {
+      "at": 13.7,
+      "cue": "blink",
+      "sticker": "firefly",
+      "expression": "sad"
+    },
+    {
+      "at": 16.28,
+      "cue": "die",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 16.28,
+      "cue": "die",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "firefly"
+    },
+    {
+      "at": 19.64,
+      "cue": "irgendwem",
+      "sticker": "firefly",
+      "animation": "talk"
+    },
+    {
+      "at": 24.84,
+      "cue": "die",
+      "sticker": "mouse",
+      "animation": "sniff",
+      "mode": "hold"
+    },
+    {
+      "at": 31.32,
+      "cue": "der",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 31.32,
+      "cue": "der",
+      "sticker": "hedgehog",
+      "go": "to",
+      "target": "firefly"
+    },
+    {
+      "at": 33.72,
+      "cue": "blink",
+      "sticker": "hedgehog",
+      "animation": "talk"
+    },
+    {
+      "at": 38.6,
+      "cue": "leuchtete",
+      "sticker": "firefly",
+      "effect": "glow",
+      "repeat": 4,
+      "duration": 2,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 42.68,
+      "cue": "dann",
+      "effect": "fireflies",
+      "duration": 24.96,
+      "intensity": 0.6
+    },
+    {
+      "at": 49.96,
+      "cue": "die",
+      "sticker": "mouse",
+      "animation": "sniff",
+      "mode": "resume"
+    },
+    {
+      "at": 55,
+      "cue": "das",
+      "sticker": "firefly",
+      "effect": "glow",
+      "repeat": 2,
+      "duration": 0.4,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 58.17,
+      "cue": "hallo",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 58.17,
+      "cue": "hallo",
+      "sticker": "firefly",
+      "animation": "wave"
+    },
+    {
+      "at": 59.56,
+      "cue": "und",
+      "sticker": "hedgehog",
+      "expression": "sleeping"
+    },
+    {
+      "at": 60.44,
+      "cue": "rollte",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    }
+  ]
+}

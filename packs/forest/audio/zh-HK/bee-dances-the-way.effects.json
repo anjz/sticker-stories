@@ -1,0 +1,154 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "蜜蜂嗡嗡嗡地飛回來，有個好消息急着要說",
+      "sticker": "bee",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.4
+    },
+    {
+      "at": 0,
+      "cue": "蜜蜂嗡嗡嗡地飛回來，有個好消息急着要說",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 7.64,
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 14.2,
+      "cue": "一邊哼歌，一邊扭來扭去地跳舞。毛毛蟲爬過來看",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 17.56,
+      "cue": "毛毛蟲爬過來看",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 17.56,
+      "cue": "毛毛蟲爬過來看",
+      "sticker": "caterpillar",
+      "go": "to",
+      "target": "bee"
+    },
+    {
+      "at": 19.93,
+      "cue": "呢隻舞好得意呀！」瓢蟲也來了。「我哋可唔可以一齊跳？」於是大家一起扭。扭呀扭，擺呀擺，扭呀扭！瓢蟲還拍拍",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 21.88,
+      "cue": "瓢蟲也來了。「我哋可唔可以一齊跳？」於是大家一起扭。扭呀扭，擺呀擺，扭呀扭！瓢蟲還拍拍",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 21.88,
+      "cue": "瓢蟲也來了。「我哋可唔可以一齊跳？」於是大家一起扭。扭呀扭，擺呀擺，扭呀扭！瓢蟲還拍拍",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "bee"
+    },
+    {
+      "at": 27,
+      "cue": "扭呀扭，擺呀擺，扭呀扭！瓢蟲還拍拍",
+      "sticker": "caterpillar",
+      "animation": "wiggle"
+    },
+    {
+      "at": 30.12,
+      "cue": "瓢蟲還拍拍",
+      "sticker": "ladybug",
+      "animation": "wings"
+    },
+    {
+      "at": 33.92,
+      "cue": "唔係呀，唔係呀。」蜜蜂說，「呢個唔只係跳舞，係蜜蜂地圖嚟㗎！佢話",
+      "sticker": "bee",
+      "expression": "sad"
+    },
+    {
+      "at": 42.04,
+      "sticker": "bee",
+      "animation": "waggle-dance"
+    },
+    {
+      "at": 45.32,
+      "cue": "毛毛蟲把身子挺得高高的，向那邊望",
+      "sticker": "caterpillar",
+      "animation": "look-up"
+    },
+    {
+      "at": 49.56,
+      "cue": "就係嗰邊！」就在舞蹈指着的地方，有一朵黃色的小花。大家出發了：嗡嗡飛",
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 49.56,
+      "cue": "就係嗰邊！」就在舞蹈指着的地方，有一朵黃色的小花。大家出發了：嗡嗡飛",
+      "sticker": "bee",
+      "effect": "hop"
+    },
+    {
+      "at": 54.04,
+      "cue": "小花。大家出發了：嗡嗡飛",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 54.92,
+      "cue": "大家出發了：嗡嗡飛",
+      "sticker": "bee",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 54.92,
+      "cue": "大家出發了：嗡嗡飛",
+      "sticker": "caterpillar",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 54.92,
+      "cue": "大家出發了：嗡嗡飛",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "flower",
+      "by": "fly"
+    },
+    {
+      "at": 59.46,
+      "cue": "哈囉！」小花說",
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 61,
+      "sticker": "caterpillar",
+      "expression": "surprised"
+    },
+    {
+      "at": 64.28,
+      "cue": "於是大家又跳起舞來，小花也一起跳。扭呀扭，擺呀擺……甜蜜蜜",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 66.52,
+      "cue": "小花也一起跳。扭呀扭，擺呀擺……甜蜜蜜",
+      "sticker": "flower",
+      "effect": "wobble"
+    }
+  ]
+}

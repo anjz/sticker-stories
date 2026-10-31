@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "小魚在數",
+      "sticker": "clam",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "小魚在數",
+      "sticker": "fish",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "小魚在數",
+      "sticker": "fish",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 5.32,
+      "cue": "一……蛤蜊，躲在",
+      "sticker": "fish",
+      "expression": "happy"
+    },
+    {
+      "at": 6.2,
+      "cue": "蛤蜊，躲在",
+      "sticker": "clam",
+      "effect": "pulse"
+    },
+    {
+      "at": 11.08,
+      "cue": "海膽，圓滾滾、紫紫的，還會扭來扭去。三……小蝦，粉",
+      "sticker": "urchin",
+      "enter": true
+    },
+    {
+      "at": 11.08,
+      "cue": "海膽，圓滾滾、紫紫的，還會扭來扭去。三……小蝦，粉",
+      "sticker": "urchin",
+      "effect": "pulse"
+    },
+    {
+      "at": 15.56,
+      "cue": "小蝦，粉",
+      "sticker": "shrimp",
+      "enter": true
+    },
+    {
+      "at": 15.56,
+      "cue": "小蝦，粉",
+      "sticker": "shrimp",
+      "effect": "pulse"
+    },
+    {
+      "at": 19.64,
+      "cue": "三個？可是今天早上，我們明明有四個呀",
+      "sticker": "fish",
+      "expression": "sad"
+    },
+    {
+      "at": 23.64,
+      "sticker": "fish",
+      "animation": "look-around"
+    },
+    {
+      "at": 29.32,
+      "cue": "海膽搖搖",
+      "sticker": "urchin",
+      "animation": "wiggle"
+    },
+    {
+      "at": 31.16,
+      "cue": "小蝦咯咯笑。蛤蜊打開殼，又關起來",
+      "sticker": "shrimp",
+      "expression": "happy"
+    },
+    {
+      "at": 31.16,
+      "cue": "小蝦咯咯笑。蛤蜊打開殼，又關起來",
+      "sticker": "shrimp",
+      "animation": "laugh"
+    },
+    {
+      "at": 32.44,
+      "cue": "蛤蜊打開殼，又關起來",
+      "sticker": "clam",
+      "animation": "peek"
+    },
+    {
+      "at": 37.96,
+      "cue": "我呀！」小魚說……說完",
+      "sticker": "fish",
+      "expression": "surprised"
+    },
+    {
+      "at": 44.52,
+      "sticker": "fish",
+      "animation": "wiggle"
+    },
+    {
+      "at": 47,
+      "cue": "一、二、三……還有四。大家都在，一個也沒少",
+      "sticker": "urchin",
+      "expression": "happy"
+    },
+    {
+      "at": 47,
+      "cue": "一、二、三……還有四。大家都在，一個也沒少",
+      "sticker": "clam",
+      "expression": "happy"
+    },
+    {
+      "at": 47,
+      "cue": "一、二、三……還有四。大家都在，一個也沒少",
+      "sticker": "shrimp",
+      "effect": "hearts"
+    }
+  ]
+}

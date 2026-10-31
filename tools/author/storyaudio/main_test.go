@@ -115,8 +115,8 @@ func TestTurnsAndSpacedAlignment(t *testing.T) {
 		}
 	}
 	take, _ := nar.Spoken(0, len(nar.Words))
-	if joinTurns(turns) != take {
-		t.Errorf("turns join to %q, take is %q", joinTurns(turns), take)
+	if joins, ok := turnJoins(turns, take); !ok || len(joins) != 2 || joins[0] != " " || joins[1] != " " {
+		t.Errorf("turns %+v join %q to take %q", turns, joins, take)
 	}
 	// The endpoint's alignment: the turns end to end, one 10 ms step each.
 	var al elevenlabs.Alignment
@@ -125,7 +125,7 @@ func TestTurnsAndSpacedAlignment(t *testing.T) {
 		al.Starts = append(al.Starts, float64(i)*0.01)
 		al.Ends = append(al.Ends, float64(i+1)*0.01)
 	}
-	spaced, err := spaceTurns(turns, &al)
+	spaced, err := spaceTurns(turns, take, &al)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -136,6 +136,20 @@ func TestTurnsAndSpacedAlignment(t *testing.T) {
 	sp := len([]rune(turns[0].Text))
 	if spaced.Starts[sp] != spaced.Ends[sp] || spaced.Starts[sp] != al.Ends[sp-1] {
 		t.Errorf("joining space at %v–%v, want zero-length at %v", spaced.Starts[sp], spaced.Ends[sp], al.Ends[sp-1])
+	}
+
+	// Japanese turns run on with no joining space, as the take does.
+	ja, errs := story.Parse(`キツネは見上げました。{fox:says} 「だれ？」 だれも答えません。`)
+	if len(errs) != 0 {
+		t.Fatal(errs)
+	}
+	jaTurns, err := r.turns(ja, "en-US", narrator)
+	if err != nil {
+		t.Fatal(err)
+	}
+	jaTake, _ := ja.Spoken(0, len(ja.Words))
+	if joins, ok := turnJoins(jaTurns, jaTake); !ok || len(joins) != 2 || joins[0] != "" || joins[1] != "" {
+		t.Errorf("turns %+v join %q to take %q", jaTurns, joins, jaTake)
 	}
 
 	// A character voiced by the story's narrator is refused, as is a

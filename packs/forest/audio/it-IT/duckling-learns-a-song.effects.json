@@ -1,0 +1,152 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "uccellino",
+      "sticker": "bee",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.4
+    },
+    {
+      "at": 0,
+      "cue": "uccellino",
+      "sticker": "bird",
+      "enter": true,
+      "by": "hop"
+    },
+    {
+      "at": 7.72,
+      "cue": "anatroccolo",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 7.72,
+      "cue": "anatroccolo",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "bird"
+    },
+    {
+      "at": 10.75,
+      "cue": "insegnami",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 15.72,
+      "cue": "qua",
+      "sticker": "duckling",
+      "animation": "quack"
+    },
+    {
+      "at": 16.66,
+      "cue": "non",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 19.4,
+      "cue": "di",
+      "sticker": "bird",
+      "effect": "hop"
+    },
+    {
+      "at": 30.2,
+      "cue": "ape",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 30.2,
+      "cue": "ape",
+      "sticker": "bee",
+      "go": "to",
+      "target": "bird"
+    },
+    {
+      "at": 32.8,
+      "cue": "e",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 36.28,
+      "cue": "rana",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 36.28,
+      "cue": "rana",
+      "sticker": "frog",
+      "go": "to",
+      "target": "duckling"
+    },
+    {
+      "at": 40.6,
+      "cue": "tutti",
+      "sticker": "frog",
+      "effect": "hop"
+    },
+    {
+      "at": 44.59,
+      "cue": "allora",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 48.92,
+      "cue": "mmm",
+      "sticker": "bee",
+      "effect": "wobble"
+    },
+    {
+      "at": 49.8,
+      "cue": "cra",
+      "sticker": "frog",
+      "animation": "croak"
+    },
+    {
+      "at": 50.68,
+      "cue": "e",
+      "sticker": "bird",
+      "animation": "sing",
+      "mode": "hold"
+    },
+    {
+      "at": 56.92,
+      "cue": "alla",
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 61.44,
+      "cue": "e",
+      "sticker": "duckling",
+      "animation": "nap"
+    },
+    {
+      "at": 67.64,
+      "cue": "ecco",
+      "sticker": "bird",
+      "animation": "sing",
+      "mode": "resume"
+    },
+    {
+      "at": 70.92,
+      "cue": "tutti",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 70.92,
+      "cue": "tutti",
+      "sticker": "all",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

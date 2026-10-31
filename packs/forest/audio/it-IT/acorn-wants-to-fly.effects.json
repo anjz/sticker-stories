@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "farfalla",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 6.12,
+      "cue": "ghianda",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 9,
+      "cue": "come",
+      "sticker": "acorn",
+      "expression": "sad"
+    },
+    {
+      "at": 11.8,
+      "cue": "farfalla",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "meadow"
+    },
+    {
+      "at": 17.12,
+      "cue": "ha",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 20.2,
+      "cue": "fungo",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 22.12,
+      "cue": "ghianda",
+      "sticker": "acorn",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 25.12,
+      "cue": "ha",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 25.12,
+      "cue": "ha",
+      "sticker": "acorn",
+      "animation": "flap-arms"
+    },
+    {
+      "at": 29.6,
+      "cue": "allora",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "hold"
+    },
+    {
+      "at": 36.44,
+      "cue": "proprio",
+      "effect": "wind",
+      "duration": 8,
+      "intensity": 0.6
+    },
+    {
+      "at": 40,
+      "cue": "ah",
+      "sticker": "mushroom",
+      "animation": "sneeze"
+    },
+    {
+      "at": 41.96,
+      "cue": "ghianda",
+      "sticker": "acorn",
+      "go": "to",
+      "target": "meadow",
+      "toward": "right"
+    },
+    {
+      "at": 41.96,
+      "cue": "ghianda",
+      "sticker": "acorn",
+      "effect": "spin"
+    },
+    {
+      "at": 49.88,
+      "cue": "ha",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "resume"
+    },
+    {
+      "at": 52.68,
+      "cue": "be",
+      "sticker": "mushroom",
+      "expression": "surprised"
+    },
+    {
+      "at": 55.4,
+      "cue": "farfalla",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "resume"
+    },
+    {
+      "at": 58.77,
+      "cue": "hai",
+      "sticker": "butterfly",
+      "animation": "talk"
+    },
+    {
+      "at": 61.56,
+      "cue": "ancora",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 61.56,
+      "cue": "ancora",
+      "sticker": "acorn",
+      "effect": "hop",
+      "repeat": 3
+    }
+  ]
+}

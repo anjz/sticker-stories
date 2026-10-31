@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.36,
+      "cue": "小鳥都站在大樹高高的樹枝上唱歌。啾啾啾，啾哩啾！下面的草叢裡，蝸牛聽著聽著，笑了。「我好想跟",
+      "sticker": "bird",
+      "enter": true
+    },
+    {
+      "at": 4.36,
+      "cue": "小鳥都站在大樹高高的樹枝上唱歌。啾啾啾，啾哩啾！下面的草叢裡，蝸牛聽著聽著，笑了。「我好想跟",
+      "sticker": "bird",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 8.04,
+      "cue": "啾啾啾，啾哩啾！下面的草叢裡，蝸牛聽著聽著，笑了。「我好想跟",
+      "sticker": "bird",
+      "animation": "sing"
+    },
+    {
+      "at": 11.8,
+      "cue": "蝸牛聽著聽著，笑了。「我好想跟",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 13.8,
+      "cue": "笑了。「我好想跟",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 14.6,
+      "cue": "我好想跟",
+      "sticker": "snail",
+      "animation": "talk"
+    },
+    {
+      "at": 18.44,
+      "cue": "可是",
+      "sticker": "snail",
+      "expression": "sad"
+    },
+    {
+      "at": 26.04,
+      "cue": "瓢蟲聽到了。「我幫",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 26.04,
+      "cue": "瓢蟲聽到了。「我幫",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 27.4,
+      "cue": "我幫",
+      "sticker": "ladybug",
+      "effect": "hop"
+    },
+    {
+      "at": 35.24,
+      "sticker": "ladybug",
+      "animation": "think"
+    },
+    {
+      "at": 43.48,
+      "sticker": "ladybug",
+      "animation": "wings",
+      "mode": "hold"
+    },
+    {
+      "at": 52.24,
+      "sticker": "ladybug",
+      "effect": "sparkle"
+    },
+    {
+      "at": 54.84,
+      "cue": "蝸牛的眼睛睜得好大好大。瓢蟲拍一下",
+      "sticker": "snail",
+      "expression": "surprised"
+    },
+    {
+      "at": 57.8,
+      "cue": "瓢蟲拍一下",
+      "sticker": "ladybug",
+      "animation": "wings",
+      "mode": "resume"
+    },
+    {
+      "at": 61.16,
+      "cue": "咻——飛上去了，一路飛到小鳥身邊",
+      "sticker": "ladybug",
+      "expression": "happy"
+    },
+    {
+      "at": 61.16,
+      "cue": "咻——飛上去了，一路飛到小鳥身邊",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "bird",
+      "by": "fly"
+    },
+    {
+      "at": 68.36,
+      "cue": "小鳥低",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 68.36,
+      "cue": "小鳥低",
+      "sticker": "bird",
+      "effect": "hearts"
+    },
+    {
+      "at": 71.56,
+      "cue": "唱了一首最好聽的歌，專門唱給蝸牛聽",
+      "sticker": "bird",
+      "animation": "sing"
+    },
+    {
+      "at": 75.72,
+      "cue": "每一個音，蝸牛都聽到了",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 75.72,
+      "cue": "每一個音，蝸牛都聽到了",
+      "sticker": "snail",
+      "effect": "hearts"
+    }
+  ]
+}

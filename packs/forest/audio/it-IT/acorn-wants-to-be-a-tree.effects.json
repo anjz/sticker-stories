@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ghianda",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 6.67,
+      "cue": "voglio",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 6.67,
+      "cue": "voglio",
+      "sticker": "acorn",
+      "animation": "talk"
+    },
+    {
+      "at": 11.52,
+      "cue": "scoiattolo",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 20.44,
+      "cue": "così",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "acorn"
+    },
+    {
+      "at": 23.36,
+      "cue": "ha",
+      "sticker": "squirrel",
+      "animation": "bury"
+    },
+    {
+      "at": 29.48,
+      "cue": "lì",
+      "sticker": "squirrel",
+      "effect": "hearts"
+    },
+    {
+      "at": 30.52,
+      "cue": "fiore",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 30.52,
+      "cue": "fiore",
+      "sticker": "acorn",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 30.84,
+      "cue": "tremava",
+      "sticker": "flower",
+      "effect": "tint",
+      "color": "#BFE3FF"
+    },
+    {
+      "at": 34.92,
+      "cue": "si",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 37.24,
+      "cue": "poi",
+      "effect": "snow",
+      "duration": 21.22,
+      "intensity": 0.6
+    },
+    {
+      "at": 39.88,
+      "cue": "ghianda",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "hold"
+    },
+    {
+      "at": 55.96,
+      "cue": "poi",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.9
+    },
+    {
+      "at": 60.52,
+      "cue": "fiore",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 66.24,
+      "cue": "sono",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "resume"
+    },
+    {
+      "at": 68.12,
+      "cue": "non",
+      "sticker": "acorn",
+      "expression": "surprised"
+    },
+    {
+      "at": 68.12,
+      "cue": "non",
+      "sticker": "squirrel",
+      "expression": "happy"
+    },
+    {
+      "at": 68.12,
+      "cue": "non",
+      "sticker": "squirrel",
+      "animation": "shake-head"
+    },
+    {
+      "at": 75.64,
+      "cue": "prima",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 75.64,
+      "cue": "prima",
+      "sticker": "acorn",
+      "effect": "glow"
+    }
+  ]
+}

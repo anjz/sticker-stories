@@ -1,0 +1,158 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5.56,
+      "cue": "der",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 7.24,
+      "cue": "regen",
+      "sticker": "frog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 10.6,
+      "cue": "die",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 10.6,
+      "cue": "die",
+      "sticker": "snail",
+      "go": "to",
+      "target": "frog"
+    },
+    {
+      "at": 15.16,
+      "cue": "und",
+      "sticker": "snail",
+      "animation": "hide"
+    },
+    {
+      "at": 16.36,
+      "cue": "regen",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 18.48,
+      "cue": "der",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 21.8,
+      "cue": "sonne",
+      "sticker": "butterfly",
+      "animation": "shake-head"
+    },
+    {
+      "at": 31.48,
+      "cue": "pitsch",
+      "effect": "rain",
+      "duration": 26.94,
+      "intensity": 0.7
+    },
+    {
+      "at": 35.64,
+      "cue": "der",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 35.64,
+      "cue": "der",
+      "sticker": "frog",
+      "animation": "jump"
+    },
+    {
+      "at": 37.64,
+      "cue": "die",
+      "sticker": "snail",
+      "animation": "stretch-eyes"
+    },
+    {
+      "at": 43.24,
+      "cue": "pilz",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 43.88,
+      "cue": "kuschelte",
+      "sticker": "butterfly",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 45.32,
+      "cue": "und",
+      "sticker": "butterfly",
+      "expression": "sad"
+    },
+    {
+      "at": 45.32,
+      "cue": "und",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 50.52,
+      "cue": "die",
+      "sticker": "snail",
+      "expression": "sad"
+    },
+    {
+      "at": 56.92,
+      "cue": "der",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.8
+    },
+    {
+      "at": 59.96,
+      "cue": "der",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "resume"
+    },
+    {
+      "at": 62.2,
+      "cue": "und",
+      "sticker": "butterfly",
+      "expression": "happy"
+    },
+    {
+      "at": 62.2,
+      "cue": "und",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "sky"
+    },
+    {
+      "at": 64.36,
+      "cue": "schaut",
+      "effect": "rainbow",
+      "duration": 14,
+      "intensity": 0.8
+    },
+    {
+      "at": 68.12,
+      "cue": "alle",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 68.12,
+      "cue": "alle",
+      "sticker": "all",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "あるあさ、空から、なにかがふわふわおりてきました。しずくじゃない。はっぱでもない。はねみたいにやわらかい、はじめての雪です。ウサギくんが、ぴょんぴょん",
+      "effect": "snow",
+      "duration": 74.06,
+      "intensity": 0.4
+    },
+    {
+      "at": 11.24,
+      "cue": "はねみたいにやわらかい、はじめての雪です。ウサギくんが、ぴょんぴょん",
+      "sticker": "all",
+      "effect": "glow",
+      "intensity": 0.3,
+      "color": "#EAF6FF"
+    },
+    {
+      "at": 14.68,
+      "cue": "ウサギくんが、ぴょんぴょん",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 14.68,
+      "cue": "ウサギくんが、ぴょんぴょん",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 23.32,
+      "cue": "ウサギくんのながい耳が、ぴーん",
+      "sticker": "rabbit",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 30.12,
+      "cue": "子ジカがそろりそろりときて、あたまをさげて、くさをぱくっ。つめたい！はなに、雪がひとつ。え",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 32.2,
+      "cue": "あたまをさげて、くさをぱくっ。つめたい！はなに、雪がひとつ。え",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 34.6,
+      "cue": "つめたい！はなに、雪がひとつ。え",
+      "sticker": "deer",
+      "expression": "surprised"
+    },
+    {
+      "at": 39.16,
+      "cue": "ことりがはねをふくらませて、ぶるるっ",
+      "sticker": "bird",
+      "enter": true
+    },
+    {
+      "at": 39.16,
+      "cue": "ことりがはねをふくらませて、ぶるるっ",
+      "sticker": "bird",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 39.72,
+      "cue": "はねをふくらませて、ぶるるっ",
+      "sticker": "bird",
+      "animation": "shake-feathers"
+    },
+    {
+      "at": 48.68,
+      "cue": "みんなで、ひとつ、またひとつ、おりてくる雪を見ました。しんしん、しんしん。それからことりが、ちいさな雪の歌を、そうっとうたいました。ウサギくんは耳をおろして、クローバーをもぐもぐ",
+      "sticker": "deer",
+      "expression": "happy"
+    },
+    {
+      "at": 48.68,
+      "cue": "みんなで、ひとつ、またひとつ、おりてくる雪を見ました。しんしん、しんしん。それからことりが、ちいさな雪の歌を、そうっとうたいました。ウサギくんは耳をおろして、クローバーをもぐもぐ",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 53.64,
+      "cue": "しんしん、しんしん。それからことりが、ちいさな雪の歌を、そうっとうたいました。ウサギくんは耳をおろして、クローバーをもぐもぐ",
+      "sticker": "all",
+      "effect": "pulse",
+      "intensity": 0.3
+    },
+    {
+      "at": 57.32,
+      "cue": "ちいさな雪の歌を、そうっとうたいました。ウサギくんは耳をおろして、クローバーをもぐもぐ",
+      "sticker": "bird",
+      "animation": "sing"
+    },
+    {
+      "at": 60.76,
+      "cue": "ウサギくんは耳をおろして、クローバーをもぐもぐ",
+      "sticker": "rabbit",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 64.68,
+      "cue": "雪は、いちにちじ",
+      "sticker": "all",
+      "expression": "happy"
+    }
+  ]
+}

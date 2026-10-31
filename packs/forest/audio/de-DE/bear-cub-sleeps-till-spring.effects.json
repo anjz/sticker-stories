@@ -1,0 +1,154 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "es",
+      "effect": "leaves",
+      "duration": 37.96,
+      "intensity": 0.6
+    },
+    {
+      "at": 6.44,
+      "cue": "das",
+      "sticker": "bear",
+      "enter": true
+    },
+    {
+      "at": 10.58,
+      "cue": "ich",
+      "sticker": "bear",
+      "expression": "sad"
+    },
+    {
+      "at": 15.24,
+      "cue": "der",
+      "sticker": "badger",
+      "enter": true
+    },
+    {
+      "at": 15.24,
+      "cue": "der",
+      "sticker": "badger",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 20.28,
+      "cue": "er",
+      "sticker": "badger",
+      "animation": "dig"
+    },
+    {
+      "at": 24.36,
+      "cue": "die",
+      "sticker": "badger",
+      "expression": "happy"
+    },
+    {
+      "at": 24.36,
+      "cue": "die",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 25.32,
+      "cue": "fröstelte",
+      "sticker": "flower",
+      "effect": "tint",
+      "color": "#BFE3FF"
+    },
+    {
+      "at": 26.4,
+      "cue": "faltete",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 31.4,
+      "cue": "also",
+      "sticker": "bear",
+      "expression": "happy"
+    },
+    {
+      "at": 31.8,
+      "cue": "setzte",
+      "sticker": "bear",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 34,
+      "cue": "gähnte",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 35.96,
+      "cue": "dann",
+      "effect": "snow",
+      "duration": 14.54,
+      "intensity": 0.7
+    },
+    {
+      "at": 48,
+      "cue": "eines",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.9
+    },
+    {
+      "at": 51.56,
+      "cue": "der",
+      "sticker": "badger",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 56.92,
+      "cue": "das",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "resume"
+    },
+    {
+      "at": 59.4,
+      "cue": "die",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 61.74,
+      "cue": "hab",
+      "sticker": "bear",
+      "expression": "surprised"
+    },
+    {
+      "at": 61.74,
+      "cue": "hab",
+      "sticker": "bear",
+      "animation": "talk"
+    },
+    {
+      "at": 63.08,
+      "cue": "nein",
+      "sticker": "badger",
+      "animation": "laugh"
+    },
+    {
+      "at": 66.9,
+      "cue": "guten",
+      "sticker": "bear",
+      "expression": "happy"
+    },
+    {
+      "at": 66.9,
+      "cue": "guten",
+      "sticker": "bear",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "橡實抬起",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 7.45,
+      "cue": "我都要好似佢哋咁大！即刻就要！」松",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 7.45,
+      "cue": "我都要好似佢哋咁大！即刻就要！」松",
+      "sticker": "acorn",
+      "animation": "talk"
+    },
+    {
+      "at": 10.76,
+      "cue": "松",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 19.16,
+      "cue": "於是，在第一",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "acorn"
+    },
+    {
+      "at": 22.36,
+      "cue": "把橡實輕輕埋進鬆軟的泥土裏，拍、拍、拍。旁邊的小花冷得發抖。「我陪",
+      "sticker": "squirrel",
+      "animation": "bury"
+    },
+    {
+      "at": 26.84,
+      "cue": "旁邊的小花冷得發抖。「我陪",
+      "sticker": "squirrel",
+      "effect": "hearts"
+    },
+    {
+      "at": 27.36,
+      "cue": "小花冷得發抖。「我陪",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 27.36,
+      "cue": "小花冷得發抖。「我陪",
+      "sticker": "acorn",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 27.8,
+      "cue": "冷得發抖。「我陪",
+      "sticker": "flower",
+      "effect": "tint",
+      "color": "#BFE3FF"
+    },
+    {
+      "at": 31.32,
+      "cue": "就把花瓣緊緊合上。接着，雪花飄下來了。橡實緊緊閉上眼睛，許願說：「快高……長大……快高長大！」可是，甚麼也沒有發生",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 33.64,
+      "cue": "接着，雪花飄下來了。橡實緊緊閉上眼睛，許願說：「快高……長大……快高長大！」可是，甚麼也沒有發生",
+      "effect": "snow",
+      "duration": 19.46,
+      "intensity": 0.6
+    },
+    {
+      "at": 35.96,
+      "cue": "橡實緊緊閉上眼睛，許願說：「快高……長大……快高長大！」可是，甚麼也沒有發生",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "hold"
+    },
+    {
+      "at": 50.6,
+      "cue": "直到一天早上，太陽回來了，把雪都融掉。小花張開了花瓣。橡實覺得",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.9
+    },
+    {
+      "at": 54.76,
+      "cue": "小花張開了花瓣。橡實覺得",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 59.16,
+      "cue": "我變咗大樹未呀？」「未呀。」松",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "resume"
+    },
+    {
+      "at": 60.84,
+      "cue": "未呀。」松",
+      "sticker": "acorn",
+      "expression": "surprised"
+    },
+    {
+      "at": 60.84,
+      "cue": "未呀。」松",
+      "sticker": "squirrel",
+      "expression": "happy"
+    },
+    {
+      "at": 60.84,
+      "cue": "未呀。」松",
+      "sticker": "squirrel",
+      "animation": "shake-head"
+    },
+    {
+      "at": 69,
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 69,
+      "sticker": "acorn",
+      "effect": "glow"
+    }
+  ]
+}

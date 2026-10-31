@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "刺蝟很想找朋友玩。可是，刺蝟很害羞。「哈囉",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 8.16,
+      "cue": "哈囉",
+      "sticker": "hedgehog",
+      "expression": "happy"
+    },
+    {
+      "at": 8.16,
+      "cue": "哈囉",
+      "sticker": "hedgehog",
+      "animation": "talk"
+    },
+    {
+      "at": 11,
+      "cue": "蘑菇冒了出來。「哈囉，刺蝟！」接着，她的鼻子開始癢癢的。哈……哈……乞嗤",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 11,
+      "cue": "蘑菇冒了出來。「哈囉，刺蝟！」接着，她的鼻子開始癢癢的。哈……哈……乞嗤",
+      "sticker": "hedgehog",
+      "go": "to",
+      "target": "mushroom"
+    },
+    {
+      "at": 12.16,
+      "cue": "哈囉，刺蝟！」接着，她的鼻子開始癢癢的。哈……哈……乞嗤",
+      "sticker": "mushroom",
+      "expression": "happy"
+    },
+    {
+      "at": 16.52,
+      "cue": "哈……哈……乞嗤",
+      "sticker": "mushroom",
+      "animation": "sneeze"
+    },
+    {
+      "at": 19.32,
+      "cue": "哎！」一眨眼間，刺蝟就縮成一個圓碌碌、尖刺刺的球。變成刺球了！「哎呀，」蘑菇說，「對唔住",
+      "sticker": "hedgehog",
+      "expression": "surprised"
+    },
+    {
+      "at": 20.2,
+      "cue": "一眨眼間，刺蝟就縮成一個圓碌碌、尖刺刺的球。變成刺球了！「哎呀，」蘑菇說，「對唔住",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    },
+    {
+      "at": 25.56,
+      "cue": "哎呀，」蘑菇說，「對唔住",
+      "sticker": "mushroom",
+      "expression": "sad"
+    },
+    {
+      "at": 31.56,
+      "cue": "刺蝟鬆開身子，探出",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "resume"
+    },
+    {
+      "at": 34.84,
+      "cue": "啄木鳥飛到大樹的樹幹上",
+      "sticker": "woodpecker",
+      "enter": true
+    },
+    {
+      "at": 34.84,
+      "cue": "啄木鳥飛到大樹的樹幹上",
+      "sticker": "woodpecker",
+      "go": "to",
+      "target": "trunks"
+    },
+    {
+      "at": 38.2,
+      "cue": "篤篤篤！又變成刺球了！「哎呀，弊喇。」啄木鳥說。蘑菇想到一個好主意",
+      "sticker": "woodpecker",
+      "animation": "tap"
+    },
+    {
+      "at": 39.08,
+      "cue": "又變成刺球了！「哎呀，弊喇。」啄木鳥說。蘑菇想到一個好主意",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    },
+    {
+      "at": 40.28,
+      "cue": "哎呀，弊喇。」啄木鳥說。蘑菇想到一個好主意",
+      "sticker": "woodpecker",
+      "expression": "sad"
+    },
+    {
+      "at": 43.24,
+      "cue": "蘑菇想到一個好主意",
+      "sticker": "mushroom",
+      "effect": "sparkle"
+    },
+    {
+      "at": 45.07,
+      "cue": "我哋細細聲講啦。」於是，蘑菇和啄木鳥輕輕地、輕輕地說：「哈囉，刺蝟",
+      "sticker": "woodpecker",
+      "go": "to",
+      "target": "hedgehog"
+    },
+    {
+      "at": 50.84,
+      "cue": "哈囉，刺蝟",
+      "sticker": "mushroom",
+      "expression": "happy"
+    },
+    {
+      "at": 50.84,
+      "cue": "哈囉，刺蝟",
+      "sticker": "woodpecker",
+      "expression": "happy"
+    },
+    {
+      "at": 52.76,
+      "cue": "鼻子出來了。眼睛也出來了。「哈囉",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "resume"
+    },
+    {
+      "at": 55.2,
+      "cue": "哈囉",
+      "sticker": "hedgehog",
+      "expression": "happy"
+    },
+    {
+      "at": 55.2,
+      "cue": "哈囉",
+      "sticker": "hedgehog",
+      "effect": "hearts"
+    }
+  ]
+}

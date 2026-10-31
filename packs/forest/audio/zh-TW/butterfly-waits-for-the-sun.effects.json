@@ -1,0 +1,161 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "一個灰濛濛的早晨。蝴蝶坐在草地上，想要飛。拍拍、拍拍……飛不起來",
+      "effect": "clouds",
+      "duration": 52.86,
+      "intensity": 0.7
+    },
+    {
+      "at": 0,
+      "cue": "一個灰濛濛的早晨。蝴蝶坐在草地上，想要飛。拍拍、拍拍……飛不起來",
+      "sticker": "bee",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 5.72,
+      "cue": "蝴蝶坐在草地上，想要飛。拍拍、拍拍……飛不起來",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 5.72,
+      "cue": "蝴蝶坐在草地上，想要飛。拍拍、拍拍……飛不起來",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "meadow"
+    },
+    {
+      "at": 8.76,
+      "cue": "拍拍、拍拍……飛不起來",
+      "sticker": "butterfly",
+      "animation": "flap"
+    },
+    {
+      "at": 11.86,
+      "cue": "我的",
+      "sticker": "butterfly",
+      "expression": "sad"
+    },
+    {
+      "at": 18.76,
+      "cue": "蜜蜂嗡嗡嗡地飛過來。「我來幫",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 20.72,
+      "cue": "我來幫",
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 20.72,
+      "cue": "我來幫",
+      "sticker": "bee",
+      "go": "to",
+      "target": "butterfly"
+    },
+    {
+      "at": 23.8,
+      "sticker": "bee",
+      "animation": "fan"
+    },
+    {
+      "at": 25.4,
+      "cue": "哇，好冷！比剛才還冷",
+      "sticker": "butterfly",
+      "effect": "tint",
+      "color": "#9AD0FF"
+    },
+    {
+      "at": 30.04,
+      "cue": "哼起最有陽",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 35.08,
+      "cue": "松果骨碌碌地滾了過來",
+      "sticker": "pinecone",
+      "enter": true
+    },
+    {
+      "at": 35.08,
+      "cue": "松果骨碌碌地滾了過來",
+      "sticker": "pinecone",
+      "go": "to",
+      "target": "butterfly"
+    },
+    {
+      "at": 42.92,
+      "cue": "蝴蝶合起",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 50.36,
+      "effect": "sunshine",
+      "duration": 22,
+      "intensity": 0.8
+    },
+    {
+      "at": 55.72,
+      "cue": "蝴蝶對著太陽張開",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "resume"
+    },
+    {
+      "at": 58.28,
+      "cue": "松果也打開了她的鱗片。「終於暖和了！」蝴蝶輕輕飛了起來，蜜蜂也在旁邊一跳一跳地飛",
+      "sticker": "pinecone",
+      "expression": "happy"
+    },
+    {
+      "at": 58.28,
+      "cue": "松果也打開了她的鱗片。「終於暖和了！」蝴蝶輕輕飛了起來，蜜蜂也在旁邊一跳一跳地飛",
+      "sticker": "pinecone",
+      "animation": "open",
+      "mode": "hold"
+    },
+    {
+      "at": 60.5,
+      "cue": "終於暖和了！」蝴蝶輕輕飛了起來，蜜蜂也在旁邊一跳一跳地飛",
+      "sticker": "butterfly",
+      "expression": "happy"
+    },
+    {
+      "at": 62.12,
+      "cue": "蝴蝶輕輕飛了起來，蜜蜂也在旁邊一跳一跳地飛",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "sky"
+    },
+    {
+      "at": 62.12,
+      "cue": "蝴蝶輕輕飛了起來，蜜蜂也在旁邊一跳一跳地飛",
+      "sticker": "bee",
+      "go": "to",
+      "target": "butterfly"
+    },
+    {
+      "at": 64.2,
+      "cue": "蜜蜂也在旁邊一跳一跳地飛",
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 64.2,
+      "cue": "蜜蜂也在旁邊一跳一跳地飛",
+      "sticker": "bee",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}
