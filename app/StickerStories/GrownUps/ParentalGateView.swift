@@ -10,6 +10,8 @@ import SwiftUI
 /// The challenge is three digits spelled out as words ("seven · two ·
 /// four") to type on the keypad: quick for a reading adult, out of reach for
 /// a pre-reader, and a random tap sequence passes one time in a thousand.
+/// The same digits follow, smaller, in the device's language (or English),
+/// so a language picked by accident never locks a parent out.
 /// Three wrong answers in a row pause the gate for 20 seconds: nothing a
 /// parent notices, but it stops a child button-mashing their way through.
 struct ParentalGateView: View {
@@ -68,13 +70,23 @@ struct ParentalGateView: View {
                 .font(.title3)
                 .foregroundStyle(.secondary)
 
-            // The dot keeps to the word before it, so a wrapped line never
-            // starts with one.
-            Text(verbatim: digits.map(spelledOut).joined(separator: "\u{00A0}· "))
-                .font(.system(size: 32, weight: .bold, design: .rounded))
-                // Long words ("nueve · seis · cuatro") wrap rather than shrink.
-                .lineLimit(2)
-                .fixedSize(horizontal: false, vertical: true)
+            VStack(alignment: .leading, spacing: 4) {
+                // The dot keeps to the word before it, so a wrapped line never
+                // starts with one.
+                Text(verbatim: spelled(in: locale))
+                    .font(.system(size: 32, weight: .bold, design: .rounded))
+                    // Long words ("nueve · seis · cuatro") wrap rather than shrink.
+                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                if let helperLocale {
+                    Text(verbatim: spelled(in: helperLocale))
+                        .font(.system(size: 18, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        .lineLimit(2)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
 
             // One slot per digit: what has been typed so far.
             HStack(spacing: 10) {
@@ -176,13 +188,28 @@ struct ParentalGateView: View {
         }
     }
 
-    /// The digit as a word in the gate's language ("seven", "siete"); the
-    /// system spells it, so there is nothing to translate.
-    private func spelledOut(_ digit: Int) -> String {
+    /// The digits as words in a language ("seven · two · four", "siete ·
+    /// dos · cuatro"); the system spells them, so there is nothing to
+    /// translate.
+    private func spelled(in locale: Locale) -> String {
         let formatter = NumberFormatter()
         formatter.locale = locale
         formatter.numberStyle = .spellOut
-        return formatter.string(from: digit as NSNumber) ?? String(digit)
+        return digits.map { formatter.string(from: $0 as NSNumber) ?? String($0) }
+            .joined(separator: "\u{00A0}· ")
+    }
+
+    /// A second, smaller spelling for a parent who can't read the app's
+    /// language (a child picked 日本語 in Settings): the device's own
+    /// language, or English when that is the language already shown. None
+    /// when the gate is in English on an English device.
+    private var helperLocale: Locale? {
+        let shown = locale.language.languageCode
+        if let device = Locale.preferredLanguages.first.map(Locale.init(identifier:)),
+           device.language.languageCode != shown {
+            return device
+        }
+        return shown == .english ? nil : Locale(identifier: "en-US")
     }
 
     /// Three different digits from 2–9: no 0 or 1, the easiest to guess
